@@ -28,6 +28,14 @@ public class ExtraPolygonPainter extends PolygonPainter {
         this.extraOffset = extraOffset;
     }
 
+    public float getExtraOffset() {
+        return extraOffset;
+    }
+
+    public void setExtraOffset(float extraOffset) {
+        this.extraOffset = extraOffset;
+    }
+
     @Override
     public void setEdgeCount(int edgeCount) {
         super.setEdgeCount(edgeCount);

@@ -20,6 +20,7 @@ import eason.linyuzai.easonicon.painter.combine.AddSolidRectPainter;
 import eason.linyuzai.easonicon.painter.combine.DownArrowPainter;
 import eason.linyuzai.easonicon.painter.combine.LeftArrowPainter;
 import eason.linyuzai.easonicon.painter.combine.RightArrowPainter;
+import eason.linyuzai.easonicon.painter.combine.SettingPainter;
 import eason.linyuzai.easonicon.painter.combine.UpArrowPainter;
 
 public class MainActivity extends AppCompatActivity {
@@ -75,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         //ExtraPolygonPainter painter = new ExtraPolygonPainter(5, -30);
         //icon.addPainter(painter);
         float r = 20;
-        icon.addPainter(new AddSolidRectPainter(Color.YELLOW, Color.RED));
+        icon.addPainter(new SettingPainter());
         //Painter painter = new AddSolidOvalPainter(Color.YELLOW, Color.RED);
         //EasonIcon.printStructure(painter, true);
         ObjectAnimator animator = ObjectAnimator.ofFloat(icon, "rotationY", 0f, 180f);

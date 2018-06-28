@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <eason.linyuzai.androidcommon.EScrollView
+        android:id="@+id/sv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/colorAccent" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/colorPrimary" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@android:color/white" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@android:color/black" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@android:color/holo_red_light" />
+        </LinearLayout>
+    </eason.linyuzai.androidcommon.EScrollView>
+
+    <eason.linyuzai.blurring.BlurringView
+        android:id="@+id/bv"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        app:blurRadius="11"
+        app:downsampleFactor="6"
+        app:overlayColor="#99FFFFFF" />
+
+    <eason.linyuzai.easonicon.EasonIcon
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layerType="software"
+        android:padding="5dp"
+        android:visibility="gone"
+        app:icon_color="@android:color/white"
+        app:icon_pen_cap="round"
+        app:icon_pen_size="2dp"
+        app:icon_pen_style="stroke"
+        app:icon_polygon_edge_count="5"
+        app:icon_type="polygon" />
+
+    <eason.linyuzai.easonicon.EasonIcon
+        android:id="@+id/ei"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@android:color/black"
+        android:layerType="software"
+        android:padding="0dp"
+        app:icon_color="@android:color/white"
+        app:icon_pen_cap="round"
+        app:icon_pen_size="3dp"
+        app:icon_pen_style="stroke"
+        app:icon_percent_center="0.5"
+        app:icon_polygon_edge_count="600"
+        app:icon_polygon_extra_offset="-18dp"
+        app:icon_type="none" />
+
+    <eason.linyuzai.easonicon.extension.OvalImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher" />
+
+    <eason.linyuzai.easonicon.extension.RectImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@mipmap/ic_launcher"
+        android:visibility="gone" />
+
+    <eason.linyuzai.androidcommon.EView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:visibility="gone" />
+</FrameLayout>

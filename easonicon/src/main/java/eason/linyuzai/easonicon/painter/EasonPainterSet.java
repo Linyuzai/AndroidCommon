@@ -31,6 +31,11 @@ public class EasonPainterSet extends EasonPainter implements PainterSet {
 
     private PainterSetRectSupportInterceptor rectSupportInterceptor = new PainterSetRectSupportInterceptor();
 
+    @Override
+    public List<Painter> getPainters() {
+        return painters;
+    }
+
     /**
      * 添加绘制者
      *

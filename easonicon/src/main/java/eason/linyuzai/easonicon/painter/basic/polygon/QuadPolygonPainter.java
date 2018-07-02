@@ -11,6 +11,10 @@ public class QuadPolygonPainter extends ExtraPolygonPainter {
         this(0f);
     }
 
+    public QuadPolygonPainter(int edgeCount) {
+        super(edgeCount);
+    }
+
     public QuadPolygonPainter(float extraOffset) {
         super(extraOffset);
     }

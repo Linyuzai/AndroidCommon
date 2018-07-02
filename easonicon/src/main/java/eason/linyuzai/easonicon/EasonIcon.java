@@ -45,6 +45,7 @@ import eason.linyuzai.easonicon.painter.basic.polygon.PolygonPainter;
 import eason.linyuzai.easonicon.painter.basic.polygon.QuadPolygonPainter;
 import eason.linyuzai.easonicon.painter.basic.rect.RectPainter;
 import eason.linyuzai.easonicon.painter.combine.NextPainter;
+import eason.linyuzai.easonicon.painter.combine.QuadFlower5;
 
 /**
  * Created by linyuzai on 2018/5/19.
@@ -196,6 +197,102 @@ public class EasonIcon extends View {
         }
     }
 
+    public int getAuxiliaryColor() {
+        return auxiliaryColor;
+    }
+
+    public void setAuxiliaryColor(int auxiliaryColor) {
+        this.auxiliaryColor = auxiliaryColor;
+    }
+
+    public float getAuxiliaryScale() {
+        return auxiliaryScale;
+    }
+
+    public void setAuxiliaryScale(float auxiliaryScale) {
+        this.auxiliaryScale = auxiliaryScale;
+    }
+
+    public float getLeftTopRound() {
+        return leftTopRound;
+    }
+
+    public void setLeftTopRound(float leftTopRound) {
+        this.leftTopRound = leftTopRound;
+    }
+
+    public float getLeftBottomRound() {
+        return leftBottomRound;
+    }
+
+    public void setLeftBottomRound(float leftBottomRound) {
+        this.leftBottomRound = leftBottomRound;
+    }
+
+    public float getRightTopRound() {
+        return rightTopRound;
+    }
+
+    public void setRightTopRound(float rightTopRound) {
+        this.rightTopRound = rightTopRound;
+    }
+
+    public float getRightBottomRound() {
+        return rightBottomRound;
+    }
+
+    public void setRightBottomRound(float rightBottomRound) {
+        this.rightBottomRound = rightBottomRound;
+    }
+
+    public float getStartAngle() {
+        return startAngle;
+    }
+
+    public void setStartAngle(float startAngle) {
+        this.startAngle = startAngle;
+    }
+
+    public float getSweepAngle() {
+        return sweepAngle;
+    }
+
+    public void setSweepAngle(float sweepAngle) {
+        this.sweepAngle = sweepAngle;
+    }
+
+    public boolean isUseCenter() {
+        return useCenter;
+    }
+
+    public void setUseCenter(boolean useCenter) {
+        this.useCenter = useCenter;
+    }
+
+    public Bitmap getBitmap() {
+        return bitmap;
+    }
+
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
+    }
+
+    public int getEdgeCount() {
+        return edgeCount;
+    }
+
+    public void setEdgeCount(int edgeCount) {
+        this.edgeCount = edgeCount;
+    }
+
+    public float getExtraOffset() {
+        return extraOffset;
+    }
+
+    public void setExtraOffset(float extraOffset) {
+        this.extraOffset = extraOffset;
+    }
+
     /**
      * 获得Icon类型
      *
@@ -284,6 +381,9 @@ public class EasonIcon extends View {
                 break;
             case Type.ERROR:
                 painterSet.addPainter(new ErrorPainter());
+                break;
+            case Type.QUAD_FLOWER_5:
+                painterSet.addPainter(new QuadFlower5());
                 break;
         }
         if (invalidate)
@@ -596,5 +696,7 @@ public class EasonIcon extends View {
         public static final int ERROR_HOLLOW_RECT = 221;
 
         public static final int ERROR_SOLID_RECT = 231;
+
+        public static final int QUAD_FLOWER_5 = 241;
     }
 }

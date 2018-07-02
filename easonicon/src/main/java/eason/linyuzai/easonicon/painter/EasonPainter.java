@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PointF;
 import android.graphics.RectF;
-import android.support.annotation.Size;
 import android.util.Log;
 
 import eason.linyuzai.easonicon.open.Painter;
@@ -21,14 +20,7 @@ public abstract class EasonPainter implements Painter {
 
     private Object tag;
 
-    private float percentX = 1f;//x百分比
-    private float percentY = 1f;//y百分比
-
-    private float offsetX = 0f;//x偏移
-    private float offsetY = 0f;//y偏移
-
-    private float offsetPercentX = 0f;//x偏移百分比，相对控件宽度
-    private float offsetPercentY = 0f;//y偏移百分比，相对控件高度
+    private RectParam rectParam = new RectParam();
 
     @Override
     public Bitmap transformBitmap(RectF draw, RectF original, Paint paint) {
@@ -102,7 +94,7 @@ public abstract class EasonPainter implements Painter {
      */
     @Override
     public void setPercentX(float percentX) {
-        this.percentX = percentX;
+        rectParam.setPercentX(percentX);
     }
 
     /**
@@ -112,7 +104,7 @@ public abstract class EasonPainter implements Painter {
      */
     @Override
     public float getPercentX() {
-        return percentX;
+        return rectParam.getPercentX();
     }
 
     /**
@@ -122,7 +114,7 @@ public abstract class EasonPainter implements Painter {
      */
     @Override
     public void setPercentY(float percentY) {
-        this.percentY = percentY;
+        rectParam.setPercentY(percentY);
     }
 
     /**
@@ -132,7 +124,7 @@ public abstract class EasonPainter implements Painter {
      */
     @Override
     public float getPercentY() {
-        return percentY;
+        return rectParam.getPercentY();
     }
 
     /**
@@ -142,7 +134,7 @@ public abstract class EasonPainter implements Painter {
      */
     @Override
     public void setOffsetX(float offsetX) {
-        this.offsetX = offsetX;
+        rectParam.setOffsetX(offsetX);
     }
 
     /**
@@ -152,7 +144,7 @@ public abstract class EasonPainter implements Painter {
      */
     @Override
     public float getOffsetX() {
-        return offsetX;
+        return rectParam.getOffsetX();
     }
 
     /**
@@ -162,7 +154,7 @@ public abstract class EasonPainter implements Painter {
      */
     @Override
     public void setOffsetY(float offsetY) {
-        this.offsetY = offsetY;
+        rectParam.setOffsetY(offsetY);
     }
 
     /**
@@ -172,7 +164,7 @@ public abstract class EasonPainter implements Painter {
      */
     @Override
     public float getOffsetY() {
-        return offsetY;
+        return rectParam.getOffsetY();
     }
 
     /**
@@ -182,7 +174,7 @@ public abstract class EasonPainter implements Painter {
      */
     @Override
     public void setOffsetPercentX(float offsetPercentX) {
-        this.offsetPercentX = offsetPercentX;
+        rectParam.setOffsetPercentX(offsetPercentX);
     }
 
     /**
@@ -192,7 +184,7 @@ public abstract class EasonPainter implements Painter {
      */
     @Override
     public float getOffsetPercentX() {
-        return offsetPercentX;
+        return rectParam.getOffsetPercentX();
     }
 
     /**
@@ -202,7 +194,7 @@ public abstract class EasonPainter implements Painter {
      */
     @Override
     public void setOffsetPercentY(float offsetPercentY) {
-        this.offsetPercentY = offsetPercentY;
+        rectParam.setOffsetPercentY(offsetPercentY);
     }
 
     /**
@@ -212,7 +204,7 @@ public abstract class EasonPainter implements Painter {
      */
     @Override
     public float getOffsetPercentY() {
-        return offsetPercentY;
+        return rectParam.getOffsetPercentY();
     }
 
     /**
@@ -292,5 +284,64 @@ public abstract class EasonPainter implements Painter {
         float ex = paint.getStrokeWidth() * 0.5f;
         RectF mRectF = getRectF(rectF);
         return new RectF(mRectF.left + ex, mRectF.top + ex, mRectF.right - ex, mRectF.bottom - ex);
+    }
+
+    public static class RectParam {
+        private float percentX = 1f;//x百分比
+        private float percentY = 1f;//y百分比
+
+        private float offsetX = 0f;//x偏移
+        private float offsetY = 0f;//y偏移
+
+        private float offsetPercentX = 0f;//x偏移百分比，相对控件宽度
+        private float offsetPercentY = 0f;//y偏移百分比，相对控件高度
+
+        public float getPercentX() {
+            return percentX;
+        }
+
+        public void setPercentX(float percentX) {
+            this.percentX = percentX;
+        }
+
+        public float getPercentY() {
+            return percentY;
+        }
+
+        public void setPercentY(float percentY) {
+            this.percentY = percentY;
+        }
+
+        public float getOffsetX() {
+            return offsetX;
+        }
+
+        public void setOffsetX(float offsetX) {
+            this.offsetX = offsetX;
+        }
+
+        public float getOffsetY() {
+            return offsetY;
+        }
+
+        public void setOffsetY(float offsetY) {
+            this.offsetY = offsetY;
+        }
+
+        public float getOffsetPercentX() {
+            return offsetPercentX;
+        }
+
+        public void setOffsetPercentX(float offsetPercentX) {
+            this.offsetPercentX = offsetPercentX;
+        }
+
+        public float getOffsetPercentY() {
+            return offsetPercentY;
+        }
+
+        public void setOffsetPercentY(float offsetPercentY) {
+            this.offsetPercentY = offsetPercentY;
+        }
     }
 }

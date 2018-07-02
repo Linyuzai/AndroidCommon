@@ -1,1 +1,1 @@
-include ':app', ':elib',':easonicon', ':blurring'
+include ':app', ':elib',':easonicon', ':blurring', ':easonbar'

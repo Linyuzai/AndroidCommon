@@ -19,7 +19,7 @@ public class SettingPainter extends EasonPainterSet {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public SettingPainter() {
-        polygon = new ExtraPolygonPainter(8, 0f);
+        polygon = new ExtraPolygonPainter(8);
         polygon.setCenterPercent(0.5f);
         addPainter(polygon);
         CirclePainter circle = new CirclePainter();
@@ -32,7 +32,6 @@ public class SettingPainter extends EasonPainterSet {
     private class SettingInterceptor implements PainterInterceptor {
 
         private RectF rectF = new RectF();
-        private float extraOffset;
         private float polygonPenSize;
         private float circlePenSize;
         private Paint.Style style;
@@ -42,10 +41,10 @@ public class SettingPainter extends EasonPainterSet {
         public void beforeDraw(Painter painter, Canvas canvas, Paint paint, RectF rectF, int index) {
             this.rectF.set(rectF);
             float size = Math.min(rectF.width(), rectF.height());
-            rectF.left += (rectF.width() - size) * 0.5;
-            rectF.right -= (rectF.width() - size) * 0.5;
-            rectF.top += (rectF.height() - size) * 0.5;
-            rectF.bottom -= (rectF.height() - size) * 0.5;
+            rectF.left += (rectF.width() - size) * 0.5f;
+            rectF.right -= (rectF.width() - size) * 0.5f;
+            rectF.top += (rectF.height() - size) * 0.5f;
+            rectF.bottom -= (rectF.height() - size) * 0.5f;
 
             style = paint.getStyle();
             cap = paint.getStrokeCap();
@@ -53,7 +52,6 @@ public class SettingPainter extends EasonPainterSet {
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeCap(Paint.Cap.BUTT);
             if (painter instanceof ExtraPolygonPainter) {
-                extraOffset = polygon.getExtraOffset();
                 polygonPenSize = paint.getStrokeWidth();
                 polygon.setExtraOffset(-size * 0.56f);
                 paint.setStrokeWidth(size * 0.11f);
@@ -69,7 +67,6 @@ public class SettingPainter extends EasonPainterSet {
             paint.setStyle(style);
             paint.setStrokeCap(cap);
             if (painter instanceof ExtraPolygonPainter) {
-                polygon.setExtraOffset(extraOffset);
                 paint.setStrokeWidth(polygonPenSize);
             } else if (painter instanceof CirclePainter) {
                 paint.setStrokeWidth(circlePenSize);

@@ -33,4 +33,5 @@ dependencies {
     implementation project(':easonicon')
     implementation project(':blurring')
     implementation project(':elib')
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
 }

@@ -19,6 +19,10 @@ public class ExtraPolygonPainter extends PolygonPainter {
         this(0f);
     }
 
+    public ExtraPolygonPainter(int edgeCount) {
+        super(edgeCount);
+    }
+
     public ExtraPolygonPainter(float extraOffset) {
         this.extraOffset = extraOffset;
     }

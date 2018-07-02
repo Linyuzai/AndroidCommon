@@ -13,8 +13,8 @@ public class AddHollowRectPainter extends EasonPainterSet {
         this(0.5f);
     }
 
-    public AddHollowRectPainter(@AuxiliaryScaleField float addScale) {
-        this(addScale, 0f, 0f, 0f, 0f);
+    public AddHollowRectPainter(@AuxiliaryScaleField float auxiliaryScale) {
+        this(auxiliaryScale, 0f, 0f, 0f, 0f);
     }
 
     public AddHollowRectPainter(@RoundField float leftTopRound, @RoundField float leftBottomRound,
@@ -22,12 +22,12 @@ public class AddHollowRectPainter extends EasonPainterSet {
         this(0.5f, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound);
     }
 
-    public AddHollowRectPainter(@AuxiliaryScaleField float addScale, @RoundField float leftTopRound,
+    public AddHollowRectPainter(@AuxiliaryScaleField float auxiliaryScale, @RoundField float leftTopRound,
                                 @RoundField float leftBottomRound, @RoundField float rightTopRound,
                                 @RoundField float rightBottomRound) {
         addPainter(new RectPainter(leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
-        Painter add = new AddPainter();
-        add.setCenterPercent(addScale);
-        addPainter(add);
+        Painter painter = new AddPainter();
+        painter.setCenterPercent(auxiliaryScale);
+        addPainter(painter);
     }
 }

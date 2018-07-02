@@ -3,6 +3,7 @@ package eason.linyuzai.easonicon.painter.interceptor.rect;
 import android.graphics.RectF;
 
 import eason.linyuzai.easonicon.open.Painter;
+import eason.linyuzai.easonicon.painter.EasonPainter;
 import eason.linyuzai.easonicon.painter.EasonPainterSet;
 
 /**
@@ -10,14 +11,7 @@ import eason.linyuzai.easonicon.painter.EasonPainterSet;
  */
 public class PainterSetRectSupportInterceptor extends RectInterceptor {
 
-    private float percentX = 1f;
-    private float percentY = 1f;
-
-    private float offsetX = 0f;
-    private float offsetY = 0f;
-
-    private float offsetPercentX = 0f;
-    private float offsetPercentY = 0f;
+    private EasonPainter.RectParam rectParam = new EasonPainter.RectParam();
 
     private RectF restoreRectF = new RectF();
 
@@ -50,12 +44,12 @@ public class PainterSetRectSupportInterceptor extends RectInterceptor {
      * @param rectF rectF
      */
     protected void changeRect(RectF rectF) {
-        rectF.right = restoreRectF.left + restoreRectF.width() * percentX;
-        rectF.bottom = restoreRectF.top + restoreRectF.height() * percentY;
-        rectF.top += offsetPercentY * restoreRectF.height() + offsetY;
-        rectF.left += offsetPercentX * restoreRectF.width() + offsetX;
-        rectF.right += offsetPercentX * restoreRectF.width() + offsetX;
-        rectF.bottom += offsetPercentY * restoreRectF.height() + offsetY;
+        rectF.right = restoreRectF.left + restoreRectF.width() * getPercentX();
+        rectF.bottom = restoreRectF.top + restoreRectF.height() * getPercentY();
+        rectF.top += getOffsetPercentY() * restoreRectF.height() + getOffsetY();
+        rectF.left += getOffsetPercentX() * restoreRectF.width() + getOffsetX();
+        rectF.right += getOffsetPercentX() * restoreRectF.width() + getOffsetX();
+        rectF.bottom += getOffsetPercentY() * restoreRectF.height() + getOffsetY();
     }
 
     protected void restoreRect(RectF rectF) {
@@ -101,83 +95,83 @@ public class PainterSetRectSupportInterceptor extends RectInterceptor {
      * @see EasonPainterSet#getPercentX()
      */
     public float getPercentX() {
-        return percentX;
+        return rectParam.getPercentX();
     }
 
     /**
      * @see EasonPainterSet#setPercentX(float)
      */
     public void setPercentX(float percentX) {
-        this.percentX = percentX;
+        rectParam.setPercentX(percentX);
     }
 
     /**
      * @see EasonPainterSet#getPercentY()
      */
     public float getPercentY() {
-        return percentY;
+        return rectParam.getPercentY();
     }
 
     /**
      * @see EasonPainterSet#setPercentY(float)
      */
     public void setPercentY(float percentY) {
-        this.percentY = percentY;
+        rectParam.setPercentY(percentY);
     }
 
     /**
      * @see EasonPainterSet#getOffsetX()
      */
     public float getOffsetX() {
-        return offsetX;
+        return rectParam.getOffsetX();
     }
 
     /**
      * @see EasonPainterSet#setOffsetX(float)
      */
     public void setOffsetX(float offsetX) {
-        this.offsetX = offsetX;
+        rectParam.setOffsetX(offsetX);
     }
 
     /**
      * @see EasonPainterSet#getOffsetY()
      */
     public float getOffsetY() {
-        return offsetY;
+        return rectParam.getOffsetY();
     }
 
     /**
      * @see EasonPainterSet#setOffsetY(float)
      */
     public void setOffsetY(float offsetY) {
-        this.offsetY = offsetY;
+        rectParam.setOffsetY(offsetY);
     }
 
     /**
      * @see EasonPainterSet#getOffsetPercentX()
      */
     public float getOffsetPercentX() {
-        return offsetPercentX;
+        return rectParam.getOffsetPercentX();
     }
 
     /**
      * @see EasonPainterSet#setOffsetPercentX(float)
      */
     public void setOffsetPercentX(float offsetPercentX) {
-        this.offsetPercentX = offsetPercentX;
+        rectParam.setOffsetPercentX(offsetPercentX);
     }
 
     /**
      * @see EasonPainterSet#getOffsetPercentY()
      */
     public float getOffsetPercentY() {
-        return offsetPercentY;
+        return rectParam.getOffsetPercentY();
     }
 
     /**
      * @see EasonPainterSet#setOffsetPercentY(float)
      */
     public void setOffsetPercentY(float offsetPercentY) {
-        this.offsetPercentY = offsetPercentY;
+        rectParam.setOffsetPercentY(offsetPercentY);
     }
 }

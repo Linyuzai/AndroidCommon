@@ -1,6 +1,10 @@
 package eason.linyuzai.easonicon.open;
 
+import java.util.List;
+
 public interface PainterSet extends Painter {
+    List<Painter> getPainters();
+
     void addPainter(Painter painter);
 
     void addPainter(int index, Painter painter);
@@ -10,6 +14,8 @@ public interface PainterSet extends Painter {
     void removePainter(int index);
 
     void clearPainter();
+
+    List<PainterInterceptor> getInterceptors();
 
     void addInterceptor(PainterInterceptor interceptor);
 

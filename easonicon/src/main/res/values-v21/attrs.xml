@@ -50,6 +50,7 @@
             <enum name="add_solid_circle" value="41" />
             <enum name="correct" value="51" />
             <enum name="error" value="61" />
+            <enum name="quad_flower_5" value="241" />
         </attr>
         <!-- 需要两种颜色 -->
         <attr name="icon_auxiliary_color" format="reference|color" />

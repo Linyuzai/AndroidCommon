@@ -11,10 +11,10 @@ public class AddHollowOvalPainter extends EasonPainterSet {
         this(0.5f);
     }
 
-    public AddHollowOvalPainter(@AuxiliaryScaleField float addScale) {
+    public AddHollowOvalPainter(@AuxiliaryScaleField float auxiliaryScale) {
         addPainter(new OvalPainter());
-        Painter add = new AddPainter();
-        add.setCenterPercent(addScale);
-        addPainter(add);
+        Painter painter = new AddPainter();
+        painter.setCenterPercent(auxiliaryScale);
+        addPainter(painter);
     }
 }

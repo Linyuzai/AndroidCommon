@@ -49,7 +49,11 @@ public class PolygonPainter extends PathPainter {
     }
 
     public PointF[] getEqualDivisionPoints(RectF rectF) {
-        return getEqualDivisionPoints(points, rectF, 90f);
+        return getEqualDivisionPoints(rectF, 90f);
+    }
+
+    public PointF[] getEqualDivisionPoints(RectF rectF, float startAngle) {
+        return getEqualDivisionPoints(points, rectF, startAngle);
     }
 
     public final PointF[] getEqualDivisionPoints(PointF[] points, RectF rectF, float startAngle) {

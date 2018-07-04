@@ -15,7 +15,7 @@ public class UpArrowPainter extends EasonPainterSet {
 
     public UpArrowPainter() {
         Painter collapse = new CollapsePainter();
-        collapse.setOffsetPercentY(0f);
+        collapse.setOffsetPercentY(-0.2f);
         addPainter(collapse);
         addPainter(new VerticalLinePainter());
     }

@@ -11,7 +11,7 @@ public abstract class PenJoinInterceptor extends PaintInterceptor {
     @Override
     public void beforeDraw(Painter painter, Paint paint, int index) {
         restoreJoin = paint.getStrokeJoin();
-        paint.setStrokeJoin(getJoin(painter, index));
+        paint.setStrokeJoin(getJoin(painter, index, restoreJoin));
     }
 
     @Override
@@ -19,5 +19,5 @@ public abstract class PenJoinInterceptor extends PaintInterceptor {
         paint.setStrokeJoin(restoreJoin);
     }
 
-    public abstract Paint.Join getJoin(Painter painter, int index);
+    public abstract Paint.Join getJoin(Painter painter, int index, Paint.Join original);
 }

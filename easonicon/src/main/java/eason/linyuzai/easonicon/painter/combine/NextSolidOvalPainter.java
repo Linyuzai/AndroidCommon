@@ -10,17 +10,16 @@ import eason.linyuzai.easonicon.painter.combine.interceptor.AuxiliaryStyleInterc
 
 public class NextSolidOvalPainter extends EasonPainterSet {
 
-    public NextSolidOvalPainter(@AuxiliaryColorField int auxiliaryColor, @AuxiliaryColorField int circleColor) {
-        this(0.5f, auxiliaryColor, circleColor);
+    public NextSolidOvalPainter(@AuxiliaryColorField int auxiliaryColor) {
+        this(0.5f, auxiliaryColor);
     }
 
-    public NextSolidOvalPainter(@AuxiliaryScaleField float auxiliaryScale, @AuxiliaryColorField int auxiliaryColor,
-                                @AuxiliaryColorField int circleColor) {
+    public NextSolidOvalPainter(@AuxiliaryScaleField float auxiliaryScale, @AuxiliaryColorField int auxiliaryColor) {
         addPainter(new OvalPainter());
         Painter painter = new NextPainter();
         painter.setCenterPercent(auxiliaryScale);
         addPainter(painter);
         addInterceptor(new AuxiliaryStyleInterceptor());
-        addInterceptor(new AuxiliaryColorInterceptor(auxiliaryColor, circleColor));
+        addInterceptor(new AuxiliaryColorInterceptor(auxiliaryColor));
     }
 }

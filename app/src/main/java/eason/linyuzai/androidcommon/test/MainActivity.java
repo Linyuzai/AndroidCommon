@@ -1,7 +1,6 @@
-package eason.linyuzai.androidcommon;
+package eason.linyuzai.androidcommon.test;
 
 import android.animation.ObjectAnimator;
-import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
@@ -11,17 +10,9 @@ import android.view.animation.LinearInterpolator;
 import android.widget.LinearLayout;
 
 
+import eason.linyuzai.androidcommon.R;
 import eason.linyuzai.blurring.BlurringView;
 import eason.linyuzai.easonicon.EasonIcon;
-import eason.linyuzai.easonicon.open.Painter;
-import eason.linyuzai.easonicon.painter.combine.AddHollowRectPainter;
-import eason.linyuzai.easonicon.painter.combine.AddSolidOvalPainter;
-import eason.linyuzai.easonicon.painter.combine.AddSolidRectPainter;
-import eason.linyuzai.easonicon.painter.combine.DownArrowPainter;
-import eason.linyuzai.easonicon.painter.combine.LeftArrowPainter;
-import eason.linyuzai.easonicon.painter.combine.RightArrowPainter;
-import eason.linyuzai.easonicon.painter.combine.SettingPainter;
-import eason.linyuzai.easonicon.painter.combine.UpArrowPainter;
 
 public class MainActivity extends AppCompatActivity {
 

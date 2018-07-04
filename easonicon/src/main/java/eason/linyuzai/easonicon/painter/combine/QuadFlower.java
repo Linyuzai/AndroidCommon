@@ -14,7 +14,7 @@ public class QuadFlower extends EasonPainterSet {
     private QuadPolygonPainter polygon;
 
     public QuadFlower() {
-        this(5);
+        this(6);
     }
 
     public QuadFlower(int edgeCount) {
@@ -29,6 +29,10 @@ public class QuadFlower extends EasonPainterSet {
     }
 
     public void setEdgeCount(int edgeCount) {
+        if (edgeCount < 6)
+            edgeCount = 6;
+        if (edgeCount > 10)
+            edgeCount = 10;
         polygon.setEdgeCount(edgeCount);
     }
 

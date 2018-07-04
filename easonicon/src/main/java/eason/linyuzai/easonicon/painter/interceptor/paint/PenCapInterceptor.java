@@ -11,7 +11,7 @@ public abstract class PenCapInterceptor extends PaintInterceptor {
     @Override
     public void beforeDraw(Painter painter, Paint paint, int index) {
         restoreCap = paint.getStrokeCap();
-        paint.setStrokeCap(getCap(painter, index));
+        paint.setStrokeCap(getCap(painter, index, restoreCap));
     }
 
     @Override
@@ -19,5 +19,5 @@ public abstract class PenCapInterceptor extends PaintInterceptor {
         paint.setStrokeCap(restoreCap);
     }
 
-    public abstract Paint.Cap getCap(Painter painter, int index);
+    public abstract Paint.Cap getCap(Painter painter, int index, Paint.Cap original);
 }

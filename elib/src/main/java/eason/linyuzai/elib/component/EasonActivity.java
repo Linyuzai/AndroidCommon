@@ -20,6 +20,7 @@ import android.widget.Toast;
 import java.util.Collection;
 
 import eason.linyuzai.elib.common.EasonDensity;
+import eason.linyuzai.elib.common.EasonMemory;
 import eason.linyuzai.elib.common.EasonStatusBar;
 import eason.linyuzai.elib.common.EasonString;
 import eason.linyuzai.elib.common.EasonWidget;
@@ -177,6 +178,14 @@ public abstract class EasonActivity extends AppCompatActivity {
         return getResources().getDrawable(drawableRes);
     }
 
+    public int statusBarHeight() {
+        return EasonDensity.getStatusBarHeight(this);
+    }
+
+    public int screenWidth() {
+        return EasonDensity.getScreenWidth(this);
+    }
+
     /**
      * 屏幕高度
      *
@@ -184,6 +193,10 @@ public abstract class EasonActivity extends AppCompatActivity {
      */
     public int screenHeight() {
         return EasonDensity.getScreenHeight(this);
+    }
+
+    public EasonMemory memory() {
+        return EasonMemory.getInstance();
     }
 
     /**

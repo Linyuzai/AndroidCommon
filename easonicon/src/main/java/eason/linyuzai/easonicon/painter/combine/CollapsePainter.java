@@ -9,11 +9,12 @@ public class CollapsePainter extends EasonPainterSet {
     public CollapsePainter() {
         Painter negative = new SlopeNegativeLinePainter();
         negative.setPercent(0.5f);
+        negative.setOffsetPercentY(0.2f);
         addPainter(negative);
         Painter positive = new SlopePositiveLinePainter();
         positive.setPercent(0.5f);
         positive.setOffsetPercentX(0.5f);
+        positive.setOffsetPercentY(0.2f);
         addPainter(positive);
-        setOffsetPercentY(0.25f);
     }
 }

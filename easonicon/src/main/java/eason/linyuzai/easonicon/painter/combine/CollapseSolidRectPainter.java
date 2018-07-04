@@ -11,30 +11,33 @@ import eason.linyuzai.easonicon.painter.combine.interceptor.AuxiliaryStyleInterc
 
 public class CollapseSolidRectPainter extends EasonPainterSet {
 
-    public CollapseSolidRectPainter(@AuxiliaryColorField int auxiliaryColor, @AuxiliaryColorField int circleColor) {
-        this(0.5f, auxiliaryColor, circleColor);
+    public CollapseSolidRectPainter(@AuxiliaryColorField int auxiliaryColor) {
+        this(0.5f, auxiliaryColor);
     }
 
-    public CollapseSolidRectPainter(@AuxiliaryScaleField float auxiliaryScale, @AuxiliaryColorField int auxiliaryColor,
-                                    @AuxiliaryColorField int circleColor) {
-        this(auxiliaryScale, auxiliaryColor, circleColor, 0f, 0f, 0f, 0f);
+    public CollapseSolidRectPainter(@AuxiliaryScaleField float auxiliaryScale, @AuxiliaryColorField int auxiliaryColor) {
+        this(auxiliaryScale, auxiliaryColor, 0f, 0f, 0f, 0f);
     }
 
-    public CollapseSolidRectPainter(@AuxiliaryColorField int auxiliaryColor, @AuxiliaryColorField int circleColor,
-                                    @RoundField float leftTopRound, @RoundField float leftBottomRound,
-                                    @RoundField float rightTopRound, @RoundField float rightBottomRound) {
-        this(0.5f, auxiliaryColor, circleColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound);
+    public CollapseSolidRectPainter(@AuxiliaryColorField int auxiliaryColor,
+                                    @RoundField float leftTopRound,
+                                    @RoundField float leftBottomRound,
+                                    @RoundField float rightTopRound,
+                                    @RoundField float rightBottomRound) {
+        this(0.5f, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound);
     }
 
-    public CollapseSolidRectPainter(@AuxiliaryScaleField float auxiliaryScale, @AuxiliaryColorField int auxiliaryColor,
-                                    @AuxiliaryColorField int circleColor, @RoundField float leftTopRound,
-                                    @RoundField float leftBottomRound, @RoundField float rightTopRound,
+    public CollapseSolidRectPainter(@AuxiliaryScaleField float auxiliaryScale,
+                                    @AuxiliaryColorField int auxiliaryColor,
+                                    @RoundField float leftTopRound,
+                                    @RoundField float leftBottomRound,
+                                    @RoundField float rightTopRound,
                                     @RoundField float rightBottomRound) {
         addPainter(new RectPainter(leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
         Painter painter = new CollapsePainter();
         painter.setCenterPercent(auxiliaryScale);
         addPainter(painter);
         addInterceptor(new AuxiliaryStyleInterceptor());
-        addInterceptor(new AuxiliaryColorInterceptor(auxiliaryColor, circleColor));
+        addInterceptor(new AuxiliaryColorInterceptor(auxiliaryColor));
     }
 }

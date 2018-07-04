@@ -9,11 +9,12 @@ public class ExpandPainter extends EasonPainterSet {
     public ExpandPainter() {
         Painter positive = new SlopePositiveLinePainter();
         positive.setPercent(0.5f);
+        positive.setOffsetPercentY(0.3f);
         addPainter(positive);
         Painter negative = new SlopeNegativeLinePainter();
         negative.setPercent(0.5f);
         negative.setOffsetPercentX(0.5f);
+        negative.setOffsetPercentY(0.3f);
         addPainter(negative);
-        setOffsetPercentY(0.25f);
     }
 }

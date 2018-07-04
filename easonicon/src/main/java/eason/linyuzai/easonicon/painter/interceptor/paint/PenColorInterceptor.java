@@ -11,7 +11,7 @@ public abstract class PenColorInterceptor extends PaintInterceptor {
     @Override
     public void beforeDraw(Painter painter, Paint paint, int index) {
         restoreColor = paint.getColor();
-        paint.setColor(getColor(painter, index));
+        paint.setColor(getColor(painter, index, restoreColor));
     }
 
     @Override
@@ -19,5 +19,5 @@ public abstract class PenColorInterceptor extends PaintInterceptor {
         paint.setColor(restoreColor);
     }
 
-    public abstract int getColor(Painter painter, int index);
+    public abstract int getColor(Painter painter, int index, int original);
 }

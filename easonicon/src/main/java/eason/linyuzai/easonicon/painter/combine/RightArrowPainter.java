@@ -15,7 +15,7 @@ public class RightArrowPainter extends EasonPainterSet {
 
     public RightArrowPainter() {
         Painter next = new NextPainter();
-        next.setOffsetPercentX(0.5f);
+        next.setOffsetPercentX(0.2f);
         addPainter(next);
         addPainter(new HorizontalLinePainter());
     }

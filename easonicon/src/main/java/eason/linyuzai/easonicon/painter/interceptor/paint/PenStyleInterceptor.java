@@ -11,7 +11,7 @@ public abstract class PenStyleInterceptor extends PaintInterceptor {
     @Override
     public void beforeDraw(Painter painter, Paint paint, int index) {
         restoreStyle = paint.getStyle();
-        paint.setStyle(getStyle(painter, index));
+        paint.setStyle(getStyle(painter, index, restoreStyle));
     }
 
     @Override
@@ -19,5 +19,5 @@ public abstract class PenStyleInterceptor extends PaintInterceptor {
         paint.setStyle(restoreStyle);
     }
 
-    public abstract Paint.Style getStyle(Painter painter, int index);
+    public abstract Paint.Style getStyle(Painter painter, int index, Paint.Style original);
 }

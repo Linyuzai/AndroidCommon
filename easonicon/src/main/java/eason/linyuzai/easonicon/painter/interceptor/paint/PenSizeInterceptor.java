@@ -11,7 +11,7 @@ public abstract class PenSizeInterceptor extends PaintInterceptor {
     @Override
     public void beforeDraw(Painter painter, Paint paint, int index) {
         restorePenSize = paint.getStrokeWidth();
-        paint.setStrokeWidth(getPenSize(painter, index));
+        paint.setStrokeWidth(getPenSize(painter, index, restorePenSize));
     }
 
     @Override
@@ -19,5 +19,5 @@ public abstract class PenSizeInterceptor extends PaintInterceptor {
         paint.setStrokeWidth(restorePenSize);
     }
 
-    public abstract float getPenSize(Painter painter, int index);
+    public abstract float getPenSize(Painter painter, int index, float original);
 }

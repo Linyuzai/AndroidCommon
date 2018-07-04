@@ -25,12 +25,35 @@ import eason.linyuzai.easonicon.annotation.BitmapField;
 import eason.linyuzai.easonicon.annotation.PolygonField;
 import eason.linyuzai.easonicon.annotation.RoundField;
 import eason.linyuzai.easonicon.open.Painter;
+import eason.linyuzai.easonicon.open.PainterSet;
 import eason.linyuzai.easonicon.painter.EasonPainterSet;
 import eason.linyuzai.easonicon.painter.combine.AddHollowOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.AddHollowRectPainter;
 import eason.linyuzai.easonicon.painter.combine.AddPainter;
 import eason.linyuzai.easonicon.painter.combine.AddSolidOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.AddSolidRectPainter;
+import eason.linyuzai.easonicon.painter.combine.BackHollowOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.BackHollowRectPainter;
 import eason.linyuzai.easonicon.painter.combine.BackPainter;
+import eason.linyuzai.easonicon.painter.combine.BackSolidOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.BackSolidRectPainter;
+import eason.linyuzai.easonicon.painter.combine.CollapseHollowOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.CollapseHollowRectPainter;
+import eason.linyuzai.easonicon.painter.combine.CollapsePainter;
+import eason.linyuzai.easonicon.painter.combine.CollapseSolidOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.CollapseSolidRectPainter;
+import eason.linyuzai.easonicon.painter.combine.CorrectHollowOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.CorrectHollowRectPainter;
 import eason.linyuzai.easonicon.painter.combine.CorrectPainter;
+import eason.linyuzai.easonicon.painter.combine.CorrectSolidOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.CorrectSolidRectPainter;
+import eason.linyuzai.easonicon.painter.combine.DownArrowHollowOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.DownArrowHollowRectPainter;
+import eason.linyuzai.easonicon.painter.combine.DownArrowPainter;
+import eason.linyuzai.easonicon.painter.combine.DownArrowSolidOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.DownArrowSolidRectPainter;
+import eason.linyuzai.easonicon.painter.combine.ErrorHollowOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.ErrorHollowRectPainter;
 import eason.linyuzai.easonicon.painter.combine.ErrorPainter;
 import eason.linyuzai.easonicon.painter.basic.arc.ArcPainter;
 import eason.linyuzai.easonicon.painter.basic.bitmap.BitmapPainter;
@@ -44,8 +67,40 @@ import eason.linyuzai.easonicon.painter.basic.polygon.ExtraPolygonPainter;
 import eason.linyuzai.easonicon.painter.basic.polygon.PolygonPainter;
 import eason.linyuzai.easonicon.painter.basic.polygon.QuadPolygonPainter;
 import eason.linyuzai.easonicon.painter.basic.rect.RectPainter;
+import eason.linyuzai.easonicon.painter.combine.ErrorSolidOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.ErrorSolidRectPainter;
+import eason.linyuzai.easonicon.painter.combine.ExpandHollowOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.ExpandHollowRectPainter;
+import eason.linyuzai.easonicon.painter.combine.ExpandPainter;
+import eason.linyuzai.easonicon.painter.combine.ExpandSolidOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.ExpandSolidRectPainter;
+import eason.linyuzai.easonicon.painter.combine.LeftArrowHollowOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.LeftArrowHollowRectPainter;
+import eason.linyuzai.easonicon.painter.combine.LeftArrowPainter;
+import eason.linyuzai.easonicon.painter.combine.LeftArrowSolidOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.LeftArrowSolidRectPainter;
+import eason.linyuzai.easonicon.painter.combine.MinusHollowOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.MinusHollowRectPainter;
+import eason.linyuzai.easonicon.painter.combine.MinusPainter;
+import eason.linyuzai.easonicon.painter.combine.MinusSolidOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.MinusSolidRectPainter;
+import eason.linyuzai.easonicon.painter.combine.NextHollowOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.NextHollowRectPainter;
 import eason.linyuzai.easonicon.painter.combine.NextPainter;
-import eason.linyuzai.easonicon.painter.combine.QuadFlower5;
+import eason.linyuzai.easonicon.painter.combine.NextSolidOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.NextSolidRectPainter;
+import eason.linyuzai.easonicon.painter.combine.QuadFlower;
+import eason.linyuzai.easonicon.painter.combine.RightArrowHollowOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.RightArrowHollowRectPainter;
+import eason.linyuzai.easonicon.painter.combine.RightArrowPainter;
+import eason.linyuzai.easonicon.painter.combine.RightArrowSolidOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.RightArrowSolidRectPainter;
+import eason.linyuzai.easonicon.painter.combine.SettingPainter;
+import eason.linyuzai.easonicon.painter.combine.UpArrowHollowOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.UpArrowHollowRectPainter;
+import eason.linyuzai.easonicon.painter.combine.UpArrowPainter;
+import eason.linyuzai.easonicon.painter.combine.UpArrowSolidOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.UpArrowSolidRectPainter;
 
 /**
  * Created by linyuzai on 2018/5/19.
@@ -126,7 +181,7 @@ public class EasonIcon extends View {
         if (attrs != null) {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.EasonIcon);
             int color = a.getColor(R.styleable.EasonIcon_icon_color, Color.WHITE);
-            int penSize = a.getDimensionPixelSize(R.styleable.EasonIcon_icon_pen_size, 0);
+            int penSize = a.getDimensionPixelSize(R.styleable.EasonIcon_icon_pen_size, 5);
             int type = a.getInt(R.styleable.EasonIcon_icon_type, Type.NONE);
             int cap = a.getInt(R.styleable.EasonIcon_icon_pen_cap, 1);
             int join = a.getInt(R.styleable.EasonIcon_icon_pen_join, 0);
@@ -166,13 +221,13 @@ public class EasonIcon extends View {
             float offsetY = a.getDimension(R.styleable.EasonIcon_icon_offset_y, -1f);
 
             a.recycle();
-            setType(type, false);
-            setColor(color, false);
-            setPenSize(penSize, false);
-            setPenCap(Paint.Cap.values()[cap], false);
-            setPenJoin(Paint.Join.values()[join], false);
-            setPenStyle(Paint.Style.values()[style], false);
-            setPathEffect(new CornerPathEffect(pathEffectCorner), false);
+            setType(type);
+            setColor(color);
+            setPenSize(penSize);
+            setPenCap(Paint.Cap.values()[cap]);
+            setPenJoin(Paint.Join.values()[join]);
+            setPenStyle(Paint.Style.values()[style]);
+            setPathEffect(new CornerPathEffect(pathEffectCorner));
 
             if (percentCenter >= 0f)
                 painterSet.setCenterPercent(percentCenter);
@@ -194,6 +249,14 @@ public class EasonIcon extends View {
                 painterSet.setOffsetX(offsetX);
             if (offsetY >= 0f)
                 painterSet.setOffsetY(offsetY);
+        } else {
+            setColor(Color.WHITE);
+            setPenSize(5);
+            setPenStyle(Paint.Style.STROKE);
+            setPenCap(Paint.Cap.ROUND);
+            auxiliaryColor = Color.WHITE;
+            auxiliaryScale = 0.5f;
+            edgeCount = 3;
         }
     }
 
@@ -308,16 +371,6 @@ public class EasonIcon extends View {
      * @param type Icon类型
      */
     public void setType(int type) {
-        setType(type, true);
-    }
-
-    /**
-     * 设置Icon类型
-     *
-     * @param type       Icon类型
-     * @param invalidate 是否重绘
-     */
-    public void setType(int type, boolean invalidate) {
         if (this.type == type)
             return;
         this.type = type;
@@ -361,20 +414,134 @@ public class EasonIcon extends View {
             case Type.POLYGON_QUAD:
                 painterSet.addPainter(new QuadPolygonPainter(edgeCount, extraOffset));
                 break;
+            case Type.TEXT:
+                // TODO: 2018/7/4
+                break;
             case Type.BACK:
                 painterSet.addPainter(new BackPainter());
                 break;
             case Type.NEXT:
                 painterSet.addPainter(new NextPainter());
                 break;
+            case Type.COLLAPSE:
+                painterSet.addPainter(new CollapsePainter());
+                break;
+            case Type.EXPAND:
+                painterSet.addPainter(new ExpandPainter());
+                break;
+            case Type.BACK_HOLLOW_OVAL:
+                painterSet.addPainter(new BackHollowOvalPainter(auxiliaryScale));
+                break;
+            case Type.NEXT_HOLLOW_OVAL:
+                painterSet.addPainter(new NextHollowOvalPainter(auxiliaryScale));
+                break;
+            case Type.COLLAPSE_HOLLOW_OVAL:
+                painterSet.addPainter(new CollapseHollowOvalPainter(auxiliaryScale));
+                break;
+            case Type.EXPAND_HOLLOW_OVAL:
+                painterSet.addPainter(new ExpandHollowOvalPainter(auxiliaryScale));
+                break;
+            case Type.BACK_SOLID_OVAL:
+                painterSet.addPainter(new BackSolidOvalPainter(auxiliaryScale, auxiliaryColor));
+                break;
+            case Type.NEXT_SOLID_OVAL:
+                painterSet.addPainter(new NextSolidOvalPainter(auxiliaryScale, auxiliaryColor));
+                break;
+            case Type.COLLAPSE_SOLID_OVAL:
+                painterSet.addPainter(new CollapseSolidOvalPainter(auxiliaryScale, auxiliaryColor));
+                break;
+            case Type.EXPAND_SOLID_OVAL:
+                painterSet.addPainter(new ExpandSolidOvalPainter(auxiliaryScale, auxiliaryColor));
+                break;
+            case Type.BACK_HOLLOW_RECT:
+                painterSet.addPainter(new BackHollowRectPainter(auxiliaryScale, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
+                break;
+            case Type.NEXT_HOLLOW_RECT:
+                painterSet.addPainter(new NextHollowRectPainter(auxiliaryScale, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
+                break;
+            case Type.COLLAPSE_HOLLOW_RECT:
+                painterSet.addPainter(new CollapseHollowRectPainter(auxiliaryScale, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
+                break;
+            case Type.EXPAND_HOLLOW_RECT:
+                painterSet.addPainter(new ExpandHollowRectPainter(auxiliaryScale, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
+                break;
+            case Type.BACK_SOLID_RECT:
+                painterSet.addPainter(new BackSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
+                break;
+            case Type.NEXT_SOLID_RECT:
+                painterSet.addPainter(new NextSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
+                break;
+            case Type.COLLAPSE_SOLID_RECT:
+                painterSet.addPainter(new CollapseSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
+                break;
+            case Type.EXPAND_SOLID_RECT:
+                painterSet.addPainter(new ExpandSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
+                break;
+            case Type.ARROW_LEFT:
+                painterSet.addPainter(new LeftArrowPainter());
+                break;
+            case Type.ARROW_RIGHT:
+                painterSet.addPainter(new RightArrowPainter());
+                break;
+            case Type.ARROW_UP:
+                painterSet.addPainter(new UpArrowPainter());
+                break;
+            case Type.ARROW_DOWN:
+                painterSet.addPainter(new DownArrowPainter());
+                break;
+            case Type.ARROW_LEFT_HOLLOW_OVAL:
+                painterSet.addPainter(new LeftArrowHollowOvalPainter(auxiliaryScale));
+                break;
+            case Type.ARROW_RIGHT_HOLLOW_OVAL:
+                painterSet.addPainter(new RightArrowHollowOvalPainter(auxiliaryScale));
+                break;
+            case Type.ARROW_UP_HOLLOW_OVAL:
+                painterSet.addPainter(new UpArrowHollowOvalPainter(auxiliaryScale));
+                break;
+            case Type.ARROW_DOWN_HOLLOW_OVAL:
+                painterSet.addPainter(new DownArrowHollowOvalPainter(auxiliaryScale));
+                break;
+            case Type.ARROW_LEFT_SOLID_OVAL:
+                painterSet.addPainter(new LeftArrowSolidOvalPainter(auxiliaryScale, auxiliaryColor));
+                break;
+            case Type.ARROW_RIGHT_SOLID_OVAL:
+                painterSet.addPainter(new RightArrowSolidOvalPainter(auxiliaryScale, auxiliaryColor));
+                break;
+            case Type.ARROW_UP_SOLID_OVAL:
+                painterSet.addPainter(new UpArrowSolidOvalPainter(auxiliaryScale, auxiliaryColor));
+                break;
+            case Type.ARROW_DOWN_SOLID_OVAL:
+                painterSet.addPainter(new DownArrowSolidOvalPainter(auxiliaryScale, auxiliaryColor));
+                break;
+            case Type.ARROW_LEFT_HOLLOW_RECT:
+                painterSet.addPainter(new LeftArrowHollowRectPainter(auxiliaryScale, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
+                break;
+            case Type.ARROW_RIGHT_HOLLOW_RECT:
+                painterSet.addPainter(new RightArrowHollowRectPainter(auxiliaryScale, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
+                break;
+            case Type.ARROW_UP_HOLLOW_RECT:
+                painterSet.addPainter(new UpArrowHollowRectPainter(auxiliaryScale, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
+                break;
+            case Type.ARROW_DOWN_HOLLOW_RECT:
+                painterSet.addPainter(new DownArrowHollowRectPainter(auxiliaryScale, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
+                break;
+            case Type.ARROW_LEFT_SOLID_RECT:
+                painterSet.addPainter(new LeftArrowSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
+                break;
+            case Type.ARROW_RIGHT_SOLID_RECT:
+                painterSet.addPainter(new RightArrowSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
+                break;
+            case Type.ARROW_UP_SOLID_RECT:
+                painterSet.addPainter(new UpArrowSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
+                break;
+            case Type.ARROW_DOWN_SOLID_RECT:
+                painterSet.addPainter(new DownArrowSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
+                break;
             case Type.ADD:
                 painterSet.addPainter(new AddPainter());
                 break;
-            case Type.ADD_HOLLOW_OVAL:
-                painterSet.addPainter(new AddHollowOvalPainter(auxiliaryScale));
-                break;
-            case Type.ADD_SOLID_OVAL:
-                painterSet.addPainter(new AddSolidOvalPainter(auxiliaryScale, auxiliaryColor, paint.getColor()));
+            case Type.MINUS:
+                painterSet.addPainter(new MinusPainter());
                 break;
             case Type.CORRECT:
                 painterSet.addPainter(new CorrectPainter());
@@ -382,62 +549,83 @@ public class EasonIcon extends View {
             case Type.ERROR:
                 painterSet.addPainter(new ErrorPainter());
                 break;
-            case Type.QUAD_FLOWER_5:
-                painterSet.addPainter(new QuadFlower5());
+            case Type.ADD_HOLLOW_OVAL:
+                painterSet.addPainter(new AddHollowOvalPainter(auxiliaryScale));
+                break;
+            case Type.MINUS_HOLLOW_OVAL:
+                painterSet.addPainter(new MinusHollowOvalPainter(auxiliaryScale));
+                break;
+            case Type.CORRECT_HOLLOW_OVAL:
+                painterSet.addPainter(new CorrectHollowOvalPainter(auxiliaryScale));
+                break;
+            case Type.ERROR_HOLLOW_OVAL:
+                painterSet.addPainter(new ErrorHollowOvalPainter(auxiliaryScale));
+                break;
+            case Type.ADD_SOLID_OVAL:
+                painterSet.addPainter(new AddSolidOvalPainter(auxiliaryScale, auxiliaryColor));
+                break;
+            case Type.MINUS_SOLID_OVAL:
+                painterSet.addPainter(new MinusSolidOvalPainter(auxiliaryScale, auxiliaryColor));
+                break;
+            case Type.CORRECT_SOLID_OVAL:
+                painterSet.addPainter(new CorrectSolidOvalPainter(auxiliaryScale, auxiliaryColor));
+                break;
+            case Type.ERROR_SOLID_OVAL:
+                painterSet.addPainter(new ErrorSolidOvalPainter(auxiliaryScale, auxiliaryColor));
+                break;
+            case Type.ADD_HOLLOW_RECT:
+                painterSet.addPainter(new AddHollowRectPainter(auxiliaryScale, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
+                break;
+            case Type.MINUS_HOLLOW_RECT:
+                painterSet.addPainter(new MinusHollowRectPainter(auxiliaryScale, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
+                break;
+            case Type.CORRECT_HOLLOW_RECT:
+                painterSet.addPainter(new CorrectHollowRectPainter(auxiliaryScale, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
+                break;
+            case Type.ERROR_HOLLOW_RECT:
+                painterSet.addPainter(new ErrorHollowRectPainter(auxiliaryScale, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
+                break;
+            case Type.ADD_SOLID_RECT:
+                painterSet.addPainter(new AddSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
+                break;
+            case Type.MINUS_SOLID_RECT:
+                painterSet.addPainter(new MinusSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
+                break;
+            case Type.CORRECT_SOLID_RECT:
+                painterSet.addPainter(new CorrectSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
+                break;
+            case Type.ERROR_SOLID_RECT:
+                painterSet.addPainter(new ErrorSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
+                break;
+            case Type.SETTING:
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    painterSet.addPainter(new SettingPainter());
+                }
+                break;
+            case Type.QUAD_FLOWER:
+                painterSet.addPainter(new QuadFlower(edgeCount));
                 break;
         }
-        if (invalidate)
-            update();
     }
 
     public void addPainter(Painter painter) {
-        addPainter(painter, true);
-    }
-
-    public void addPainter(Painter painter, boolean invalidate) {
         painterSet.addPainter(painter);
-        if (invalidate)
-            update();
     }
 
     public void addPainter(int index, Painter painter) {
-        addPainter(index, painter, true);
-    }
-
-    public void addPainter(int index, Painter painter, boolean invalidate) {
         painterSet.addPainter(index, painter);
-        if (invalidate)
-            update();
     }
 
     public void removePainter(Painter painter) {
-        removePainter(painter, true);
-    }
-
-    public void removePainter(Painter painter, boolean invalidate) {
         painterSet.removePainter(painter);
-        if (invalidate)
-            update();
     }
 
     public void removePainter(int index) {
-        removePainter(index, true);
-    }
-
-    public void removePainter(int index, boolean invalidate) {
         painterSet.removePainter(index);
-        if (invalidate)
-            update();
     }
 
     public void clearPainter() {
-        clearPainter(true);
-    }
-
-    public void clearPainter(boolean invalidate) {
         painterSet.clearPainter();
-        if (invalidate)
-            update();
     }
 
     /**
@@ -455,19 +643,7 @@ public class EasonIcon extends View {
      * @param size 画笔宽度
      */
     public void setPenSize(@Px int size) {
-        setPenSize(size, true);
-    }
-
-    /**
-     * 设置画笔宽度
-     *
-     * @param size       画笔宽度
-     * @param invalidate 是否重绘
-     */
-    public void setPenSize(@Px int size, boolean invalidate) {
         paint.setStrokeWidth(size);
-        if (invalidate)
-            update();
     }
 
     /**
@@ -485,19 +661,7 @@ public class EasonIcon extends View {
      * @param color 画笔颜色
      */
     public void setColor(@ColorInt int color) {
-        setColor(color, true);
-    }
-
-    /**
-     * 设置画笔颜色
-     *
-     * @param color      画笔颜色
-     * @param invalidate 是否重绘
-     */
-    public void setColor(@ColorInt int color, boolean invalidate) {
         paint.setColor(color);
-        if (invalidate)
-            update();
     }
 
     public Paint.Cap getPenCap() {
@@ -505,13 +669,7 @@ public class EasonIcon extends View {
     }
 
     public void setPenCap(Paint.Cap cap) {
-        setPenCap(cap, true);
-    }
-
-    public void setPenCap(Paint.Cap cap, boolean invalidate) {
         paint.setStrokeCap(cap);
-        if (invalidate)
-            update();
     }
 
     public Paint.Join getPenJoin() {
@@ -519,13 +677,7 @@ public class EasonIcon extends View {
     }
 
     public void setPenJoin(Paint.Join join) {
-        setPenJoin(join, true);
-    }
-
-    public void setPenJoin(Paint.Join join, boolean invalidate) {
         paint.setStrokeJoin(join);
-        if (invalidate)
-            update();
     }
 
     public PathEffect setPathEffect() {
@@ -533,13 +685,7 @@ public class EasonIcon extends View {
     }
 
     public void setPathEffect(PathEffect effect) {
-        setPathEffect(effect, true);
-    }
-
-    public void setPathEffect(PathEffect effect, boolean invalidate) {
         paint.setPathEffect(effect);
-        if (invalidate)
-            update();
     }
 
     public Paint.Style getPenStyle() {
@@ -547,17 +693,19 @@ public class EasonIcon extends View {
     }
 
     public void setPenStyle(Paint.Style style) {
-        setPenStyle(style, true);
-    }
-
-    public void setPenStyle(Paint.Style style, boolean invalidate) {
         paint.setStyle(style);
-        if (invalidate)
-            update();
     }
 
     public Paint getPaint() {
         return paint;
+    }
+
+    public PainterSet getPainterSet() {
+        return painterSet;
+    }
+
+    public Painter getPainter(int index) {
+        return painterSet.getPainter(index);
     }
 
     @Override
@@ -577,6 +725,7 @@ public class EasonIcon extends View {
 
     private void updateRectF(@Px int left, @Px int top, @Px int right, @Px int bottom) {
         drawRectF = new RectF(left, top, width - right, height - bottom);
+        //drawRectF = new RectF(0, 0, width, height);
     }
 
     @Override
@@ -615,88 +764,168 @@ public class EasonIcon extends View {
         /**
          * 竖直线
          */
-        public static final int LINE_VERTICAL = 10;
+        public static final int LINE_VERTICAL = 1;
         /**
          * 水平线
          */
-        public static final int LINE_HORIZONTAL = 20;
+        public static final int LINE_HORIZONTAL = 2;
         /**
          * 左上右下斜线
          */
-        public static final int LINE_SLOPE_POSITIVE = 30;
+        public static final int LINE_SLOPE_POSITIVE = 3;
         /**
          * 左下右上斜线
          */
-        public static final int LINE_SLOPE_NEGATIVE = 40;
+        public static final int LINE_SLOPE_NEGATIVE = 4;
         /**
          * 圆
          */
-        public static final int CIRCLE = 50;
+        public static final int CIRCLE = 5;
         /**
          * 椭圆
          */
-        public static final int OVAL = 60;
+        public static final int OVAL = 6;
 
-        public static final int RECT = 70;
+        public static final int RECT = 7;
 
-        public static final int ARC = 80;
+        public static final int ARC = 8;
 
-        public static final int BITMAP = 90;
+        public static final int BITMAP = 9;
 
-        public static final int POLYGON = 100;
+        public static final int POLYGON = 10;
 
-        public static final int POLYGON_EXTRA = 110;
+        public static final int POLYGON_EXTRA = 11;
 
-        public static final int POLYGON_QUAD = 120;
+        public static final int POLYGON_QUAD = 12;
+
+        public static final int TEXT = 13;
+
+        //组合
         /**
          * 返回
          */
-        public static final int BACK = 11;
+        public static final int BACK = 17;
 
-        public static final int COLLAPSE = 21;
+        public static final int NEXT = 18;
 
-        public static final int EXPAND = 31;
+        public static final int COLLAPSE = 19;
 
-        public static final int NEXT = 41;
+        public static final int EXPAND = 20;
 
-        public static final int ARROW_DOWN = 51;
+        public static final int BACK_HOLLOW_OVAL = 21;
 
-        public static final int ARROW_LEFT = 61;
+        public static final int NEXT_HOLLOW_OVAL = 22;
 
-        public static final int ARROW_RIGHT = 71;
+        public static final int COLLAPSE_HOLLOW_OVAL = 23;
 
-        public static final int ARROW_UP = 81;
+        public static final int EXPAND_HOLLOW_OVAL = 24;
 
-        public static final int ADD = 91;
+        public static final int BACK_SOLID_OVAL = 25;
 
-        public static final int ADD_HOLLOW_OVAL = 101;
+        public static final int NEXT_SOLID_OVAL = 26;
 
-        public static final int ADD_SOLID_OVAL = 111;
+        public static final int COLLAPSE_SOLID_OVAL = 27;
 
-        public static final int ADD_HOLLOW_RECT = 121;
+        public static final int EXPAND_SOLID_OVAL = 28;
 
-        public static final int ADD_SOLID_RECT = 131;
+        public static final int BACK_HOLLOW_RECT = 29;
 
-        public static final int CORRECT = 141;
+        public static final int NEXT_HOLLOW_RECT = 30;
 
-        public static final int CORRECT_HOLLOW_OVAL = 151;
+        public static final int COLLAPSE_HOLLOW_RECT = 31;
 
-        public static final int CORRECT_SOLID_OVAL = 161;
+        public static final int EXPAND_HOLLOW_RECT = 32;
 
-        public static final int CORRECT_HOLLOW_RECT = 171;
+        public static final int BACK_SOLID_RECT = 33;
 
-        public static final int CORRECT_SOLID_RECT = 181;
+        public static final int NEXT_SOLID_RECT = 34;
 
-        public static final int ERROR = 191;
+        public static final int COLLAPSE_SOLID_RECT = 35;
 
-        public static final int ERROR_HOLLOW_OVAL = 201;
+        public static final int EXPAND_SOLID_RECT = 36;
 
-        public static final int ERROR_SOLID_OVAL = 211;
+        public static final int ARROW_LEFT = 37;
 
-        public static final int ERROR_HOLLOW_RECT = 221;
+        public static final int ARROW_RIGHT = 38;
 
-        public static final int ERROR_SOLID_RECT = 231;
+        public static final int ARROW_UP = 39;
 
-        public static final int QUAD_FLOWER_5 = 241;
+        public static final int ARROW_DOWN = 40;
+
+        public static final int ARROW_LEFT_HOLLOW_OVAL = 41;
+
+        public static final int ARROW_RIGHT_HOLLOW_OVAL = 42;
+
+        public static final int ARROW_UP_HOLLOW_OVAL = 43;
+
+        public static final int ARROW_DOWN_HOLLOW_OVAL = 44;
+
+        public static final int ARROW_LEFT_SOLID_OVAL = 45;
+
+        public static final int ARROW_RIGHT_SOLID_OVAL = 46;
+
+        public static final int ARROW_UP_SOLID_OVAL = 47;
+
+        public static final int ARROW_DOWN_SOLID_OVAL = 48;
+
+        public static final int ARROW_LEFT_HOLLOW_RECT = 49;
+
+        public static final int ARROW_RIGHT_HOLLOW_RECT = 50;
+
+        public static final int ARROW_UP_HOLLOW_RECT = 51;
+
+        public static final int ARROW_DOWN_HOLLOW_RECT = 52;
+
+        public static final int ARROW_LEFT_SOLID_RECT = 53;
+
+        public static final int ARROW_RIGHT_SOLID_RECT = 54;
+
+        public static final int ARROW_UP_SOLID_RECT = 55;
+
+        public static final int ARROW_DOWN_SOLID_RECT = 56;
+
+        public static final int ADD = 57;
+
+        public static final int MINUS = 58;
+
+        public static final int CORRECT = 59;
+
+        public static final int ERROR = 60;
+
+        public static final int ADD_HOLLOW_OVAL = 61;
+
+        public static final int MINUS_HOLLOW_OVAL = 62;
+
+        public static final int CORRECT_HOLLOW_OVAL = 63;
+
+        public static final int ERROR_HOLLOW_OVAL = 64;
+
+        public static final int ADD_SOLID_OVAL = 65;
+
+        public static final int MINUS_SOLID_OVAL = 66;
+
+        public static final int CORRECT_SOLID_OVAL = 67;
+
+        public static final int ERROR_SOLID_OVAL = 68;
+
+        public static final int ADD_HOLLOW_RECT = 69;
+
+        public static final int MINUS_HOLLOW_RECT = 70;
+
+        public static final int CORRECT_HOLLOW_RECT = 71;
+
+        public static final int ERROR_HOLLOW_RECT = 72;
+
+        public static final int ADD_SOLID_RECT = 73;
+
+        public static final int MINUS_SOLID_RECT = 74;
+
+        public static final int CORRECT_SOLID_RECT = 75;
+
+        public static final int ERROR_SOLID_RECT = 76;
+
+        public static final int SETTING = 77;
+
+        public static final int QUAD_FLOWER = 78;
     }
 }

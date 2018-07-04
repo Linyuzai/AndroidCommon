@@ -5,15 +5,13 @@ import eason.linyuzai.easonicon.painter.interceptor.paint.PenColorInterceptor;
 
 public class AuxiliaryColorInterceptor extends PenColorInterceptor {
     private int auxiliaryColor;
-    private int circleColor;
 
-    public AuxiliaryColorInterceptor(int auxiliaryColor, int circleColor) {
+    public AuxiliaryColorInterceptor(int auxiliaryColor) {
         this.auxiliaryColor = auxiliaryColor;
-        this.circleColor = circleColor;
     }
 
     @Override
-    public int getColor(Painter painter, int index) {
-        return 0 == index ? circleColor : auxiliaryColor;
+    public int getColor(Painter painter, int index, int original) {
+        return 0 == index ? original : auxiliaryColor;
     }
 }

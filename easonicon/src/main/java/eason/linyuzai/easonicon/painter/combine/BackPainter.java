@@ -17,11 +17,12 @@ public class BackPainter extends EasonPainterSet {
     public BackPainter() {
         Painter negative = new SlopeNegativeLinePainter();
         negative.setPercent(0.5f);
+        negative.setOffsetPercentX(0.2f);
         addPainter(negative);
         Painter positive = new SlopePositiveLinePainter();
         positive.setPercent(0.5f);
         positive.setOffsetPercentY(0.5f);
+        positive.setOffsetPercentX(0.2f);
         addPainter(positive);
-        setOffsetPercentX(0.25f);
     }
 }

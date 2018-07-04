@@ -17,11 +17,12 @@ public class NextPainter extends EasonPainterSet {
     public NextPainter() {
         Painter positive = new SlopePositiveLinePainter();
         positive.setPercent(0.5f);
+        positive.setOffsetPercentX(0.3f);
         Painter negative = new SlopeNegativeLinePainter();
         negative.setPercent(0.5f);
         negative.setOffsetPercentY(0.5f);
+        negative.setOffsetPercentX(0.3f);
         addPainter(positive);
         addPainter(negative);
-        setOffsetPercentX(0.25f);
     }
 }

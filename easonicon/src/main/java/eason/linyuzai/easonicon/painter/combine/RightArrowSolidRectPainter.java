@@ -11,30 +11,33 @@ import eason.linyuzai.easonicon.painter.combine.interceptor.AuxiliaryStyleInterc
 
 public class RightArrowSolidRectPainter extends EasonPainterSet {
 
-    public RightArrowSolidRectPainter(@AuxiliaryColorField int auxiliaryColor, @AuxiliaryColorField int circleColor) {
-        this(0.5f, auxiliaryColor, circleColor);
+    public RightArrowSolidRectPainter(@AuxiliaryColorField int auxiliaryColor) {
+        this(0.5f, auxiliaryColor);
     }
 
-    public RightArrowSolidRectPainter(@AuxiliaryScaleField float auxiliaryScale, @AuxiliaryColorField int auxiliaryColor,
-                                      @AuxiliaryColorField int circleColor) {
-        this(auxiliaryScale, auxiliaryColor, circleColor, 0f, 0f, 0f, 0f);
+    public RightArrowSolidRectPainter(@AuxiliaryScaleField float auxiliaryScale, @AuxiliaryColorField int auxiliaryColor) {
+        this(auxiliaryScale, auxiliaryColor, 0f, 0f, 0f, 0f);
     }
 
-    public RightArrowSolidRectPainter(@AuxiliaryColorField int auxiliaryColor, @AuxiliaryColorField int circleColor,
-                                      @RoundField float leftTopRound, @RoundField float leftBottomRound,
-                                      @RoundField float rightTopRound, @RoundField float rightBottomRound) {
-        this(0.5f, auxiliaryColor, circleColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound);
+    public RightArrowSolidRectPainter(@AuxiliaryColorField int auxiliaryColor,
+                                      @RoundField float leftTopRound,
+                                      @RoundField float leftBottomRound,
+                                      @RoundField float rightTopRound,
+                                      @RoundField float rightBottomRound) {
+        this(0.5f, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound);
     }
 
-    public RightArrowSolidRectPainter(@AuxiliaryScaleField float auxiliaryScale, @AuxiliaryColorField int auxiliaryColor,
-                                      @AuxiliaryColorField int circleColor, @RoundField float leftTopRound,
-                                      @RoundField float leftBottomRound, @RoundField float rightTopRound,
+    public RightArrowSolidRectPainter(@AuxiliaryScaleField float auxiliaryScale,
+                                      @AuxiliaryColorField int auxiliaryColor,
+                                      @RoundField float leftTopRound,
+                                      @RoundField float leftBottomRound,
+                                      @RoundField float rightTopRound,
                                       @RoundField float rightBottomRound) {
         addPainter(new RectPainter(leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
         Painter painter = new RightArrowPainter();
         painter.setCenterPercent(auxiliaryScale);
         addPainter(painter);
         addInterceptor(new AuxiliaryStyleInterceptor());
-        addInterceptor(new AuxiliaryColorInterceptor(auxiliaryColor, circleColor));
+        addInterceptor(new AuxiliaryColorInterceptor(auxiliaryColor));
     }
 }

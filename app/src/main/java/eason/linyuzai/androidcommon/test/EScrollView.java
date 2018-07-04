@@ -1,4 +1,4 @@
-package eason.linyuzai.androidcommon;
+package eason.linyuzai.androidcommon.test;
 
 import android.content.Context;
 import android.os.Build;

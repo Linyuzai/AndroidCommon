@@ -12,7 +12,7 @@ public abstract class PathEffectInterceptor extends PaintInterceptor {
     @Override
     public void beforeDraw(Painter painter, Paint paint, int index) {
         restoreEffect = paint.getPathEffect();
-        paint.setPathEffect(getPathEffect(painter, index));
+        paint.setPathEffect(getPathEffect(painter, index, restoreEffect));
     }
 
     @Override
@@ -20,5 +20,5 @@ public abstract class PathEffectInterceptor extends PaintInterceptor {
         paint.setPathEffect(restoreEffect);
     }
 
-    public abstract PathEffect getPathEffect(Painter painter, int index);
+    public abstract PathEffect getPathEffect(Painter painter, int index, PathEffect original);
 }

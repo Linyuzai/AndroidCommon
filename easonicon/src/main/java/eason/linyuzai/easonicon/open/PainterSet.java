@@ -5,6 +5,8 @@ import java.util.List;
 public interface PainterSet extends Painter {
     List<Painter> getPainters();
 
+    Painter getPainter(int index);
+
     void addPainter(Painter painter);
 
     void addPainter(int index, Painter painter);

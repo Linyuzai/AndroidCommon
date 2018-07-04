@@ -36,6 +36,11 @@ public class EasonPainterSet extends EasonPainter implements PainterSet {
         return painters;
     }
 
+    @Override
+    public Painter getPainter(int index) {
+        return painters.get(index);
+    }
+
     /**
      * 添加绘制者
      *
@@ -196,6 +201,8 @@ public class EasonPainterSet extends EasonPainter implements PainterSet {
         Paint modePaint = null;
         for (int index = 0; index < painters.size(); index++) {
             Painter painter = painters.get(index);
+            if (painter == null)
+                continue;
             rectSupportInterceptor.beforeDraw(painter, draw, index);
             for (PainterInterceptor interceptor : interceptors) {
                 if (interceptor instanceof PorterDuffModeInterceptor) {

@@ -1,8 +1,9 @@
-package eason.linyuzai.androidcommon;
+package eason.linyuzai.androidcommon.test;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import eason.linyuzai.androidcommon.R;
 import eason.linyuzai.elib.component.EasonActivity;
 
 public class ScrollPanelActivity extends EasonActivity {

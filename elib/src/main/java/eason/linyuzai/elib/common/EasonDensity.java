@@ -6,6 +6,7 @@ public class EasonDensity {
     private static float density = 0;
     private static int width = 0;
     private static int height = 0;
+    private static int statusBarHeight = 0;
 
     /**
      * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
@@ -46,5 +47,16 @@ public class EasonDensity {
             density = context.getResources().getDisplayMetrics().density;
         }
         return density;
+    }
+
+    public static int getStatusBarHeight(Context context) {
+        if (statusBarHeight == 0) {
+            int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
+            if (resourceId > 0) {
+                //根据资源ID获取响应的尺寸值
+                statusBarHeight = context.getResources().getDimensionPixelSize(resourceId);
+            }
+        }
+        return statusBarHeight;
     }
 }

@@ -1,5 +1,6 @@
 package eason.linyuzai.androidcommon.easonicon;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -18,16 +19,16 @@ import eason.linyuzai.androidcommon.R;
 import eason.linyuzai.easonicon.EasonIcon;
 import eason.linyuzai.elib.component.EasonActivity;
 
-public class EasonIconActivity extends EasonActivity {
+public class IconDisplayActivity extends EasonActivity {
 
-    LibraryHelper.LibraryParam param;
+    private LibraryHelper.LibraryParam param;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         param = getLibraryParam().get(0);
         setStatusBarColor(param.getTitleColor());
-        setContentView(R.layout.activity_eason_icon);
+        setContentView(R.layout.activity_icon_display);
         id(R.id.back).setOnClickListener(v -> finish());
         id(R.id.title).setBackgroundColor(param.getTitleColor());
         RecyclerView recyclerView = id(R.id.rv);
@@ -41,6 +42,8 @@ public class EasonIconActivity extends EasonActivity {
 
     private class EasonIconAdapter extends RecyclerView.Adapter<EasonIconViewHolder> {
 
+        private int padding = dip(5);
+
         @NonNull
         @Override
         public EasonIconViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -49,7 +52,7 @@ public class EasonIconActivity extends EasonActivity {
             //icon.setColor(Color.BLACK);
             icon.setPenSize(dip(3));
             icon.setColor(param.getContentColor());
-            icon.setEdgeCount(5);
+            icon.setEdgeCount(3);
             icon.setExtraOffset(-dip(4));
             icon.setSweepAngle(120f);
             icon.setLeftTopRound(dip(5));
@@ -58,19 +61,30 @@ public class EasonIconActivity extends EasonActivity {
             icon.setRightBottomRound(dip(5));
             //icon.getPainterSet().setCenterPercent(0.9f);
             icon.getPaint().setTextSize(dip(15));
-            int padding = dip(5);
-            icon.setPadding(padding, padding, padding, padding);
             //RecyclerView.LayoutParams params = new RecyclerView.LayoutParams(dip(50), dip(50));
             icon.setLayoutParams(new FrameLayout.LayoutParams(dip(50), dip(50), Gravity.CENTER));
             FrameLayout layout = new FrameLayout(parent.getContext());
             layout.setPadding(0, dip(10), 0, dip(10));
             layout.addView(icon);
+            /*TextView textView = new TextView(parent.getContext());
+            textView.setTextColor(param.getContentColor());
+            layout.addView(textView);*/
             return new EasonIconViewHolder(layout);
         }
 
         @Override
         public void onBindViewHolder(@NonNull EasonIconViewHolder holder, int position) {
+            if (EasonIcon.getDefaultPercent(position + 1) == 1f) {
+                holder.icon.setPadding(padding, padding, padding, padding);
+            } else {
+                holder.icon.setPadding(0, 0, 0, 0);
+            }
             holder.icon.setType(position + 1);
+            holder.icon.setOnClickListener(v -> {
+                Intent intent = new Intent(IconDisplayActivity.this, IconAttrActivity.class);
+                intent.putExtra("type", position + 1);
+                startActivity(intent);
+            });
         }
 
         @Override

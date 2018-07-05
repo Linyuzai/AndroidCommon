@@ -118,7 +118,7 @@ public class EasonIcon extends View {
     private RectF drawRectF = new RectF();//绘制区域，不包括padding
     private RectF originalRectF = new RectF();//原始区域
 
-    private int type = Type.NONE;
+    private Type type = Type.NONE;
     private EasonPainterSet painterSet = new EasonPainterSet();//需要绘制的集合
 
     private Paint paint = new Paint();
@@ -182,7 +182,7 @@ public class EasonIcon extends View {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.EasonIcon);
             int color = a.getColor(R.styleable.EasonIcon_icon_color, Color.WHITE);
             int penSize = a.getDimensionPixelSize(R.styleable.EasonIcon_icon_pen_size, 5);
-            int type = a.getInt(R.styleable.EasonIcon_icon_type, Type.NONE);
+            int type = a.getInt(R.styleable.EasonIcon_icon_type, Type.NONE.value);
             int cap = a.getInt(R.styleable.EasonIcon_icon_pen_cap, 1);
             int join = a.getInt(R.styleable.EasonIcon_icon_pen_join, 0);
             int style = a.getInt(R.styleable.EasonIcon_icon_pen_style, 1);
@@ -361,8 +361,12 @@ public class EasonIcon extends View {
      *
      * @return Icon类型
      */
-    public int getType() {
+    public Type getType() {
         return type;
+    }
+
+    public void setType(int type) {
+        setType(Type.values()[type]);
     }
 
     /**
@@ -370,239 +374,239 @@ public class EasonIcon extends View {
      *
      * @param type Icon类型
      */
-    public void setType(int type) {
+    public void setType(Type type) {
         if (this.type == type)
             return;
         this.type = type;
         painterSet.clearPainter();
         switch (type) {
-            case Type.NONE:
+            case NONE:
                 break;
-            case Type.LINE_VERTICAL:
+            case LINE_VERTICAL:
                 painterSet.addPainter(new VerticalLinePainter());
                 break;
-            case Type.LINE_HORIZONTAL:
+            case LINE_HORIZONTAL:
                 painterSet.addPainter(new HorizontalLinePainter());
                 break;
-            case Type.LINE_SLOPE_POSITIVE:
+            case LINE_SLOPE_POSITIVE:
                 painterSet.addPainter(new SlopePositiveLinePainter());
                 break;
-            case Type.LINE_SLOPE_NEGATIVE:
+            case LINE_SLOPE_NEGATIVE:
                 painterSet.addPainter(new SlopeNegativeLinePainter());
                 break;
-            case Type.CIRCLE:
+            case CIRCLE:
                 painterSet.addPainter(new CirclePainter());
                 break;
-            case Type.OVAL:
+            case OVAL:
                 painterSet.addPainter(new OvalPainter());
                 break;
-            case Type.RECT:
+            case RECT:
                 painterSet.addPainter(new RectPainter(leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
-            case Type.ARC:
+            case ARC:
                 painterSet.addPainter(new ArcPainter(startAngle, sweepAngle, useCenter));
                 break;
-            case Type.BITMAP:
+            case BITMAP:
                 painterSet.addPainter(new BitmapPainter(bitmap));
                 break;
-            case Type.POLYGON:
+            case POLYGON:
                 painterSet.addPainter(new PolygonPainter(edgeCount));
                 break;
-            case Type.POLYGON_EXTRA:
+            case POLYGON_EXTRA:
                 painterSet.addPainter(new ExtraPolygonPainter(edgeCount, extraOffset));
                 break;
-            case Type.POLYGON_QUAD:
+            case POLYGON_QUAD:
                 painterSet.addPainter(new QuadPolygonPainter(edgeCount, extraOffset));
                 break;
-            case Type.TEXT:
+            case TEXT:
                 // TODO: 2018/7/4
                 break;
-            case Type.BACK:
+            case BACK:
                 painterSet.addPainter(new BackPainter());
                 break;
-            case Type.NEXT:
+            case NEXT:
                 painterSet.addPainter(new NextPainter());
                 break;
-            case Type.COLLAPSE:
+            case COLLAPSE:
                 painterSet.addPainter(new CollapsePainter());
                 break;
-            case Type.EXPAND:
+            case EXPAND:
                 painterSet.addPainter(new ExpandPainter());
                 break;
-            case Type.BACK_HOLLOW_OVAL:
+            case BACK_HOLLOW_OVAL:
                 painterSet.addPainter(new BackHollowOvalPainter(auxiliaryScale));
                 break;
-            case Type.NEXT_HOLLOW_OVAL:
+            case NEXT_HOLLOW_OVAL:
                 painterSet.addPainter(new NextHollowOvalPainter(auxiliaryScale));
                 break;
-            case Type.COLLAPSE_HOLLOW_OVAL:
+            case COLLAPSE_HOLLOW_OVAL:
                 painterSet.addPainter(new CollapseHollowOvalPainter(auxiliaryScale));
                 break;
-            case Type.EXPAND_HOLLOW_OVAL:
+            case EXPAND_HOLLOW_OVAL:
                 painterSet.addPainter(new ExpandHollowOvalPainter(auxiliaryScale));
                 break;
-            case Type.BACK_SOLID_OVAL:
+            case BACK_SOLID_OVAL:
                 painterSet.addPainter(new BackSolidOvalPainter(auxiliaryScale, auxiliaryColor));
                 break;
-            case Type.NEXT_SOLID_OVAL:
+            case NEXT_SOLID_OVAL:
                 painterSet.addPainter(new NextSolidOvalPainter(auxiliaryScale, auxiliaryColor));
                 break;
-            case Type.COLLAPSE_SOLID_OVAL:
+            case COLLAPSE_SOLID_OVAL:
                 painterSet.addPainter(new CollapseSolidOvalPainter(auxiliaryScale, auxiliaryColor));
                 break;
-            case Type.EXPAND_SOLID_OVAL:
+            case EXPAND_SOLID_OVAL:
                 painterSet.addPainter(new ExpandSolidOvalPainter(auxiliaryScale, auxiliaryColor));
                 break;
-            case Type.BACK_HOLLOW_RECT:
+            case BACK_HOLLOW_RECT:
                 painterSet.addPainter(new BackHollowRectPainter(auxiliaryScale, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
-            case Type.NEXT_HOLLOW_RECT:
+            case NEXT_HOLLOW_RECT:
                 painterSet.addPainter(new NextHollowRectPainter(auxiliaryScale, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
-            case Type.COLLAPSE_HOLLOW_RECT:
+            case COLLAPSE_HOLLOW_RECT:
                 painterSet.addPainter(new CollapseHollowRectPainter(auxiliaryScale, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
-            case Type.EXPAND_HOLLOW_RECT:
+            case EXPAND_HOLLOW_RECT:
                 painterSet.addPainter(new ExpandHollowRectPainter(auxiliaryScale, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
-            case Type.BACK_SOLID_RECT:
+            case BACK_SOLID_RECT:
                 painterSet.addPainter(new BackSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
-            case Type.NEXT_SOLID_RECT:
+            case NEXT_SOLID_RECT:
                 painterSet.addPainter(new NextSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
-            case Type.COLLAPSE_SOLID_RECT:
+            case COLLAPSE_SOLID_RECT:
                 painterSet.addPainter(new CollapseSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
-            case Type.EXPAND_SOLID_RECT:
+            case EXPAND_SOLID_RECT:
                 painterSet.addPainter(new ExpandSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
-            case Type.ARROW_LEFT:
+            case ARROW_LEFT:
                 painterSet.addPainter(new LeftArrowPainter());
                 break;
-            case Type.ARROW_RIGHT:
+            case ARROW_RIGHT:
                 painterSet.addPainter(new RightArrowPainter());
                 break;
-            case Type.ARROW_UP:
+            case ARROW_UP:
                 painterSet.addPainter(new UpArrowPainter());
                 break;
-            case Type.ARROW_DOWN:
+            case ARROW_DOWN:
                 painterSet.addPainter(new DownArrowPainter());
                 break;
-            case Type.ARROW_LEFT_HOLLOW_OVAL:
+            case ARROW_LEFT_HOLLOW_OVAL:
                 painterSet.addPainter(new LeftArrowHollowOvalPainter(auxiliaryScale));
                 break;
-            case Type.ARROW_RIGHT_HOLLOW_OVAL:
+            case ARROW_RIGHT_HOLLOW_OVAL:
                 painterSet.addPainter(new RightArrowHollowOvalPainter(auxiliaryScale));
                 break;
-            case Type.ARROW_UP_HOLLOW_OVAL:
+            case ARROW_UP_HOLLOW_OVAL:
                 painterSet.addPainter(new UpArrowHollowOvalPainter(auxiliaryScale));
                 break;
-            case Type.ARROW_DOWN_HOLLOW_OVAL:
+            case ARROW_DOWN_HOLLOW_OVAL:
                 painterSet.addPainter(new DownArrowHollowOvalPainter(auxiliaryScale));
                 break;
-            case Type.ARROW_LEFT_SOLID_OVAL:
+            case ARROW_LEFT_SOLID_OVAL:
                 painterSet.addPainter(new LeftArrowSolidOvalPainter(auxiliaryScale, auxiliaryColor));
                 break;
-            case Type.ARROW_RIGHT_SOLID_OVAL:
+            case ARROW_RIGHT_SOLID_OVAL:
                 painterSet.addPainter(new RightArrowSolidOvalPainter(auxiliaryScale, auxiliaryColor));
                 break;
-            case Type.ARROW_UP_SOLID_OVAL:
+            case ARROW_UP_SOLID_OVAL:
                 painterSet.addPainter(new UpArrowSolidOvalPainter(auxiliaryScale, auxiliaryColor));
                 break;
-            case Type.ARROW_DOWN_SOLID_OVAL:
+            case ARROW_DOWN_SOLID_OVAL:
                 painterSet.addPainter(new DownArrowSolidOvalPainter(auxiliaryScale, auxiliaryColor));
                 break;
-            case Type.ARROW_LEFT_HOLLOW_RECT:
+            case ARROW_LEFT_HOLLOW_RECT:
                 painterSet.addPainter(new LeftArrowHollowRectPainter(auxiliaryScale, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
-            case Type.ARROW_RIGHT_HOLLOW_RECT:
+            case ARROW_RIGHT_HOLLOW_RECT:
                 painterSet.addPainter(new RightArrowHollowRectPainter(auxiliaryScale, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
-            case Type.ARROW_UP_HOLLOW_RECT:
+            case ARROW_UP_HOLLOW_RECT:
                 painterSet.addPainter(new UpArrowHollowRectPainter(auxiliaryScale, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
-            case Type.ARROW_DOWN_HOLLOW_RECT:
+            case ARROW_DOWN_HOLLOW_RECT:
                 painterSet.addPainter(new DownArrowHollowRectPainter(auxiliaryScale, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
-            case Type.ARROW_LEFT_SOLID_RECT:
+            case ARROW_LEFT_SOLID_RECT:
                 painterSet.addPainter(new LeftArrowSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
-            case Type.ARROW_RIGHT_SOLID_RECT:
+            case ARROW_RIGHT_SOLID_RECT:
                 painterSet.addPainter(new RightArrowSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
-            case Type.ARROW_UP_SOLID_RECT:
+            case ARROW_UP_SOLID_RECT:
                 painterSet.addPainter(new UpArrowSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
-            case Type.ARROW_DOWN_SOLID_RECT:
+            case ARROW_DOWN_SOLID_RECT:
                 painterSet.addPainter(new DownArrowSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
-            case Type.ADD:
+            case ADD:
                 painterSet.addPainter(new AddPainter());
                 break;
-            case Type.MINUS:
+            case MINUS:
                 painterSet.addPainter(new MinusPainter());
                 break;
-            case Type.CORRECT:
+            case CORRECT:
                 painterSet.addPainter(new CorrectPainter());
                 break;
-            case Type.ERROR:
+            case ERROR:
                 painterSet.addPainter(new ErrorPainter());
                 break;
-            case Type.ADD_HOLLOW_OVAL:
+            case ADD_HOLLOW_OVAL:
                 painterSet.addPainter(new AddHollowOvalPainter(auxiliaryScale));
                 break;
-            case Type.MINUS_HOLLOW_OVAL:
+            case MINUS_HOLLOW_OVAL:
                 painterSet.addPainter(new MinusHollowOvalPainter(auxiliaryScale));
                 break;
-            case Type.CORRECT_HOLLOW_OVAL:
+            case CORRECT_HOLLOW_OVAL:
                 painterSet.addPainter(new CorrectHollowOvalPainter(auxiliaryScale));
                 break;
-            case Type.ERROR_HOLLOW_OVAL:
+            case ERROR_HOLLOW_OVAL:
                 painterSet.addPainter(new ErrorHollowOvalPainter(auxiliaryScale));
                 break;
-            case Type.ADD_SOLID_OVAL:
+            case ADD_SOLID_OVAL:
                 painterSet.addPainter(new AddSolidOvalPainter(auxiliaryScale, auxiliaryColor));
                 break;
-            case Type.MINUS_SOLID_OVAL:
+            case MINUS_SOLID_OVAL:
                 painterSet.addPainter(new MinusSolidOvalPainter(auxiliaryScale, auxiliaryColor));
                 break;
-            case Type.CORRECT_SOLID_OVAL:
+            case CORRECT_SOLID_OVAL:
                 painterSet.addPainter(new CorrectSolidOvalPainter(auxiliaryScale, auxiliaryColor));
                 break;
-            case Type.ERROR_SOLID_OVAL:
+            case ERROR_SOLID_OVAL:
                 painterSet.addPainter(new ErrorSolidOvalPainter(auxiliaryScale, auxiliaryColor));
                 break;
-            case Type.ADD_HOLLOW_RECT:
+            case ADD_HOLLOW_RECT:
                 painterSet.addPainter(new AddHollowRectPainter(auxiliaryScale, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
-            case Type.MINUS_HOLLOW_RECT:
+            case MINUS_HOLLOW_RECT:
                 painterSet.addPainter(new MinusHollowRectPainter(auxiliaryScale, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
-            case Type.CORRECT_HOLLOW_RECT:
+            case CORRECT_HOLLOW_RECT:
                 painterSet.addPainter(new CorrectHollowRectPainter(auxiliaryScale, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
-            case Type.ERROR_HOLLOW_RECT:
+            case ERROR_HOLLOW_RECT:
                 painterSet.addPainter(new ErrorHollowRectPainter(auxiliaryScale, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
-            case Type.ADD_SOLID_RECT:
+            case ADD_SOLID_RECT:
                 painterSet.addPainter(new AddSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
-            case Type.MINUS_SOLID_RECT:
+            case MINUS_SOLID_RECT:
                 painterSet.addPainter(new MinusSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
-            case Type.CORRECT_SOLID_RECT:
+            case CORRECT_SOLID_RECT:
                 painterSet.addPainter(new CorrectSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
-            case Type.ERROR_SOLID_RECT:
+            case ERROR_SOLID_RECT:
                 painterSet.addPainter(new ErrorSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
-            case Type.SETTING:
+            case SETTING:
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     painterSet.addPainter(new SettingPainter());
                 }
                 break;
-            case Type.QUAD_FLOWER:
+            case QUAD_FLOWER:
                 painterSet.addPainter(new QuadFlower(edgeCount));
                 break;
         }
@@ -756,34 +760,151 @@ public class EasonIcon extends View {
         painter.printStructure(0, includeInterceptor);
     }
 
-    public static final class Type {
-        /**
-         * 不绘制
-         */
+    public static float getDefaultPercent(int type) {
+        return getDefaultPercent(Type.values()[type]);
+    }
+
+    public static float getDefaultPercent(Type type) {
+        switch (type) {
+            case SETTING:
+                return 0.5f;
+            default:
+                return 1f;
+        }
+    }
+
+    public enum Type {
+        NONE(0, "none", "0"),
+        LINE_VERTICAL(1, "line_vertical", "VerticalLinePainter"),
+        LINE_HORIZONTAL(2, "line_horizontal", ""),
+        LINE_SLOPE_POSITIVE(3, "line_slope_positive", ""),
+        LINE_SLOPE_NEGATIVE(4, "line_slope_negative", ""),
+        CIRCLE(5, "circle", ""),
+        OVAL(6, "oval", ""),
+        RECT(7, "rect", ""),
+        ARC(8, "arc", ""),
+        BITMAP(9, "bitmap", ""),
+        POLYGON(10, "polygon", ""),
+        POLYGON_EXTRA(11, "polygon_extra", ""),
+        POLYGON_QUAD(12, "polygon_quad", ""),
+        TEXT(13, "text", ""),
+        TODO_14(14, "", ""),
+        TODO_15(15, "", ""),
+        TODO_16(16, "", ""),
+        BACK(17, "back", ""),
+        NEXT(18, "next", ""),
+        COLLAPSE(19, "collapse", ""),
+        EXPAND(20, "expand", ""),
+        BACK_HOLLOW_OVAL(21, "back_hollow_oval", ""),
+        NEXT_HOLLOW_OVAL(22, "next_hollow_oval", ""),
+        COLLAPSE_HOLLOW_OVAL(23, "collapse_hollow_oval", ""),
+        EXPAND_HOLLOW_OVAL(24, "expand_hollow_oval", ""),
+        BACK_SOLID_OVAL(25, "back_solid_oval", ""),
+        NEXT_SOLID_OVAL(26, "next_solid_oval", ""),
+        COLLAPSE_SOLID_OVAL(27, "collapse_solid_oval", ""),
+        EXPAND_SOLID_OVAL(28, "expand_solid_oval", ""),
+        BACK_HOLLOW_RECT(29, "back_hollow_rect", ""),
+        NEXT_HOLLOW_RECT(30, "next_hollow_rect", ""),
+        COLLAPSE_HOLLOW_RECT(31, "collapse_hollow_rect", ""),
+        EXPAND_HOLLOW_RECT(32, "expand_hollow_rect", ""),
+        BACK_SOLID_RECT(33, "back_solid_rect", ""),
+        NEXT_SOLID_RECT(34, "next_solid_rect", ""),
+        COLLAPSE_SOLID_RECT(35, "collapse_solid_rect", ""),
+        EXPAND_SOLID_RECT(36, "expand_solid_rect", ""),
+        ARROW_LEFT(37, "arrow_left", ""),
+        ARROW_RIGHT(38, "arrow_right", ""),
+        ARROW_UP(39, "arrow_up", ""),
+        ARROW_DOWN(40, "arrow_down", ""),
+        ARROW_LEFT_HOLLOW_OVAL(41, "arrow_left_hollow_oval", ""),
+        ARROW_RIGHT_HOLLOW_OVAL(42, "arrow_right_hollow_oval", ""),
+        ARROW_UP_HOLLOW_OVAL(43, "arrow_up_hollow_oval", ""),
+        ARROW_DOWN_HOLLOW_OVAL(44, "arrow_down_hollow_oval", ""),
+        ARROW_LEFT_SOLID_OVAL(45, "arrow_left_solid_oval", ""),
+        ARROW_RIGHT_SOLID_OVAL(46, "arrow_right_solid_oval", ""),
+        ARROW_UP_SOLID_OVAL(47, "arrow_up_solid_oval", ""),
+        ARROW_DOWN_SOLID_OVAL(48, "arrow_down_solid_oval", ""),
+        ARROW_LEFT_HOLLOW_RECT(49, "arrow_left_hollow_rect", ""),
+        ARROW_RIGHT_HOLLOW_RECT(50, "arrow_right_hollow_rect", ""),
+        ARROW_UP_HOLLOW_RECT(51, "arrow_up_hollow_rect", ""),
+        ARROW_DOWN_HOLLOW_RECT(52, "arrow_down_hollow_rect", ""),
+        ARROW_LEFT_SOLID_RECT(53, "arrow_left_solid_rect", ""),
+        ARROW_RIGHT_SOLID_RECT(54, "arrow_right_solid_rect", ""),
+        ARROW_UP_SOLID_RECT(55, "arrow_up_solid_rect", ""),
+        ARROW_DOWN_SOLID_RECT(56, "arrow_down_solid_rect", ""),
+        ADD(57, "add", ""),
+        MINUS(58, "minus", ""),
+        CORRECT(59, "correct", ""),
+        ERROR(60, "error", ""),
+        ADD_HOLLOW_OVAL(61, "add_hollow_oval", ""),
+        MINUS_HOLLOW_OVAL(62, "minus_hollow_oval", ""),
+        CORRECT_HOLLOW_OVAL(63, "correct_hollow_oval", ""),
+        ERROR_HOLLOW_OVAL(64, "error_hollow_oval", ""),
+        ADD_SOLID_OVAL(65, "add_solid_oval", ""),
+        MINUS_SOLID_OVAL(66, "minus_solid_oval", ""),
+        CORRECT_SOLID_OVAL(67, "correct_solid_oval", ""),
+        ERROR_SOLID_OVAL(68, "error_solid_oval", ""),
+        ADD_HOLLOW_RECT(69, "add_hollow_rect", ""),
+        MINUS_HOLLOW_RECT(70, "minus_hollow_rect", ""),
+        CORRECT_HOLLOW_RECT(71, "correct_hollow_rect", ""),
+        ERROR_HOLLOW_RECT(72, "error_hollow_rect", ""),
+        ADD_SOLID_RECT(73, "add_solid_rect", ""),
+        MINUS_SOLID_RECT(74, "minus_solid_rect", ""),
+        CORRECT_SOLID_RECT(75, "correct_solid_rect", ""),
+        ERROR_SOLID_RECT(76, "error_solid_rect", ""),
+        SETTING(77, "setting", ""),
+        QUAD_FLOWER(78, "quad_flower", "");
+
+        private int value;
+        private String attrName;
+        private String painterName;
+
+        Type(int value, String attrName, String painterName) {
+            this.value = value;
+            this.attrName = attrName;
+            this.painterName = painterName;
+        }
+
+        public int getValue() {
+            return value;
+        }
+
+        public String getAttrName() {
+            return attrName;
+        }
+
+        public String getPainterName() {
+            return painterName;
+        }
+    }
+
+    /*public static final class Type {
+     *//**
+     * 不绘制
+     *//*
         public static final int NONE = 0;
-        /**
-         * 竖直线
-         */
+        *//**
+     * 竖直线
+     *//*
         public static final int LINE_VERTICAL = 1;
-        /**
-         * 水平线
-         */
+        *//**
+     * 水平线
+     *//*
         public static final int LINE_HORIZONTAL = 2;
-        /**
-         * 左上右下斜线
-         */
+        *//**
+     * 左上右下斜线
+     *//*
         public static final int LINE_SLOPE_POSITIVE = 3;
-        /**
-         * 左下右上斜线
-         */
+        *//**
+     * 左下右上斜线
+     *//*
         public static final int LINE_SLOPE_NEGATIVE = 4;
-        /**
-         * 圆
-         */
+        *//**
+     * 圆
+     *//*
         public static final int CIRCLE = 5;
-        /**
-         * 椭圆
-         */
+        *//**
+     * 椭圆
+     *//*
         public static final int OVAL = 6;
 
         public static final int RECT = 7;
@@ -801,9 +922,9 @@ public class EasonIcon extends View {
         public static final int TEXT = 13;
 
         //组合
-        /**
-         * 返回
-         */
+        *//**
+     * 返回
+     *//*
         public static final int BACK = 17;
 
         public static final int NEXT = 18;
@@ -927,5 +1048,5 @@ public class EasonIcon extends View {
         public static final int SETTING = 77;
 
         public static final int QUAD_FLOWER = 78;
-    }
+    }*/
 }

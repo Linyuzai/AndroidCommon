@@ -16,7 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".easonicon.EasonIconActivity" />
+        <activity android:name=".easonicon.IconDisplayActivity" />
+        <activity android:name=".easonicon.IconAttrActivity" />
     </application>
 
 </manifest>

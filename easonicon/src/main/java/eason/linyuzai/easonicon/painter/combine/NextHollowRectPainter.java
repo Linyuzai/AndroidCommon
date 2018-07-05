@@ -25,7 +25,7 @@ public class NextHollowRectPainter extends EasonPainterSet {
                                  @RoundField float leftBottomRound, @RoundField float rightTopRound,
                                  @RoundField float rightBottomRound) {
         addPainter(new RectPainter(leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
-        Painter painter = new LeftArrowPainter();
+        Painter painter = new NextPainter();
         painter.setCenterPercent(auxiliaryScale);
         addPainter(painter);
     }

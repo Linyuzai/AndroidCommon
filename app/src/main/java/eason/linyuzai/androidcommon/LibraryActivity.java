@@ -4,35 +4,25 @@ import android.animation.ArgbEvaluator;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import eason.linyuzai.androidcommon.easonicon.EasonIconActivity;
+import eason.linyuzai.androidcommon.easonicon.IconDisplayActivity;
 import eason.linyuzai.easonicon.EasonIcon;
 import eason.linyuzai.easonicon.open.Painter;
-import eason.linyuzai.easonicon.open.PainterSet;
 import eason.linyuzai.easonicon.painter.EasonPainterSet;
-import eason.linyuzai.easonicon.painter.basic.circle.CirclePainter;
 import eason.linyuzai.easonicon.painter.basic.line.HorizontalLinePainter;
-import eason.linyuzai.easonicon.painter.basic.polygon.PolygonPainter;
 import eason.linyuzai.easonicon.painter.basic.rect.BottomRoundRectPainter;
-import eason.linyuzai.easonicon.painter.basic.rect.RoundRectPainter;
 import eason.linyuzai.easonicon.painter.basic.rect.TopRoundRectPainter;
 import eason.linyuzai.easonicon.painter.basic.text.TextPainter;
-import eason.linyuzai.easonicon.painter.interceptor.paint.PenColorInterceptor;
-import eason.linyuzai.easonicon.painter.interceptor.paint.PenSizeInterceptor;
 import eason.linyuzai.easonicon.painter.interceptor.paint.PenStyleInterceptor;
 import eason.linyuzai.elib.component.EasonActivity;
 
@@ -117,7 +107,7 @@ public class LibraryActivity extends EasonActivity {
             holder.icon.addPainter(param.getPainter());
             holder.icon.setColor(param.getContentColor());
             holder.itemView.setOnClickListener(v ->
-                    startActivity(new Intent(LibraryActivity.this, EasonIconActivity.class)));
+                    startActivity(new Intent(LibraryActivity.this, IconDisplayActivity.class)));
         }
 
         @Override
@@ -157,12 +147,12 @@ public class LibraryActivity extends EasonActivity {
 
             Painter h1 = new HorizontalLinePainter();
             h1.setPercent(0.8f);
-            h1.setOffsetPercentY(0.48f);
+            h1.setOffsetPercentY(0.87f);
             h1.setOffsetPercentX(0.1f);
             addPainter(h1);
             Painter h2 = new HorizontalLinePainter();
             h2.setPercent(0.6f);
-            h2.setOffsetPercentY(0.63f);
+            h2.setOffsetPercentY(0.93f);
             h2.setOffsetPercentX(0.3f);
             addPainter(h2);
 

@@ -38,4 +38,6 @@ public interface PainterSet extends Painter {
     void clearInterceptor();
 
     void clearInterceptor(boolean recursiveSet);
+
+    float getDefaultPercent();
 }

@@ -50,7 +50,7 @@ public class PorterDuffModeInterceptor implements PainterInterceptor {
     @Override
     public void afterDraw(Painter painter, Canvas canvas, Paint paint, RectF rectF, int index) {
         if (ifRestoreMode(painter, index))
-            paint.setXfermode(null);
+            this.paint.setXfermode(null);
         if (ifRestoreCanvas(painter, index))
             canvas.restore();
     }

@@ -29,6 +29,11 @@ public class SettingPainter extends EasonPainterSet {
         addInterceptor(new DstOutPorterDuffModeInterceptor());
     }
 
+    @Override
+    public float getDefaultPercent() {
+        return 0.5f;
+    }
+
     private class SettingInterceptor implements PainterInterceptor {
 
         private RectF rectF = new RectF();

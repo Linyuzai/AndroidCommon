@@ -45,16 +45,16 @@ public class LinePainter extends EasonPainter {
         float endPointY = 0f;
         switch (type) {
             case Type.VERTICAL:
-                startPointX = draw.width() * 0.5f;
+                startPointX = 0f;
                 startPointY = 0f;
-                endPointX = draw.width() * 0.5f;
+                endPointX = 0f;
                 endPointY = draw.height();
                 break;
             case Type.HORIZONTAL:
                 startPointX = 0f;
-                startPointY = draw.height() * 0.5f;
+                startPointY = 0f;
                 endPointX = draw.width();
-                endPointY = draw.height() * 0.5f;
+                endPointY = 0f;
                 break;
             case Type.SLOPE_POSITIVE:
                 startPointX = 0f;

@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:gravity="center"
-            android:text="EASON   ICON"
+            android:text="ICON   ATTRS"
             android:textColor="@android:color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -29,11 +29,30 @@
             app:icon_type="back" />
     </FrameLayout>
 
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#eeeeee"
-        android:overScrollMode="never" />
+        android:background="#eeeeee">
+
+        <eason.linyuzai.easonicon.EasonIcon
+            android:id="@+id/ei"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:background="@android:color/white" />
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/op"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>

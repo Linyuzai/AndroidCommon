@@ -3,13 +3,14 @@ package eason.linyuzai.easonicon.painter.interceptor.rect;
 import android.graphics.RectF;
 
 import eason.linyuzai.easonicon.open.Painter;
+import eason.linyuzai.easonicon.open.RectSupporter;
 import eason.linyuzai.easonicon.painter.EasonPainter;
 import eason.linyuzai.easonicon.painter.EasonPainterSet;
 
 /**
  * 支持PainterSet缩放平移拦截器
  */
-public class PainterSetRectSupportInterceptor extends RectInterceptor {
+public class PainterSetRectSupportInterceptor extends RectInterceptor implements RectSupporter {
 
     private EasonPainter.RectParam rectParam = new EasonPainter.RectParam();
 
@@ -57,38 +58,6 @@ public class PainterSetRectSupportInterceptor extends RectInterceptor {
         rectF.left = restoreRectF.left;
         rectF.right = restoreRectF.right;
         rectF.bottom = restoreRectF.bottom;
-    }
-
-    /**
-     * @see EasonPainterSet#setCenterPercent(float)
-     */
-    public void setCenterPercent(float centerPercent) {
-        setPercent(centerPercent);
-        setOffsetPercent((1f - centerPercent) * 0.5f);
-    }
-
-    /**
-     * @see EasonPainterSet#setPercent(float)
-     */
-    public void setPercent(float percent) {
-        setPercentX(percent);
-        setPercentY(percent);
-    }
-
-    /**
-     * @see EasonPainterSet#setOffset(float)
-     */
-    public void setOffset(float offset) {
-        setOffsetX(offset);
-        setOffsetY(offset);
-    }
-
-    /**
-     * @see EasonPainterSet#setOffsetPercent(float)
-     */
-    public void setOffsetPercent(float offsetPercent) {
-        setOffsetPercentX(offsetPercent);
-        setOffsetPercentY(offsetPercent);
     }
 
     /**

@@ -36,58 +36,6 @@ public abstract class EasonPainter implements Painter {
     }
 
     /**
-     * 设置xy百分比，并居中
-     *
-     * @param centerPercent 百分比
-     * @see EasonPainter#setPercent(float)
-     * @see EasonPainter#setOffsetPercent(float)
-     */
-    @Override
-    public void setCenterPercent(float centerPercent) {
-        setPercent(centerPercent);
-        setOffsetPercent((1f - centerPercent) * 0.5f);
-    }
-
-    /**
-     * 设置xy百分比
-     *
-     * @param percent 百分比
-     * @see EasonPainter#setPercentX(float)
-     * @see EasonPainter#setPercentY(float)
-     */
-    @Override
-    public void setPercent(float percent) {
-        setPercentX(percent);
-        setPercentY(percent);
-    }
-
-    /**
-     * 设置xy偏移量
-     *
-     * @param offset 偏移量
-     * @see EasonPainter#setOffsetX(float)
-     * @see EasonPainter#setOffsetY(float)
-     */
-    @Override
-    public void setOffset(float offset) {
-        setOffsetX(offset);
-        setOffsetY(offset);
-    }
-
-    /**
-     * 设置xy偏移百分比
-     *
-     * @param offsetPercent 百分比
-     * @see EasonPainter#setOffsetPercentX(float)
-     * @see EasonPainter#setOffsetPercentY(float)
-     */
-    @Override
-    public void setOffsetPercent(float offsetPercent) {
-        setOffsetPercentX(offsetPercent);
-        setOffsetPercentY(offsetPercent);
-    }
-
-    /**
      * 设置x百分比
      *
      * @param percentX x百分比

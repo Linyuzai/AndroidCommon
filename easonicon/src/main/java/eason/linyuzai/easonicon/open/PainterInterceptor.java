@@ -10,7 +10,6 @@ import eason.linyuzai.easonicon.open.Painter;
  * 绘制拦截器
  */
 public interface PainterInterceptor {
-    int a = 1;
     /**
      * 绘制之前
      *

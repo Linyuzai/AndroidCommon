@@ -36,8 +36,8 @@
 
         <eason.linyuzai.easonicon.EasonIcon
             android:id="@+id/ei"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:layout_margin="10dp"
             android:background="@android:color/white" />
     </FrameLayout>

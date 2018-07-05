@@ -65,16 +65,16 @@ public class PolygonPainter extends PathPainter {
         for (int i = 0; i < edgeCount; i++) {
             //PointF pointF = new PointF();
             float totalAngle = startAngle + angle * i;
-            if (totalAngle % 360f == 0f) {
+            if (totalAngle % 360f <= getPrecisionAccuracy()) {
                 points[i].x = a;
                 points[i].y = 0f;
-            } else if (totalAngle % 360f == 90f) {
+            } else if (Math.abs(totalAngle % 360f - 90f) <= getPrecisionAccuracy()) {
                 points[i].x = 0f;
                 points[i].y = b;
-            } else if (totalAngle % 360f == 180f) {
+            } else if (Math.abs(totalAngle % 360f - 180f) <= getPrecisionAccuracy()) {
                 points[i].x = -a;
                 points[i].y = 0f;
-            } else if (totalAngle % 360f == 270f) {
+            } else if (Math.abs(totalAngle % 360f - 270f) <= getPrecisionAccuracy()) {
                 points[i].x = 0f;
                 points[i].y = -b;
             } else {
@@ -108,6 +108,6 @@ public class PolygonPainter extends PathPainter {
     }
 
     protected double getPrecisionAccuracy() {
-        return 1e-10;
+        return 5e-5;
     }
 }

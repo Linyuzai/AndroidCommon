@@ -116,11 +116,6 @@ import eason.linyuzai.easonicon.painter.combine.UpArrowSolidRectPainter;
 public class EasonIcon extends View {
     public static final String TAG = "EasonIcon";
 
-    @SuppressWarnings("unchecked")
-    private static Class<? extends Annotation>[] extraAnnotationClasses = new Class[]{
-            ArcField.class, AuxiliaryScaleField.class, AuxiliaryColorField.class,
-            BitmapField.class, EdgeCountField.class, ExtraOffsetField.class, RoundRectField.class};
-
     private int width;
     private int height;
 
@@ -379,13 +374,17 @@ public class EasonIcon extends View {
         setType(Type.values()[type]);
     }
 
+    public void setType(Type type) {
+        setType(type, false);
+    }
+
     /**
      * 设置Icon类型
      *
      * @param type Icon类型
      */
-    public void setType(Type type) {
-        if (this.type == type)
+    public void setType(Type type, boolean force) {
+        if (!force && this.type == type)
             return;
         this.type = type;
         painterSet.clearPainter();
@@ -767,6 +766,18 @@ public class EasonIcon extends View {
         painterSet.printStructure(0, includeInterceptor);
     }
 
+    public boolean hasAnnotation(Class<? extends Annotation> cls) {
+        return hasAnnotation(type, cls);
+    }
+
+    public static boolean hasAnnotation(int type, Class<? extends Annotation> cls) {
+        return getType(type).getPainterClass().getAnnotation(cls) != null;
+    }
+
+    public static boolean hasAnnotation(Type type, Class<? extends Annotation> cls) {
+        return type.getPainterClass().getAnnotation(cls) != null;
+    }
+
     public static void printStructure(Painter painter) {
         printStructure(painter, false);
     }
@@ -790,10 +801,6 @@ public class EasonIcon extends View {
             default:
                 return 1f;
         }
-    }
-
-    public static Class<? extends Annotation>[] getExtraAnnotationClasses() {
-        return extraAnnotationClasses;
     }
 
     public enum Type {

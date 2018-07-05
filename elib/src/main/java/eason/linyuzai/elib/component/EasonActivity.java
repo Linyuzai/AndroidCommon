@@ -164,7 +164,7 @@ public abstract class EasonActivity extends AppCompatActivity {
      * @param dipValue dp值
      * @return px值
      */
-    public int dip(int dipValue) {
+    public int dip(float dipValue) {
         return EasonDensity.dip2px(this, dipValue);
     }
 

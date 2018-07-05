@@ -1,6 +1,8 @@
 package eason.linyuzai.androidcommon.easonicon;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,11 +19,14 @@ import java.util.List;
 import eason.linyuzai.androidcommon.LibraryHelper;
 import eason.linyuzai.androidcommon.R;
 import eason.linyuzai.easonicon.EasonIcon;
+import eason.linyuzai.easonicon.painter.basic.NonePainter;
 import eason.linyuzai.elib.component.EasonActivity;
 
 public class IconDisplayActivity extends EasonActivity {
 
     private LibraryHelper.LibraryParam param;
+
+    private Bitmap bitmap;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,6 +36,7 @@ public class IconDisplayActivity extends EasonActivity {
         setContentView(R.layout.activity_icon_display);
         id(R.id.back).setOnClickListener(v -> finish());
         id(R.id.title).setBackgroundColor(param.getTitleColor());
+        bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
         RecyclerView recyclerView = id(R.id.rv);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
         recyclerView.setAdapter(new EasonIconAdapter());
@@ -59,6 +65,7 @@ public class IconDisplayActivity extends EasonActivity {
             icon.setLeftBottomRound(dip(5));
             icon.setRightTopRound(dip(5));
             icon.setRightBottomRound(dip(5));
+            icon.setBitmap(bitmap);
             //icon.getPainterSet().setCenterPercent(0.9f);
             icon.getPaint().setTextSize(dip(15));
             //RecyclerView.LayoutParams params = new RecyclerView.LayoutParams(dip(50), dip(50));
@@ -81,9 +88,13 @@ public class IconDisplayActivity extends EasonActivity {
             }
             holder.icon.setType(position + 1);
             holder.icon.setOnClickListener(v -> {
-                Intent intent = new Intent(IconDisplayActivity.this, IconAttrActivity.class);
-                intent.putExtra("type", position + 1);
-                startActivity(intent);
+                if (EasonIcon.getType(position + 1).getPainterClass() == NonePainter.class) {
+                    toast("No icon to display");
+                } else {
+                    Intent intent = new Intent(IconDisplayActivity.this, IconAttrActivity.class);
+                    intent.putExtra("type", position + 1);
+                    startActivity(intent);
+                }
             });
         }
 

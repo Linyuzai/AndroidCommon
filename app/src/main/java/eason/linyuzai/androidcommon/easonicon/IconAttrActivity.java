@@ -1,5 +1,7 @@
 package eason.linyuzai.androidcommon.easonicon;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.ViewGroup;
@@ -34,6 +36,7 @@ import eason.linyuzai.easonicon.annotation.BitmapField;
 import eason.linyuzai.easonicon.annotation.EdgeCountField;
 import eason.linyuzai.easonicon.annotation.ExtraOffsetField;
 import eason.linyuzai.easonicon.annotation.RoundRectField;
+import eason.linyuzai.easonicon.painter.basic.bitmap.BitmapPainter;
 import eason.linyuzai.elib.component.EasonActivity;
 
 public class IconAttrActivity extends EasonActivity {
@@ -60,7 +63,13 @@ public class IconAttrActivity extends EasonActivity {
         icon.setRightBottomRound(dip(5));
         icon.getPaint().setTextSize(dip(15));
         icon.getPainterSet().setCenterPercent(0.9f);
-        icon.setType(getIntent().getIntExtra("type", 0));
+        int type = getIntent().getIntExtra("type", 0);
+        if (EasonIcon.getType(type) == EasonIcon.Type.BITMAP) {
+            Drawable drawable = drawable(R.mipmap.pic);
+            Bitmap bitmap = BitmapPainter.getBitmapFromDrawable(drawable);
+            icon.setBitmap(bitmap);
+        }
+        icon.setType(type);
         ViewGroup group = id(R.id.op);
         group.addView(new CenterPercentController(this, icon));
         group.addView(new CenterPercentXController(this, icon));

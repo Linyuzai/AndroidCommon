@@ -4,15 +4,19 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.AdaptiveIconDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import java.util.List;
 
@@ -20,6 +24,7 @@ import eason.linyuzai.androidcommon.LibraryHelper;
 import eason.linyuzai.androidcommon.R;
 import eason.linyuzai.easonicon.EasonIcon;
 import eason.linyuzai.easonicon.painter.basic.NonePainter;
+import eason.linyuzai.easonicon.painter.basic.bitmap.BitmapPainter;
 import eason.linyuzai.elib.component.EasonActivity;
 
 public class IconDisplayActivity extends EasonActivity {
@@ -36,7 +41,6 @@ public class IconDisplayActivity extends EasonActivity {
         setContentView(R.layout.activity_icon_display);
         id(R.id.back).setOnClickListener(v -> finish());
         id(R.id.title).setBackgroundColor(param.getTitleColor());
-        bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
         RecyclerView recyclerView = id(R.id.rv);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
         recyclerView.setAdapter(new EasonIconAdapter());
@@ -65,13 +69,20 @@ public class IconDisplayActivity extends EasonActivity {
             icon.setLeftBottomRound(dip(5));
             icon.setRightTopRound(dip(5));
             icon.setRightBottomRound(dip(5));
+            if (bitmap == null) {
+                Drawable drawable = drawable(R.mipmap.pic);
+                //Log.d("drawable", drawable.getClass().toString());
+                //bitmap = BitmapFactory.decodeResource(getResources(), );
+                bitmap = BitmapPainter.getBitmapFromDrawable(drawable);
+            }
             icon.setBitmap(bitmap);
             //icon.getPainterSet().setCenterPercent(0.9f);
             icon.getPaint().setTextSize(dip(15));
             //RecyclerView.LayoutParams params = new RecyclerView.LayoutParams(dip(50), dip(50));
-            icon.setLayoutParams(new FrameLayout.LayoutParams(dip(50), dip(50), Gravity.CENTER));
+            int size = (screenWidth() - dip(160)) / 4;
+            icon.setLayoutParams(new FrameLayout.LayoutParams(size, size, Gravity.CENTER));
             FrameLayout layout = new FrameLayout(parent.getContext());
-            layout.setPadding(0, dip(10), 0, dip(10));
+            layout.setPadding(0, dip(20), 0, dip(20));
             layout.addView(icon);
             /*TextView textView = new TextView(parent.getContext());
             textView.setTextColor(param.getContentColor());

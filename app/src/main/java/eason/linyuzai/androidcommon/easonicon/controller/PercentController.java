@@ -41,6 +41,7 @@ public class PercentController extends LinearLayout {
                 value.setText(String.valueOf(val));
                 if (fromUser) {
                     icon.getPainterSet().setPercent(val);
+                    icon.setType(icon.getType(), true);
                     icon.update();
                 }
             }

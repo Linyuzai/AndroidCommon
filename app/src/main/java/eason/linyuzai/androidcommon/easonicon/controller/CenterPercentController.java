@@ -41,6 +41,7 @@ public class CenterPercentController extends LinearLayout {
                 value.setText(String.valueOf(val));
                 if (fromUser) {
                     icon.getPainterSet().setCenterPercent(val);
+                    icon.setType(icon.getType(), true);
                     icon.update();
                 }
             }

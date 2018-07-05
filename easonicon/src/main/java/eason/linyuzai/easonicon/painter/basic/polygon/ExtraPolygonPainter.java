@@ -84,10 +84,6 @@ public class ExtraPolygonPainter extends PolygonPainter {
             }
             midpoint.x = (start.x + end.x) * 0.5f;
             midpoint.y = (start.y + end.y) * 0.5f;
-            if (i == 6) {
-                Log.d("eight:center", center.x + "," + center.y);
-                Log.d("eight:midpoint", midpoint.x + "," + midpoint.y);
-            }
             //PointF midpoint = new PointF((start.x + end.x) * 0.5f, (start.y + end.y) * 0.5f);
             if (Math.abs(start.x - end.x) <= getPrecisionAccuracy()) {
                 if (midpoint.x >= center.x) {
@@ -96,9 +92,6 @@ public class ExtraPolygonPainter extends PolygonPainter {
                     extras[i].x = midpoint.x - extraOffset;
                 }
                 extras[i].y = midpoint.y;
-                if (i == 6) {
-                    Log.d("eight:startX", extras[i].x + "," + extras[i].y);
-                }
             } else if (Math.abs(start.y - end.y) <= getPrecisionAccuracy()) {
                 if (midpoint.y >= center.y) {
                     extras[i].y = midpoint.y + extraOffset;
@@ -106,9 +99,6 @@ public class ExtraPolygonPainter extends PolygonPainter {
                     extras[i].y = midpoint.y - extraOffset;
                 }
                 extras[i].x = midpoint.x;
-                if (i == 6) {
-                    Log.d("eight:startY", extras[i].x + "," + extras[i].y);
-                }
             } else {
                 //Line line = new Line(start, end);
                 line.calculate(start, end);
@@ -127,9 +117,6 @@ public class ExtraPolygonPainter extends PolygonPainter {
                     }
                 }
                 extras[i].y = line.getY(extras[i].x);
-                if (i == 8) {
-                    Log.d("eight:else", extras[i].x + "," + extras[i].y);
-                }
             }
             //extras[i] = extra;
         }

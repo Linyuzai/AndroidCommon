@@ -11,6 +11,8 @@ import eason.linyuzai.androidcommon.LibraryHelper;
 import eason.linyuzai.androidcommon.R;
 import eason.linyuzai.androidcommon.easonicon.controller.AuxiliaryScaleController;
 import eason.linyuzai.androidcommon.easonicon.controller.CenterPercentController;
+import eason.linyuzai.androidcommon.easonicon.controller.CenterPercentXController;
+import eason.linyuzai.androidcommon.easonicon.controller.CenterPercentYController;
 import eason.linyuzai.androidcommon.easonicon.controller.EdgeCountController;
 import eason.linyuzai.androidcommon.easonicon.controller.ExtraOffsetController;
 import eason.linyuzai.androidcommon.easonicon.controller.OffsetPercentController;
@@ -61,6 +63,8 @@ public class IconAttrActivity extends EasonActivity {
         icon.setType(getIntent().getIntExtra("type", 0));
         ViewGroup group = id(R.id.op);
         group.addView(new CenterPercentController(this, icon));
+        group.addView(new CenterPercentXController(this, icon));
+        group.addView(new CenterPercentYController(this, icon));
         group.addView(new PercentController(this, icon));
         group.addView(new PercentXController(this, icon));
         group.addView(new PercentYController(this, icon));

@@ -1,29 +1,30 @@
 package eason.linyuzai.easonicon.painter.combine;
 
 import eason.linyuzai.easonicon.annotation.AuxiliaryScaleField;
-import eason.linyuzai.easonicon.annotation.RoundField;
+import eason.linyuzai.easonicon.annotation.RoundRectField;
 import eason.linyuzai.easonicon.open.Painter;
 import eason.linyuzai.easonicon.painter.EasonPainterSet;
 import eason.linyuzai.easonicon.painter.basic.rect.RectPainter;
 
+@AuxiliaryScaleField
+@RoundRectField
 public class UpArrowHollowRectPainter extends EasonPainterSet {
 
     public UpArrowHollowRectPainter() {
         this(0.5f);
     }
 
-    public UpArrowHollowRectPainter(@AuxiliaryScaleField float auxiliaryScale) {
+    public UpArrowHollowRectPainter(float auxiliaryScale) {
         this(auxiliaryScale, 0f, 0f, 0f, 0f);
     }
 
-    public UpArrowHollowRectPainter(@RoundField float leftTopRound, @RoundField float leftBottomRound,
-                                    @RoundField float rightTopRound, @RoundField float rightBottomRound) {
+    public UpArrowHollowRectPainter(float leftTopRound, float leftBottomRound, float rightTopRound,
+                                    float rightBottomRound) {
         this(0.5f, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound);
     }
 
-    public UpArrowHollowRectPainter(@AuxiliaryScaleField float auxiliaryScale, @RoundField float leftTopRound,
-                                    @RoundField float leftBottomRound, @RoundField float rightTopRound,
-                                    @RoundField float rightBottomRound) {
+    public UpArrowHollowRectPainter(float auxiliaryScale, float leftTopRound, float leftBottomRound,
+                                    float rightTopRound, float rightBottomRound) {
         addPainter(new RectPainter(leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
         Painter painter = new UpArrowPainter();
         painter.setCenterPercent(auxiliaryScale);

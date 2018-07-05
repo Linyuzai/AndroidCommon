@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import eason.linyuzai.easonicon.annotation.BitmapField;
 import eason.linyuzai.easonicon.painter.EasonPainter;
 
+@BitmapField
 public class BitmapPainter extends EasonPainter {
 
     private Bitmap bitmap;
@@ -17,7 +18,7 @@ public class BitmapPainter extends EasonPainter {
     public BitmapPainter() {
     }
 
-    public BitmapPainter(@BitmapField Bitmap bitmap) {
+    public BitmapPainter(Bitmap bitmap) {
         setBitmap(bitmap);
     }
 

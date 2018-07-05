@@ -5,13 +5,14 @@ import eason.linyuzai.easonicon.open.Painter;
 import eason.linyuzai.easonicon.painter.EasonPainterSet;
 import eason.linyuzai.easonicon.painter.basic.circle.OvalPainter;
 
+@AuxiliaryScaleField
 public class DownArrowHollowOvalPainter extends EasonPainterSet {
 
     public DownArrowHollowOvalPainter() {
         this(0.5f);
     }
 
-    public DownArrowHollowOvalPainter(@AuxiliaryScaleField float auxiliaryScale) {
+    public DownArrowHollowOvalPainter(float auxiliaryScale) {
         addPainter(new OvalPainter());
         Painter painter = new DownArrowPainter();
         painter.setCenterPercent(auxiliaryScale);

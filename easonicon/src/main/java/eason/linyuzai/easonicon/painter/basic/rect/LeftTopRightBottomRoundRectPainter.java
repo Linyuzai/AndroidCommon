@@ -1,13 +1,14 @@
 package eason.linyuzai.easonicon.painter.basic.rect;
 
-import eason.linyuzai.easonicon.annotation.RoundField;
+import eason.linyuzai.easonicon.annotation.RoundRectField;
 
+@RoundRectField
 public class LeftTopRightBottomRoundRectPainter extends RectPainter {
-    public LeftTopRightBottomRoundRectPainter(@RoundField float r) {
+    public LeftTopRightBottomRoundRectPainter(float r) {
         setLeftTopRightBottom(r);
     }
 
-    public LeftTopRightBottomRoundRectPainter(@RoundField float x, @RoundField float y) {
+    public LeftTopRightBottomRoundRectPainter(float x, float y) {
         setLeftTopRightBottom(x, y);
     }
 }

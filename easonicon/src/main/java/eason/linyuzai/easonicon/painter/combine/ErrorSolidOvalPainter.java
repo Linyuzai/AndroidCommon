@@ -8,13 +8,15 @@ import eason.linyuzai.easonicon.painter.basic.circle.OvalPainter;
 import eason.linyuzai.easonicon.painter.combine.interceptor.AuxiliaryColorInterceptor;
 import eason.linyuzai.easonicon.painter.combine.interceptor.AuxiliaryStyleInterceptor;
 
+@AuxiliaryScaleField
+@AuxiliaryColorField
 public class ErrorSolidOvalPainter extends EasonPainterSet {
 
-    public ErrorSolidOvalPainter(@AuxiliaryColorField int auxiliaryColor) {
+    public ErrorSolidOvalPainter(int auxiliaryColor) {
         this(0.5f, auxiliaryColor);
     }
 
-    public ErrorSolidOvalPainter(@AuxiliaryScaleField float auxiliaryScale, @AuxiliaryColorField int auxiliaryColor) {
+    public ErrorSolidOvalPainter(float auxiliaryScale, int auxiliaryColor) {
         addPainter(new OvalPainter());
         Painter painter = new ErrorPainter();
         painter.setCenterPercent(auxiliaryScale);

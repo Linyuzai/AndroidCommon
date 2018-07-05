@@ -7,6 +7,7 @@ import android.graphics.RectF;
 import eason.linyuzai.easonicon.annotation.ArcField;
 import eason.linyuzai.easonicon.painter.EasonPainter;
 
+@ArcField
 public class ArcPainter extends EasonPainter {
 
     private float startAngle;
@@ -14,19 +15,19 @@ public class ArcPainter extends EasonPainter {
 
     private boolean useCenter;
 
-    public ArcPainter(@ArcField float sweepAngle) {
+    public ArcPainter(float sweepAngle) {
         this(sweepAngle, false);
     }
 
-    public ArcPainter(@ArcField float sweepAngle, @ArcField boolean useCenter) {
+    public ArcPainter(float sweepAngle, boolean useCenter) {
         this(0f, sweepAngle, useCenter);
     }
 
-    public ArcPainter(@ArcField float startAngle, @ArcField float sweepAngle) {
+    public ArcPainter(float startAngle, float sweepAngle) {
         this(startAngle, sweepAngle, false);
     }
 
-    public ArcPainter(@ArcField float startAngle, @ArcField float sweepAngle, @ArcField boolean useCenter) {
+    public ArcPainter(float startAngle, float sweepAngle, boolean useCenter) {
         this.startAngle = startAngle;
         this.sweepAngle = sweepAngle;
         this.useCenter = useCenter;

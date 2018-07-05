@@ -18,15 +18,20 @@ import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.View;
 
+import java.lang.annotation.Annotation;
+
 import eason.linyuzai.easonicon.annotation.ArcField;
 import eason.linyuzai.easonicon.annotation.AuxiliaryColorField;
 import eason.linyuzai.easonicon.annotation.AuxiliaryScaleField;
 import eason.linyuzai.easonicon.annotation.BitmapField;
-import eason.linyuzai.easonicon.annotation.PolygonField;
-import eason.linyuzai.easonicon.annotation.RoundField;
+import eason.linyuzai.easonicon.annotation.EdgeCountField;
+import eason.linyuzai.easonicon.annotation.ExtraOffsetField;
+import eason.linyuzai.easonicon.annotation.RoundRectField;
 import eason.linyuzai.easonicon.open.Painter;
 import eason.linyuzai.easonicon.open.PainterSet;
 import eason.linyuzai.easonicon.painter.EasonPainterSet;
+import eason.linyuzai.easonicon.painter.basic.NonePainter;
+import eason.linyuzai.easonicon.painter.basic.text.TextPainter;
 import eason.linyuzai.easonicon.painter.combine.AddHollowOvalPainter;
 import eason.linyuzai.easonicon.painter.combine.AddHollowRectPainter;
 import eason.linyuzai.easonicon.painter.combine.AddPainter;
@@ -111,6 +116,11 @@ import eason.linyuzai.easonicon.painter.combine.UpArrowSolidRectPainter;
 public class EasonIcon extends View {
     public static final String TAG = "EasonIcon";
 
+    @SuppressWarnings("unchecked")
+    private static Class<? extends Annotation>[] extraAnnotationClasses = new Class[]{
+            ArcField.class, AuxiliaryScaleField.class, AuxiliaryColorField.class,
+            BitmapField.class, EdgeCountField.class, ExtraOffsetField.class, RoundRectField.class};
+
     private int width;
     private int height;
 
@@ -127,13 +137,13 @@ public class EasonIcon extends View {
     private int auxiliaryColor;
     @AuxiliaryScaleField
     private float auxiliaryScale;
-    @RoundField
+    @RoundRectField
     private float leftTopRound;
-    @RoundField
+    @RoundRectField
     private float leftBottomRound;
-    @RoundField
+    @RoundRectField
     private float rightTopRound;
-    @RoundField
+    @RoundRectField
     private float rightBottomRound;
     @ArcField
     private float startAngle;
@@ -143,9 +153,9 @@ public class EasonIcon extends View {
     private boolean useCenter;
     @BitmapField
     private Bitmap bitmap;
-    @PolygonField
+    @EdgeCountField
     private int edgeCount;
-    @PolygonField
+    @ExtraOffsetField
     private float extraOffset;
 
     public EasonIcon(Context context) {
@@ -612,6 +622,11 @@ public class EasonIcon extends View {
         }
     }
 
+    public void setPainter(Painter painter) {
+        painterSet.clearPainter();
+        painterSet.addPainter(painter);
+    }
+
     public void addPainter(Painter painter) {
         painterSet.addPainter(painter);
     }
@@ -760,8 +775,12 @@ public class EasonIcon extends View {
         painter.printStructure(0, includeInterceptor);
     }
 
+    public static Type getType(int type) {
+        return Type.values()[type];
+    }
+
     public static float getDefaultPercent(int type) {
-        return getDefaultPercent(Type.values()[type]);
+        return getDefaultPercent(getType(type));
     }
 
     public static float getDefaultPercent(Type type) {
@@ -773,95 +792,99 @@ public class EasonIcon extends View {
         }
     }
 
+    public static Class<? extends Annotation>[] getExtraAnnotationClasses() {
+        return extraAnnotationClasses;
+    }
+
     public enum Type {
-        NONE(0, "none", "0"),
-        LINE_VERTICAL(1, "line_vertical", "VerticalLinePainter"),
-        LINE_HORIZONTAL(2, "line_horizontal", ""),
-        LINE_SLOPE_POSITIVE(3, "line_slope_positive", ""),
-        LINE_SLOPE_NEGATIVE(4, "line_slope_negative", ""),
-        CIRCLE(5, "circle", ""),
-        OVAL(6, "oval", ""),
-        RECT(7, "rect", ""),
-        ARC(8, "arc", ""),
-        BITMAP(9, "bitmap", ""),
-        POLYGON(10, "polygon", ""),
-        POLYGON_EXTRA(11, "polygon_extra", ""),
-        POLYGON_QUAD(12, "polygon_quad", ""),
-        TEXT(13, "text", ""),
-        TODO_14(14, "", ""),
-        TODO_15(15, "", ""),
-        TODO_16(16, "", ""),
-        BACK(17, "back", ""),
-        NEXT(18, "next", ""),
-        COLLAPSE(19, "collapse", ""),
-        EXPAND(20, "expand", ""),
-        BACK_HOLLOW_OVAL(21, "back_hollow_oval", ""),
-        NEXT_HOLLOW_OVAL(22, "next_hollow_oval", ""),
-        COLLAPSE_HOLLOW_OVAL(23, "collapse_hollow_oval", ""),
-        EXPAND_HOLLOW_OVAL(24, "expand_hollow_oval", ""),
-        BACK_SOLID_OVAL(25, "back_solid_oval", ""),
-        NEXT_SOLID_OVAL(26, "next_solid_oval", ""),
-        COLLAPSE_SOLID_OVAL(27, "collapse_solid_oval", ""),
-        EXPAND_SOLID_OVAL(28, "expand_solid_oval", ""),
-        BACK_HOLLOW_RECT(29, "back_hollow_rect", ""),
-        NEXT_HOLLOW_RECT(30, "next_hollow_rect", ""),
-        COLLAPSE_HOLLOW_RECT(31, "collapse_hollow_rect", ""),
-        EXPAND_HOLLOW_RECT(32, "expand_hollow_rect", ""),
-        BACK_SOLID_RECT(33, "back_solid_rect", ""),
-        NEXT_SOLID_RECT(34, "next_solid_rect", ""),
-        COLLAPSE_SOLID_RECT(35, "collapse_solid_rect", ""),
-        EXPAND_SOLID_RECT(36, "expand_solid_rect", ""),
-        ARROW_LEFT(37, "arrow_left", ""),
-        ARROW_RIGHT(38, "arrow_right", ""),
-        ARROW_UP(39, "arrow_up", ""),
-        ARROW_DOWN(40, "arrow_down", ""),
-        ARROW_LEFT_HOLLOW_OVAL(41, "arrow_left_hollow_oval", ""),
-        ARROW_RIGHT_HOLLOW_OVAL(42, "arrow_right_hollow_oval", ""),
-        ARROW_UP_HOLLOW_OVAL(43, "arrow_up_hollow_oval", ""),
-        ARROW_DOWN_HOLLOW_OVAL(44, "arrow_down_hollow_oval", ""),
-        ARROW_LEFT_SOLID_OVAL(45, "arrow_left_solid_oval", ""),
-        ARROW_RIGHT_SOLID_OVAL(46, "arrow_right_solid_oval", ""),
-        ARROW_UP_SOLID_OVAL(47, "arrow_up_solid_oval", ""),
-        ARROW_DOWN_SOLID_OVAL(48, "arrow_down_solid_oval", ""),
-        ARROW_LEFT_HOLLOW_RECT(49, "arrow_left_hollow_rect", ""),
-        ARROW_RIGHT_HOLLOW_RECT(50, "arrow_right_hollow_rect", ""),
-        ARROW_UP_HOLLOW_RECT(51, "arrow_up_hollow_rect", ""),
-        ARROW_DOWN_HOLLOW_RECT(52, "arrow_down_hollow_rect", ""),
-        ARROW_LEFT_SOLID_RECT(53, "arrow_left_solid_rect", ""),
-        ARROW_RIGHT_SOLID_RECT(54, "arrow_right_solid_rect", ""),
-        ARROW_UP_SOLID_RECT(55, "arrow_up_solid_rect", ""),
-        ARROW_DOWN_SOLID_RECT(56, "arrow_down_solid_rect", ""),
-        ADD(57, "add", ""),
-        MINUS(58, "minus", ""),
-        CORRECT(59, "correct", ""),
-        ERROR(60, "error", ""),
-        ADD_HOLLOW_OVAL(61, "add_hollow_oval", ""),
-        MINUS_HOLLOW_OVAL(62, "minus_hollow_oval", ""),
-        CORRECT_HOLLOW_OVAL(63, "correct_hollow_oval", ""),
-        ERROR_HOLLOW_OVAL(64, "error_hollow_oval", ""),
-        ADD_SOLID_OVAL(65, "add_solid_oval", ""),
-        MINUS_SOLID_OVAL(66, "minus_solid_oval", ""),
-        CORRECT_SOLID_OVAL(67, "correct_solid_oval", ""),
-        ERROR_SOLID_OVAL(68, "error_solid_oval", ""),
-        ADD_HOLLOW_RECT(69, "add_hollow_rect", ""),
-        MINUS_HOLLOW_RECT(70, "minus_hollow_rect", ""),
-        CORRECT_HOLLOW_RECT(71, "correct_hollow_rect", ""),
-        ERROR_HOLLOW_RECT(72, "error_hollow_rect", ""),
-        ADD_SOLID_RECT(73, "add_solid_rect", ""),
-        MINUS_SOLID_RECT(74, "minus_solid_rect", ""),
-        CORRECT_SOLID_RECT(75, "correct_solid_rect", ""),
-        ERROR_SOLID_RECT(76, "error_solid_rect", ""),
-        SETTING(77, "setting", ""),
-        QUAD_FLOWER(78, "quad_flower", "");
+        NONE(0, "none", NonePainter.class),
+        LINE_VERTICAL(1, "line_vertical", VerticalLinePainter.class),
+        LINE_HORIZONTAL(2, "line_horizontal", HorizontalLinePainter.class),
+        LINE_SLOPE_POSITIVE(3, "line_slope_positive", SlopePositiveLinePainter.class),
+        LINE_SLOPE_NEGATIVE(4, "line_slope_negative", SlopeNegativeLinePainter.class),
+        CIRCLE(5, "circle", CirclePainter.class),
+        OVAL(6, "oval", OvalPainter.class),
+        RECT(7, "rect", RectPainter.class),
+        ARC(8, "arc", ArcPainter.class),
+        BITMAP(9, "bitmap", BitmapPainter.class),
+        POLYGON(10, "polygon", PolygonPainter.class),
+        POLYGON_EXTRA(11, "polygon_extra", ExtraPolygonPainter.class),
+        POLYGON_QUAD(12, "polygon_quad", QuadPolygonPainter.class),
+        TEXT(13, "text", TextPainter.class),
+        TODO_14(14, "", NonePainter.class),
+        TODO_15(15, "", NonePainter.class),
+        TODO_16(16, "", NonePainter.class),
+        BACK(17, "back", BackPainter.class),
+        NEXT(18, "next", NextPainter.class),
+        COLLAPSE(19, "collapse", CollapsePainter.class),
+        EXPAND(20, "expand", ExpandPainter.class),
+        BACK_HOLLOW_OVAL(21, "back_hollow_oval", BackHollowOvalPainter.class),
+        NEXT_HOLLOW_OVAL(22, "next_hollow_oval", NextHollowOvalPainter.class),
+        COLLAPSE_HOLLOW_OVAL(23, "collapse_hollow_oval", CollapseHollowOvalPainter.class),
+        EXPAND_HOLLOW_OVAL(24, "expand_hollow_oval", ExpandHollowOvalPainter.class),
+        BACK_SOLID_OVAL(25, "back_solid_oval", BackSolidOvalPainter.class),
+        NEXT_SOLID_OVAL(26, "next_solid_oval", NextSolidOvalPainter.class),
+        COLLAPSE_SOLID_OVAL(27, "collapse_solid_oval", CollapseSolidOvalPainter.class),
+        EXPAND_SOLID_OVAL(28, "expand_solid_oval", ExpandSolidOvalPainter.class),
+        BACK_HOLLOW_RECT(29, "back_hollow_rect", BackHollowRectPainter.class),
+        NEXT_HOLLOW_RECT(30, "next_hollow_rect", NextHollowRectPainter.class),
+        COLLAPSE_HOLLOW_RECT(31, "collapse_hollow_rect", CollapseHollowRectPainter.class),
+        EXPAND_HOLLOW_RECT(32, "expand_hollow_rect", ExpandHollowRectPainter.class),
+        BACK_SOLID_RECT(33, "back_solid_rect", BackSolidRectPainter.class),
+        NEXT_SOLID_RECT(34, "next_solid_rect", NextSolidRectPainter.class),
+        COLLAPSE_SOLID_RECT(35, "collapse_solid_rect", CollapseSolidRectPainter.class),
+        EXPAND_SOLID_RECT(36, "expand_solid_rect", ExpandSolidRectPainter.class),
+        ARROW_LEFT(37, "arrow_left", LeftArrowPainter.class),
+        ARROW_RIGHT(38, "arrow_right", RightArrowPainter.class),
+        ARROW_UP(39, "arrow_up", UpArrowPainter.class),
+        ARROW_DOWN(40, "arrow_down", DownArrowPainter.class),
+        ARROW_LEFT_HOLLOW_OVAL(41, "arrow_left_hollow_oval", LeftArrowHollowOvalPainter.class),
+        ARROW_RIGHT_HOLLOW_OVAL(42, "arrow_right_hollow_oval", RightArrowHollowOvalPainter.class),
+        ARROW_UP_HOLLOW_OVAL(43, "arrow_up_hollow_oval", UpArrowHollowOvalPainter.class),
+        ARROW_DOWN_HOLLOW_OVAL(44, "arrow_down_hollow_oval", DownArrowHollowOvalPainter.class),
+        ARROW_LEFT_SOLID_OVAL(45, "arrow_left_solid_oval", LeftArrowSolidOvalPainter.class),
+        ARROW_RIGHT_SOLID_OVAL(46, "arrow_right_solid_oval", RightArrowSolidOvalPainter.class),
+        ARROW_UP_SOLID_OVAL(47, "arrow_up_solid_oval", UpArrowSolidOvalPainter.class),
+        ARROW_DOWN_SOLID_OVAL(48, "arrow_down_solid_oval", DownArrowSolidOvalPainter.class),
+        ARROW_LEFT_HOLLOW_RECT(49, "arrow_left_hollow_rect", LeftArrowHollowRectPainter.class),
+        ARROW_RIGHT_HOLLOW_RECT(50, "arrow_right_hollow_rect", RightArrowHollowRectPainter.class),
+        ARROW_UP_HOLLOW_RECT(51, "arrow_up_hollow_rect", UpArrowHollowRectPainter.class),
+        ARROW_DOWN_HOLLOW_RECT(52, "arrow_down_hollow_rect", DownArrowHollowRectPainter.class),
+        ARROW_LEFT_SOLID_RECT(53, "arrow_left_solid_rect", LeftArrowSolidRectPainter.class),
+        ARROW_RIGHT_SOLID_RECT(54, "arrow_right_solid_rect", RightArrowSolidRectPainter.class),
+        ARROW_UP_SOLID_RECT(55, "arrow_up_solid_rect", UpArrowSolidRectPainter.class),
+        ARROW_DOWN_SOLID_RECT(56, "arrow_down_solid_rect", DownArrowSolidRectPainter.class),
+        ADD(57, "add", AddPainter.class),
+        MINUS(58, "minus", MinusPainter.class),
+        CORRECT(59, "correct", CorrectPainter.class),
+        ERROR(60, "error", ErrorPainter.class),
+        ADD_HOLLOW_OVAL(61, "add_hollow_oval", AddHollowOvalPainter.class),
+        MINUS_HOLLOW_OVAL(62, "minus_hollow_oval", MinusHollowOvalPainter.class),
+        CORRECT_HOLLOW_OVAL(63, "correct_hollow_oval", CorrectHollowOvalPainter.class),
+        ERROR_HOLLOW_OVAL(64, "error_hollow_oval", ErrorHollowOvalPainter.class),
+        ADD_SOLID_OVAL(65, "add_solid_oval", AddSolidOvalPainter.class),
+        MINUS_SOLID_OVAL(66, "minus_solid_oval", MinusSolidOvalPainter.class),
+        CORRECT_SOLID_OVAL(67, "correct_solid_oval", CorrectSolidOvalPainter.class),
+        ERROR_SOLID_OVAL(68, "error_solid_oval", ErrorSolidOvalPainter.class),
+        ADD_HOLLOW_RECT(69, "add_hollow_rect", AddHollowRectPainter.class),
+        MINUS_HOLLOW_RECT(70, "minus_hollow_rect", MinusHollowRectPainter.class),
+        CORRECT_HOLLOW_RECT(71, "correct_hollow_rect", CorrectHollowRectPainter.class),
+        ERROR_HOLLOW_RECT(72, "error_hollow_rect", ErrorHollowRectPainter.class),
+        ADD_SOLID_RECT(73, "add_solid_rect", AddSolidRectPainter.class),
+        MINUS_SOLID_RECT(74, "minus_solid_rect", MinusSolidRectPainter.class),
+        CORRECT_SOLID_RECT(75, "correct_solid_rect", CorrectSolidRectPainter.class),
+        ERROR_SOLID_RECT(76, "error_solid_rect", ErrorSolidRectPainter.class),
+        SETTING(77, "setting", SettingPainter.class),
+        QUAD_FLOWER(78, "quad_flower", QuadFlower.class);
 
         private int value;
         private String attrName;
-        private String painterName;
+        private Class<? extends Painter> painterClass;
 
-        Type(int value, String attrName, String painterName) {
+        Type(int value, String attrName, Class<? extends Painter> painterClass) {
             this.value = value;
             this.attrName = attrName;
-            this.painterName = painterName;
+            this.painterClass = painterClass;
         }
 
         public int getValue() {
@@ -872,8 +895,8 @@ public class EasonIcon extends View {
             return attrName;
         }
 
-        public String getPainterName() {
-            return painterName;
+        public Class<? extends Painter> getPainterClass() {
+            return painterClass;
         }
     }
 

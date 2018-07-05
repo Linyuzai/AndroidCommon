@@ -5,6 +5,11 @@ import android.graphics.Path;
 import android.graphics.PointF;
 import android.graphics.RectF;
 
+import eason.linyuzai.easonicon.annotation.EdgeCountField;
+import eason.linyuzai.easonicon.annotation.ExtraOffsetField;
+
+@EdgeCountField
+@ExtraOffsetField
 public class QuadPolygonPainter extends ExtraPolygonPainter {
 
     public QuadPolygonPainter() {
@@ -34,5 +39,6 @@ public class QuadPolygonPainter extends ExtraPolygonPainter {
                 path.quadTo(points[i].x, points[i].y, points[i + 1].x, points[i + 1].y);
             }
         }
+        path.close();
     }
 }

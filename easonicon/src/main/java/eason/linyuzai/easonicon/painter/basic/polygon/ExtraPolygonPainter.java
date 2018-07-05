@@ -3,6 +3,11 @@ package eason.linyuzai.easonicon.painter.basic.polygon;
 import android.graphics.PointF;
 import android.graphics.RectF;
 
+import eason.linyuzai.easonicon.annotation.EdgeCountField;
+import eason.linyuzai.easonicon.annotation.ExtraOffsetField;
+
+@EdgeCountField
+@ExtraOffsetField
 public class ExtraPolygonPainter extends PolygonPainter {
 
     private float extraOffset;

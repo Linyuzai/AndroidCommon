@@ -20,6 +20,8 @@ public abstract class EasonPainter implements Painter {
 
     private Object tag;
 
+    private boolean canDraw = true;
+
     private RectParam rectParam = new RectParam();
 
     @Override
@@ -33,6 +35,16 @@ public abstract class EasonPainter implements Painter {
     @Override
     public void drawBitmap(Canvas canvas, Bitmap bitmap, RectF draw, RectF original, Paint paint) {
         canvas.drawBitmap(bitmap, null, original, paint);
+    }
+
+    @Override
+    public boolean canDraw() {
+        return canDraw;
+    }
+
+    @Override
+    public void setCanDraw(boolean canDraw) {
+        this.canDraw = canDraw;
     }
 
     /**

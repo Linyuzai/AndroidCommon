@@ -201,7 +201,7 @@ public class EasonPainterSet extends EasonPainter implements PainterSet {
         Paint modePaint = null;
         for (int index = 0; index < painters.size(); index++) {
             Painter painter = painters.get(index);
-            if (painter == null)
+            if (painter == null || !painter.canDraw())
                 continue;
             rectSupportInterceptor.beforeDraw(painter, draw, index);
             for (PainterInterceptor interceptor : interceptors) {

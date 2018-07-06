@@ -12,6 +12,10 @@ import android.graphics.RectF;
  */
 
 public interface Painter extends RectSupport {
+    boolean canDraw();
+
+    void setCanDraw(boolean canDraw);
+
     void draw(Canvas canvas, RectF draw, RectF original, Paint paint);
 
     void drawBitmap(Canvas canvas, Bitmap bitmap, RectF draw, RectF original, Paint paint);

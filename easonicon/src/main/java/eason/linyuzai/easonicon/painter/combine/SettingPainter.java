@@ -8,6 +8,8 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 
 import eason.linyuzai.easonicon.annotation.AuxiliaryColorField;
+import eason.linyuzai.easonicon.annotation.AuxiliaryScaleField;
+import eason.linyuzai.easonicon.annotation.PenSizeScaleField;
 import eason.linyuzai.easonicon.open.Painter;
 import eason.linyuzai.easonicon.open.PainterInterceptor;
 import eason.linyuzai.easonicon.painter.EasonPainterSet;
@@ -16,20 +18,48 @@ import eason.linyuzai.easonicon.painter.basic.polygon.ExtraPolygonPainter;
 import eason.linyuzai.easonicon.painter.combine.interceptor.AuxiliaryColorInterceptor;
 import eason.linyuzai.easonicon.painter.interceptor.mode.DstOutPorterDuffModeInterceptor;
 
+@AuxiliaryScaleField
 @AuxiliaryColorField
+@PenSizeScaleField
 public class SettingPainter extends EasonPainterSet {
 
     private ExtraPolygonPainter polygon;
+    private CirclePainter circle;
+    private float auxiliaryScale;
+    private float penSizeScale;
 
     public SettingPainter(int auxiliaryColor) {
+        this(0.5f, auxiliaryColor, 1f);
+    }
+
+    public SettingPainter(float auxiliaryScale, int auxiliaryColor, float penSizeScale) {
+        setPenSizeScale(penSizeScale);
         polygon = new ExtraPolygonPainter(8);
         polygon.setCenterPercent(0.5f);
         addPainter(polygon);
-        CirclePainter circle = new CirclePainter();
-        circle.setCenterPercent(0.45f);
+        circle = new CirclePainter();
+        //circle.setCenterPercent(0.35f);
+        setAuxiliaryScale(auxiliaryScale);
         addPainter(circle);
         addInterceptor(new SettingInterceptor());
         addInterceptor(new AuxiliaryColorInterceptor(auxiliaryColor));
+    }
+
+    public float getAuxiliaryScale() {
+        return auxiliaryScale;
+    }
+
+    public void setAuxiliaryScale(float auxiliaryScale) {
+        this.auxiliaryScale = auxiliaryScale;
+        circle.setCenterPercent(0.7f * auxiliaryScale);
+    }
+
+    public float getPenSizeScale() {
+        return penSizeScale;
+    }
+
+    public void setPenSizeScale(float penSizeScale) {
+        this.penSizeScale = penSizeScale;
     }
 
     @Override
@@ -65,7 +95,7 @@ public class SettingPainter extends EasonPainterSet {
                 paint.setStrokeWidth(size * 0.11f);
             } else if (painter instanceof CirclePainter) {
                 circlePenSize = paint.getStrokeWidth();
-                paint.setStrokeWidth(size * 0.1f);
+                paint.setStrokeWidth(size * 0.1f * getPenSizeScale());
             }
         }
 

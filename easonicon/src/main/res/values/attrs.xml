@@ -110,6 +110,10 @@
             <!-- api 21 <enum name="setting_v21" value="78" />-->
             <enum name="flower_extra" value="79" />
             <enum name="flower_quad" value="80" />
+            <enum name="menu" value="81" />
+            <enum name="user" value="82" />
+            <enum name="male" value="83" />
+            <enum name="female" value="84" />
         </attr>
         <!-- 需要两种颜色 -->
         <attr name="icon_auxiliary_color" format="reference|color" />

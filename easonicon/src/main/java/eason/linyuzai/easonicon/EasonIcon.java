@@ -82,11 +82,14 @@ import eason.linyuzai.easonicon.painter.combine.ExpandPainter;
 import eason.linyuzai.easonicon.painter.combine.ExpandSolidOvalPainter;
 import eason.linyuzai.easonicon.painter.combine.ExpandSolidRectPainter;
 import eason.linyuzai.easonicon.painter.combine.ExtraFlower;
+import eason.linyuzai.easonicon.painter.combine.FemalePainter;
 import eason.linyuzai.easonicon.painter.combine.LeftArrowHollowOvalPainter;
 import eason.linyuzai.easonicon.painter.combine.LeftArrowHollowRectPainter;
 import eason.linyuzai.easonicon.painter.combine.LeftArrowPainter;
 import eason.linyuzai.easonicon.painter.combine.LeftArrowSolidOvalPainter;
 import eason.linyuzai.easonicon.painter.combine.LeftArrowSolidRectPainter;
+import eason.linyuzai.easonicon.painter.combine.MalePainter;
+import eason.linyuzai.easonicon.painter.combine.MenuPainter;
 import eason.linyuzai.easonicon.painter.combine.MinusHollowOvalPainter;
 import eason.linyuzai.easonicon.painter.combine.MinusHollowRectPainter;
 import eason.linyuzai.easonicon.painter.combine.MinusPainter;
@@ -110,6 +113,7 @@ import eason.linyuzai.easonicon.painter.combine.UpArrowHollowRectPainter;
 import eason.linyuzai.easonicon.painter.combine.UpArrowPainter;
 import eason.linyuzai.easonicon.painter.combine.UpArrowSolidOvalPainter;
 import eason.linyuzai.easonicon.painter.combine.UpArrowSolidRectPainter;
+import eason.linyuzai.easonicon.painter.combine.UserPainter;
 
 /**
  * Created by linyuzai on 2018/5/19.
@@ -276,6 +280,7 @@ public class EasonIcon extends View {
             auxiliaryColor = Color.WHITE;
             auxiliaryScale = 0.5f;
             edgeCount = 3;
+            penSizeScale = 1f;
         }
     }
 
@@ -641,11 +646,11 @@ public class EasonIcon extends View {
                 painterSet.addPainter(new ErrorSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
             case SETTING:
-                painterSet.addPainter(new SettingPainter(auxiliaryColor));
+                painterSet.addPainter(new SettingPainter(auxiliaryScale, auxiliaryColor, penSizeScale));
                 break;
             case SETTING_V21:
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    painterSet.addPainter(new SettingV21Painter());
+                    painterSet.addPainter(new SettingV21Painter(auxiliaryScale, penSizeScale));
                 } else {
                     return false;
                 }
@@ -655,6 +660,18 @@ public class EasonIcon extends View {
                 break;
             case FLOWER_QUAD:
                 painterSet.addPainter(new QuadFlower(edgeCount, penSizeScale));
+                break;
+            case MENU:
+                painterSet.addPainter(new MenuPainter());
+                break;
+            case USER:
+                painterSet.addPainter(new UserPainter(leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
+                break;
+            case MALE:
+                painterSet.addPainter(new MalePainter());
+                break;
+            case FEMALE:
+                painterSet.addPainter(new FemalePainter());
                 break;
         }
         return true;
@@ -932,7 +949,11 @@ public class EasonIcon extends View {
         SETTING(77, "setting", SettingPainter.class),
         SETTING_V21(78, "setting", SettingV21Painter.class),
         FLOWER_EXTRA(79, "flower_extra", ExtraFlower.class),
-        FLOWER_QUAD(80, "flower_quad", QuadFlower.class);
+        FLOWER_QUAD(80, "flower_quad", QuadFlower.class),
+        MENU(81, "menu", MenuPainter.class),
+        USER(82, "user", UserPainter.class),
+        MALE(83, "male", MalePainter.class),
+        FEMALE(84, "female", FemalePainter.class);
 
         private int value;
         private String attrName;
@@ -956,177 +977,4 @@ public class EasonIcon extends View {
             return painterClass;
         }
     }
-
-    /*public static final class Type {
-     *//**
-     * 不绘制
-     *//*
-        public static final int NONE = 0;
-        *//**
-     * 竖直线
-     *//*
-        public static final int LINE_VERTICAL = 1;
-        *//**
-     * 水平线
-     *//*
-        public static final int LINE_HORIZONTAL = 2;
-        *//**
-     * 左上右下斜线
-     *//*
-        public static final int LINE_SLOPE_POSITIVE = 3;
-        *//**
-     * 左下右上斜线
-     *//*
-        public static final int LINE_SLOPE_NEGATIVE = 4;
-        *//**
-     * 圆
-     *//*
-        public static final int CIRCLE = 5;
-        *//**
-     * 椭圆
-     *//*
-        public static final int OVAL = 6;
-
-        public static final int RECT = 7;
-
-        public static final int ARC = 8;
-
-        public static final int BITMAP = 9;
-
-        public static final int POLYGON = 10;
-
-        public static final int POLYGON_EXTRA = 11;
-
-        public static final int POLYGON_QUAD = 12;
-
-        public static final int TEXT = 13;
-
-        //组合
-        *//**
-     * 返回
-     *//*
-        public static final int BACK = 17;
-
-        public static final int NEXT = 18;
-
-        public static final int COLLAPSE = 19;
-
-        public static final int EXPAND = 20;
-
-        public static final int BACK_HOLLOW_OVAL = 21;
-
-        public static final int NEXT_HOLLOW_OVAL = 22;
-
-        public static final int COLLAPSE_HOLLOW_OVAL = 23;
-
-        public static final int EXPAND_HOLLOW_OVAL = 24;
-
-        public static final int BACK_SOLID_OVAL = 25;
-
-        public static final int NEXT_SOLID_OVAL = 26;
-
-        public static final int COLLAPSE_SOLID_OVAL = 27;
-
-        public static final int EXPAND_SOLID_OVAL = 28;
-
-        public static final int BACK_HOLLOW_RECT = 29;
-
-        public static final int NEXT_HOLLOW_RECT = 30;
-
-        public static final int COLLAPSE_HOLLOW_RECT = 31;
-
-        public static final int EXPAND_HOLLOW_RECT = 32;
-
-        public static final int BACK_SOLID_RECT = 33;
-
-        public static final int NEXT_SOLID_RECT = 34;
-
-        public static final int COLLAPSE_SOLID_RECT = 35;
-
-        public static final int EXPAND_SOLID_RECT = 36;
-
-        public static final int ARROW_LEFT = 37;
-
-        public static final int ARROW_RIGHT = 38;
-
-        public static final int ARROW_UP = 39;
-
-        public static final int ARROW_DOWN = 40;
-
-        public static final int ARROW_LEFT_HOLLOW_OVAL = 41;
-
-        public static final int ARROW_RIGHT_HOLLOW_OVAL = 42;
-
-        public static final int ARROW_UP_HOLLOW_OVAL = 43;
-
-        public static final int ARROW_DOWN_HOLLOW_OVAL = 44;
-
-        public static final int ARROW_LEFT_SOLID_OVAL = 45;
-
-        public static final int ARROW_RIGHT_SOLID_OVAL = 46;
-
-        public static final int ARROW_UP_SOLID_OVAL = 47;
-
-        public static final int ARROW_DOWN_SOLID_OVAL = 48;
-
-        public static final int ARROW_LEFT_HOLLOW_RECT = 49;
-
-        public static final int ARROW_RIGHT_HOLLOW_RECT = 50;
-
-        public static final int ARROW_UP_HOLLOW_RECT = 51;
-
-        public static final int ARROW_DOWN_HOLLOW_RECT = 52;
-
-        public static final int ARROW_LEFT_SOLID_RECT = 53;
-
-        public static final int ARROW_RIGHT_SOLID_RECT = 54;
-
-        public static final int ARROW_UP_SOLID_RECT = 55;
-
-        public static final int ARROW_DOWN_SOLID_RECT = 56;
-
-        public static final int ADD = 57;
-
-        public static final int MINUS = 58;
-
-        public static final int CORRECT = 59;
-
-        public static final int ERROR = 60;
-
-        public static final int ADD_HOLLOW_OVAL = 61;
-
-        public static final int MINUS_HOLLOW_OVAL = 62;
-
-        public static final int CORRECT_HOLLOW_OVAL = 63;
-
-        public static final int ERROR_HOLLOW_OVAL = 64;
-
-        public static final int ADD_SOLID_OVAL = 65;
-
-        public static final int MINUS_SOLID_OVAL = 66;
-
-        public static final int CORRECT_SOLID_OVAL = 67;
-
-        public static final int ERROR_SOLID_OVAL = 68;
-
-        public static final int ADD_HOLLOW_RECT = 69;
-
-        public static final int MINUS_HOLLOW_RECT = 70;
-
-        public static final int CORRECT_HOLLOW_RECT = 71;
-
-        public static final int ERROR_HOLLOW_RECT = 72;
-
-        public static final int ADD_SOLID_RECT = 73;
-
-        public static final int MINUS_SOLID_RECT = 74;
-
-        public static final int CORRECT_SOLID_RECT = 75;
-
-        public static final int ERROR_SOLID_RECT = 76;
-
-        public static final int SETTING = 77;
-
-        public static final int QUAD_FLOWER = 78;
-    }*/
 }

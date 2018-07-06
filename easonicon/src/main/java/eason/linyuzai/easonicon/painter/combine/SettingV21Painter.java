@@ -6,6 +6,9 @@ import android.graphics.RectF;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
+import eason.linyuzai.easonicon.annotation.AuxiliaryColorField;
+import eason.linyuzai.easonicon.annotation.AuxiliaryScaleField;
+import eason.linyuzai.easonicon.annotation.PenSizeScaleField;
 import eason.linyuzai.easonicon.open.Painter;
 import eason.linyuzai.easonicon.open.PainterInterceptor;
 import eason.linyuzai.easonicon.painter.EasonPainterSet;
@@ -13,20 +16,50 @@ import eason.linyuzai.easonicon.painter.basic.circle.CirclePainter;
 import eason.linyuzai.easonicon.painter.basic.polygon.ExtraPolygonPainter;
 import eason.linyuzai.easonicon.painter.interceptor.mode.DstOutPorterDuffModeInterceptor;
 
+@AuxiliaryScaleField
+@AuxiliaryColorField
+@PenSizeScaleField
 public class SettingV21Painter extends EasonPainterSet {
 
     private ExtraPolygonPainter polygon;
+    private CirclePainter circle;
+    private float auxiliaryScale;
+    private float penSizeScale;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public SettingV21Painter() {
+        this(0.5f, 1f);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public SettingV21Painter(float auxiliaryScale, float penSizeScale) {
+        setPenSizeScale(penSizeScale);
         polygon = new ExtraPolygonPainter(8);
         polygon.setCenterPercent(0.5f);
         addPainter(polygon);
-        CirclePainter circle = new CirclePainter();
-        circle.setCenterPercent(0.45f);
+        circle = new CirclePainter();
+        setAuxiliaryScale(auxiliaryScale);
+        //circle.setCenterPercent(0.45f);
         addPainter(circle);
         addInterceptor(new SettingInterceptor());
         addInterceptor(new DstOutPorterDuffModeInterceptor());
+    }
+
+    public float getAuxiliaryScale() {
+        return auxiliaryScale;
+    }
+
+    public void setAuxiliaryScale(float auxiliaryScale) {
+        this.auxiliaryScale = auxiliaryScale;
+        circle.setCenterPercent(0.7f * auxiliaryScale);
+    }
+
+    public float getPenSizeScale() {
+        return penSizeScale;
+    }
+
+    public void setPenSizeScale(float penSizeScale) {
+        this.penSizeScale = penSizeScale;
     }
 
     @Override
@@ -62,7 +95,7 @@ public class SettingV21Painter extends EasonPainterSet {
                 paint.setStrokeWidth(size * 0.11f);
             } else if (painter instanceof CirclePainter) {
                 circlePenSize = paint.getStrokeWidth();
-                paint.setStrokeWidth(size * 0.1f);
+                paint.setStrokeWidth(size * 0.1f * getPenSizeScale());
             }
         }
 

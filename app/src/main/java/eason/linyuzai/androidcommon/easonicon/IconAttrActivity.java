@@ -17,6 +17,8 @@ import eason.linyuzai.androidcommon.easonicon.controller.CenterPercentXControlle
 import eason.linyuzai.androidcommon.easonicon.controller.CenterPercentYController;
 import eason.linyuzai.androidcommon.easonicon.controller.EdgeCountController;
 import eason.linyuzai.androidcommon.easonicon.controller.ExtraOffsetController;
+import eason.linyuzai.androidcommon.easonicon.controller.LeftBottomController;
+import eason.linyuzai.androidcommon.easonicon.controller.LeftTopController;
 import eason.linyuzai.androidcommon.easonicon.controller.OffsetPercentController;
 import eason.linyuzai.androidcommon.easonicon.controller.OffsetPercentXController;
 import eason.linyuzai.androidcommon.easonicon.controller.OffsetPercentYController;
@@ -27,6 +29,8 @@ import eason.linyuzai.androidcommon.easonicon.controller.PenSizeScaleController;
 import eason.linyuzai.androidcommon.easonicon.controller.PercentController;
 import eason.linyuzai.androidcommon.easonicon.controller.PercentXController;
 import eason.linyuzai.androidcommon.easonicon.controller.PercentYController;
+import eason.linyuzai.androidcommon.easonicon.controller.RightBottomController;
+import eason.linyuzai.androidcommon.easonicon.controller.RightTopController;
 import eason.linyuzai.androidcommon.easonicon.controller.StartAngleController;
 import eason.linyuzai.androidcommon.easonicon.controller.SweepAngleController;
 import eason.linyuzai.easonicon.EasonIcon;
@@ -110,7 +114,10 @@ public class IconAttrActivity extends EasonActivity {
             group.addView(new PenSizeScaleController(this, icon));
         }
         if (icon.hasAnnotation(RoundRectField.class)) {
-
+            group.addView(new LeftTopController(this, icon));
+            group.addView(new LeftBottomController(this, icon));
+            group.addView(new RightTopController(this, icon));
+            group.addView(new RightBottomController(this, icon));
         }
     }
 

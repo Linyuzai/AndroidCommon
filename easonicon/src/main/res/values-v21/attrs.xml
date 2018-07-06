@@ -130,6 +130,9 @@
         <attr name="icon_polygon_extra_offset" format="reference|dimension" />
         <!-- path -->
         <attr name="icon_path_effect_corner" format="reference|dimension" />
+        <!-- text -->
+        <attr name="icon_text" format="reference|string" />
+        <attr name="icon_text_size" format="reference|dimension" />
     </declare-styleable>
     <declare-styleable name="RectImageView">
         <attr name="round_radius" format="reference|dimension" />

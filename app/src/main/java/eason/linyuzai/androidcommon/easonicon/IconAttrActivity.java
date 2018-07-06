@@ -63,6 +63,8 @@ public class IconAttrActivity extends EasonActivity {
         icon.setRightBottomRound(dip(5));
         icon.getPaint().setTextSize(dip(15));
         icon.getPainterSet().setCenterPercent(0.9f);
+        icon.setTextSize(dip(45));
+        icon.setText("Text");
         int type = getIntent().getIntExtra("type", 0);
         if (EasonIcon.getType(type) == EasonIcon.Type.BITMAP) {
             Drawable drawable = drawable(R.mipmap.pic);

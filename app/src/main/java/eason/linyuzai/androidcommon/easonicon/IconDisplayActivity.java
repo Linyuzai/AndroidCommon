@@ -42,6 +42,7 @@ public class IconDisplayActivity extends EasonActivity {
         id(R.id.back).setOnClickListener(v -> finish());
         id(R.id.title).setBackgroundColor(param.getTitleColor());
         RecyclerView recyclerView = id(R.id.rv);
+        recyclerView.setBackgroundColor(param.getBackgroundColor());
         recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
         recyclerView.setAdapter(new EasonIconAdapter());
     }
@@ -69,6 +70,8 @@ public class IconDisplayActivity extends EasonActivity {
             icon.setLeftBottomRound(dip(5));
             icon.setRightTopRound(dip(5));
             icon.setRightBottomRound(dip(5));
+            icon.setTextSize(dip(45));
+            icon.setText("Text");
             if (bitmap == null) {
                 Drawable drawable = drawable(R.mipmap.pic);
                 //Log.d("drawable", drawable.getClass().toString());

@@ -27,6 +27,7 @@ import eason.linyuzai.easonicon.annotation.BitmapField;
 import eason.linyuzai.easonicon.annotation.EdgeCountField;
 import eason.linyuzai.easonicon.annotation.ExtraOffsetField;
 import eason.linyuzai.easonicon.annotation.RoundRectField;
+import eason.linyuzai.easonicon.annotation.TextField;
 import eason.linyuzai.easonicon.open.Painter;
 import eason.linyuzai.easonicon.open.PainterSet;
 import eason.linyuzai.easonicon.painter.EasonPainterSet;
@@ -152,6 +153,8 @@ public class EasonIcon extends View {
     private int edgeCount;
     @ExtraOffsetField
     private float extraOffset;
+    @TextField
+    private String text;
 
     public EasonIcon(Context context) {
         super(context);
@@ -212,6 +215,10 @@ public class EasonIcon extends View {
             edgeCount = a.getInt(R.styleable.EasonIcon_icon_polygon_edge_count, 3);
             extraOffset = a.getDimension(R.styleable.EasonIcon_icon_polygon_extra_offset, 0f);
 
+            text = a.getString(R.styleable.EasonIcon_icon_text);
+
+            float textSize = a.getDimension(R.styleable.EasonIcon_icon_text_size, 0f);
+
             float pathEffectCorner = a.getDimension(R.styleable.EasonIcon_icon_path_effect_corner, 0);
 
             float percentCenter = a.getFloat(R.styleable.EasonIcon_icon_percent_center, -1f);
@@ -233,6 +240,7 @@ public class EasonIcon extends View {
             setPenJoin(Paint.Join.values()[join]);
             setPenStyle(Paint.Style.values()[style]);
             setPathEffect(new CornerPathEffect(pathEffectCorner));
+            setTextSize(textSize);
 
             if (percentCenter >= 0f)
                 painterSet.setCenterPercent(percentCenter);
@@ -361,6 +369,14 @@ public class EasonIcon extends View {
         this.extraOffset = extraOffset;
     }
 
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
     /**
      * 获得Icon类型
      *
@@ -428,7 +444,7 @@ public class EasonIcon extends View {
                 painterSet.addPainter(new QuadPolygonPainter(edgeCount, extraOffset));
                 break;
             case TEXT:
-                // TODO: 2018/7/4
+                painterSet.addPainter(new TextPainter(text));
                 break;
             case BACK:
                 painterSet.addPainter(new BackPainter());
@@ -712,6 +728,14 @@ public class EasonIcon extends View {
 
     public void setPenStyle(Paint.Style style) {
         paint.setStyle(style);
+    }
+
+    public float getTextSize() {
+        return paint.getTextSize();
+    }
+
+    public void setTextSize(float textSize) {
+        paint.setTextSize(textSize);
     }
 
     public Paint getPaint() {

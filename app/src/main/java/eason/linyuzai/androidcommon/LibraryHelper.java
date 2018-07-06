@@ -71,18 +71,20 @@ public class LibraryHelper {
             }
         });
         return new LibraryParam(Color.parseColor("#0099cc"), Color.parseColor("#33b5e5"),
-                painterSet, "Eason Icon");
+                Color.parseColor("#330099cc"), painterSet, "Eason Icon");
     }
 
     public static class LibraryParam {
         private int titleColor;
         private int contentColor;
+        private int backgroundColor;
         private Painter painter;
         private String text;
 
-        private LibraryParam(int titleColor, int contentColor, Painter painter, String text) {
+        private LibraryParam(int titleColor, int contentColor, int backgroundColor, Painter painter, String text) {
             this.titleColor = titleColor;
             this.contentColor = contentColor;
+            this.backgroundColor = backgroundColor;
             this.painter = painter;
             this.text = text;
         }
@@ -101,6 +103,14 @@ public class LibraryHelper {
 
         public void setContentColor(int contentColor) {
             this.contentColor = contentColor;
+        }
+
+        public int getBackgroundColor() {
+            return backgroundColor;
+        }
+
+        public void setBackgroundColor(int backgroundColor) {
+            this.backgroundColor = backgroundColor;
         }
 
         public Painter getPainter() {

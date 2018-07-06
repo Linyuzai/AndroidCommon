@@ -141,7 +141,7 @@ public class LibraryActivity extends EasonActivity {
             btm.setOffsetPercentY(0.65f);
             addPainter(btm);
             text = new TextPainter();
-            text.setOffsetPercentY(0.8f);
+            text.setOffsetPercentY(0.7f);
             text.setOffsetPercentX(0.1f);
             addPainter(text);
 

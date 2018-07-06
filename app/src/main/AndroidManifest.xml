@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".easonicon.IconDisplayActivity" />
+        <activity android:name=".easonicon.IconCreateActivity" />
         <activity android:name=".easonicon.IconAttrActivity" />
     </application>
 

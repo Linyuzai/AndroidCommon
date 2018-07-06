@@ -232,6 +232,8 @@ public class EasonIcon extends View {
             float pathEffectCorner = a.getDimension(R.styleable.EasonIcon_icon_path_effect_corner, 0);
 
             float percentCenter = a.getFloat(R.styleable.EasonIcon_icon_percent_center, -1f);
+            float percentCenterX = a.getFloat(R.styleable.EasonIcon_icon_percent_center_x, -1f);
+            float percentCenterY = a.getFloat(R.styleable.EasonIcon_icon_percent_center_y, -1f);
             float percent = a.getFloat(R.styleable.EasonIcon_icon_percent, -1f);
             float percentX = a.getFloat(R.styleable.EasonIcon_icon_percent_x, -1f);
             float percentY = a.getFloat(R.styleable.EasonIcon_icon_percent_y, -1f);
@@ -254,6 +256,10 @@ public class EasonIcon extends View {
 
             if (percentCenter >= 0f)
                 painterSet.setCenterPercent(percentCenter);
+            if (percentCenterX >= 0f)
+                painterSet.setCenterPercentX(percentCenterX);
+            if (percentCenterY >= 0f)
+                painterSet.setCenterPercentY(percentCenterY);
             if (percent >= 0f)
                 painterSet.setPercent(percent);
             if (percentX >= 0f)

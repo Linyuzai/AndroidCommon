@@ -40,6 +40,7 @@ public class IconDisplayActivity extends EasonActivity {
         setStatusBarColor(param.getTitleColor());
         setContentView(R.layout.activity_icon_display);
         id(R.id.back).setOnClickListener(v -> finish());
+        id(R.id.create).setOnClickListener(v -> startActivity(new Intent(this, IconCreateActivity.class)));
         id(R.id.title).setBackgroundColor(param.getTitleColor());
         RecyclerView recyclerView = id(R.id.rv);
         recyclerView.setBackgroundColor(param.getBackgroundColor());

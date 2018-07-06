@@ -3,6 +3,8 @@
     <declare-styleable name="EasonIcon">
 
         <attr name="icon_percent_center" format="reference|float" />
+        <attr name="icon_percent_center_x" format="reference|float" />
+        <attr name="icon_percent_center_y" format="reference|float" />
         <attr name="icon_percent" format="reference|float" />
         <attr name="icon_percent_x" format="reference|float" />
         <attr name="icon_percent_y" format="reference|float" />

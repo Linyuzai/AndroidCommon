@@ -1,24 +1,26 @@
 package eason.linyuzai.easonicon.open;
 
-public interface RectSupporter {
+public interface RectSupport {
     /**
      * 设置xy百分比，并居中
      *
      * @param centerPercent 百分比
      */
     default void setCenterPercent(float centerPercent) {
-        setPercent(centerPercent);
-        setOffsetPercent((1f - centerPercent) * 0.5f);
+        setCenterPercentX(centerPercent);
+        setCenterPercentY(centerPercent);
     }
 
     default void setCenterPercentX(float centerPercentX) {
         setPercentX(centerPercentX);
         setOffsetPercentX((1f - centerPercentX) * 0.5f);
+        setOffsetX(0f);
     }
 
     default void setCenterPercentY(float centerPercentY) {
         setPercentY(centerPercentY);
         setOffsetPercentY((1f - centerPercentY) * 0.5f);
+        setOffsetY(0f);
     }
 
     /**

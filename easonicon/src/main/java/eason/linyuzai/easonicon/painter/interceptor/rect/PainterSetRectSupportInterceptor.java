@@ -3,14 +3,14 @@ package eason.linyuzai.easonicon.painter.interceptor.rect;
 import android.graphics.RectF;
 
 import eason.linyuzai.easonicon.open.Painter;
-import eason.linyuzai.easonicon.open.RectSupporter;
+import eason.linyuzai.easonicon.open.RectSupport;
 import eason.linyuzai.easonicon.painter.EasonPainter;
 import eason.linyuzai.easonicon.painter.EasonPainterSet;
 
 /**
  * 支持PainterSet缩放平移拦截器
  */
-public class PainterSetRectSupportInterceptor extends RectInterceptor implements RectSupporter {
+public class PainterSetRectSupportInterceptor extends RectInterceptor implements RectSupport {
 
     private EasonPainter.RectParam rectParam = new EasonPainter.RectParam();
 

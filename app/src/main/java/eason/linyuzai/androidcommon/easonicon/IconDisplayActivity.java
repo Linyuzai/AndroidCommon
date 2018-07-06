@@ -114,7 +114,7 @@ public class IconDisplayActivity extends EasonActivity {
 
         @Override
         public int getItemCount() {
-            return 78;
+            return 80;
         }
     }
 

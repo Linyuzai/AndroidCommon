@@ -2,13 +2,13 @@
 <resources>
     <declare-styleable name="EasonIcon">
 
-        <attr name="icon_percent_center" format="float" />
-        <attr name="icon_percent" format="float" />
-        <attr name="icon_percent_x" format="float" />
-        <attr name="icon_percent_y" format="float" />
-        <attr name="icon_percent_offset" format="float" />
-        <attr name="icon_percent_offset_x" format="float" />
-        <attr name="icon_percent_offset_y" format="float" />
+        <attr name="icon_percent_center" format="reference|float" />
+        <attr name="icon_percent" format="reference|float" />
+        <attr name="icon_percent_x" format="reference|float" />
+        <attr name="icon_percent_y" format="reference|float" />
+        <attr name="icon_percent_offset" format="reference|float" />
+        <attr name="icon_percent_offset_x" format="reference|float" />
+        <attr name="icon_percent_offset_y" format="reference|float" />
         <attr name="icon_offset" format="reference|dimension" />
         <attr name="icon_offset_x" format="reference|dimension" />
         <attr name="icon_offset_y" format="reference|dimension" />
@@ -107,12 +107,14 @@
             <enum name="correct_solid_rect" value="75" />
             <enum name="error_solid_rect" value="76" />
             <enum name="setting" value="77" />
-            <enum name="quad_flower" value="78" />
+            <enum name="setting_v21" value="78" />
+            <enum name="flower_extra" value="79" />
+            <enum name="flower_quad" value="80" />
         </attr>
         <!-- 需要两种颜色 -->
         <attr name="icon_auxiliary_color" format="reference|color" />
         <!-- 需要缩放其中一个图形 -->
-        <attr name="icon_auxiliary_scale" format="float" />
+        <attr name="icon_auxiliary_scale" format="reference|float" />
         <!-- 需要圆角半径 -->
         <attr name="icon_round_all" format="reference|dimension" />
         <attr name="icon_round_left_top" format="reference|dimension" />
@@ -120,14 +122,15 @@
         <attr name="icon_round_right_top" format="reference|dimension" />
         <attr name="icon_round_right_bottom" format="reference|dimension" />
         <!-- 圆弧 -->
-        <attr name="icon_arc_angle_start" format="float" />
-        <attr name="icon_arc_angle_sweep" format="float" />
-        <attr name="icon_arc_center" format="boolean" />
+        <attr name="icon_arc_angle_start" format="reference|float" />
+        <attr name="icon_arc_angle_sweep" format="reference|float" />
+        <attr name="icon_arc_center" format="reference|boolean" />
         <!-- res -->
         <attr name="icon_image_res" format="reference" />
         <!-- 多边形 -->
-        <attr name="icon_polygon_edge_count" format="integer" />
+        <attr name="icon_polygon_edge_count" format="reference|integer" />
         <attr name="icon_polygon_extra_offset" format="reference|dimension" />
+        <attr name="icon_polygon_pen_size_scale" format="reference|float" />
         <!-- path -->
         <attr name="icon_path_effect_corner" format="reference|dimension" />
         <!-- text -->

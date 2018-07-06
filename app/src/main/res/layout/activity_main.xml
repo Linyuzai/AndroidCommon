@@ -60,13 +60,12 @@
         android:layout_height="100dp"
         android:layerType="software"
         app:icon_color="@android:color/white"
-        app:icon_pen_cap="butt"
-        app:icon_pen_size="10dp"
-        app:icon_pen_style="fill"
-        app:icon_percent_center="0.5"
-        app:icon_polygon_edge_count="11"
-        app:icon_polygon_extra_offset="-89dp"
-        app:icon_type="quad_flower" />
+        app:icon_pen_cap="round"
+        app:icon_pen_size="1dp"
+        app:icon_pen_style="stroke"
+        app:icon_polygon_edge_count="8"
+        app:icon_polygon_extra_offset="-78dp"
+        app:icon_type="polygon_extra" />
 
     <eason.linyuzai.easonicon.EasonIcon
         android:layout_width="100dp"

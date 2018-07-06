@@ -23,6 +23,7 @@ import eason.linyuzai.androidcommon.easonicon.controller.OffsetPercentYControlle
 import eason.linyuzai.androidcommon.easonicon.controller.OffsetXController;
 import eason.linyuzai.androidcommon.easonicon.controller.OffsetYController;
 import eason.linyuzai.androidcommon.easonicon.controller.PenSizeController;
+import eason.linyuzai.androidcommon.easonicon.controller.PenSizeScaleController;
 import eason.linyuzai.androidcommon.easonicon.controller.PercentController;
 import eason.linyuzai.androidcommon.easonicon.controller.PercentXController;
 import eason.linyuzai.androidcommon.easonicon.controller.PercentYController;
@@ -35,6 +36,7 @@ import eason.linyuzai.easonicon.annotation.AuxiliaryScaleField;
 import eason.linyuzai.easonicon.annotation.BitmapField;
 import eason.linyuzai.easonicon.annotation.EdgeCountField;
 import eason.linyuzai.easonicon.annotation.ExtraOffsetField;
+import eason.linyuzai.easonicon.annotation.PenSizeScaleField;
 import eason.linyuzai.easonicon.annotation.RoundRectField;
 import eason.linyuzai.easonicon.painter.basic.bitmap.BitmapPainter;
 import eason.linyuzai.elib.component.EasonActivity;
@@ -103,6 +105,9 @@ public class IconAttrActivity extends EasonActivity {
         }
         if (icon.hasAnnotation(ExtraOffsetField.class)) {
             group.addView(new ExtraOffsetController(this, icon));
+        }
+        if (icon.hasAnnotation(PenSizeScaleField.class)) {
+            group.addView(new PenSizeScaleController(this, icon));
         }
         if (icon.hasAnnotation(RoundRectField.class)) {
 

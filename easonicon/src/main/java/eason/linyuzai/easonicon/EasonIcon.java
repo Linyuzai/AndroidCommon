@@ -26,6 +26,7 @@ import eason.linyuzai.easonicon.annotation.AuxiliaryScaleField;
 import eason.linyuzai.easonicon.annotation.BitmapField;
 import eason.linyuzai.easonicon.annotation.EdgeCountField;
 import eason.linyuzai.easonicon.annotation.ExtraOffsetField;
+import eason.linyuzai.easonicon.annotation.PenSizeScaleField;
 import eason.linyuzai.easonicon.annotation.RoundRectField;
 import eason.linyuzai.easonicon.annotation.TextField;
 import eason.linyuzai.easonicon.open.Painter;
@@ -80,6 +81,7 @@ import eason.linyuzai.easonicon.painter.combine.ExpandHollowRectPainter;
 import eason.linyuzai.easonicon.painter.combine.ExpandPainter;
 import eason.linyuzai.easonicon.painter.combine.ExpandSolidOvalPainter;
 import eason.linyuzai.easonicon.painter.combine.ExpandSolidRectPainter;
+import eason.linyuzai.easonicon.painter.combine.ExtraFlower;
 import eason.linyuzai.easonicon.painter.combine.LeftArrowHollowOvalPainter;
 import eason.linyuzai.easonicon.painter.combine.LeftArrowHollowRectPainter;
 import eason.linyuzai.easonicon.painter.combine.LeftArrowPainter;
@@ -102,6 +104,7 @@ import eason.linyuzai.easonicon.painter.combine.RightArrowPainter;
 import eason.linyuzai.easonicon.painter.combine.RightArrowSolidOvalPainter;
 import eason.linyuzai.easonicon.painter.combine.RightArrowSolidRectPainter;
 import eason.linyuzai.easonicon.painter.combine.SettingPainter;
+import eason.linyuzai.easonicon.painter.combine.SettingV21Painter;
 import eason.linyuzai.easonicon.painter.combine.UpArrowHollowOvalPainter;
 import eason.linyuzai.easonicon.painter.combine.UpArrowHollowRectPainter;
 import eason.linyuzai.easonicon.painter.combine.UpArrowPainter;
@@ -153,6 +156,8 @@ public class EasonIcon extends View {
     private int edgeCount;
     @ExtraOffsetField
     private float extraOffset;
+    @PenSizeScaleField
+    float penSizeScale;
     @TextField
     private String text;
 
@@ -214,6 +219,7 @@ public class EasonIcon extends View {
 
             edgeCount = a.getInt(R.styleable.EasonIcon_icon_polygon_edge_count, 3);
             extraOffset = a.getDimension(R.styleable.EasonIcon_icon_polygon_extra_offset, 0f);
+            penSizeScale = a.getFloat(R.styleable.EasonIcon_icon_polygon_pen_size_scale, 1f);
 
             text = a.getString(R.styleable.EasonIcon_icon_text);
 
@@ -369,6 +375,14 @@ public class EasonIcon extends View {
         this.extraOffset = extraOffset;
     }
 
+    public float getPenSizeScale() {
+        return penSizeScale;
+    }
+
+    public void setPenSizeScale(float penSizeScale) {
+        this.penSizeScale = penSizeScale;
+    }
+
     public String getText() {
         return text;
     }
@@ -386,12 +400,12 @@ public class EasonIcon extends View {
         return type;
     }
 
-    public void setType(int type) {
-        setType(Type.values()[type]);
+    public boolean setType(int type) {
+        return setType(Type.values()[type]);
     }
 
-    public void setType(Type type) {
-        setType(type, false);
+    public boolean setType(Type type) {
+        return setType(type, false);
     }
 
     /**
@@ -399,9 +413,9 @@ public class EasonIcon extends View {
      *
      * @param type Icon类型
      */
-    public void setType(Type type, boolean force) {
+    public boolean setType(Type type, boolean force) {
         if (!force && this.type == type)
-            return;
+            return true;
         this.type = type;
         painterSet.clearPainter();
         switch (type) {
@@ -627,14 +641,23 @@ public class EasonIcon extends View {
                 painterSet.addPainter(new ErrorSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
             case SETTING:
+                painterSet.addPainter(new SettingPainter(auxiliaryColor));
+                break;
+            case SETTING_V21:
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    painterSet.addPainter(new SettingPainter());
+                    painterSet.addPainter(new SettingV21Painter());
+                } else {
+                    return false;
                 }
                 break;
-            case QUAD_FLOWER:
-                painterSet.addPainter(new QuadFlower(edgeCount));
+            case FLOWER_EXTRA:
+                painterSet.addPainter(new ExtraFlower(edgeCount, penSizeScale));
+                break;
+            case FLOWER_QUAD:
+                painterSet.addPainter(new QuadFlower(edgeCount, penSizeScale));
                 break;
         }
+        return true;
     }
 
     public void setPainter(Painter painter) {
@@ -821,6 +844,7 @@ public class EasonIcon extends View {
     public static float getDefaultPercent(Type type) {
         switch (type) {
             case SETTING:
+            case SETTING_V21:
                 return 0.5f;
             default:
                 return 1f;
@@ -906,7 +930,9 @@ public class EasonIcon extends View {
         CORRECT_SOLID_RECT(75, "correct_solid_rect", CorrectSolidRectPainter.class),
         ERROR_SOLID_RECT(76, "error_solid_rect", ErrorSolidRectPainter.class),
         SETTING(77, "setting", SettingPainter.class),
-        QUAD_FLOWER(78, "quad_flower", QuadFlower.class);
+        SETTING_V21(78, "setting", SettingV21Painter.class),
+        FLOWER_EXTRA(79, "flower_extra", ExtraFlower.class),
+        FLOWER_QUAD(80, "flower_quad", QuadFlower.class);
 
         private int value;
         private String attrName;

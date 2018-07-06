@@ -3,25 +3,31 @@ package eason.linyuzai.easonicon.painter.combine;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.support.annotation.Size;
 
 import eason.linyuzai.easonicon.annotation.EdgeCountField;
+import eason.linyuzai.easonicon.annotation.PenSizeScaleField;
 import eason.linyuzai.easonicon.open.Painter;
 import eason.linyuzai.easonicon.open.PainterInterceptor;
 import eason.linyuzai.easonicon.painter.EasonPainterSet;
 import eason.linyuzai.easonicon.painter.basic.polygon.QuadPolygonPainter;
 
 @EdgeCountField
+@PenSizeScaleField
 public class QuadFlower extends EasonPainterSet {
 
     private QuadPolygonPainter polygon;
 
-    public QuadFlower() {
-        this(6);
+    private float penSizeScale = 1f;
+
+    public QuadFlower(@Size(min = 5, max = 10) int edgeCount) {
+        this(edgeCount, 1f);
     }
 
-    public QuadFlower(int edgeCount) {
+    public QuadFlower(@Size(min = 5, max = 10) int edgeCount, float penSizeScale) {
         polygon = new QuadPolygonPainter();
         setEdgeCount(edgeCount);
+        setPenSizeScale(penSizeScale);
         addPainter(polygon);
         addInterceptor(new QuadFlowerInterceptor());
     }
@@ -57,7 +63,11 @@ public class QuadFlower extends EasonPainterSet {
     }
 
     public float getPenSizeScale() {
-        return 1f;
+        return penSizeScale;
+    }
+
+    public void setPenSizeScale(float penSizeScale) {
+        this.penSizeScale = penSizeScale;
     }
 
     private class QuadFlowerInterceptor implements PainterInterceptor {

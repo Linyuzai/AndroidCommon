@@ -1,27 +1,24 @@
 package eason.linyuzai.easonicon.painter.combine;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
-import eason.linyuzai.easonicon.annotation.AuxiliaryColorField;
 import eason.linyuzai.easonicon.open.Painter;
 import eason.linyuzai.easonicon.open.PainterInterceptor;
 import eason.linyuzai.easonicon.painter.EasonPainterSet;
 import eason.linyuzai.easonicon.painter.basic.circle.CirclePainter;
 import eason.linyuzai.easonicon.painter.basic.polygon.ExtraPolygonPainter;
-import eason.linyuzai.easonicon.painter.combine.interceptor.AuxiliaryColorInterceptor;
 import eason.linyuzai.easonicon.painter.interceptor.mode.DstOutPorterDuffModeInterceptor;
 
-@AuxiliaryColorField
-public class SettingPainter extends EasonPainterSet {
+public class SettingV21Painter extends EasonPainterSet {
 
     private ExtraPolygonPainter polygon;
 
-    public SettingPainter(int auxiliaryColor) {
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public SettingV21Painter() {
         polygon = new ExtraPolygonPainter(8);
         polygon.setCenterPercent(0.5f);
         addPainter(polygon);
@@ -29,7 +26,7 @@ public class SettingPainter extends EasonPainterSet {
         circle.setCenterPercent(0.45f);
         addPainter(circle);
         addInterceptor(new SettingInterceptor());
-        addInterceptor(new AuxiliaryColorInterceptor(auxiliaryColor));
+        addInterceptor(new DstOutPorterDuffModeInterceptor());
     }
 
     @Override

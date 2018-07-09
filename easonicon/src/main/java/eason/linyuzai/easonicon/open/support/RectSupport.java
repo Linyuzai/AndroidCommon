@@ -1,4 +1,4 @@
-package eason.linyuzai.easonicon.open;
+package eason.linyuzai.easonicon.open.support;
 
 public interface RectSupport {
     /**

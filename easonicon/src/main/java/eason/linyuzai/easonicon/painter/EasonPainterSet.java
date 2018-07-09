@@ -31,6 +31,24 @@ public class EasonPainterSet extends EasonPainter implements PainterSet {
 
     private PainterSetRectSupportInterceptor rectSupportInterceptor = new PainterSetRectSupportInterceptor();
 
+    private static class PainterFieldsOperator {
+        private float auxiliaryScale;
+        private Painter auxiliaryScalePainter;
+
+        public void bindAuxiliaryScalePainter(Painter painter) {
+            auxiliaryScalePainter = painter;
+        }
+
+        public float getAuxiliaryScale() {
+            return auxiliaryScale;
+        }
+
+        public void setAuxiliaryScale(float auxiliaryScale) {
+            this.auxiliaryScale = auxiliaryScale;
+            auxiliaryScalePainter.setCenterPercent(auxiliaryScale);
+        }
+    }
+
     @Override
     public List<Painter> getPainters() {
         return painters;

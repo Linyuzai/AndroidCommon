@@ -5,10 +5,11 @@ import android.graphics.Path;
 import android.graphics.RectF;
 
 import eason.linyuzai.easonicon.annotation.RoundRectField;
+import eason.linyuzai.easonicon.open.support.RoundRectSupport;
 import eason.linyuzai.easonicon.painter.basic.path.PathPainter;
 
 @RoundRectField
-public class RectPainter extends PathPainter {
+public class RectPainter extends PathPainter implements RoundRectSupport{
 
     private float[] radii = new float[8];
 
@@ -24,7 +25,7 @@ public class RectPainter extends PathPainter {
 
     @Override
     public void configurePath(Path path, RectF draw, RectF original, Paint paint) {
-        path.addRoundRect(getTransformRectF(draw, paint), radii, Path.Direction.CW);
+        path.addRoundRect(getRectF(draw), radii, Path.Direction.CW);
     }
 
     public void setRoundAll(float r) {
@@ -72,6 +73,7 @@ public class RectPainter extends PathPainter {
         setRightBottom(x, y);
     }
 
+    @Override
     public void setLeftTop(float r) {
         setLeftTop(r, r);
     }
@@ -81,6 +83,7 @@ public class RectPainter extends PathPainter {
         radii[1] = y;
     }
 
+    @Override
     public void setRightTop(float r) {
         setRightTop(r, r);
     }
@@ -90,6 +93,7 @@ public class RectPainter extends PathPainter {
         radii[3] = y;
     }
 
+    @Override
     public void setLeftBottom(float r) {
         setLeftBottom(r, r);
     }
@@ -99,6 +103,7 @@ public class RectPainter extends PathPainter {
         radii[7] = y;
     }
 
+    @Override
     public void setRightBottom(float r) {
         setRightBottom(r, r);
     }
@@ -124,5 +129,37 @@ public class RectPainter extends PathPainter {
     public void setRightTopLeftBottom(float x, float y) {
         setRightTop(x, y);
         setLeftBottom(x, y);
+    }
+
+    public float[] getRadii() {
+        return radii;
+    }
+
+    @Override
+    public float getLeftTop() {
+        if (radii[0] == radii[1])
+            return radii[0];
+        return -1;
+    }
+
+    @Override
+    public float getRightTop() {
+        if (radii[2] == radii[3])
+            return radii[2];
+        return -1;
+    }
+
+    @Override
+    public float getLeftBottom() {
+        if (radii[6] == radii[7])
+            return radii[6];
+        return -1;
+    }
+
+    @Override
+    public float getRightBottom() {
+        if (radii[4] == radii[5])
+            return radii[4];
+        return -1;
     }
 }

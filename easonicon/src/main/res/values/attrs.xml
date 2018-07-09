@@ -47,6 +47,7 @@
             <enum name="polygon_extra" value="11" />
             <enum name="polygon_quad" value="12" />
             <enum name="text" value="13" />
+            <enum name="point" value="14" />
 
             <enum name="back" value="17" />
             <enum name="next" value="18" />

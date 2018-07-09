@@ -25,12 +25,16 @@ import eason.linyuzai.androidcommon.easonicon.controller.AbsController;
 import eason.linyuzai.androidcommon.easonicon.controller.CenterPercentController;
 import eason.linyuzai.androidcommon.easonicon.controller.CenterPercentXController;
 import eason.linyuzai.androidcommon.easonicon.controller.CenterPercentYController;
+import eason.linyuzai.androidcommon.easonicon.controller.LeftBottomController;
+import eason.linyuzai.androidcommon.easonicon.controller.LeftTopController;
 import eason.linyuzai.androidcommon.easonicon.controller.OffsetPercentController;
 import eason.linyuzai.androidcommon.easonicon.controller.OffsetPercentXController;
 import eason.linyuzai.androidcommon.easonicon.controller.OffsetPercentYController;
 import eason.linyuzai.androidcommon.easonicon.controller.PercentController;
 import eason.linyuzai.androidcommon.easonicon.controller.PercentXController;
 import eason.linyuzai.androidcommon.easonicon.controller.PercentYController;
+import eason.linyuzai.androidcommon.easonicon.controller.RightBottomController;
+import eason.linyuzai.androidcommon.easonicon.controller.RightTopController;
 import eason.linyuzai.androidcommon.easonicon.entity.TargetEntity;
 import eason.linyuzai.easonicon.EasonIcon;
 import eason.linyuzai.easonicon.open.Painter;
@@ -130,6 +134,18 @@ public class IconCreateActivity extends EasonActivity {
         OffsetPercentYController offsetPercentYController = new OffsetPercentYController(this, creator);
         controllers.add(offsetPercentYController);
         controlGroup.addView(offsetPercentYController);
+        LeftTopController leftTopController = new LeftTopController(this, creator);
+        controllers.add(leftTopController);
+        controlGroup.addView(leftTopController);
+        LeftBottomController leftBottomController = new LeftBottomController(this, creator);
+        controllers.add(leftBottomController);
+        controlGroup.addView(leftBottomController);
+        RightTopController rightTopController = new RightTopController(this, creator);
+        controllers.add(rightTopController);
+        controlGroup.addView(rightTopController);
+        RightBottomController rightBottomController = new RightBottomController(this, creator);
+        controllers.add(rightBottomController);
+        controlGroup.addView(rightBottomController);
     }
 
     private void updateTarget(TargetEntity entity) {

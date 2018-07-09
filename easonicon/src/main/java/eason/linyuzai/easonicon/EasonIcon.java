@@ -33,6 +33,7 @@ import eason.linyuzai.easonicon.open.Painter;
 import eason.linyuzai.easonicon.open.PainterSet;
 import eason.linyuzai.easonicon.painter.EasonPainterSet;
 import eason.linyuzai.easonicon.painter.basic.NonePainter;
+import eason.linyuzai.easonicon.painter.basic.point.PointPainter;
 import eason.linyuzai.easonicon.painter.basic.text.TextPainter;
 import eason.linyuzai.easonicon.painter.combine.AddHollowOvalPainter;
 import eason.linyuzai.easonicon.painter.combine.AddHollowRectPainter;
@@ -412,7 +413,11 @@ public class EasonIcon extends View {
     }
 
     public boolean setType(int type) {
-        return setType(Type.values()[type]);
+        return setType(Type.values()[type], false);
+    }
+
+    public boolean setType(int type, boolean force) {
+        return setType(Type.values()[type], force);
     }
 
     public boolean setType(Type type) {
@@ -470,6 +475,9 @@ public class EasonIcon extends View {
                 break;
             case TEXT:
                 painterSet.addPainter(new TextPainter(text));
+                break;
+            case POINT:
+                painterSet.addPainter(new PointPainter());
                 break;
             case BACK:
                 painterSet.addPainter(new BackPainter());
@@ -889,7 +897,7 @@ public class EasonIcon extends View {
         POLYGON_EXTRA(11, "polygon_extra", ExtraPolygonPainter.class),
         POLYGON_QUAD(12, "polygon_quad", QuadPolygonPainter.class),
         TEXT(13, "text", TextPainter.class),
-        TODO_14(14, "", NonePainter.class),
+        POINT(14, "point", PointPainter.class),
         TODO_15(15, "", NonePainter.class),
         TODO_16(16, "", NonePainter.class),
         BACK(17, "back", BackPainter.class),

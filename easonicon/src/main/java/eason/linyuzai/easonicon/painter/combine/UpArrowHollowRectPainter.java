@@ -3,12 +3,14 @@ package eason.linyuzai.easonicon.painter.combine;
 import eason.linyuzai.easonicon.annotation.AuxiliaryScaleField;
 import eason.linyuzai.easonicon.annotation.RoundRectField;
 import eason.linyuzai.easonicon.open.Painter;
+import eason.linyuzai.easonicon.open.support.RoundRectSupport;
 import eason.linyuzai.easonicon.painter.EasonPainterSet;
+import eason.linyuzai.easonicon.painter.SupportEasonPainterSet;
 import eason.linyuzai.easonicon.painter.basic.rect.RectPainter;
 
 @AuxiliaryScaleField
 @RoundRectField
-public class UpArrowHollowRectPainter extends EasonPainterSet {
+public class UpArrowHollowRectPainter extends SupportEasonPainterSet implements RoundRectSupport{
 
     public UpArrowHollowRectPainter() {
         this(0.5f);

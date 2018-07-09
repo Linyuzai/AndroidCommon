@@ -5,6 +5,8 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
+import eason.linyuzai.easonicon.open.support.RectSupport;
+
 /**
  * Created by linyuzai on 2018/5/19.
  *
@@ -12,6 +14,7 @@ import android.graphics.RectF;
  */
 
 public interface Painter extends RectSupport {
+
     boolean canDraw();
 
     void setCanDraw(boolean canDraw);

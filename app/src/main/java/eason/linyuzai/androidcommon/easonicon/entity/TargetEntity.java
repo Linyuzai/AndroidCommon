@@ -15,13 +15,18 @@ public class TargetEntity {
     private int offsetPercentX = 0;
     private int offsetPercentY = 0;
 
+    private int leftTop;
+    private int leftBottom;
+    private int rightTop;
+    private int rightBottom;
+
     public static void setIcon(EasonIcon icon) {
         TargetEntity.icon = icon;
     }
 
     public TargetEntity(int type) {
         targetName = EasonIcon.getType(type).getPainterClass().getSimpleName();
-        icon.setType(type);
+        icon.setType(type,true);
         painter = icon.getPainter(0);
         isSelect = true;
     }
@@ -80,5 +85,37 @@ public class TargetEntity {
 
     public void setOffsetPercentY(int offsetPercentY) {
         this.offsetPercentY = offsetPercentY;
+    }
+
+    public int getLeftTop() {
+        return leftTop;
+    }
+
+    public void setLeftTop(int leftTop) {
+        this.leftTop = leftTop;
+    }
+
+    public int getLeftBottom() {
+        return leftBottom;
+    }
+
+    public void setLeftBottom(int leftBottom) {
+        this.leftBottom = leftBottom;
+    }
+
+    public int getRightTop() {
+        return rightTop;
+    }
+
+    public void setRightTop(int rightTop) {
+        this.rightTop = rightTop;
+    }
+
+    public int getRightBottom() {
+        return rightBottom;
+    }
+
+    public void setRightBottom(int rightBottom) {
+        this.rightBottom = rightBottom;
     }
 }

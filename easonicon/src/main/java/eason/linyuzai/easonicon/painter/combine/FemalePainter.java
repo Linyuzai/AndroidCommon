@@ -7,15 +7,15 @@ import eason.linyuzai.easonicon.painter.basic.circle.CirclePainter;
 public class FemalePainter extends EasonPainterSet {
     public FemalePainter() {
         Painter circle = new CirclePainter();
-        circle.setPercent(0.5f);
-        circle.setOffsetPercentX(0.25f);
-        circle.setOffsetPercentY(0.1f);
+        circle.setPercent(0.55f);
+        circle.setOffsetPercentX(0.225f);
+        circle.setOffsetPercentY(0.11f);
         addPainter(circle);
         Painter add = new AddPainter();
-        add.setPercentX(0.4f);
-        add.setPercentY(0.3f);
-        add.setOffsetPercentX(0.3f);
-        add.setOffsetPercentY(0.6f);
+        add.setPercentX(0.36f);
+        add.setPercentY(0.22f);
+        add.setOffsetPercentX(0.32f);
+        add.setOffsetPercentY(0.66f);
         addPainter(add);
     }
 }

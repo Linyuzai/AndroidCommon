@@ -47,12 +47,10 @@ import eason.linyuzai.elib.component.EasonActivity;
 
 public class IconAttrActivity extends EasonActivity {
 
-    private LibraryHelper.LibraryParam param;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        param = getLibraryParam().get(0);
+        LibraryHelper.LibraryParam param = getLibraryParam().get(0);
         setStatusBarColor(param.getTitleColor());
         setContentView(R.layout.activity_icon_attrs);
         id(R.id.back).setOnClickListener(v -> finish());

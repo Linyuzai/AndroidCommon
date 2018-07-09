@@ -8,12 +8,16 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import eason.linyuzai.easonicon.EasonIcon;
+import eason.linyuzai.easonicon.open.Painter;
 import eason.linyuzai.elib.component.EasonActivity;
 
-public class OffsetPercentController extends LinearLayout {
+public class OffsetPercentController extends LinearLayout implements AbsController {
+
+    private Painter painter;
 
     public OffsetPercentController(Context context, EasonIcon icon) {
         super(context);
+        painter = icon.getPainterSet();
         setOrientation(LinearLayout.HORIZONTAL);
         setGravity(Gravity.CENTER_VERTICAL);
         EasonActivity eason = (EasonActivity) context;
@@ -26,21 +30,21 @@ public class OffsetPercentController extends LinearLayout {
         //textView.setBackgroundColor(Color.YELLOW);
         addView(textView, new LayoutParams(eason.dip(AbsController.TEXT_WIDTH), LayoutParams.WRAP_CONTENT));
         TextView value = new TextView(context);
-        value.setText("0.05");
+        value.setText("0");
         value.setTextColor(Color.parseColor("#888888"));
         value.setTextSize(15f);
         //value.setBackgroundColor(Color.RED);
         addView(value, new LayoutParams(eason.dip(AbsController.VALUE_WIDTH), LayoutParams.WRAP_CONTENT));
         SeekBar seekBar = new SeekBar(context);
         seekBar.setMax(100);
-        seekBar.setProgress(5);
+        seekBar.setProgress(0);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                float val = progress * 1f / 100f;
+                float val = progress / 100f;
                 value.setText(String.valueOf(val));
                 if (fromUser) {
-                    icon.getPainterSet().setOffsetPercent(val);
+                    painter.setOffsetPercent(val);
                     icon.update();
                 }
             }
@@ -56,5 +60,14 @@ public class OffsetPercentController extends LinearLayout {
             }
         });
         addView(seekBar, new LayoutParams(0, LayoutParams.WRAP_CONTENT, 1f));
+    }
+
+    public Painter getPainter() {
+        return painter;
+    }
+
+    @Override
+    public void setPainter(Painter painter) {
+        this.painter = painter;
     }
 }

@@ -8,9 +8,10 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import eason.linyuzai.easonicon.EasonIcon;
+import eason.linyuzai.easonicon.open.Painter;
 import eason.linyuzai.elib.component.EasonActivity;
 
-public class ExtraOffsetController extends LinearLayout {
+public class ExtraOffsetController extends LinearLayout implements AbsController {
 
     public ExtraOffsetController(Context context, EasonIcon icon) {
         super(context);
@@ -57,5 +58,10 @@ public class ExtraOffsetController extends LinearLayout {
             }
         });
         addView(seekBar, new LayoutParams(0, LayoutParams.WRAP_CONTENT, 1f));
+    }
+
+    @Override
+    public void setPainter(Painter painter) {
+
     }
 }

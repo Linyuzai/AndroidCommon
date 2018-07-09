@@ -8,9 +8,10 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import eason.linyuzai.easonicon.EasonIcon;
+import eason.linyuzai.easonicon.open.Painter;
 import eason.linyuzai.elib.component.EasonActivity;
 
-public class PenSizeController extends LinearLayout {
+public class PenSizeController extends LinearLayout implements AbsController {
 
     public PenSizeController(Context context, EasonIcon icon) {
         super(context);
@@ -57,5 +58,10 @@ public class PenSizeController extends LinearLayout {
             }
         });
         addView(seekBar, new LayoutParams(0, LayoutParams.WRAP_CONTENT, 1f));
+    }
+
+    @Override
+    public void setPainter(Painter painter) {
+
     }
 }

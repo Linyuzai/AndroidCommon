@@ -178,6 +178,10 @@ public abstract class EasonActivity extends AppCompatActivity {
         return getResources().getDrawable(drawableRes);
     }
 
+    public int color(@ColorRes int colorRes) {
+        return getResources().getColor(colorRes);
+    }
+
     public int statusBarHeight() {
         return EasonDensity.getStatusBarHeight(this);
     }

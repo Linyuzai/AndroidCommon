@@ -93,6 +93,7 @@
             <enum name="user" value="58" />
             <enum name="male" value="59" />
             <enum name="female" value="60" />
+            <enum name="sign" value="61" />
         </attr>
         <!-- 需要两种颜色 -->
         <attr name="icon_auxiliary_color" format="reference|color" />

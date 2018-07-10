@@ -33,24 +33,6 @@ import eason.linyuzai.easonicon.open.Painter;
 import eason.linyuzai.easonicon.open.PainterSet;
 import eason.linyuzai.easonicon.painter.EasonPainterSet;
 import eason.linyuzai.easonicon.painter.basic.NonePainter;
-import eason.linyuzai.easonicon.painter.basic.point.PointPainter;
-import eason.linyuzai.easonicon.painter.basic.text.TextPainter;
-import eason.linyuzai.easonicon.painter.combine.AddPainter;
-import eason.linyuzai.easonicon.painter.combine.AddOvalPainter;
-import eason.linyuzai.easonicon.painter.combine.AddRectPainter;
-import eason.linyuzai.easonicon.painter.combine.BackPainter;
-import eason.linyuzai.easonicon.painter.combine.BackOvalPainter;
-import eason.linyuzai.easonicon.painter.combine.BackRectPainter;
-import eason.linyuzai.easonicon.painter.combine.CollapsePainter;
-import eason.linyuzai.easonicon.painter.combine.CollapseOvalPainter;
-import eason.linyuzai.easonicon.painter.combine.CollapseRectPainter;
-import eason.linyuzai.easonicon.painter.combine.CorrectPainter;
-import eason.linyuzai.easonicon.painter.combine.CorrectOvalPainter;
-import eason.linyuzai.easonicon.painter.combine.CorrectRectPainter;
-import eason.linyuzai.easonicon.painter.combine.DownArrowPainter;
-import eason.linyuzai.easonicon.painter.combine.DownArrowOvalPainter;
-import eason.linyuzai.easonicon.painter.combine.DownArrowRectPainter;
-import eason.linyuzai.easonicon.painter.combine.ErrorPainter;
 import eason.linyuzai.easonicon.painter.basic.arc.ArcPainter;
 import eason.linyuzai.easonicon.painter.basic.bitmap.BitmapPainter;
 import eason.linyuzai.easonicon.painter.basic.circle.CirclePainter;
@@ -59,36 +41,55 @@ import eason.linyuzai.easonicon.painter.basic.line.HorizontalLinePainter;
 import eason.linyuzai.easonicon.painter.basic.line.SlopeNegativeLinePainter;
 import eason.linyuzai.easonicon.painter.basic.line.SlopePositiveLinePainter;
 import eason.linyuzai.easonicon.painter.basic.line.VerticalLinePainter;
+import eason.linyuzai.easonicon.painter.basic.point.PointPainter;
 import eason.linyuzai.easonicon.painter.basic.polygon.ExtraPolygonPainter;
 import eason.linyuzai.easonicon.painter.basic.polygon.PolygonPainter;
 import eason.linyuzai.easonicon.painter.basic.polygon.QuadPolygonPainter;
 import eason.linyuzai.easonicon.painter.basic.rect.RectPainter;
+import eason.linyuzai.easonicon.painter.basic.text.TextPainter;
+import eason.linyuzai.easonicon.painter.combine.AddOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.AddPainter;
+import eason.linyuzai.easonicon.painter.combine.AddRectPainter;
+import eason.linyuzai.easonicon.painter.combine.BackOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.BackPainter;
+import eason.linyuzai.easonicon.painter.combine.BackRectPainter;
+import eason.linyuzai.easonicon.painter.combine.CollapseOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.CollapsePainter;
+import eason.linyuzai.easonicon.painter.combine.CollapseRectPainter;
+import eason.linyuzai.easonicon.painter.combine.CorrectOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.CorrectPainter;
+import eason.linyuzai.easonicon.painter.combine.CorrectRectPainter;
+import eason.linyuzai.easonicon.painter.combine.DownArrowOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.DownArrowPainter;
+import eason.linyuzai.easonicon.painter.combine.DownArrowRectPainter;
 import eason.linyuzai.easonicon.painter.combine.ErrorOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.ErrorPainter;
 import eason.linyuzai.easonicon.painter.combine.ErrorRectPainter;
-import eason.linyuzai.easonicon.painter.combine.ExpandPainter;
 import eason.linyuzai.easonicon.painter.combine.ExpandOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.ExpandPainter;
 import eason.linyuzai.easonicon.painter.combine.ExpandRectPainter;
 import eason.linyuzai.easonicon.painter.combine.ExtraFlower;
 import eason.linyuzai.easonicon.painter.combine.FemalePainter;
-import eason.linyuzai.easonicon.painter.combine.LeftArrowPainter;
 import eason.linyuzai.easonicon.painter.combine.LeftArrowOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.LeftArrowPainter;
 import eason.linyuzai.easonicon.painter.combine.LeftArrowRectPainter;
 import eason.linyuzai.easonicon.painter.combine.MalePainter;
 import eason.linyuzai.easonicon.painter.combine.MenuPainter;
-import eason.linyuzai.easonicon.painter.combine.MinusPainter;
 import eason.linyuzai.easonicon.painter.combine.MinusOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.MinusPainter;
 import eason.linyuzai.easonicon.painter.combine.MinusRectPainter;
-import eason.linyuzai.easonicon.painter.combine.NextPainter;
 import eason.linyuzai.easonicon.painter.combine.NextOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.NextPainter;
 import eason.linyuzai.easonicon.painter.combine.NextRectPainter;
 import eason.linyuzai.easonicon.painter.combine.QuadFlower;
-import eason.linyuzai.easonicon.painter.combine.RightArrowPainter;
 import eason.linyuzai.easonicon.painter.combine.RightArrowOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.RightArrowPainter;
 import eason.linyuzai.easonicon.painter.combine.RightArrowRectPainter;
 import eason.linyuzai.easonicon.painter.combine.SettingPainter;
 import eason.linyuzai.easonicon.painter.combine.SettingV21Painter;
-import eason.linyuzai.easonicon.painter.combine.UpArrowPainter;
+import eason.linyuzai.easonicon.painter.combine.SignPainter;
 import eason.linyuzai.easonicon.painter.combine.UpArrowOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.UpArrowPainter;
 import eason.linyuzai.easonicon.painter.combine.UpArrowRectPainter;
 import eason.linyuzai.easonicon.painter.combine.UserPainter;
 
@@ -591,6 +592,8 @@ public class EasonIcon extends View {
             case FEMALE:
                 painterSet.addPainter(new FemalePainter());
                 break;
+            case SIGN:
+                painterSet.addPainter(new SignPainter(auxiliaryColor));
         }
         return true;
     }
@@ -853,7 +856,8 @@ public class EasonIcon extends View {
         MENU(57, "menu", MenuPainter.class),
         USER(58, "user", UserPainter.class),
         MALE(59, "male", MalePainter.class),
-        FEMALE(60, "female", FemalePainter.class);
+        FEMALE(60, "female", FemalePainter.class),
+        SIGN(61, "sign", SignPainter.class);
 
         private int value;
         private String attrName;

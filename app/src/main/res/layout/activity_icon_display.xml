@@ -24,7 +24,7 @@
             android:layout_width="55dp"
             android:layout_height="55dp"
             app:icon_color="@android:color/white"
-            app:icon_pen_size="3dp"
+            app:icon_pen_size="2dp"
             app:icon_percent_center="0.3"
             app:icon_type="back" />
 
@@ -34,7 +34,7 @@
             android:layout_height="55dp"
             android:layout_gravity="right"
             app:icon_color="@android:color/white"
-            app:icon_pen_size="3dp"
+            app:icon_pen_size="2dp"
             app:icon_percent_center="0.3"
             app:icon_type="add" />
     </FrameLayout>

@@ -26,8 +26,14 @@ public class TargetEntity {
 
     public TargetEntity(int type) {
         targetName = EasonIcon.getType(type).getPainterClass().getSimpleName();
-        icon.setType(type,true);
+        icon.setType(type, true);
         painter = icon.getPainter(0);
+        isSelect = true;
+    }
+
+    public TargetEntity(EasonIcon icon) {
+        targetName = "EasonIcon(the whole range)";
+        painter = icon.getPainterSet();
         isSelect = true;
     }
 

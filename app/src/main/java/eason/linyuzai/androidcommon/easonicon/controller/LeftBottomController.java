@@ -44,7 +44,7 @@ public class LeftBottomController extends LinearLayout implements AbsController 
         EasonIcon minus = new EasonIcon(eason);
         minus.setColor(eason.color(R.color.colorPrimary), true);
         minus.setType(EasonIcon.Type.MINUS_OVAL);
-        minus.setPenSize(eason.dip(2));
+        minus.setPenSize(eason.dip(1));
         addView(minus, new LayoutParams(iconSize, iconSize));
         seekBar = new SeekBar(context);
         seekBar.setMax(100);
@@ -77,7 +77,7 @@ public class LeftBottomController extends LinearLayout implements AbsController 
         EasonIcon add = new EasonIcon(eason);
         add.setColor(eason.color(R.color.colorPrimary), true);
         add.setType(EasonIcon.Type.ADD_OVAL);
-        add.setPenSize(eason.dip(2));
+        add.setPenSize(eason.dip(1));
         addView(add, new LayoutParams(iconSize, iconSize));
         minus.setOnClickListener(v -> {
             int mv = seekBar.getProgress();

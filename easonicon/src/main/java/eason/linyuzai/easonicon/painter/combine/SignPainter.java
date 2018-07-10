@@ -4,11 +4,13 @@ import android.graphics.PointF;
 import android.graphics.RectF;
 
 import eason.linyuzai.easonicon.painter.EasonPainterSet;
+import eason.linyuzai.easonicon.painter.basic.circle.CirclePainter;
 import eason.linyuzai.easonicon.painter.basic.polygon.PolygonPainter;
+import eason.linyuzai.easonicon.painter.combine.interceptor.AuxiliaryColorInterceptor;
 
 public class SignPainter extends EasonPainterSet {
 
-    public SignPainter() {
+    public SignPainter(int auxiliaryColor) {
         PolygonPainter polygon = new PolygonPainter(6) {
             @Override
             public PointF[] getPoints(RectF rectF) {
@@ -25,5 +27,10 @@ public class SignPainter extends EasonPainterSet {
             }
         };
         addPainter(polygon);
+        CirclePainter circle = new CirclePainter();
+        circle.setPercent(0.25f);
+        circle.setOffsetPercent(0.15f);
+        addPainter(circle);
+        addInterceptor(new AuxiliaryColorInterceptor(auxiliaryColor));
     }
 }

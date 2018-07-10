@@ -42,7 +42,7 @@ public class LibraryHelper {
         Painter rect = new RoundRectPainter(eason.dip(10));
         rect.setPercentX(0.4f);
         rect.setPercentY(0.55f);
-        rect.setOffsetPercentX(0.08f);
+        rect.setOffsetPercentX(0.05f);
         rect.setOffsetPercentY(0.05f);
         painterSet.addPainter(rect);
 

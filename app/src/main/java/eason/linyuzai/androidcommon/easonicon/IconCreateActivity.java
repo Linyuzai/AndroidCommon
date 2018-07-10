@@ -1,7 +1,6 @@
 package eason.linyuzai.androidcommon.easonicon;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,8 +11,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -22,22 +19,16 @@ import java.util.List;
 import eason.linyuzai.androidcommon.LibraryHelper;
 import eason.linyuzai.androidcommon.R;
 import eason.linyuzai.androidcommon.easonicon.controller.AbsController;
-import eason.linyuzai.androidcommon.easonicon.controller.CenterPercentController;
-import eason.linyuzai.androidcommon.easonicon.controller.CenterPercentXController;
-import eason.linyuzai.androidcommon.easonicon.controller.CenterPercentYController;
 import eason.linyuzai.androidcommon.easonicon.controller.LeftBottomController;
 import eason.linyuzai.androidcommon.easonicon.controller.LeftTopController;
-import eason.linyuzai.androidcommon.easonicon.controller.OffsetPercentController;
 import eason.linyuzai.androidcommon.easonicon.controller.OffsetPercentXController;
 import eason.linyuzai.androidcommon.easonicon.controller.OffsetPercentYController;
-import eason.linyuzai.androidcommon.easonicon.controller.PercentController;
 import eason.linyuzai.androidcommon.easonicon.controller.PercentXController;
 import eason.linyuzai.androidcommon.easonicon.controller.PercentYController;
 import eason.linyuzai.androidcommon.easonicon.controller.RightBottomController;
 import eason.linyuzai.androidcommon.easonicon.controller.RightTopController;
 import eason.linyuzai.androidcommon.easonicon.entity.TargetEntity;
 import eason.linyuzai.easonicon.EasonIcon;
-import eason.linyuzai.easonicon.open.Painter;
 import eason.linyuzai.elib.component.EasonActivity;
 
 public class IconCreateActivity extends EasonActivity {
@@ -45,7 +36,7 @@ public class IconCreateActivity extends EasonActivity {
     LibraryHelper.LibraryParam param;
 
     private DrawerLayout drawerLayout;
-    private EasonIcon drawerSwitch;
+    private View drawerSwitch;
     private TextView targetName;
     private TargetAdapter targetAdapter;
     private AlertDialog dialog;
@@ -72,22 +63,27 @@ public class IconCreateActivity extends EasonActivity {
         drawerLayout.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
             @Override
             public void onDrawerOpened(View drawerView) {
-                drawerSwitch.setType(EasonIcon.Type.NEXT);
-                drawerSwitch.update();
+                //drawerSwitch.setType(EasonIcon.Type.NEXT);
+                //drawerSwitch.update();
             }
 
             @Override
             public void onDrawerClosed(View drawerView) {
-                drawerSwitch.setType(EasonIcon.Type.BACK);
-                drawerSwitch.update();
+                //drawerSwitch.setType(EasonIcon.Type.BACK);
+                //drawerSwitch.update();
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+                super.onDrawerStateChanged(newState);
             }
         });
         drawerSwitch = id(R.id.drawer_switch);
         drawerSwitch.setOnClickListener(v -> {
-            if (drawerLayout.isDrawerOpen(Gravity.RIGHT)) {
-                drawerLayout.closeDrawer(Gravity.RIGHT);
+            if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
+                drawerLayout.closeDrawer(Gravity.LEFT);
             } else {
-                drawerLayout.openDrawer(Gravity.RIGHT);
+                drawerLayout.openDrawer(Gravity.LEFT);
             }
         });
         targetName = id(R.id.target_name);
@@ -97,7 +93,9 @@ public class IconCreateActivity extends EasonActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         targetAdapter = new TargetAdapter();
         recyclerView.setAdapter(targetAdapter);
-        TargetEntity.setIcon(new EasonIcon(this));
+        EasonIcon easonIcon = new EasonIcon(this);
+        easonIcon.setColor(color(R.color.colorPrimary), true);
+        TargetEntity.setIcon(easonIcon);
         initController();
     }
 
@@ -185,6 +183,7 @@ public class IconCreateActivity extends EasonActivity {
         public TargetAdapter() {
             defaultColor = Color.parseColor("#888888");
             selectColor = color(R.color.colorPrimaryDark);
+            addTarget(new TargetEntity(creator));
         }
 
         @NonNull

@@ -12,7 +12,9 @@ import eason.linyuzai.easonicon.annotation.AuxiliaryScaleField;
 import eason.linyuzai.easonicon.annotation.PenSizeScaleField;
 import eason.linyuzai.easonicon.open.Painter;
 import eason.linyuzai.easonicon.open.PainterInterceptor;
+import eason.linyuzai.easonicon.open.support.AuxiliaryColorSupport;
 import eason.linyuzai.easonicon.painter.EasonPainterSet;
+import eason.linyuzai.easonicon.painter.SupportEasonPainterSet;
 import eason.linyuzai.easonicon.painter.basic.circle.CirclePainter;
 import eason.linyuzai.easonicon.painter.basic.polygon.ExtraPolygonPainter;
 import eason.linyuzai.easonicon.painter.combine.interceptor.AuxiliaryColorInterceptor;
@@ -21,7 +23,7 @@ import eason.linyuzai.easonicon.painter.interceptor.mode.DstOutPorterDuffModeInt
 @AuxiliaryScaleField
 @AuxiliaryColorField
 @PenSizeScaleField
-public class SettingPainter extends EasonPainterSet {
+public class SettingPainter extends SupportEasonPainterSet implements AuxiliaryColorSupport {
 
     private ExtraPolygonPainter polygon;
     private CirclePainter circle;

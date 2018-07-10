@@ -3,6 +3,7 @@ package eason.linyuzai.easonicon.painter.combine;
 import eason.linyuzai.easonicon.annotation.AuxiliaryColorField;
 import eason.linyuzai.easonicon.annotation.AuxiliaryScaleField;
 import eason.linyuzai.easonicon.open.Painter;
+import eason.linyuzai.easonicon.open.support.AuxiliaryColorSupport;
 import eason.linyuzai.easonicon.open.support.RoundRectSupport;
 import eason.linyuzai.easonicon.painter.EasonPainterSet;
 import eason.linyuzai.easonicon.painter.SupportEasonPainterSet;
@@ -12,7 +13,7 @@ import eason.linyuzai.easonicon.painter.combine.interceptor.AuxiliaryStyleInterc
 
 @AuxiliaryScaleField
 @AuxiliaryColorField
-public class ExpandSolidRectPainter extends SupportEasonPainterSet implements RoundRectSupport {
+public class ExpandSolidRectPainter extends SupportEasonPainterSet implements RoundRectSupport, AuxiliaryColorSupport {
 
     public ExpandSolidRectPainter(int auxiliaryColor) {
         this(0.5f, auxiliaryColor);

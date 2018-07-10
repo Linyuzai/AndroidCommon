@@ -4,6 +4,7 @@ import eason.linyuzai.easonicon.annotation.AuxiliaryColorField;
 import eason.linyuzai.easonicon.annotation.AuxiliaryScaleField;
 import eason.linyuzai.easonicon.annotation.RoundRectField;
 import eason.linyuzai.easonicon.open.Painter;
+import eason.linyuzai.easonicon.open.support.AuxiliaryColorSupport;
 import eason.linyuzai.easonicon.open.support.RoundRectSupport;
 import eason.linyuzai.easonicon.painter.EasonPainterSet;
 import eason.linyuzai.easonicon.painter.SupportEasonPainterSet;
@@ -14,7 +15,7 @@ import eason.linyuzai.easonicon.painter.combine.interceptor.AuxiliaryStyleInterc
 @AuxiliaryScaleField
 @AuxiliaryColorField
 @RoundRectField
-public class DownArrowSolidRectPainter extends SupportEasonPainterSet implements RoundRectSupport {
+public class DownArrowSolidRectPainter extends SupportEasonPainterSet implements RoundRectSupport, AuxiliaryColorSupport {
 
     public DownArrowSolidRectPainter(int auxiliaryColor) {
         this(0.5f, auxiliaryColor);

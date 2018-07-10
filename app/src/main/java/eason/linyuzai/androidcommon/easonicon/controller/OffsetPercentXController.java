@@ -41,8 +41,8 @@ public class OffsetPercentXController extends LinearLayout implements AbsControl
         addView(value, new LayoutParams(eason.dip(AbsController.VALUE_WIDTH), LayoutParams.WRAP_CONTENT));
         int iconSize = eason.dip(20);
         EasonIcon minus = new EasonIcon(eason);
-        minus.setColor(eason.color(R.color.colorPrimary));
-        minus.setType(EasonIcon.Type.MINUS_SOLID_OVAL);
+        minus.setColor(eason.color(R.color.colorPrimary), true);
+        minus.setType(EasonIcon.Type.MINUS_OVAL);
         minus.setPenSize(eason.dip(2));
         addView(minus, new LayoutParams(iconSize, iconSize));
         seekBar = new SeekBar(context);
@@ -70,8 +70,8 @@ public class OffsetPercentXController extends LinearLayout implements AbsControl
         });
         addView(seekBar, new LayoutParams(0, LayoutParams.WRAP_CONTENT, 1f));
         EasonIcon add = new EasonIcon(eason);
-        add.setColor(eason.color(R.color.colorPrimary));
-        add.setType(EasonIcon.Type.ADD_SOLID_OVAL);
+        add.setColor(eason.color(R.color.colorPrimary), true);
+        add.setType(EasonIcon.Type.ADD_OVAL);
         add.setPenSize(eason.dip(2));
         addView(add, new LayoutParams(iconSize, iconSize));
         minus.setOnClickListener(v -> {

@@ -35,33 +35,21 @@ import eason.linyuzai.easonicon.painter.EasonPainterSet;
 import eason.linyuzai.easonicon.painter.basic.NonePainter;
 import eason.linyuzai.easonicon.painter.basic.point.PointPainter;
 import eason.linyuzai.easonicon.painter.basic.text.TextPainter;
-import eason.linyuzai.easonicon.painter.combine.AddHollowOvalPainter;
-import eason.linyuzai.easonicon.painter.combine.AddHollowRectPainter;
 import eason.linyuzai.easonicon.painter.combine.AddPainter;
-import eason.linyuzai.easonicon.painter.combine.AddSolidOvalPainter;
-import eason.linyuzai.easonicon.painter.combine.AddSolidRectPainter;
-import eason.linyuzai.easonicon.painter.combine.BackHollowOvalPainter;
-import eason.linyuzai.easonicon.painter.combine.BackHollowRectPainter;
+import eason.linyuzai.easonicon.painter.combine.AddOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.AddRectPainter;
 import eason.linyuzai.easonicon.painter.combine.BackPainter;
-import eason.linyuzai.easonicon.painter.combine.BackSolidOvalPainter;
-import eason.linyuzai.easonicon.painter.combine.BackSolidRectPainter;
-import eason.linyuzai.easonicon.painter.combine.CollapseHollowOvalPainter;
-import eason.linyuzai.easonicon.painter.combine.CollapseHollowRectPainter;
+import eason.linyuzai.easonicon.painter.combine.BackOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.BackRectPainter;
 import eason.linyuzai.easonicon.painter.combine.CollapsePainter;
-import eason.linyuzai.easonicon.painter.combine.CollapseSolidOvalPainter;
-import eason.linyuzai.easonicon.painter.combine.CollapseSolidRectPainter;
-import eason.linyuzai.easonicon.painter.combine.CorrectHollowOvalPainter;
-import eason.linyuzai.easonicon.painter.combine.CorrectHollowRectPainter;
+import eason.linyuzai.easonicon.painter.combine.CollapseOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.CollapseRectPainter;
 import eason.linyuzai.easonicon.painter.combine.CorrectPainter;
-import eason.linyuzai.easonicon.painter.combine.CorrectSolidOvalPainter;
-import eason.linyuzai.easonicon.painter.combine.CorrectSolidRectPainter;
-import eason.linyuzai.easonicon.painter.combine.DownArrowHollowOvalPainter;
-import eason.linyuzai.easonicon.painter.combine.DownArrowHollowRectPainter;
+import eason.linyuzai.easonicon.painter.combine.CorrectOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.CorrectRectPainter;
 import eason.linyuzai.easonicon.painter.combine.DownArrowPainter;
-import eason.linyuzai.easonicon.painter.combine.DownArrowSolidOvalPainter;
-import eason.linyuzai.easonicon.painter.combine.DownArrowSolidRectPainter;
-import eason.linyuzai.easonicon.painter.combine.ErrorHollowOvalPainter;
-import eason.linyuzai.easonicon.painter.combine.ErrorHollowRectPainter;
+import eason.linyuzai.easonicon.painter.combine.DownArrowOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.DownArrowRectPainter;
 import eason.linyuzai.easonicon.painter.combine.ErrorPainter;
 import eason.linyuzai.easonicon.painter.basic.arc.ArcPainter;
 import eason.linyuzai.easonicon.painter.basic.bitmap.BitmapPainter;
@@ -75,45 +63,33 @@ import eason.linyuzai.easonicon.painter.basic.polygon.ExtraPolygonPainter;
 import eason.linyuzai.easonicon.painter.basic.polygon.PolygonPainter;
 import eason.linyuzai.easonicon.painter.basic.polygon.QuadPolygonPainter;
 import eason.linyuzai.easonicon.painter.basic.rect.RectPainter;
-import eason.linyuzai.easonicon.painter.combine.ErrorSolidOvalPainter;
-import eason.linyuzai.easonicon.painter.combine.ErrorSolidRectPainter;
-import eason.linyuzai.easonicon.painter.combine.ExpandHollowOvalPainter;
-import eason.linyuzai.easonicon.painter.combine.ExpandHollowRectPainter;
+import eason.linyuzai.easonicon.painter.combine.ErrorOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.ErrorRectPainter;
 import eason.linyuzai.easonicon.painter.combine.ExpandPainter;
-import eason.linyuzai.easonicon.painter.combine.ExpandSolidOvalPainter;
-import eason.linyuzai.easonicon.painter.combine.ExpandSolidRectPainter;
+import eason.linyuzai.easonicon.painter.combine.ExpandOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.ExpandRectPainter;
 import eason.linyuzai.easonicon.painter.combine.ExtraFlower;
 import eason.linyuzai.easonicon.painter.combine.FemalePainter;
-import eason.linyuzai.easonicon.painter.combine.LeftArrowHollowOvalPainter;
-import eason.linyuzai.easonicon.painter.combine.LeftArrowHollowRectPainter;
 import eason.linyuzai.easonicon.painter.combine.LeftArrowPainter;
-import eason.linyuzai.easonicon.painter.combine.LeftArrowSolidOvalPainter;
-import eason.linyuzai.easonicon.painter.combine.LeftArrowSolidRectPainter;
+import eason.linyuzai.easonicon.painter.combine.LeftArrowOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.LeftArrowRectPainter;
 import eason.linyuzai.easonicon.painter.combine.MalePainter;
 import eason.linyuzai.easonicon.painter.combine.MenuPainter;
-import eason.linyuzai.easonicon.painter.combine.MinusHollowOvalPainter;
-import eason.linyuzai.easonicon.painter.combine.MinusHollowRectPainter;
 import eason.linyuzai.easonicon.painter.combine.MinusPainter;
-import eason.linyuzai.easonicon.painter.combine.MinusSolidOvalPainter;
-import eason.linyuzai.easonicon.painter.combine.MinusSolidRectPainter;
-import eason.linyuzai.easonicon.painter.combine.NextHollowOvalPainter;
-import eason.linyuzai.easonicon.painter.combine.NextHollowRectPainter;
+import eason.linyuzai.easonicon.painter.combine.MinusOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.MinusRectPainter;
 import eason.linyuzai.easonicon.painter.combine.NextPainter;
-import eason.linyuzai.easonicon.painter.combine.NextSolidOvalPainter;
-import eason.linyuzai.easonicon.painter.combine.NextSolidRectPainter;
+import eason.linyuzai.easonicon.painter.combine.NextOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.NextRectPainter;
 import eason.linyuzai.easonicon.painter.combine.QuadFlower;
-import eason.linyuzai.easonicon.painter.combine.RightArrowHollowOvalPainter;
-import eason.linyuzai.easonicon.painter.combine.RightArrowHollowRectPainter;
 import eason.linyuzai.easonicon.painter.combine.RightArrowPainter;
-import eason.linyuzai.easonicon.painter.combine.RightArrowSolidOvalPainter;
-import eason.linyuzai.easonicon.painter.combine.RightArrowSolidRectPainter;
+import eason.linyuzai.easonicon.painter.combine.RightArrowOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.RightArrowRectPainter;
 import eason.linyuzai.easonicon.painter.combine.SettingPainter;
 import eason.linyuzai.easonicon.painter.combine.SettingV21Painter;
-import eason.linyuzai.easonicon.painter.combine.UpArrowHollowOvalPainter;
-import eason.linyuzai.easonicon.painter.combine.UpArrowHollowRectPainter;
 import eason.linyuzai.easonicon.painter.combine.UpArrowPainter;
-import eason.linyuzai.easonicon.painter.combine.UpArrowSolidOvalPainter;
-import eason.linyuzai.easonicon.painter.combine.UpArrowSolidRectPainter;
+import eason.linyuzai.easonicon.painter.combine.UpArrowOvalPainter;
+import eason.linyuzai.easonicon.painter.combine.UpArrowRectPainter;
 import eason.linyuzai.easonicon.painter.combine.UserPainter;
 
 /**
@@ -206,7 +182,7 @@ public class EasonIcon extends View {
             int style = a.getInt(R.styleable.EasonIcon_icon_pen_style, 1);
             float roundAll = a.getDimension(R.styleable.EasonIcon_icon_round_all, 0f);
 
-            auxiliaryColor = a.getColor(R.styleable.EasonIcon_icon_auxiliary_color, Color.WHITE);
+            auxiliaryColor = a.getColor(R.styleable.EasonIcon_icon_auxiliary_color, color);
             auxiliaryScale = a.getFloat(R.styleable.EasonIcon_icon_auxiliary_scale, 0.5f);
 
             leftTopRound = a.getDimension(R.styleable.EasonIcon_icon_round_left_top, roundAll);
@@ -491,53 +467,29 @@ public class EasonIcon extends View {
             case EXPAND:
                 painterSet.addPainter(new ExpandPainter());
                 break;
-            case BACK_HOLLOW_OVAL:
-                painterSet.addPainter(new BackHollowOvalPainter(auxiliaryScale));
+            case BACK_OVAL:
+                painterSet.addPainter(new BackOvalPainter(auxiliaryScale, auxiliaryColor));
                 break;
-            case NEXT_HOLLOW_OVAL:
-                painterSet.addPainter(new NextHollowOvalPainter(auxiliaryScale));
+            case NEXT_OVAL:
+                painterSet.addPainter(new NextOvalPainter(auxiliaryScale, auxiliaryColor));
                 break;
-            case COLLAPSE_HOLLOW_OVAL:
-                painterSet.addPainter(new CollapseHollowOvalPainter(auxiliaryScale));
+            case COLLAPSE_OVAL:
+                painterSet.addPainter(new CollapseOvalPainter(auxiliaryScale, auxiliaryColor));
                 break;
-            case EXPAND_HOLLOW_OVAL:
-                painterSet.addPainter(new ExpandHollowOvalPainter(auxiliaryScale));
+            case EXPAND_OVAL:
+                painterSet.addPainter(new ExpandOvalPainter(auxiliaryScale, auxiliaryColor));
                 break;
-            case BACK_SOLID_OVAL:
-                painterSet.addPainter(new BackSolidOvalPainter(auxiliaryScale, auxiliaryColor));
+            case BACK_RECT:
+                painterSet.addPainter(new BackRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
-            case NEXT_SOLID_OVAL:
-                painterSet.addPainter(new NextSolidOvalPainter(auxiliaryScale, auxiliaryColor));
+            case NEXT_RECT:
+                painterSet.addPainter(new NextRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
-            case COLLAPSE_SOLID_OVAL:
-                painterSet.addPainter(new CollapseSolidOvalPainter(auxiliaryScale, auxiliaryColor));
+            case COLLAPSE_RECT:
+                painterSet.addPainter(new CollapseRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
-            case EXPAND_SOLID_OVAL:
-                painterSet.addPainter(new ExpandSolidOvalPainter(auxiliaryScale, auxiliaryColor));
-                break;
-            case BACK_HOLLOW_RECT:
-                painterSet.addPainter(new BackHollowRectPainter(auxiliaryScale, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
-                break;
-            case NEXT_HOLLOW_RECT:
-                painterSet.addPainter(new NextHollowRectPainter(auxiliaryScale, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
-                break;
-            case COLLAPSE_HOLLOW_RECT:
-                painterSet.addPainter(new CollapseHollowRectPainter(auxiliaryScale, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
-                break;
-            case EXPAND_HOLLOW_RECT:
-                painterSet.addPainter(new ExpandHollowRectPainter(auxiliaryScale, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
-                break;
-            case BACK_SOLID_RECT:
-                painterSet.addPainter(new BackSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
-                break;
-            case NEXT_SOLID_RECT:
-                painterSet.addPainter(new NextSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
-                break;
-            case COLLAPSE_SOLID_RECT:
-                painterSet.addPainter(new CollapseSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
-                break;
-            case EXPAND_SOLID_RECT:
-                painterSet.addPainter(new ExpandSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
+            case EXPAND_RECT:
+                painterSet.addPainter(new ExpandRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
             case ARROW_LEFT:
                 painterSet.addPainter(new LeftArrowPainter());
@@ -551,53 +503,29 @@ public class EasonIcon extends View {
             case ARROW_DOWN:
                 painterSet.addPainter(new DownArrowPainter());
                 break;
-            case ARROW_LEFT_HOLLOW_OVAL:
-                painterSet.addPainter(new LeftArrowHollowOvalPainter(auxiliaryScale));
+            case ARROW_LEFT_OVAL:
+                painterSet.addPainter(new LeftArrowOvalPainter(auxiliaryScale, auxiliaryColor));
                 break;
-            case ARROW_RIGHT_HOLLOW_OVAL:
-                painterSet.addPainter(new RightArrowHollowOvalPainter(auxiliaryScale));
+            case ARROW_RIGHT_OVAL:
+                painterSet.addPainter(new RightArrowOvalPainter(auxiliaryScale, auxiliaryColor));
                 break;
-            case ARROW_UP_HOLLOW_OVAL:
-                painterSet.addPainter(new UpArrowHollowOvalPainter(auxiliaryScale));
+            case ARROW_UP_OVAL:
+                painterSet.addPainter(new UpArrowOvalPainter(auxiliaryScale, auxiliaryColor));
                 break;
-            case ARROW_DOWN_HOLLOW_OVAL:
-                painterSet.addPainter(new DownArrowHollowOvalPainter(auxiliaryScale));
+            case ARROW_DOWN_OVAL:
+                painterSet.addPainter(new DownArrowOvalPainter(auxiliaryScale, auxiliaryColor));
                 break;
-            case ARROW_LEFT_SOLID_OVAL:
-                painterSet.addPainter(new LeftArrowSolidOvalPainter(auxiliaryScale, auxiliaryColor));
+            case ARROW_LEFT_RECT:
+                painterSet.addPainter(new LeftArrowRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
-            case ARROW_RIGHT_SOLID_OVAL:
-                painterSet.addPainter(new RightArrowSolidOvalPainter(auxiliaryScale, auxiliaryColor));
+            case ARROW_RIGHT_RECT:
+                painterSet.addPainter(new RightArrowRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
-            case ARROW_UP_SOLID_OVAL:
-                painterSet.addPainter(new UpArrowSolidOvalPainter(auxiliaryScale, auxiliaryColor));
+            case ARROW_UP_RECT:
+                painterSet.addPainter(new UpArrowRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
-            case ARROW_DOWN_SOLID_OVAL:
-                painterSet.addPainter(new DownArrowSolidOvalPainter(auxiliaryScale, auxiliaryColor));
-                break;
-            case ARROW_LEFT_HOLLOW_RECT:
-                painterSet.addPainter(new LeftArrowHollowRectPainter(auxiliaryScale, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
-                break;
-            case ARROW_RIGHT_HOLLOW_RECT:
-                painterSet.addPainter(new RightArrowHollowRectPainter(auxiliaryScale, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
-                break;
-            case ARROW_UP_HOLLOW_RECT:
-                painterSet.addPainter(new UpArrowHollowRectPainter(auxiliaryScale, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
-                break;
-            case ARROW_DOWN_HOLLOW_RECT:
-                painterSet.addPainter(new DownArrowHollowRectPainter(auxiliaryScale, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
-                break;
-            case ARROW_LEFT_SOLID_RECT:
-                painterSet.addPainter(new LeftArrowSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
-                break;
-            case ARROW_RIGHT_SOLID_RECT:
-                painterSet.addPainter(new RightArrowSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
-                break;
-            case ARROW_UP_SOLID_RECT:
-                painterSet.addPainter(new UpArrowSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
-                break;
-            case ARROW_DOWN_SOLID_RECT:
-                painterSet.addPainter(new DownArrowSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
+            case ARROW_DOWN_RECT:
+                painterSet.addPainter(new DownArrowRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
             case ADD:
                 painterSet.addPainter(new AddPainter());
@@ -611,53 +539,29 @@ public class EasonIcon extends View {
             case ERROR:
                 painterSet.addPainter(new ErrorPainter());
                 break;
-            case ADD_HOLLOW_OVAL:
-                painterSet.addPainter(new AddHollowOvalPainter(auxiliaryScale));
+            case ADD_OVAL:
+                painterSet.addPainter(new AddOvalPainter(auxiliaryScale, auxiliaryColor));
                 break;
-            case MINUS_HOLLOW_OVAL:
-                painterSet.addPainter(new MinusHollowOvalPainter(auxiliaryScale));
+            case MINUS_OVAL:
+                painterSet.addPainter(new MinusOvalPainter(auxiliaryScale, auxiliaryColor));
                 break;
-            case CORRECT_HOLLOW_OVAL:
-                painterSet.addPainter(new CorrectHollowOvalPainter(auxiliaryScale));
+            case CORRECT_OVAL:
+                painterSet.addPainter(new CorrectOvalPainter(auxiliaryScale, auxiliaryColor));
                 break;
-            case ERROR_HOLLOW_OVAL:
-                painterSet.addPainter(new ErrorHollowOvalPainter(auxiliaryScale));
+            case ERROR_OVAL:
+                painterSet.addPainter(new ErrorOvalPainter(auxiliaryScale, auxiliaryColor));
                 break;
-            case ADD_SOLID_OVAL:
-                painterSet.addPainter(new AddSolidOvalPainter(auxiliaryScale, auxiliaryColor));
+            case ADD_RECT:
+                painterSet.addPainter(new AddRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
-            case MINUS_SOLID_OVAL:
-                painterSet.addPainter(new MinusSolidOvalPainter(auxiliaryScale, auxiliaryColor));
+            case MINUS_RECT:
+                painterSet.addPainter(new MinusRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
-            case CORRECT_SOLID_OVAL:
-                painterSet.addPainter(new CorrectSolidOvalPainter(auxiliaryScale, auxiliaryColor));
+            case CORRECT_RECT:
+                painterSet.addPainter(new CorrectRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
-            case ERROR_SOLID_OVAL:
-                painterSet.addPainter(new ErrorSolidOvalPainter(auxiliaryScale, auxiliaryColor));
-                break;
-            case ADD_HOLLOW_RECT:
-                painterSet.addPainter(new AddHollowRectPainter(auxiliaryScale, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
-                break;
-            case MINUS_HOLLOW_RECT:
-                painterSet.addPainter(new MinusHollowRectPainter(auxiliaryScale, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
-                break;
-            case CORRECT_HOLLOW_RECT:
-                painterSet.addPainter(new CorrectHollowRectPainter(auxiliaryScale, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
-                break;
-            case ERROR_HOLLOW_RECT:
-                painterSet.addPainter(new ErrorHollowRectPainter(auxiliaryScale, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
-                break;
-            case ADD_SOLID_RECT:
-                painterSet.addPainter(new AddSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
-                break;
-            case MINUS_SOLID_RECT:
-                painterSet.addPainter(new MinusSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
-                break;
-            case CORRECT_SOLID_RECT:
-                painterSet.addPainter(new CorrectSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
-                break;
-            case ERROR_SOLID_RECT:
-                painterSet.addPainter(new ErrorSolidRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
+            case ERROR_RECT:
+                painterSet.addPainter(new ErrorRectPainter(auxiliaryScale, auxiliaryColor, leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
                 break;
             case SETTING:
                 painterSet.addPainter(new SettingPainter(auxiliaryScale, auxiliaryColor, penSizeScale));
@@ -750,6 +654,12 @@ public class EasonIcon extends View {
      */
     public void setColor(@ColorInt int color) {
         paint.setColor(color);
+    }
+
+    public void setColor(@ColorInt int color, boolean ifSetAuxiliaryColor) {
+        paint.setColor(color);
+        if (ifSetAuxiliaryColor)
+            setAuxiliaryColor(color);
     }
 
     public Paint.Cap getPenCap() {
@@ -904,70 +814,46 @@ public class EasonIcon extends View {
         NEXT(18, "next", NextPainter.class),
         COLLAPSE(19, "collapse", CollapsePainter.class),
         EXPAND(20, "expand", ExpandPainter.class),
-        BACK_HOLLOW_OVAL(21, "back_hollow_oval", BackHollowOvalPainter.class),
-        NEXT_HOLLOW_OVAL(22, "next_hollow_oval", NextHollowOvalPainter.class),
-        COLLAPSE_HOLLOW_OVAL(23, "collapse_hollow_oval", CollapseHollowOvalPainter.class),
-        EXPAND_HOLLOW_OVAL(24, "expand_hollow_oval", ExpandHollowOvalPainter.class),
-        BACK_SOLID_OVAL(25, "back_solid_oval", BackSolidOvalPainter.class),
-        NEXT_SOLID_OVAL(26, "next_solid_oval", NextSolidOvalPainter.class),
-        COLLAPSE_SOLID_OVAL(27, "collapse_solid_oval", CollapseSolidOvalPainter.class),
-        EXPAND_SOLID_OVAL(28, "expand_solid_oval", ExpandSolidOvalPainter.class),
-        BACK_HOLLOW_RECT(29, "back_hollow_rect", BackHollowRectPainter.class),
-        NEXT_HOLLOW_RECT(30, "next_hollow_rect", NextHollowRectPainter.class),
-        COLLAPSE_HOLLOW_RECT(31, "collapse_hollow_rect", CollapseHollowRectPainter.class),
-        EXPAND_HOLLOW_RECT(32, "expand_hollow_rect", ExpandHollowRectPainter.class),
-        BACK_SOLID_RECT(33, "back_solid_rect", BackSolidRectPainter.class),
-        NEXT_SOLID_RECT(34, "next_solid_rect", NextSolidRectPainter.class),
-        COLLAPSE_SOLID_RECT(35, "collapse_solid_rect", CollapseSolidRectPainter.class),
-        EXPAND_SOLID_RECT(36, "expand_solid_rect", ExpandSolidRectPainter.class),
-        ARROW_LEFT(37, "arrow_left", LeftArrowPainter.class),
-        ARROW_RIGHT(38, "arrow_right", RightArrowPainter.class),
-        ARROW_UP(39, "arrow_up", UpArrowPainter.class),
-        ARROW_DOWN(40, "arrow_down", DownArrowPainter.class),
-        ARROW_LEFT_HOLLOW_OVAL(41, "arrow_left_hollow_oval", LeftArrowHollowOvalPainter.class),
-        ARROW_RIGHT_HOLLOW_OVAL(42, "arrow_right_hollow_oval", RightArrowHollowOvalPainter.class),
-        ARROW_UP_HOLLOW_OVAL(43, "arrow_up_hollow_oval", UpArrowHollowOvalPainter.class),
-        ARROW_DOWN_HOLLOW_OVAL(44, "arrow_down_hollow_oval", DownArrowHollowOvalPainter.class),
-        ARROW_LEFT_SOLID_OVAL(45, "arrow_left_solid_oval", LeftArrowSolidOvalPainter.class),
-        ARROW_RIGHT_SOLID_OVAL(46, "arrow_right_solid_oval", RightArrowSolidOvalPainter.class),
-        ARROW_UP_SOLID_OVAL(47, "arrow_up_solid_oval", UpArrowSolidOvalPainter.class),
-        ARROW_DOWN_SOLID_OVAL(48, "arrow_down_solid_oval", DownArrowSolidOvalPainter.class),
-        ARROW_LEFT_HOLLOW_RECT(49, "arrow_left_hollow_rect", LeftArrowHollowRectPainter.class),
-        ARROW_RIGHT_HOLLOW_RECT(50, "arrow_right_hollow_rect", RightArrowHollowRectPainter.class),
-        ARROW_UP_HOLLOW_RECT(51, "arrow_up_hollow_rect", UpArrowHollowRectPainter.class),
-        ARROW_DOWN_HOLLOW_RECT(52, "arrow_down_hollow_rect", DownArrowHollowRectPainter.class),
-        ARROW_LEFT_SOLID_RECT(53, "arrow_left_solid_rect", LeftArrowSolidRectPainter.class),
-        ARROW_RIGHT_SOLID_RECT(54, "arrow_right_solid_rect", RightArrowSolidRectPainter.class),
-        ARROW_UP_SOLID_RECT(55, "arrow_up_solid_rect", UpArrowSolidRectPainter.class),
-        ARROW_DOWN_SOLID_RECT(56, "arrow_down_solid_rect", DownArrowSolidRectPainter.class),
-        ADD(57, "add", AddPainter.class),
-        MINUS(58, "minus", MinusPainter.class),
-        CORRECT(59, "correct", CorrectPainter.class),
-        ERROR(60, "error", ErrorPainter.class),
-        ADD_HOLLOW_OVAL(61, "add_hollow_oval", AddHollowOvalPainter.class),
-        MINUS_HOLLOW_OVAL(62, "minus_hollow_oval", MinusHollowOvalPainter.class),
-        CORRECT_HOLLOW_OVAL(63, "correct_hollow_oval", CorrectHollowOvalPainter.class),
-        ERROR_HOLLOW_OVAL(64, "error_hollow_oval", ErrorHollowOvalPainter.class),
-        ADD_SOLID_OVAL(65, "add_solid_oval", AddSolidOvalPainter.class),
-        MINUS_SOLID_OVAL(66, "minus_solid_oval", MinusSolidOvalPainter.class),
-        CORRECT_SOLID_OVAL(67, "correct_solid_oval", CorrectSolidOvalPainter.class),
-        ERROR_SOLID_OVAL(68, "error_solid_oval", ErrorSolidOvalPainter.class),
-        ADD_HOLLOW_RECT(69, "add_hollow_rect", AddHollowRectPainter.class),
-        MINUS_HOLLOW_RECT(70, "minus_hollow_rect", MinusHollowRectPainter.class),
-        CORRECT_HOLLOW_RECT(71, "correct_hollow_rect", CorrectHollowRectPainter.class),
-        ERROR_HOLLOW_RECT(72, "error_hollow_rect", ErrorHollowRectPainter.class),
-        ADD_SOLID_RECT(73, "add_solid_rect", AddSolidRectPainter.class),
-        MINUS_SOLID_RECT(74, "minus_solid_rect", MinusSolidRectPainter.class),
-        CORRECT_SOLID_RECT(75, "correct_solid_rect", CorrectSolidRectPainter.class),
-        ERROR_SOLID_RECT(76, "error_solid_rect", ErrorSolidRectPainter.class),
-        SETTING(77, "setting", SettingPainter.class),
-        SETTING_V21(78, "setting", SettingV21Painter.class),
-        FLOWER_EXTRA(79, "flower_extra", ExtraFlower.class),
-        FLOWER_QUAD(80, "flower_quad", QuadFlower.class),
-        MENU(81, "menu", MenuPainter.class),
-        USER(82, "user", UserPainter.class),
-        MALE(83, "male", MalePainter.class),
-        FEMALE(84, "female", FemalePainter.class);
+        BACK_OVAL(21, "back_oval", BackOvalPainter.class),
+        NEXT_OVAL(22, "next_oval", NextOvalPainter.class),
+        COLLAPSE_OVAL(23, "collapse_oval", CollapseOvalPainter.class),
+        EXPAND_OVAL(24, "expand_oval", ExpandOvalPainter.class),
+        BACK_RECT(25, "back_rect", BackRectPainter.class),
+        NEXT_RECT(26, "next_rect", NextRectPainter.class),
+        COLLAPSE_RECT(27, "collapse_rect", CollapseRectPainter.class),
+        EXPAND_RECT(28, "expand_rect", ExpandRectPainter.class),
+        ARROW_LEFT(29, "arrow_left", LeftArrowPainter.class),
+        ARROW_RIGHT(30, "arrow_right", RightArrowPainter.class),
+        ARROW_UP(31, "arrow_up", UpArrowPainter.class),
+        ARROW_DOWN(32, "arrow_down", DownArrowPainter.class),
+        ARROW_LEFT_OVAL(33, "arrow_left_oval", LeftArrowOvalPainter.class),
+        ARROW_RIGHT_OVAL(34, "arrow_right_oval", RightArrowOvalPainter.class),
+        ARROW_UP_OVAL(35, "arrow_up_oval", UpArrowOvalPainter.class),
+        ARROW_DOWN_OVAL(36, "arrow_down_oval", DownArrowOvalPainter.class),
+        ARROW_LEFT_RECT(37, "arrow_left_rect", LeftArrowRectPainter.class),
+        ARROW_RIGHT_RECT(38, "arrow_right_rect", RightArrowRectPainter.class),
+        ARROW_UP_RECT(39, "arrow_up_rect", UpArrowRectPainter.class),
+        ARROW_DOWN_RECT(40, "arrow_down_rect", DownArrowRectPainter.class),
+        ADD(41, "add", AddPainter.class),
+        MINUS(42, "minus", MinusPainter.class),
+        CORRECT(43, "correct", CorrectPainter.class),
+        ERROR(44, "error", ErrorPainter.class),
+        ADD_OVAL(45, "add_oval", AddOvalPainter.class),
+        MINUS_OVAL(46, "minus_oval", MinusOvalPainter.class),
+        CORRECT_OVAL(47, "correct_oval", CorrectOvalPainter.class),
+        ERROR_OVAL(48, "error_oval", ErrorOvalPainter.class),
+        ADD_RECT(49, "add_rect", AddRectPainter.class),
+        MINUS_RECT(50, "minus_rect", MinusRectPainter.class),
+        CORRECT_RECT(51, "correct_rect", CorrectRectPainter.class),
+        ERROR_RECT(52, "error_rect", ErrorRectPainter.class),
+        SETTING(53, "setting", SettingPainter.class),
+        SETTING_V21(54, "setting_v21", SettingV21Painter.class),
+        FLOWER_EXTRA(55, "flower_extra", ExtraFlower.class),
+        FLOWER_QUAD(56, "flower_quad", QuadFlower.class),
+        MENU(57, "menu", MenuPainter.class),
+        USER(58, "user", UserPainter.class),
+        MALE(59, "male", MalePainter.class),
+        FEMALE(60, "female", FemalePainter.class);
 
         private int value;
         private String attrName;

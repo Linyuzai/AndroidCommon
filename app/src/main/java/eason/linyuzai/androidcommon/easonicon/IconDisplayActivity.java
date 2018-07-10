@@ -63,7 +63,8 @@ public class IconDisplayActivity extends EasonActivity {
             icon.setBackgroundColor(Color.WHITE);
             //icon.setColor(Color.BLACK);
             icon.setPenSize(dip(3));
-            icon.setColor(param.getContentColor());
+            icon.setColor(param.getContentColor(), true);
+            //icon.setAuxiliaryColor(param.getContentColor());
             icon.setEdgeCount(3);
             icon.setExtraOffset(-dip(4));
             icon.setSweepAngle(120f);
@@ -100,6 +101,7 @@ public class IconDisplayActivity extends EasonActivity {
                 holder.icon.setPadding(padding, padding, padding, padding);
             } else {
                 holder.icon.setPadding(0, 0, 0, 0);
+                holder.icon.setAuxiliaryColor(Color.WHITE);
             }
             holder.icon.setType(position + 1);
             holder.icon.setOnClickListener(v -> {
@@ -115,7 +117,7 @@ public class IconDisplayActivity extends EasonActivity {
 
         @Override
         public int getItemCount() {
-            return 84;
+            return 60;
         }
     }
 

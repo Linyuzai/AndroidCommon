@@ -45,6 +45,10 @@ public class PolygonPainter extends PathPainter {
         path.close();
     }
 
+    public PointF[] getPoints() {
+        return points;
+    }
+
     public PointF[] getPoints(RectF rectF) {
         return getEqualDivisionPoints(rectF);
     }

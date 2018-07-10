@@ -46,10 +46,14 @@ public class SupportEasonPainterSet extends EasonPainterSet {
     }
 
     public void setAuxiliaryColor(int color) {
+        if (auxiliaryColorInterceptor == null)
+            return;
         auxiliaryColorInterceptor.setAuxiliaryColor(color);
     }
 
     public int getAuxiliaryColor() {
+        if (auxiliaryColorInterceptor == null)
+            return -1;
         return auxiliaryColorInterceptor.getAuxiliaryColor();
     }
 
@@ -62,34 +66,50 @@ public class SupportEasonPainterSet extends EasonPainterSet {
     }
 
     public void setLeftTop(float r) {
+        if (roundRectSupport == null)
+            return;
         roundRectSupport.setLeftTop(r);
     }
 
     public void setRightTop(float r) {
+        if (roundRectSupport == null)
+            return;
         roundRectSupport.setRightTop(r);
     }
 
     public void setLeftBottom(float r) {
+        if (roundRectSupport == null)
+            return;
         roundRectSupport.setLeftBottom(r);
     }
 
     public void setRightBottom(float r) {
+        if (roundRectSupport == null)
+            return;
         roundRectSupport.setRightBottom(r);
     }
 
     public float getLeftTop() {
+        if (roundRectSupport == null)
+            return -1f;
         return roundRectSupport.getLeftTop();
     }
 
     public float getRightTop() {
+        if (roundRectSupport == null)
+            return -1f;
         return roundRectSupport.getRightTop();
     }
 
     public float getLeftBottom() {
+        if (roundRectSupport == null)
+            return -1f;
         return roundRectSupport.getLeftBottom();
     }
 
     public float getRightBottom() {
+        if (roundRectSupport == null)
+            return -1f;
         return roundRectSupport.getRightBottom();
     }
 }

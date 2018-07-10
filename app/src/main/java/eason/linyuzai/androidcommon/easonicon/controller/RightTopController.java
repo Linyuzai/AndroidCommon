@@ -54,7 +54,8 @@ public class RightTopController extends LinearLayout implements AbsController {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 int val = progress;
                 value.setText(String.valueOf(val));
-                entity.setRightTop(progress);
+                if (entity != null)
+                    entity.setRightTop(progress);
                 if (painter instanceof RoundRectSupport)
                     ((RoundRectSupport) painter).setRightTop(eason.dip(val));
                 //icon.setRightTopRound(eason.dip(val));
@@ -91,11 +92,6 @@ public class RightTopController extends LinearLayout implements AbsController {
                 seekBar.setProgress(av + 1);
             }
         });
-    }
-
-    @Override
-    public void setPainter(Painter painter) {
-
     }
 
     @Override

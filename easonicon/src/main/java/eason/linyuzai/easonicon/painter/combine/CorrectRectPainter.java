@@ -9,12 +9,11 @@ import eason.linyuzai.easonicon.open.support.RoundRectSupport;
 import eason.linyuzai.easonicon.painter.SupportEasonPainterSet;
 import eason.linyuzai.easonicon.painter.basic.rect.RectPainter;
 import eason.linyuzai.easonicon.painter.combine.interceptor.AuxiliaryColorInterceptor;
-import eason.linyuzai.easonicon.painter.combine.interceptor.AuxiliaryStyleInterceptor;
 
 @AuxiliaryScaleField
 @AuxiliaryColorField
 @RoundRectField
-public class CorrectRectPainter extends SupportEasonPainterSet implements RoundRectSupport,AuxiliaryColorSupport {
+public class CorrectRectPainter extends SupportEasonPainterSet implements RoundRectSupport, AuxiliaryColorSupport {
 
     public CorrectRectPainter(int auxiliaryColor) {
         this(0.5f, auxiliaryColor);

@@ -8,7 +8,6 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import eason.linyuzai.easonicon.EasonIcon;
-import eason.linyuzai.easonicon.open.Painter;
 import eason.linyuzai.elib.component.EasonActivity;
 
 public class SweepAngleController extends LinearLayout implements AbsController {
@@ -40,11 +39,9 @@ public class SweepAngleController extends LinearLayout implements AbsController 
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 float val = progress * 3f;
                 value.setText(String.valueOf(val));
-                if (fromUser) {
-                    icon.setSweepAngle(val);
-                    icon.setType(icon.getType(), true);
-                    icon.update();
-                }
+                icon.setSweepAngle(val);
+                icon.setType(icon.getType(), true);
+                icon.update();
             }
 
             @Override
@@ -58,10 +55,5 @@ public class SweepAngleController extends LinearLayout implements AbsController 
             }
         });
         addView(seekBar, new LayoutParams(0, LayoutParams.WRAP_CONTENT, 1f));
-    }
-
-    @Override
-    public void setPainter(Painter painter) {
-
     }
 }

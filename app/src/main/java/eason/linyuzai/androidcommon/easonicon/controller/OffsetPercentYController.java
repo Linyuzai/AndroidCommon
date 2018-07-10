@@ -53,7 +53,8 @@ public class OffsetPercentYController extends LinearLayout implements AbsControl
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 float val = progress / 100f;
                 value.setText(String.valueOf(val));
-                entity.setOffsetPercentY(progress);
+                if (entity != null)
+                    entity.setOffsetPercentY(progress);
                 painter.setOffsetPercentY(val);
                 icon.update();
             }
@@ -86,15 +87,6 @@ public class OffsetPercentYController extends LinearLayout implements AbsControl
                 seekBar.setProgress(av + 1);
             }
         });
-    }
-
-    public Painter getPainter() {
-        return painter;
-    }
-
-    @Override
-    public void setPainter(Painter painter) {
-        this.painter = painter;
     }
 
     @Override

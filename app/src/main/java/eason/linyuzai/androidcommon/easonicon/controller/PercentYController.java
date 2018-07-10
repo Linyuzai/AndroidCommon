@@ -54,7 +54,8 @@ public class PercentYController extends LinearLayout implements AbsController {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 float val = progress / 100f;
                 value.setText(String.valueOf(val));
-                entity.setPercentY(progress);
+                if (entity != null)
+                    entity.setPercentY(progress);
                 painter.setPercentY(val);
                 if (icon.getType() != EasonIcon.Type.NONE) {
                     icon.setType(icon.getType(), true);
@@ -90,15 +91,6 @@ public class PercentYController extends LinearLayout implements AbsController {
                 seekBar.setProgress(av + 1);
             }
         });
-    }
-
-    public Painter getPainter() {
-        return painter;
-    }
-
-    @Override
-    public void setPainter(Painter painter) {
-        this.painter = painter;
     }
 
     @Override

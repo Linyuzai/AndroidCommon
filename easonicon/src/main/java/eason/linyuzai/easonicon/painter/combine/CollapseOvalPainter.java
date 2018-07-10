@@ -7,11 +7,10 @@ import eason.linyuzai.easonicon.open.support.AuxiliaryColorSupport;
 import eason.linyuzai.easonicon.painter.SupportEasonPainterSet;
 import eason.linyuzai.easonicon.painter.basic.circle.OvalPainter;
 import eason.linyuzai.easonicon.painter.combine.interceptor.AuxiliaryColorInterceptor;
-import eason.linyuzai.easonicon.painter.combine.interceptor.AuxiliaryStyleInterceptor;
 
 @AuxiliaryScaleField
 @AuxiliaryColorField
-public class CollapseOvalPainter extends SupportEasonPainterSet implements AuxiliaryColorSupport{
+public class CollapseOvalPainter extends SupportEasonPainterSet implements AuxiliaryColorSupport {
 
     public CollapseOvalPainter(int auxiliaryColor) {
         this(0.5f, auxiliaryColor);

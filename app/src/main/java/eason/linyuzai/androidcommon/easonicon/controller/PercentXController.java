@@ -3,7 +3,6 @@ package eason.linyuzai.androidcommon.easonicon.controller;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -54,7 +53,8 @@ public class PercentXController extends LinearLayout implements AbsController {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 float val = progress / 100f;
                 value.setText(String.valueOf(val));
-                entity.setPercentX(progress);
+                if (entity != null)
+                    entity.setPercentX(progress);
                 painter.setPercentX(val);
                 if (icon.getType() != EasonIcon.Type.NONE) {
                     icon.setType(icon.getType(), true);
@@ -90,20 +90,6 @@ public class PercentXController extends LinearLayout implements AbsController {
                 seekBar.setProgress(av + 1);
             }
         });
-    }
-
-    public Painter getPainter() {
-        return painter;
-    }
-
-    @Override
-    public void setPainter(Painter painter) {
-        this.painter = painter;
-    }
-
-    @Override
-    public void setProgress(int progress) {
-
     }
 
     @Override

@@ -43,13 +43,11 @@ public class CenterPercentYController extends LinearLayout implements AbsControl
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 float val = progress / 100f;
                 value.setText(String.valueOf(val));
-                if (fromUser) {
-                    painter.setCenterPercentY(val);
-                    if (icon.getType() != EasonIcon.Type.NONE) {
-                        icon.setType(icon.getType(), true);
-                    }
-                    icon.update();
+                painter.setCenterPercentY(val);
+                if (icon.getType() != EasonIcon.Type.NONE) {
+                    icon.setType(icon.getType(), true);
                 }
+                icon.update();
             }
 
             @Override
@@ -63,14 +61,5 @@ public class CenterPercentYController extends LinearLayout implements AbsControl
             }
         });
         addView(seekBar, new LayoutParams(0, LayoutParams.WRAP_CONTENT, 1f));
-    }
-
-    public Painter getPainter() {
-        return painter;
-    }
-
-    @Override
-    public void setPainter(Painter painter) {
-        this.painter = painter;
     }
 }

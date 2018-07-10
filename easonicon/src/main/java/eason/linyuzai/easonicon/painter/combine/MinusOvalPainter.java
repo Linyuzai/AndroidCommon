@@ -7,11 +7,10 @@ import eason.linyuzai.easonicon.open.support.AuxiliaryColorSupport;
 import eason.linyuzai.easonicon.painter.SupportEasonPainterSet;
 import eason.linyuzai.easonicon.painter.basic.circle.OvalPainter;
 import eason.linyuzai.easonicon.painter.combine.interceptor.AuxiliaryColorInterceptor;
-import eason.linyuzai.easonicon.painter.combine.interceptor.AuxiliaryStyleInterceptor;
 
 @AuxiliaryScaleField
 @AuxiliaryColorField
-public class MinusOvalPainter extends SupportEasonPainterSet implements AuxiliaryColorSupport{
+public class MinusOvalPainter extends SupportEasonPainterSet implements AuxiliaryColorSupport {
 
     public MinusOvalPainter(int auxiliaryColor) {
         this(0.5f, auxiliaryColor);

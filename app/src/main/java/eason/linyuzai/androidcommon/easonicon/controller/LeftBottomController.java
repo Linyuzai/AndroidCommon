@@ -54,7 +54,8 @@ public class LeftBottomController extends LinearLayout implements AbsController 
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 int val = progress;
                 value.setText(String.valueOf(val));
-                entity.setLeftBottom(progress);
+                if (entity != null)
+                    entity.setLeftBottom(progress);
                 if (painter instanceof RoundRectSupport)
                     ((RoundRectSupport) painter).setLeftBottom(eason.dip(val));
                 //icon.setLeftBottomRound(eason.dip(val));
@@ -90,11 +91,6 @@ public class LeftBottomController extends LinearLayout implements AbsController 
                 seekBar.setProgress(av + 1);
             }
         });
-    }
-
-    @Override
-    public void setPainter(Painter painter) {
-
     }
 
     @Override

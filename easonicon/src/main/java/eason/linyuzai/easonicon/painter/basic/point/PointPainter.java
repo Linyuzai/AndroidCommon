@@ -13,6 +13,7 @@ public class PointPainter extends EasonPainter {
 
     @Override
     public void draw(Canvas canvas, RectF draw, RectF original, Paint paint) {
+        pointF.set(0f, 0f);
         PointF p = getCoordinate(pointF, draw);
         canvas.drawPoint(p.x, p.y, paint);
     }

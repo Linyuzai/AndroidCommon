@@ -64,6 +64,7 @@
         app:icon_pen_size="1dp"
         app:icon_pen_style="stroke"
         app:icon_polygon_edge_count="8"
+        android:visibility="gone"
         app:icon_polygon_extra_offset="-78dp"
         app:icon_type="polygon_extra" />
 
@@ -72,14 +73,12 @@
         android:layout_height="100dp"
         android:layout_gravity="right"
         android:layerType="software"
-        android:visibility="gone"
         app:icon_color="@android:color/white"
-        app:icon_pen_cap="butt"
+        app:icon_pen_cap="round"
         app:icon_pen_size="10dp"
-        app:icon_pen_style="stroke"
-        app:icon_percent_center="0.45"
-        app:icon_polygon_edge_count="5"
-        app:icon_type="polygon_quad" />
+        app:icon_pen_style="fill"
+        app:icon_percent_offset="0.5"
+        app:icon_type="point" />
 
     <eason.linyuzai.easonicon.extension.OvalImageView
         android:layout_width="wrap_content"

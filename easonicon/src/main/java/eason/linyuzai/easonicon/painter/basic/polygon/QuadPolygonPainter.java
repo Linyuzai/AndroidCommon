@@ -7,10 +7,11 @@ import android.graphics.RectF;
 
 import eason.linyuzai.easonicon.annotation.EdgeCountField;
 import eason.linyuzai.easonicon.annotation.ExtraOffsetField;
+import eason.linyuzai.easonicon.open.support.EdgeCountSupport;
 
 @EdgeCountField
 @ExtraOffsetField
-public class QuadPolygonPainter extends ExtraPolygonPainter {
+public class QuadPolygonPainter extends ExtraPolygonPainter implements EdgeCountSupport {
 
     public QuadPolygonPainter() {
         this(0f);

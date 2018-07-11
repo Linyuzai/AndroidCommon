@@ -6,18 +6,20 @@ import eason.linyuzai.easonicon.open.Painter;
 import eason.linyuzai.easonicon.open.PainterInterceptor;
 import eason.linyuzai.easonicon.open.support.ArcSupport;
 import eason.linyuzai.easonicon.open.support.BitmapSupport;
+import eason.linyuzai.easonicon.open.support.EdgeCountSupport;
 import eason.linyuzai.easonicon.open.support.RoundRectSupport;
 import eason.linyuzai.easonicon.painter.combine.interceptor.AuxiliaryColorInterceptor;
 
 public class SupportEasonPainterSet extends EasonPainterSet {
 
     public static final float NOT_SUPPORT_FLOAT = Float.NaN;
-    public static final int NOT_SUPPORT_COLOR = -1;
+    public static final int NOT_SUPPORT_INT = -1;
 
     private ArcSupport arcSupport;
     private Painter auxiliaryScalePainter;
     private AuxiliaryColorInterceptor auxiliaryColorInterceptor;
     private BitmapSupport bitmapSupport;
+    private EdgeCountSupport edgeCountSupport;
     private RoundRectSupport roundRectSupport;
 
     @Override
@@ -26,6 +28,8 @@ public class SupportEasonPainterSet extends EasonPainterSet {
             setArcSupport(painter.toArcSupport());
         if (painter.isSupportBitmap())
             setBitmapSupport(painter.toBitmapSupport());
+        if (painter.isSupportEdgeCount())
+            setEdgeCountSupport(painter.toEdgeCountSupport());
         if (painter.isSupportRoundRect())
             setRoundRectSupport(painter.toRoundRectSupport());
         super.addPainter(painter);
@@ -37,6 +41,8 @@ public class SupportEasonPainterSet extends EasonPainterSet {
             setArcSupport(painter.toArcSupport());
         if (painter.isSupportBitmap())
             setBitmapSupport(painter.toBitmapSupport());
+        if (painter.isSupportEdgeCount())
+            setEdgeCountSupport(painter.toEdgeCountSupport());
         if (painter.isSupportRoundRect())
             setRoundRectSupport(painter.toRoundRectSupport());
         super.addPainter(index, painter);
@@ -136,7 +142,7 @@ public class SupportEasonPainterSet extends EasonPainterSet {
     public int getAuxiliaryColor() {
         if (isSupportAuxiliaryColor())
             return auxiliaryColorInterceptor.getAuxiliaryColor();
-        return NOT_SUPPORT_COLOR;
+        return NOT_SUPPORT_INT;
     }
 
     public void setAuxiliaryColor(int color) {
@@ -167,6 +173,28 @@ public class SupportEasonPainterSet extends EasonPainterSet {
     }
 
     //-------bitmap---------//
+    //-------edgeCount---------//
+
+    public EdgeCountSupport getEdgeCountSupport() {
+        return edgeCountSupport;
+    }
+
+    public void setEdgeCountSupport(EdgeCountSupport edgeCountSupport) {
+        this.edgeCountSupport = edgeCountSupport;
+    }
+
+    public int getEdgeCount() {
+        if (isSupportEdgeCount())
+            return edgeCountSupport.getEdgeCount();
+        return NOT_SUPPORT_INT;
+    }
+
+    public void setEdgeCount(int edgeCount) {
+        if (isSupportEdgeCount())
+            edgeCountSupport.setEdgeCount(edgeCount);
+    }
+
+    //-------edgeCount---------//
     //-------roundRect---------//
 
     public void setRoundRectSupport(RoundRectSupport roundRectSupport) {

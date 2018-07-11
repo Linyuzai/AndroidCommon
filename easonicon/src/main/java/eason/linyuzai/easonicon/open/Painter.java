@@ -9,6 +9,7 @@ import eason.linyuzai.easonicon.open.support.ArcSupport;
 import eason.linyuzai.easonicon.open.support.AuxiliaryColorSupport;
 import eason.linyuzai.easonicon.open.support.AuxiliaryScaleSupport;
 import eason.linyuzai.easonicon.open.support.BitmapSupport;
+import eason.linyuzai.easonicon.open.support.EdgeCountSupport;
 import eason.linyuzai.easonicon.open.support.RectSupport;
 import eason.linyuzai.easonicon.open.support.RoundRectSupport;
 
@@ -21,7 +22,7 @@ import eason.linyuzai.easonicon.open.support.RoundRectSupport;
 public interface Painter extends RectSupport {
 
     default boolean isSupportArc() {
-        return this instanceof ArcSupport;
+        return (this instanceof ArcSupport);
     }
 
     default ArcSupport toArcSupport() {
@@ -29,7 +30,7 @@ public interface Painter extends RectSupport {
     }
 
     default boolean isSupportAuxiliaryScale() {
-        return this instanceof AuxiliaryScaleSupport;
+        return (this instanceof AuxiliaryScaleSupport);
     }
 
     default AuxiliaryScaleSupport toAuxiliaryScaleSupport() {
@@ -37,7 +38,7 @@ public interface Painter extends RectSupport {
     }
 
     default boolean isSupportAuxiliaryColor() {
-        return this instanceof AuxiliaryColorSupport;
+        return (this instanceof AuxiliaryColorSupport);
     }
 
     default AuxiliaryColorSupport toAuxiliaryColorSupport() {
@@ -45,15 +46,23 @@ public interface Painter extends RectSupport {
     }
 
     default boolean isSupportBitmap() {
-        return this instanceof BitmapSupport;
+        return (this instanceof BitmapSupport);
     }
 
     default BitmapSupport toBitmapSupport() {
         return (BitmapSupport) this;
     }
 
+    default boolean isSupportEdgeCount() {
+        return (this instanceof EdgeCountSupport);
+    }
+
+    default EdgeCountSupport toEdgeCountSupport() {
+        return (EdgeCountSupport) this;
+    }
+
     default boolean isSupportRoundRect() {
-        return this instanceof RoundRectSupport;
+        return (this instanceof RoundRectSupport);
     }
 
     default RoundRectSupport toRoundRectSupport() {

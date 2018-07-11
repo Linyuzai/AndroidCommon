@@ -9,12 +9,13 @@ import eason.linyuzai.easonicon.annotation.EdgeCountField;
 import eason.linyuzai.easonicon.annotation.PenSizeScaleField;
 import eason.linyuzai.easonicon.open.Painter;
 import eason.linyuzai.easonicon.open.PainterInterceptor;
-import eason.linyuzai.easonicon.painter.EasonPainterSet;
+import eason.linyuzai.easonicon.open.support.EdgeCountSupport;
+import eason.linyuzai.easonicon.painter.SupportEasonPainterSet;
 import eason.linyuzai.easonicon.painter.basic.polygon.ExtraPolygonPainter;
 
 @EdgeCountField
 @PenSizeScaleField
-public class ExtraFlower extends EasonPainterSet {
+public class ExtraFlower extends SupportEasonPainterSet implements EdgeCountSupport {
 
     private ExtraPolygonPainter polygon;
 
@@ -32,14 +33,11 @@ public class ExtraFlower extends EasonPainterSet {
         addInterceptor(new ExtraFlowerInterceptor());
     }
 
-    public int getEdgeCount() {
-        return polygon.getEdgeCount();
-    }
-
+    @Override
     public void setEdgeCount(int edgeCount) {
         if (edgeCount < 4)
             edgeCount = 4;
-        polygon.setEdgeCount(edgeCount);
+        super.setEdgeCount(edgeCount);
     }
 
     public void setPenSizeScale(float penSizeScale) {

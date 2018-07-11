@@ -31,11 +31,6 @@ import eason.linyuzai.easonicon.annotation.RoundRectField;
 import eason.linyuzai.easonicon.annotation.TextField;
 import eason.linyuzai.easonicon.open.Painter;
 import eason.linyuzai.easonicon.open.PainterSet;
-import eason.linyuzai.easonicon.open.support.ArcSupport;
-import eason.linyuzai.easonicon.open.support.AuxiliaryColorSupport;
-import eason.linyuzai.easonicon.open.support.AuxiliaryScaleSupport;
-import eason.linyuzai.easonicon.open.support.BitmapSupport;
-import eason.linyuzai.easonicon.open.support.RoundRectSupport;
 import eason.linyuzai.easonicon.painter.EasonPainterSet;
 import eason.linyuzai.easonicon.painter.basic.NonePainter;
 import eason.linyuzai.easonicon.painter.basic.arc.ArcPainter;
@@ -280,8 +275,8 @@ public class EasonIcon extends View {
     public void setAuxiliaryColor(int auxiliaryColor) {
         this.auxiliaryColor = auxiliaryColor;
         painterSet.recursivePainter(painter -> {
-            if (painter instanceof AuxiliaryColorSupport) {
-                ((AuxiliaryColorSupport) painter).setAuxiliaryColor(auxiliaryColor);
+            if (painter.isSupportAuxiliaryColor()) {
+                painter.toAuxiliaryColorSupport().setAuxiliaryColor(auxiliaryColor);
             }
         });
     }
@@ -293,8 +288,8 @@ public class EasonIcon extends View {
     public void setAuxiliaryScale(float auxiliaryScale) {
         this.auxiliaryScale = auxiliaryScale;
         painterSet.recursivePainter(painter -> {
-            if (painter instanceof AuxiliaryScaleSupport) {
-                ((AuxiliaryScaleSupport) painter).setAuxiliaryScale(auxiliaryScale);
+            if (painter.isSupportAuxiliaryScale()) {
+                painter.toAuxiliaryScaleSupport().setAuxiliaryScale(auxiliaryScale);
             }
         });
     }
@@ -306,8 +301,8 @@ public class EasonIcon extends View {
     public void setLeftTopRound(float leftTopRound) {
         this.leftTopRound = leftTopRound;
         painterSet.recursivePainter(painter -> {
-            if (painter instanceof RoundRectSupport) {
-                ((RoundRectSupport) painter).setLeftTop(leftTopRound);
+            if (painter.isSupportRoundRect()) {
+                painter.toRoundRectSupport().setLeftTop(leftTopRound);
             }
         });
     }
@@ -319,8 +314,8 @@ public class EasonIcon extends View {
     public void setLeftBottomRound(float leftBottomRound) {
         this.leftBottomRound = leftBottomRound;
         painterSet.recursivePainter(painter -> {
-            if (painter instanceof RoundRectSupport) {
-                ((RoundRectSupport) painter).setLeftBottom(leftBottomRound);
+            if (painter.isSupportRoundRect()) {
+                painter.toRoundRectSupport().setLeftBottom(leftBottomRound);
             }
         });
     }
@@ -332,8 +327,8 @@ public class EasonIcon extends View {
     public void setRightTopRound(float rightTopRound) {
         this.rightTopRound = rightTopRound;
         painterSet.recursivePainter(painter -> {
-            if (painter instanceof RoundRectSupport) {
-                ((RoundRectSupport) painter).setRightTop(rightTopRound);
+            if (painter.isSupportRoundRect()) {
+                painter.toRoundRectSupport().setRightTop(rightTopRound);
             }
         });
     }
@@ -345,8 +340,8 @@ public class EasonIcon extends View {
     public void setRightBottomRound(float rightBottomRound) {
         this.rightBottomRound = rightBottomRound;
         painterSet.recursivePainter(painter -> {
-            if (painter instanceof RoundRectSupport) {
-                ((RoundRectSupport) painter).setRightBottom(rightBottomRound);
+            if (painter.isSupportRoundRect()) {
+                painter.toRoundRectSupport().setRightBottom(rightBottomRound);
             }
         });
     }
@@ -358,8 +353,8 @@ public class EasonIcon extends View {
     public void setStartAngle(float startAngle) {
         this.startAngle = startAngle;
         painterSet.recursivePainter(painter -> {
-            if (painter instanceof ArcSupport)
-                ((ArcSupport) painter).setStartAngle(startAngle);
+            if (painter.isSupportArc())
+                painter.toArcSupport().setStartAngle(startAngle);
         });
     }
 
@@ -370,8 +365,8 @@ public class EasonIcon extends View {
     public void setSweepAngle(float sweepAngle) {
         this.sweepAngle = sweepAngle;
         painterSet.recursivePainter(painter -> {
-            if (painter instanceof ArcSupport)
-                ((ArcSupport) painter).setSweepAngle(sweepAngle);
+            if (painter.isSupportArc())
+                painter.toArcSupport().setSweepAngle(sweepAngle);
         });
     }
 
@@ -382,8 +377,8 @@ public class EasonIcon extends View {
     public void setUseCenter(boolean useCenter) {
         this.useCenter = useCenter;
         painterSet.recursivePainter(painter -> {
-            if (painter instanceof ArcSupport)
-                ((ArcSupport) painter).setUseCenter(useCenter);
+            if (painter.isSupportArc())
+                painter.toArcSupport().setUseCenter(useCenter);
         });
     }
 
@@ -394,8 +389,8 @@ public class EasonIcon extends View {
     public void setBitmap(Bitmap bitmap) {
         this.bitmap = bitmap;
         painterSet.recursivePainter(painter -> {
-            if (painter instanceof BitmapSupport)
-                ((BitmapSupport) painter).setBitmap(bitmap);
+            if (painter.isSupportBitmap())
+                painter.toBitmapSupport().setBitmap(bitmap);
         });
     }
 
@@ -405,6 +400,10 @@ public class EasonIcon extends View {
 
     public void setEdgeCount(int edgeCount) {
         this.edgeCount = edgeCount;
+        painterSet.recursivePainter(painter -> {
+            if (painter.isSupportEdgeCount())
+                painter.toEdgeCountSupport().setEdgeCount(edgeCount);
+        });
     }
 
     public float getExtraOffset() {

@@ -7,10 +7,11 @@ import android.graphics.RectF;
 import android.support.annotation.Size;
 
 import eason.linyuzai.easonicon.annotation.EdgeCountField;
+import eason.linyuzai.easonicon.open.support.EdgeCountSupport;
 import eason.linyuzai.easonicon.painter.basic.path.PathPainter;
 
 @EdgeCountField
-public class PolygonPainter extends PathPainter {
+public class PolygonPainter extends PathPainter implements EdgeCountSupport {
 
     private int edgeCount;
 
@@ -24,10 +25,12 @@ public class PolygonPainter extends PathPainter {
         setEdgeCount(edgeCount);
     }
 
+    @Override
     public int getEdgeCount() {
         return edgeCount;
     }
 
+    @Override
     public void setEdgeCount(@Size(min = 3) int edgeCount) {
         this.edgeCount = edgeCount;
         points = new PointF[edgeCount];

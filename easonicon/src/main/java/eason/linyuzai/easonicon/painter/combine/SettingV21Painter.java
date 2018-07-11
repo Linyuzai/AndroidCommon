@@ -48,6 +48,7 @@ public class SettingV21Painter extends SupportEasonPainterSet implements Auxilia
         return super.getAuxiliaryScale() / 0.7f;
     }
 
+    @Override
     public void setAuxiliaryScale(float auxiliaryScale) {
         super.setAuxiliaryScale(auxiliaryScale * 0.7f);
     }

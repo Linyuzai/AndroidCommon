@@ -7,6 +7,7 @@ import eason.linyuzai.easonicon.open.PainterInterceptor;
 import eason.linyuzai.easonicon.open.support.ArcSupport;
 import eason.linyuzai.easonicon.open.support.BitmapSupport;
 import eason.linyuzai.easonicon.open.support.EdgeCountSupport;
+import eason.linyuzai.easonicon.open.support.ExtraOffsetSupport;
 import eason.linyuzai.easonicon.open.support.RoundRectSupport;
 import eason.linyuzai.easonicon.painter.combine.interceptor.AuxiliaryColorInterceptor;
 
@@ -20,6 +21,7 @@ public class SupportEasonPainterSet extends EasonPainterSet {
     private AuxiliaryColorInterceptor auxiliaryColorInterceptor;
     private BitmapSupport bitmapSupport;
     private EdgeCountSupport edgeCountSupport;
+    private ExtraOffsetSupport extraOffsetSupport;
     private RoundRectSupport roundRectSupport;
 
     @Override
@@ -195,6 +197,28 @@ public class SupportEasonPainterSet extends EasonPainterSet {
     }
 
     //-------edgeCount---------//
+    //-------extraOffset---------//
+
+    public ExtraOffsetSupport getExtraOffsetSupport() {
+        return extraOffsetSupport;
+    }
+
+    public void setExtraOffsetSupport(ExtraOffsetSupport extraOffsetSupport) {
+        this.extraOffsetSupport = extraOffsetSupport;
+    }
+
+    public float getExtraOffset() {
+        if (isSupportExtraOffset())
+            return extraOffsetSupport.getExtraOffset();
+        return NOT_SUPPORT_FLOAT;
+    }
+
+    public void setExtraOffset(float extraOffset) {
+        if (isSupportExtraOffset())
+            extraOffsetSupport.setExtraOffset(extraOffset);
+    }
+
+    //-------extraOffset---------//
     //-------roundRect---------//
 
     public void setRoundRectSupport(RoundRectSupport roundRectSupport) {

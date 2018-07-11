@@ -10,6 +10,7 @@ import eason.linyuzai.easonicon.open.support.AuxiliaryColorSupport;
 import eason.linyuzai.easonicon.open.support.AuxiliaryScaleSupport;
 import eason.linyuzai.easonicon.open.support.BitmapSupport;
 import eason.linyuzai.easonicon.open.support.EdgeCountSupport;
+import eason.linyuzai.easonicon.open.support.ExtraOffsetSupport;
 import eason.linyuzai.easonicon.open.support.RectSupport;
 import eason.linyuzai.easonicon.open.support.RoundRectSupport;
 
@@ -59,6 +60,14 @@ public interface Painter extends RectSupport {
 
     default EdgeCountSupport toEdgeCountSupport() {
         return (EdgeCountSupport) this;
+    }
+
+    default boolean isSupportExtraOffset() {
+        return (this instanceof ExtraOffsetSupport);
+    }
+
+    default ExtraOffsetSupport toExtraOffsetSupport() {
+        return (ExtraOffsetSupport) this;
     }
 
     default boolean isSupportRoundRect() {

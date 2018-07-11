@@ -6,10 +6,11 @@ import android.graphics.RectF;
 import eason.linyuzai.easonicon.annotation.EdgeCountField;
 import eason.linyuzai.easonicon.annotation.ExtraOffsetField;
 import eason.linyuzai.easonicon.open.support.EdgeCountSupport;
+import eason.linyuzai.easonicon.open.support.ExtraOffsetSupport;
 
 @EdgeCountField
 @ExtraOffsetField
-public class ExtraPolygonPainter extends PolygonPainter implements EdgeCountSupport {
+public class ExtraPolygonPainter extends PolygonPainter implements EdgeCountSupport, ExtraOffsetSupport {
 
     private float extraOffset;
 
@@ -38,10 +39,12 @@ public class ExtraPolygonPainter extends PolygonPainter implements EdgeCountSupp
         this.extraOffset = extraOffset;
     }
 
+    @Override
     public float getExtraOffset() {
         return extraOffset;
     }
 
+    @Override
     public void setExtraOffset(float extraOffset) {
         this.extraOffset = extraOffset;
     }

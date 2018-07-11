@@ -412,6 +412,10 @@ public class EasonIcon extends View {
 
     public void setExtraOffset(float extraOffset) {
         this.extraOffset = extraOffset;
+        painterSet.recursivePainter(painter -> {
+            if (painter.isSupportExtraOffset())
+                painter.toExtraOffsetSupport().setExtraOffset(extraOffset);
+        });
     }
 
     public float getPenSizeScale() {

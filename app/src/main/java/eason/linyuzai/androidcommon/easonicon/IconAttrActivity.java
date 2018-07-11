@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.ViewGroup;
 
-import java.lang.annotation.Annotation;
 import java.util.List;
 
 import eason.linyuzai.androidcommon.LibraryHelper;
@@ -57,7 +56,7 @@ public class IconAttrActivity extends EasonActivity {
         id(R.id.title).setBackgroundColor(param.getTitleColor());
         EasonIcon icon = id(R.id.ei);
         icon.setPenSize(dip(3));
-        icon.setColor(param.getContentColor());
+        icon.setColor(param.getContentColor(), true);
         icon.setEdgeCount(3);
         icon.setExtraOffset(-dip(4));
         icon.setSweepAngle(120f);

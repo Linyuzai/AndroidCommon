@@ -40,7 +40,7 @@ public class AuxiliaryScaleController extends LinearLayout implements AbsControl
                 float val = progress * 2f / 100f;
                 value.setText(String.valueOf(val));
                 icon.setAuxiliaryScale(val);
-                icon.setType(icon.getType(), true);
+                //icon.setType(icon.getType(), true);
                 icon.update();
             }
 

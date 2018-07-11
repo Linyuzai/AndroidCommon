@@ -31,7 +31,9 @@ import eason.linyuzai.easonicon.annotation.RoundRectField;
 import eason.linyuzai.easonicon.annotation.TextField;
 import eason.linyuzai.easonicon.open.Painter;
 import eason.linyuzai.easonicon.open.PainterSet;
+import eason.linyuzai.easonicon.open.support.ArcSupport;
 import eason.linyuzai.easonicon.open.support.AuxiliaryColorSupport;
+import eason.linyuzai.easonicon.open.support.AuxiliaryScaleSupport;
 import eason.linyuzai.easonicon.open.support.RoundRectSupport;
 import eason.linyuzai.easonicon.painter.EasonPainterSet;
 import eason.linyuzai.easonicon.painter.basic.NonePainter;
@@ -289,6 +291,11 @@ public class EasonIcon extends View {
 
     public void setAuxiliaryScale(float auxiliaryScale) {
         this.auxiliaryScale = auxiliaryScale;
+        painterSet.recursivePainter(painter -> {
+            if (painter instanceof AuxiliaryScaleSupport) {
+                ((AuxiliaryScaleSupport) painter).setAuxiliaryScale(auxiliaryScale);
+            }
+        });
     }
 
     public float getLeftTopRound() {
@@ -349,6 +356,10 @@ public class EasonIcon extends View {
 
     public void setStartAngle(float startAngle) {
         this.startAngle = startAngle;
+        painterSet.recursivePainter(painter -> {
+            if (painter instanceof ArcSupport)
+                ((ArcSupport) painter).setStartAngle(startAngle);
+        });
     }
 
     public float getSweepAngle() {
@@ -357,6 +368,10 @@ public class EasonIcon extends View {
 
     public void setSweepAngle(float sweepAngle) {
         this.sweepAngle = sweepAngle;
+        painterSet.recursivePainter(painter -> {
+            if (painter instanceof ArcSupport)
+                ((ArcSupport) painter).setSweepAngle(sweepAngle);
+        });
     }
 
     public boolean isUseCenter() {
@@ -365,6 +380,10 @@ public class EasonIcon extends View {
 
     public void setUseCenter(boolean useCenter) {
         this.useCenter = useCenter;
+        painterSet.recursivePainter(painter -> {
+            if (painter instanceof ArcSupport)
+                ((ArcSupport) painter).setUseCenter(useCenter);
+        });
     }
 
     public Bitmap getBitmap() {

@@ -5,10 +5,11 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 
 import eason.linyuzai.easonicon.annotation.ArcField;
+import eason.linyuzai.easonicon.open.support.ArcSupport;
 import eason.linyuzai.easonicon.painter.EasonPainter;
 
 @ArcField
-public class ArcPainter extends EasonPainter {
+public class ArcPainter extends EasonPainter implements ArcSupport {
 
     private float startAngle;
     private float sweepAngle;
@@ -38,26 +39,32 @@ public class ArcPainter extends EasonPainter {
         canvas.drawArc(getTransformRectF(draw, paint), startAngle, sweepAngle, useCenter, paint);
     }
 
+    @Override
     public float getStartAngle() {
         return startAngle;
     }
 
+    @Override
     public void setStartAngle(float startAngle) {
         this.startAngle = startAngle;
     }
 
+    @Override
     public float getSweepAngle() {
         return sweepAngle;
     }
 
+    @Override
     public void setSweepAngle(float sweepAngle) {
         this.sweepAngle = sweepAngle;
     }
 
+    @Override
     public boolean isUseCenter() {
         return useCenter;
     }
 
+    @Override
     public void setUseCenter(boolean useCenter) {
         this.useCenter = useCenter;
     }

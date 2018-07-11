@@ -6,8 +6,10 @@ import eason.linyuzai.easonicon.open.support.RoundRectSupport;
 import eason.linyuzai.easonicon.painter.combine.interceptor.AuxiliaryColorInterceptor;
 
 public class SupportEasonPainterSet extends EasonPainterSet {
-    private RoundRectSupport roundRectSupport;
+
+    private Painter auxiliaryScalePainter;
     private AuxiliaryColorInterceptor auxiliaryColorInterceptor;
+    private RoundRectSupport roundRectSupport;
 
     @Override
     public void addPainter(Painter painter) {
@@ -37,6 +39,26 @@ public class SupportEasonPainterSet extends EasonPainterSet {
         super.addInterceptor(index, interceptor, recursiveSet);
     }
 
+    public Painter getAuxiliaryScalePainter() {
+        return auxiliaryScalePainter;
+    }
+
+    public void setAuxiliaryScalePainter(Painter auxiliaryScalePainter) {
+        this.auxiliaryScalePainter = auxiliaryScalePainter;
+    }
+
+    public float getAuxiliaryScale() {
+        if (auxiliaryScalePainter.getPercentX() == auxiliaryScalePainter.getPercentY() &&
+                auxiliaryScalePainter.getOffsetPercentX() == auxiliaryScalePainter.getOffsetPercentY() &&
+                auxiliaryScalePainter.getOffsetX() == 0f && auxiliaryScalePainter.getOffsetY() == 0f)
+            return auxiliaryScalePainter.getPercentX();
+        return -1f;
+    }
+
+    public void setAuxiliaryScale(float scale) {
+        auxiliaryScalePainter.setCenterPercent(scale);
+    }
+
     public void setAuxiliaryColorInterceptor(AuxiliaryColorInterceptor auxiliaryColorInterceptor) {
         this.auxiliaryColorInterceptor = auxiliaryColorInterceptor;
     }
@@ -45,16 +67,15 @@ public class SupportEasonPainterSet extends EasonPainterSet {
         return auxiliaryColorInterceptor;
     }
 
-    public void setAuxiliaryColor(int color) {
-        if (auxiliaryColorInterceptor == null)
-            return;
-        auxiliaryColorInterceptor.setAuxiliaryColor(color);
+    public int getAuxiliaryColor() {
+        if (isSupportAuxiliaryColor())
+            return auxiliaryColorInterceptor.getAuxiliaryColor();
+        return -1;
     }
 
-    public int getAuxiliaryColor() {
-        if (auxiliaryColorInterceptor == null)
-            return -1;
-        return auxiliaryColorInterceptor.getAuxiliaryColor();
+    public void setAuxiliaryColor(int color) {
+        if (isSupportAuxiliaryColor())
+            auxiliaryColorInterceptor.setAuxiliaryColor(color);
     }
 
     public void setRoundRectSupport(RoundRectSupport roundRectSupport) {
@@ -65,51 +86,47 @@ public class SupportEasonPainterSet extends EasonPainterSet {
         return roundRectSupport;
     }
 
-    public void setLeftTop(float r) {
-        if (roundRectSupport == null)
-            return;
-        roundRectSupport.setLeftTop(r);
-    }
-
-    public void setRightTop(float r) {
-        if (roundRectSupport == null)
-            return;
-        roundRectSupport.setRightTop(r);
-    }
-
-    public void setLeftBottom(float r) {
-        if (roundRectSupport == null)
-            return;
-        roundRectSupport.setLeftBottom(r);
-    }
-
-    public void setRightBottom(float r) {
-        if (roundRectSupport == null)
-            return;
-        roundRectSupport.setRightBottom(r);
-    }
-
     public float getLeftTop() {
-        if (roundRectSupport == null)
-            return -1f;
-        return roundRectSupport.getLeftTop();
+        if (isSupportRoundRect())
+            return roundRectSupport.getLeftTop();
+        return -1f;
+    }
+
+    public void setLeftTop(float r) {
+        if (isSupportRoundRect())
+            roundRectSupport.setLeftTop(r);
     }
 
     public float getRightTop() {
-        if (roundRectSupport == null)
-            return -1f;
-        return roundRectSupport.getRightTop();
+        if (isSupportRoundRect())
+            return roundRectSupport.getRightTop();
+        return -1f;
+    }
+
+    public void setRightTop(float r) {
+        if (isSupportRoundRect())
+            roundRectSupport.setRightTop(r);
     }
 
     public float getLeftBottom() {
-        if (roundRectSupport == null)
-            return -1f;
-        return roundRectSupport.getLeftBottom();
+        if (isSupportRoundRect())
+            return roundRectSupport.getLeftBottom();
+        return -1f;
+    }
+
+    public void setLeftBottom(float r) {
+        if (isSupportRoundRect())
+            roundRectSupport.setLeftBottom(r);
     }
 
     public float getRightBottom() {
-        if (roundRectSupport == null)
-            return -1f;
-        return roundRectSupport.getRightBottom();
+        if (isSupportRoundRect())
+            return roundRectSupport.getRightBottom();
+        return -1f;
+    }
+
+    public void setRightBottom(float r) {
+        if (isSupportRoundRect())
+            roundRectSupport.setRightBottom(r);
     }
 }

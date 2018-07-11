@@ -4,6 +4,7 @@ import eason.linyuzai.easonicon.annotation.AuxiliaryColorField;
 import eason.linyuzai.easonicon.annotation.AuxiliaryScaleField;
 import eason.linyuzai.easonicon.open.Painter;
 import eason.linyuzai.easonicon.open.support.AuxiliaryColorSupport;
+import eason.linyuzai.easonicon.open.support.AuxiliaryScaleSupport;
 import eason.linyuzai.easonicon.open.support.RoundRectSupport;
 import eason.linyuzai.easonicon.painter.SupportEasonPainterSet;
 import eason.linyuzai.easonicon.painter.basic.rect.RectPainter;
@@ -11,7 +12,7 @@ import eason.linyuzai.easonicon.painter.combine.interceptor.AuxiliaryColorInterc
 
 @AuxiliaryScaleField
 @AuxiliaryColorField
-public class ExpandRectPainter extends SupportEasonPainterSet implements RoundRectSupport, AuxiliaryColorSupport {
+public class ExpandRectPainter extends SupportEasonPainterSet implements AuxiliaryScaleSupport, AuxiliaryColorSupport, RoundRectSupport {
 
     public ExpandRectPainter(int auxiliaryColor) {
         this(0.5f, auxiliaryColor);
@@ -31,6 +32,7 @@ public class ExpandRectPainter extends SupportEasonPainterSet implements RoundRe
         addPainter(new RectPainter(leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
         Painter painter = new ExpandPainter();
         painter.setCenterPercent(auxiliaryScale);
+        setAuxiliaryScalePainter(painter);
         addPainter(painter);
         //addInterceptor(new AuxiliaryStyleInterceptor());
         addInterceptor(new AuxiliaryColorInterceptor(auxiliaryColor));

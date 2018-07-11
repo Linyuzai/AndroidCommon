@@ -15,6 +15,12 @@ import eason.linyuzai.easonicon.open.support.RectSupport;
 
 public interface Painter extends RectSupport {
 
+    boolean isSupportAuxiliaryScale();
+
+    boolean isSupportAuxiliaryColor();
+
+    boolean isSupportRoundRect();
+
     boolean canDraw();
 
     void setCanDraw(boolean canDraw);

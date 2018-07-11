@@ -4,13 +4,14 @@ import eason.linyuzai.easonicon.annotation.AuxiliaryColorField;
 import eason.linyuzai.easonicon.annotation.AuxiliaryScaleField;
 import eason.linyuzai.easonicon.open.Painter;
 import eason.linyuzai.easonicon.open.support.AuxiliaryColorSupport;
+import eason.linyuzai.easonicon.open.support.AuxiliaryScaleSupport;
 import eason.linyuzai.easonicon.painter.SupportEasonPainterSet;
 import eason.linyuzai.easonicon.painter.basic.circle.OvalPainter;
 import eason.linyuzai.easonicon.painter.combine.interceptor.AuxiliaryColorInterceptor;
 
 @AuxiliaryScaleField
 @AuxiliaryColorField
-public class UpArrowOvalPainter extends SupportEasonPainterSet implements AuxiliaryColorSupport {
+public class UpArrowOvalPainter extends SupportEasonPainterSet implements AuxiliaryScaleSupport, AuxiliaryColorSupport {
 
     public UpArrowOvalPainter(int auxiliaryColor) {
         this(0.5f, auxiliaryColor);
@@ -20,6 +21,7 @@ public class UpArrowOvalPainter extends SupportEasonPainterSet implements Auxili
         addPainter(new OvalPainter());
         Painter painter = new RightArrowPainter();
         painter.setCenterPercent(auxiliaryScale);
+        setAuxiliaryScalePainter(painter);
         addPainter(painter);
         //addInterceptor(new AuxiliaryStyleInterceptor());
         addInterceptor(new AuxiliaryColorInterceptor(auxiliaryColor));

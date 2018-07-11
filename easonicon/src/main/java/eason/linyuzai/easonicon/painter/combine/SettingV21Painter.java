@@ -6,24 +6,21 @@ import android.graphics.RectF;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
-import eason.linyuzai.easonicon.annotation.AuxiliaryColorField;
 import eason.linyuzai.easonicon.annotation.AuxiliaryScaleField;
 import eason.linyuzai.easonicon.annotation.PenSizeScaleField;
 import eason.linyuzai.easonicon.open.Painter;
 import eason.linyuzai.easonicon.open.PainterInterceptor;
-import eason.linyuzai.easonicon.painter.EasonPainterSet;
+import eason.linyuzai.easonicon.open.support.AuxiliaryScaleSupport;
+import eason.linyuzai.easonicon.painter.SupportEasonPainterSet;
 import eason.linyuzai.easonicon.painter.basic.circle.CirclePainter;
 import eason.linyuzai.easonicon.painter.basic.polygon.ExtraPolygonPainter;
 import eason.linyuzai.easonicon.painter.interceptor.mode.DstOutPorterDuffModeInterceptor;
 
 @AuxiliaryScaleField
-@AuxiliaryColorField
 @PenSizeScaleField
-public class SettingV21Painter extends EasonPainterSet {
+public class SettingV21Painter extends SupportEasonPainterSet implements AuxiliaryScaleSupport {
 
     private ExtraPolygonPainter polygon;
-    private CirclePainter circle;
-    private float auxiliaryScale;
     private float penSizeScale;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -37,21 +34,22 @@ public class SettingV21Painter extends EasonPainterSet {
         polygon = new ExtraPolygonPainter(8);
         polygon.setCenterPercent(0.5f);
         addPainter(polygon);
-        circle = new CirclePainter();
-        setAuxiliaryScale(auxiliaryScale);
-        //circle.setCenterPercent(0.45f);
-        addPainter(circle);
+        Painter painter = new CirclePainter();
+        //setAuxiliaryScale(auxiliaryScale);
+        painter.setCenterPercent(0.7f * auxiliaryScale);
+        setAuxiliaryScalePainter(painter);
+        addPainter(painter);
         addInterceptor(new SettingInterceptor());
         addInterceptor(new DstOutPorterDuffModeInterceptor());
     }
 
+    @Override
     public float getAuxiliaryScale() {
-        return auxiliaryScale;
+        return super.getAuxiliaryScale() / 0.7f;
     }
 
     public void setAuxiliaryScale(float auxiliaryScale) {
-        this.auxiliaryScale = auxiliaryScale;
-        circle.setCenterPercent(0.7f * auxiliaryScale);
+        super.setAuxiliaryScale(auxiliaryScale * 0.7f);
     }
 
     public float getPenSizeScale() {

@@ -5,7 +5,11 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
+import eason.linyuzai.easonicon.open.support.ArcSupport;
+import eason.linyuzai.easonicon.open.support.AuxiliaryColorSupport;
+import eason.linyuzai.easonicon.open.support.AuxiliaryScaleSupport;
 import eason.linyuzai.easonicon.open.support.RectSupport;
+import eason.linyuzai.easonicon.open.support.RoundRectSupport;
 
 /**
  * Created by linyuzai on 2018/5/19.
@@ -15,13 +19,37 @@ import eason.linyuzai.easonicon.open.support.RectSupport;
 
 public interface Painter extends RectSupport {
 
-    boolean isSupportArc();
+    default boolean isSupportArc() {
+        return this instanceof ArcSupport;
+    }
 
-    boolean isSupportAuxiliaryScale();
+    default ArcSupport toArcSupport() {
+        return (ArcSupport) this;
+    }
 
-    boolean isSupportAuxiliaryColor();
+    default boolean isSupportAuxiliaryScale() {
+        return this instanceof AuxiliaryScaleSupport;
+    }
 
-    boolean isSupportRoundRect();
+    default AuxiliaryScaleSupport toAuxiliaryScaleSupport() {
+        return (AuxiliaryScaleSupport) this;
+    }
+
+    default boolean isSupportAuxiliaryColor() {
+        return this instanceof AuxiliaryColorSupport;
+    }
+
+    default AuxiliaryColorSupport toAuxiliaryColorSupport() {
+        return (AuxiliaryColorSupport) this;
+    }
+
+    default boolean isSupportRoundRect() {
+        return this instanceof RoundRectSupport;
+    }
+
+    default RoundRectSupport toRoundRectSupport() {
+        return (RoundRectSupport) this;
+    }
 
     boolean canDraw();
 

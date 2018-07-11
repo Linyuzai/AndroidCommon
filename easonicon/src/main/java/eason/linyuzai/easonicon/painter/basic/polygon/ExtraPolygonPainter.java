@@ -122,7 +122,7 @@ public class ExtraPolygonPainter extends PolygonPainter {
         return extras;
     }
 
-    private static class Line {
+    public static class Line {
 
         float k;
         float b;

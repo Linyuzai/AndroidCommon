@@ -8,7 +8,8 @@ import eason.linyuzai.easonicon.painter.combine.interceptor.AuxiliaryColorInterc
 
 public class SupportEasonPainterSet extends EasonPainterSet {
 
-    public static final int NOT_SUPPORT = -1000;
+    public static final float NOT_SUPPORT_FLOAT = Float.NaN;
+    public static final int NOT_SUPPORT_COLOR = -1;
 
     private ArcSupport arcSupport;
     private Painter auxiliaryScalePainter;
@@ -17,15 +18,19 @@ public class SupportEasonPainterSet extends EasonPainterSet {
 
     @Override
     public void addPainter(Painter painter) {
-        if (painter instanceof RoundRectSupport)
-            setRoundRectSupport((RoundRectSupport) painter);
+        if (painter.isSupportArc())
+            setArcSupport(painter.toArcSupport());
+        if (painter.isSupportRoundRect())
+            setRoundRectSupport(painter.toRoundRectSupport());
         super.addPainter(painter);
     }
 
     @Override
     public void addPainter(int index, Painter painter) {
-        if (painter instanceof RoundRectSupport)
-            setRoundRectSupport((RoundRectSupport) painter);
+        if (painter.isSupportArc())
+            setArcSupport(painter.toArcSupport());
+        if (painter.isSupportRoundRect())
+            setRoundRectSupport(painter.toRoundRectSupport());
         super.addPainter(index, painter);
     }
 
@@ -56,7 +61,7 @@ public class SupportEasonPainterSet extends EasonPainterSet {
     public float getStartAngle() {
         if (isSupportArc())
             return arcSupport.getStartAngle();
-        return NOT_SUPPORT;
+        return NOT_SUPPORT_FLOAT;
     }
 
     public void setStartAngle(float startAngle) {
@@ -67,7 +72,7 @@ public class SupportEasonPainterSet extends EasonPainterSet {
     public float getSweepAngle() {
         if (isSupportArc())
             return arcSupport.getSweepAngle();
-        return NOT_SUPPORT;
+        return NOT_SUPPORT_FLOAT;
     }
 
     public void setSweepAngle(float sweepAngle) {
@@ -76,9 +81,7 @@ public class SupportEasonPainterSet extends EasonPainterSet {
     }
 
     public boolean isUseCenter() {
-        if (isSupportArc())
-            return arcSupport.isUseCenter();
-        return false;
+        return isSupportArc() && arcSupport.isUseCenter();
     }
 
     public void setUseCenter(boolean useCenter) {
@@ -103,7 +106,7 @@ public class SupportEasonPainterSet extends EasonPainterSet {
                 auxiliaryScalePainter.getOffsetPercentX() == auxiliaryScalePainter.getOffsetPercentY() &&
                 auxiliaryScalePainter.getOffsetX() == 0f && auxiliaryScalePainter.getOffsetY() == 0f)
             return auxiliaryScalePainter.getPercentX();
-        return NOT_SUPPORT;
+        return NOT_SUPPORT_FLOAT;
     }
 
     public void setAuxiliaryScale(float scale) {
@@ -125,7 +128,7 @@ public class SupportEasonPainterSet extends EasonPainterSet {
     public int getAuxiliaryColor() {
         if (isSupportAuxiliaryColor())
             return auxiliaryColorInterceptor.getAuxiliaryColor();
-        return NOT_SUPPORT;
+        return NOT_SUPPORT_COLOR;
     }
 
     public void setAuxiliaryColor(int color) {
@@ -147,7 +150,7 @@ public class SupportEasonPainterSet extends EasonPainterSet {
     public float getLeftTop() {
         if (isSupportRoundRect())
             return roundRectSupport.getLeftTop();
-        return NOT_SUPPORT;
+        return NOT_SUPPORT_FLOAT;
     }
 
     public void setLeftTop(float r) {
@@ -158,7 +161,7 @@ public class SupportEasonPainterSet extends EasonPainterSet {
     public float getRightTop() {
         if (isSupportRoundRect())
             return roundRectSupport.getRightTop();
-        return NOT_SUPPORT;
+        return NOT_SUPPORT_FLOAT;
     }
 
     public void setRightTop(float r) {
@@ -169,7 +172,7 @@ public class SupportEasonPainterSet extends EasonPainterSet {
     public float getLeftBottom() {
         if (isSupportRoundRect())
             return roundRectSupport.getLeftBottom();
-        return NOT_SUPPORT;
+        return NOT_SUPPORT_FLOAT;
     }
 
     public void setLeftBottom(float r) {
@@ -180,7 +183,7 @@ public class SupportEasonPainterSet extends EasonPainterSet {
     public float getRightBottom() {
         if (isSupportRoundRect())
             return roundRectSupport.getRightBottom();
-        return NOT_SUPPORT;
+        return NOT_SUPPORT_FLOAT;
     }
 
     public void setRightBottom(float r) {

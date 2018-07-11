@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -34,6 +35,12 @@ public class LibraryActivity extends EasonActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Log.d("LibraryActivity", SupportEasonPainterSet.NOT_SUPPORT_FLOAT + "");
+        EasonIcon ei = new EasonIcon(this);
+        ei.setType(EasonIcon.Type.BACK_RECT);
+        Painter painter = ei.getPainter(0);
+        Log.d("LibraryActivity", painter.isSupportRoundRect() + "");
+        Log.d("LibraryActivity", painter.toAuxiliaryScaleSupport() + "");
         LibraryHelper.init(this);
         LibraryHelper.LibraryParam initParam = getLibraryParam().get(0);
         setStatusBarColor(initParam.getTitleColor());

@@ -8,10 +8,6 @@ import android.graphics.RectF;
 import android.util.Log;
 
 import eason.linyuzai.easonicon.open.Painter;
-import eason.linyuzai.easonicon.open.support.ArcSupport;
-import eason.linyuzai.easonicon.open.support.AuxiliaryColorSupport;
-import eason.linyuzai.easonicon.open.support.AuxiliaryScaleSupport;
-import eason.linyuzai.easonicon.open.support.RoundRectSupport;
 
 /**
  * Created by linyuzai on 2018/5/19.
@@ -27,26 +23,6 @@ public abstract class EasonPainter implements Painter {
     private boolean canDraw = true;
 
     private RectParam rectParam = new RectParam();
-
-    @Override
-    public boolean isSupportArc() {
-        return this instanceof ArcSupport;
-    }
-
-    @Override
-    public boolean isSupportAuxiliaryScale() {
-        return this instanceof AuxiliaryScaleSupport;
-    }
-
-    @Override
-    public boolean isSupportAuxiliaryColor() {
-        return this instanceof AuxiliaryColorSupport;
-    }
-
-    @Override
-    public boolean isSupportRoundRect() {
-        return this instanceof RoundRectSupport;
-    }
 
     @Override
     public Bitmap transformBitmap(RectF draw, RectF original, Paint paint) {

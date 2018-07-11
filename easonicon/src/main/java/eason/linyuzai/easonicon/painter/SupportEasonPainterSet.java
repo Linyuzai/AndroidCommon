@@ -1,8 +1,11 @@
 package eason.linyuzai.easonicon.painter;
 
+import android.graphics.Bitmap;
+
 import eason.linyuzai.easonicon.open.Painter;
 import eason.linyuzai.easonicon.open.PainterInterceptor;
 import eason.linyuzai.easonicon.open.support.ArcSupport;
+import eason.linyuzai.easonicon.open.support.BitmapSupport;
 import eason.linyuzai.easonicon.open.support.RoundRectSupport;
 import eason.linyuzai.easonicon.painter.combine.interceptor.AuxiliaryColorInterceptor;
 
@@ -14,12 +17,15 @@ public class SupportEasonPainterSet extends EasonPainterSet {
     private ArcSupport arcSupport;
     private Painter auxiliaryScalePainter;
     private AuxiliaryColorInterceptor auxiliaryColorInterceptor;
+    private BitmapSupport bitmapSupport;
     private RoundRectSupport roundRectSupport;
 
     @Override
     public void addPainter(Painter painter) {
         if (painter.isSupportArc())
             setArcSupport(painter.toArcSupport());
+        if (painter.isSupportBitmap())
+            setBitmapSupport(painter.toBitmapSupport());
         if (painter.isSupportRoundRect())
             setRoundRectSupport(painter.toRoundRectSupport());
         super.addPainter(painter);
@@ -29,6 +35,8 @@ public class SupportEasonPainterSet extends EasonPainterSet {
     public void addPainter(int index, Painter painter) {
         if (painter.isSupportArc())
             setArcSupport(painter.toArcSupport());
+        if (painter.isSupportBitmap())
+            setBitmapSupport(painter.toBitmapSupport());
         if (painter.isSupportRoundRect())
             setRoundRectSupport(painter.toRoundRectSupport());
         super.addPainter(index, painter);
@@ -137,6 +145,28 @@ public class SupportEasonPainterSet extends EasonPainterSet {
     }
 
     //-------auxiliaryColor---------//
+    //-------bitmap---------//
+
+    public BitmapSupport getBitmapSupport() {
+        return bitmapSupport;
+    }
+
+    public void setBitmapSupport(BitmapSupport bitmapSupport) {
+        this.bitmapSupport = bitmapSupport;
+    }
+
+    public Bitmap getBitmap() {
+        if (isSupportBitmap())
+            return bitmapSupport.getBitmap();
+        return null;
+    }
+
+    public void setBitmap(Bitmap bitmap) {
+        if (isSupportBitmap())
+            bitmapSupport.setBitmap(bitmap);
+    }
+
+    //-------bitmap---------//
     //-------roundRect---------//
 
     public void setRoundRectSupport(RoundRectSupport roundRectSupport) {

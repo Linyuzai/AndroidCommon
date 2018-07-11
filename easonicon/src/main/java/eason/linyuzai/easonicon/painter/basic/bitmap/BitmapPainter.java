@@ -7,15 +7,15 @@ import android.graphics.PixelFormat;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import java.lang.ref.WeakReference;
 
 import eason.linyuzai.easonicon.annotation.BitmapField;
+import eason.linyuzai.easonicon.open.support.BitmapSupport;
 import eason.linyuzai.easonicon.painter.EasonPainter;
 
 @BitmapField
-public class BitmapPainter extends EasonPainter {
+public class BitmapPainter extends EasonPainter implements BitmapSupport {
 
     private Bitmap bitmap;
     private WeakReference<Bitmap> handled = new WeakReference<>(null);
@@ -27,10 +27,12 @@ public class BitmapPainter extends EasonPainter {
         setBitmap(bitmap);
     }
 
+    @Override
     public Bitmap getBitmap() {
         return bitmap;
     }
 
+    @Override
     public void setBitmap(Bitmap bitmap) {
         this.bitmap = bitmap;
     }

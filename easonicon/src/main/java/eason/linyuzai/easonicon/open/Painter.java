@@ -8,6 +8,7 @@ import android.graphics.RectF;
 import eason.linyuzai.easonicon.open.support.ArcSupport;
 import eason.linyuzai.easonicon.open.support.AuxiliaryColorSupport;
 import eason.linyuzai.easonicon.open.support.AuxiliaryScaleSupport;
+import eason.linyuzai.easonicon.open.support.BitmapSupport;
 import eason.linyuzai.easonicon.open.support.RectSupport;
 import eason.linyuzai.easonicon.open.support.RoundRectSupport;
 
@@ -41,6 +42,14 @@ public interface Painter extends RectSupport {
 
     default AuxiliaryColorSupport toAuxiliaryColorSupport() {
         return (AuxiliaryColorSupport) this;
+    }
+
+    default boolean isSupportBitmap() {
+        return this instanceof BitmapSupport;
+    }
+
+    default BitmapSupport toBitmapSupport() {
+        return (BitmapSupport) this;
     }
 
     default boolean isSupportRoundRect() {

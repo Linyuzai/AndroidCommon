@@ -34,6 +34,7 @@ import eason.linyuzai.easonicon.open.PainterSet;
 import eason.linyuzai.easonicon.open.support.ArcSupport;
 import eason.linyuzai.easonicon.open.support.AuxiliaryColorSupport;
 import eason.linyuzai.easonicon.open.support.AuxiliaryScaleSupport;
+import eason.linyuzai.easonicon.open.support.BitmapSupport;
 import eason.linyuzai.easonicon.open.support.RoundRectSupport;
 import eason.linyuzai.easonicon.painter.EasonPainterSet;
 import eason.linyuzai.easonicon.painter.basic.NonePainter;
@@ -392,6 +393,10 @@ public class EasonIcon extends View {
 
     public void setBitmap(Bitmap bitmap) {
         this.bitmap = bitmap;
+        painterSet.recursivePainter(painter -> {
+            if (painter instanceof BitmapSupport)
+                ((BitmapSupport) painter).setBitmap(bitmap);
+        });
     }
 
     public int getEdgeCount() {

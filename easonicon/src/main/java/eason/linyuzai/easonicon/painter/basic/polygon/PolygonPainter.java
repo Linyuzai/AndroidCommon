@@ -38,27 +38,18 @@ public class PolygonPainter extends PathPainter {
 
     @Override
     public void configurePath(Path path, RectF draw, RectF original, Paint paint) {
-        PointF[] points = getPoints(draw);
+        configurePolygonPath(path, draw, original, paint, getPoints(draw, points));
+    }
+
+    public void configurePolygonPath(Path path, RectF draw, RectF original, Paint paint, PointF[] points) {
         path.moveTo(points[0].x, points[0].y);
         for (int i = 1; i < points.length; i++)
             path.lineTo(points[i].x, points[i].y);
         path.close();
     }
 
-    public PointF[] getPoints() {
-        return points;
-    }
-
-    public PointF[] getPoints(RectF rectF) {
-        return getEqualDivisionPoints(rectF);
-    }
-
-    public PointF[] getEqualDivisionPoints(RectF rectF) {
-        return getEqualDivisionPoints(rectF, 90f);
-    }
-
-    public PointF[] getEqualDivisionPoints(RectF rectF, float startAngle) {
-        return getEqualDivisionPoints(points, rectF, startAngle);
+    public PointF[] getPoints(RectF rectF, PointF[] points) {
+        return getEqualDivisionPoints(points, rectF, 90f);
     }
 
     public final PointF[] getEqualDivisionPoints(PointF[] points, RectF rectF, float startAngle) {

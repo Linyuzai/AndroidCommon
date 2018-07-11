@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import eason.linyuzai.easonicon.open.Painter;
-import eason.linyuzai.easonicon.open.PainterSet;
 import eason.linyuzai.easonicon.open.PainterInterceptor;
+import eason.linyuzai.easonicon.open.PainterSet;
 import eason.linyuzai.easonicon.painter.interceptor.mode.PorterDuffModeInterceptor;
 import eason.linyuzai.easonicon.painter.interceptor.rect.PainterSetRectSupportInterceptor;
 
@@ -272,6 +272,16 @@ public class EasonPainterSet extends EasonPainter implements PainterSet {
     @Override
     public void setPercentY(float percentY) {
         rectSupportInterceptor.setPercentY(percentY);
+    }
+
+    @Override
+    public void recursivePainter(OnRecursivePainterCallback callback) {
+        for (Painter painter : painters) {
+            callback.onPainterRecursive(painter);
+            if (painter instanceof PainterSet) {
+                ((PainterSet) painter).recursivePainter(callback);
+            }
+        }
     }
 
     @Override

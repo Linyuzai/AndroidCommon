@@ -31,6 +31,8 @@ import eason.linyuzai.easonicon.annotation.RoundRectField;
 import eason.linyuzai.easonicon.annotation.TextField;
 import eason.linyuzai.easonicon.open.Painter;
 import eason.linyuzai.easonicon.open.PainterSet;
+import eason.linyuzai.easonicon.open.support.AuxiliaryColorSupport;
+import eason.linyuzai.easonicon.open.support.RoundRectSupport;
 import eason.linyuzai.easonicon.painter.EasonPainterSet;
 import eason.linyuzai.easonicon.painter.basic.NonePainter;
 import eason.linyuzai.easonicon.painter.basic.arc.ArcPainter;
@@ -274,6 +276,11 @@ public class EasonIcon extends View {
 
     public void setAuxiliaryColor(int auxiliaryColor) {
         this.auxiliaryColor = auxiliaryColor;
+        painterSet.recursivePainter(painter -> {
+            if (painter instanceof AuxiliaryColorSupport) {
+                ((AuxiliaryColorSupport) painter).setAuxiliaryColor(auxiliaryColor);
+            }
+        });
     }
 
     public float getAuxiliaryScale() {
@@ -290,6 +297,11 @@ public class EasonIcon extends View {
 
     public void setLeftTopRound(float leftTopRound) {
         this.leftTopRound = leftTopRound;
+        painterSet.recursivePainter(painter -> {
+            if (painter instanceof RoundRectSupport) {
+                ((RoundRectSupport) painter).setLeftTop(leftTopRound);
+            }
+        });
     }
 
     public float getLeftBottomRound() {
@@ -298,6 +310,11 @@ public class EasonIcon extends View {
 
     public void setLeftBottomRound(float leftBottomRound) {
         this.leftBottomRound = leftBottomRound;
+        painterSet.recursivePainter(painter -> {
+            if (painter instanceof RoundRectSupport) {
+                ((RoundRectSupport) painter).setLeftBottom(leftBottomRound);
+            }
+        });
     }
 
     public float getRightTopRound() {
@@ -306,6 +323,11 @@ public class EasonIcon extends View {
 
     public void setRightTopRound(float rightTopRound) {
         this.rightTopRound = rightTopRound;
+        painterSet.recursivePainter(painter -> {
+            if (painter instanceof RoundRectSupport) {
+                ((RoundRectSupport) painter).setRightTop(rightTopRound);
+            }
+        });
     }
 
     public float getRightBottomRound() {
@@ -314,6 +336,11 @@ public class EasonIcon extends View {
 
     public void setRightBottomRound(float rightBottomRound) {
         this.rightBottomRound = rightBottomRound;
+        painterSet.recursivePainter(painter -> {
+            if (painter instanceof RoundRectSupport) {
+                ((RoundRectSupport) painter).setRightBottom(rightBottomRound);
+            }
+        });
     }
 
     public float getStartAngle() {

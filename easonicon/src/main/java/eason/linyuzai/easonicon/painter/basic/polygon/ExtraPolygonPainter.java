@@ -2,7 +2,6 @@ package eason.linyuzai.easonicon.painter.basic.polygon;
 
 import android.graphics.PointF;
 import android.graphics.RectF;
-import android.util.Log;
 
 import eason.linyuzai.easonicon.annotation.EdgeCountField;
 import eason.linyuzai.easonicon.annotation.ExtraOffsetField;
@@ -57,12 +56,12 @@ public class ExtraPolygonPainter extends PolygonPainter {
     }
 
     @Override
-    public PointF[] getPoints(RectF rectF) {
-        PointF[] points = getEqualDivisionPoints(rectF);
-        PointF[] extras = getExtraPoints(points, this.extras, rectF);
+    public PointF[] getPoints(RectF rectF, PointF[] points) {
+        PointF[] equals = getEqualDivisionPoints(points, rectF, 90f);
+        PointF[] extras = getExtraPoints(equals, this.extras, rectF);
         //PointF[] total = new PointF[points.length + extras.length];
         for (int i = 0; i < total.length; i += 2) {
-            total[i] = points[i / 2];
+            total[i] = equals[i / 2];
             total[i + 1] = extras[i / 2];
         }
         return total;

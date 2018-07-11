@@ -29,8 +29,7 @@ public class QuadPolygonPainter extends ExtraPolygonPainter {
     }
 
     @Override
-    public void configurePath(Path path, RectF draw, RectF original, Paint paint) {
-        PointF[] points = getPoints(draw);
+    public void configurePolygonPath(Path path, RectF draw, RectF original, Paint paint, PointF[] points) {
         path.moveTo(points[0].x, points[0].y);
         for (int i = 1; i < points.length; i += 2) {
             if (i == points.length - 1) {

@@ -3,18 +3,18 @@ package eason.linyuzai.easonicon.painter.combine;
 import android.graphics.PointF;
 import android.graphics.RectF;
 
-import eason.linyuzai.easonicon.painter.EasonPainterSet;
+import eason.linyuzai.easonicon.open.support.AuxiliaryColorSupport;
+import eason.linyuzai.easonicon.painter.SupportEasonPainterSet;
 import eason.linyuzai.easonicon.painter.basic.circle.CirclePainter;
 import eason.linyuzai.easonicon.painter.basic.polygon.PolygonPainter;
 import eason.linyuzai.easonicon.painter.combine.interceptor.AuxiliaryColorInterceptor;
 
-public class SignPainter extends EasonPainterSet {
+public class SignPainter extends SupportEasonPainterSet implements AuxiliaryColorSupport {
 
     public SignPainter(int auxiliaryColor) {
         PolygonPainter polygon = new PolygonPainter(6) {
             @Override
-            public PointF[] getPoints(RectF rectF) {
-                PointF[] points = getPoints();
+            public PointF[] getPoints(RectF rectF, PointF[] points) {
                 points[0].set(0f, 0f);
                 points[1].set(0f, rectF.height() * 0.4f);
                 points[2].set(rectF.width() * 0.6f, rectF.height());

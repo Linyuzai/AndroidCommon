@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -36,7 +37,6 @@ public class IconCreateActivity extends EasonActivity {
     LibraryHelper.LibraryParam param;
 
     private DrawerLayout drawerLayout;
-    private View drawerSwitch;
     private TextView targetName;
     private TargetAdapter targetAdapter;
     private AlertDialog dialog;
@@ -46,7 +46,6 @@ public class IconCreateActivity extends EasonActivity {
     private TargetEntity currentEntity;
     private int selectIndex = 0;
 
-    private ViewGroup controlGroup;
     private List<AbsController> controllers = new ArrayList<>();
 
     @Override
@@ -60,25 +59,7 @@ public class IconCreateActivity extends EasonActivity {
         creator = id(R.id.creator);
         drawerLayout = id(R.id.drawer);
         drawerLayout.setScrimColor(Color.TRANSPARENT);
-        drawerLayout.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                //drawerSwitch.setType(EasonIcon.Type.NEXT);
-                //drawerSwitch.update();
-            }
-
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                //drawerSwitch.setType(EasonIcon.Type.BACK);
-                //drawerSwitch.update();
-            }
-
-            @Override
-            public void onDrawerStateChanged(int newState) {
-                super.onDrawerStateChanged(newState);
-            }
-        });
-        drawerSwitch = id(R.id.drawer_switch);
+        View drawerSwitch = id(R.id.drawer_switch);
         drawerSwitch.setOnClickListener(v -> {
             if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
                 drawerLayout.closeDrawer(Gravity.LEFT);
@@ -104,28 +85,13 @@ public class IconCreateActivity extends EasonActivity {
     }
 
     private void initController() {
-        controlGroup = id(R.id.control_group);
-        /*CenterPercentController centerPercentController = new CenterPercentController(this, creator);
-        controllers.add(centerPercentController);
-        controlGroup.addView(centerPercentController);
-        CenterPercentXController centerPercentXController = new CenterPercentXController(this, creator);
-        controllers.add(centerPercentXController);
-        controlGroup.addView(centerPercentXController);
-        CenterPercentYController centerPercentYController = new CenterPercentYController(this, creator);
-        controllers.add(centerPercentYController);
-        controlGroup.addView(centerPercentYController);*/
-        /*PercentController percentController = new PercentController(this, creator);
-        controllers.add(percentController);
-        controlGroup.addView(percentController);*/
+        ViewGroup controlGroup = id(R.id.control_group);
         PercentXController percentXController = new PercentXController(this, creator);
         controllers.add(percentXController);
         controlGroup.addView(percentXController);
         PercentYController percentYController = new PercentYController(this, creator);
         controllers.add(percentYController);
         controlGroup.addView(percentYController);
-        /*OffsetPercentController offsetPercentController = new OffsetPercentController(this, creator);
-        controllers.add(offsetPercentController);
-        controlGroup.addView(offsetPercentController);*/
         OffsetPercentXController offsetPercentXController = new OffsetPercentXController(this, creator);
         controllers.add(offsetPercentXController);
         controlGroup.addView(offsetPercentXController);
@@ -170,6 +136,20 @@ public class IconCreateActivity extends EasonActivity {
         dialog = builder.create();
     }
 
+    private static class TargetViewHolder extends RecyclerView.ViewHolder {
+
+        private TextView text;
+        private EasonIcon sign;
+        private EasonIcon remove;
+
+        private TargetViewHolder(View itemView) {
+            super(itemView);
+            text = (TextView) ((ViewGroup) itemView).getChildAt(0);
+            sign = (EasonIcon) ((ViewGroup) itemView).getChildAt(1);
+            remove = (EasonIcon) ((ViewGroup) itemView).getChildAt(2);
+        }
+    }
+
     private class TargetAdapter extends RecyclerView.Adapter<TargetViewHolder> {
 
         private int select = -1;
@@ -180,7 +160,7 @@ public class IconCreateActivity extends EasonActivity {
 
         private List<TargetEntity> targetEntities = new ArrayList<>();
 
-        public TargetAdapter() {
+        private TargetAdapter() {
             defaultColor = Color.parseColor("#888888");
             selectColor = color(R.color.colorPrimaryDark);
             addTarget(new TargetEntity(creator));
@@ -189,25 +169,49 @@ public class IconCreateActivity extends EasonActivity {
         @NonNull
         @Override
         public TargetViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            LinearLayout linearLayout = new LinearLayout(parent.getContext());
+            linearLayout.setOrientation(LinearLayout.HORIZONTAL);
             TextView textView = new TextView(parent.getContext());
             textView.setGravity(Gravity.CENTER);
             textView.setTextSize(15f);
-            textView.setLayoutParams(new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, dip(40)));
-            return new TargetViewHolder(textView);
+            linearLayout.addView(textView, new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1f));
+            EasonIcon sign = new EasonIcon(parent.getContext());
+            sign.setType(EasonIcon.Type.SIGN);
+            sign.getPainterSet().setCenterPercent(0.4f);
+            linearLayout.addView(sign, new LinearLayout.LayoutParams(dip(40), dip(40)));
+            EasonIcon remove = new EasonIcon(parent.getContext());
+            remove.setType(EasonIcon.Type.ERROR);
+            remove.getPainterSet().setCenterPercent(0.3f);
+            linearLayout.addView(remove, new LinearLayout.LayoutParams(dip(40), dip(40)));
+            linearLayout.setLayoutParams(new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, dip(40)));
+            return new TargetViewHolder(linearLayout);
         }
 
         @Override
         public void onBindViewHolder(@NonNull TargetViewHolder holder, int position) {
             TargetEntity entity = targetEntities.get(position);
             if (entity.isSelect()) {
-                holder.text.setBackgroundColor(selectColor);
+                holder.itemView.setBackgroundColor(selectColor);
                 holder.text.setTextColor(Color.WHITE);
+                holder.sign.setColor(Color.WHITE, true);
+                holder.remove.setColor(Color.WHITE);
             } else {
-                holder.text.setBackgroundColor(Color.WHITE);
+                holder.itemView.setBackgroundColor(Color.WHITE);
                 holder.text.setTextColor(defaultColor);
+                holder.sign.setColor(selectColor, true);
+                holder.remove.setColor(selectColor);
             }
             holder.text.setText(entity.getTargetName());
             holder.text.setOnClickListener(v -> setSelect(position));
+
+            if (position == 0) {
+                holder.sign.setVisibility(View.GONE);
+                holder.remove.setVisibility(View.GONE);
+            } else {
+                holder.sign.setVisibility(View.VISIBLE);
+                holder.remove.setVisibility(View.VISIBLE);
+            }
+
         }
 
         @Override
@@ -215,7 +219,7 @@ public class IconCreateActivity extends EasonActivity {
             return targetEntities.size();
         }
 
-        public void addTarget(TargetEntity entity) {
+        private void addTarget(TargetEntity entity) {
             targetEntities.add(entity);
             notifyItemInserted(targetEntities.size() - 1);
             if (select != -1) {
@@ -228,7 +232,7 @@ public class IconCreateActivity extends EasonActivity {
             updateTarget(currentEntity);
         }
 
-        public void setSelect(int position) {
+        private void setSelect(int position) {
             if (select != -1) {
                 targetEntities.get(select).setSelect(false);
                 notifyItemChanged(select);
@@ -239,16 +243,6 @@ public class IconCreateActivity extends EasonActivity {
             currentEntity = targetEntities.get(select);
             targetName.setText(currentEntity.getTargetName());
             updateTarget(currentEntity);
-        }
-    }
-
-    private static class TargetViewHolder extends RecyclerView.ViewHolder {
-
-        private TextView text;
-
-        private TargetViewHolder(View itemView) {
-            super(itemView);
-            text = (TextView) itemView;
         }
     }
 }

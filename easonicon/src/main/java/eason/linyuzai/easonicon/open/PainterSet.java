@@ -39,5 +39,12 @@ public interface PainterSet extends Painter {
 
     void clearInterceptor(boolean recursiveSet);
 
+    void recursivePainter(OnRecursivePainterCallback callback);
+
     float getDefaultPercent();
+
+    @FunctionalInterface
+    interface OnRecursivePainterCallback {
+        void onPainterRecursive(Painter painter);
+    }
 }

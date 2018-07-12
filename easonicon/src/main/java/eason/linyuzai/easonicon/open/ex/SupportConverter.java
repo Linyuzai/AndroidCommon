@@ -19,12 +19,24 @@ public interface SupportConverter {
         return (ArcSupport) this;
     }
 
+    default ArcSupport toArcSupportUnforced() {
+        if (isSupportArc())
+            return toArcSupport();
+        return null;
+    }
+
     default boolean isSupportAuxiliaryScale() {
         return (this instanceof AuxiliaryScaleSupport);
     }
 
     default AuxiliaryScaleSupport toAuxiliaryScaleSupport() {
         return (AuxiliaryScaleSupport) this;
+    }
+
+    default AuxiliaryScaleSupport toAuxiliaryScaleSupportUnforced() {
+        if (isSupportAuxiliaryScale())
+            return toAuxiliaryScaleSupport();
+        return null;
     }
 
     default boolean isSupportAuxiliaryColor() {
@@ -35,12 +47,24 @@ public interface SupportConverter {
         return (AuxiliaryColorSupport) this;
     }
 
+    default AuxiliaryColorSupport toAuxiliaryColorSupportUnforced() {
+        if (isSupportAuxiliaryColor())
+            return toAuxiliaryColorSupport();
+        return null;
+    }
+
     default boolean isSupportBitmap() {
         return (this instanceof BitmapSupport);
     }
 
     default BitmapSupport toBitmapSupport() {
         return (BitmapSupport) this;
+    }
+
+    default BitmapSupport toBitmapSupportUnforced() {
+        if (isSupportBitmap())
+            return toBitmapSupport();
+        return null;
     }
 
     default boolean isSupportEdgeCount() {
@@ -51,12 +75,24 @@ public interface SupportConverter {
         return (EdgeCountSupport) this;
     }
 
+    default EdgeCountSupport toEdgeCountSupportUnforced() {
+        if (isSupportEdgeCount())
+            return toEdgeCountSupport();
+        return null;
+    }
+
     default boolean isSupportExtraOffset() {
         return (this instanceof ExtraOffsetSupport);
     }
 
     default ExtraOffsetSupport toExtraOffsetSupport() {
         return (ExtraOffsetSupport) this;
+    }
+
+    default ExtraOffsetSupport toExtraOffsetSupportUnforced() {
+        if (isSupportExtraOffset())
+            return toExtraOffsetSupport();
+        return null;
     }
 
     default boolean isSupportPenSizeScale() {
@@ -67,6 +103,12 @@ public interface SupportConverter {
         return (PenSizeScaleSupport) this;
     }
 
+    default PenSizeScaleSupport toPenSizeScaleSupportUnforced() {
+        if (isSupportPenSizeScale())
+            return toPenSizeScaleSupport();
+        return null;
+    }
+
     default boolean isSupportRoundRect() {
         return (this instanceof RoundRectSupport);
     }
@@ -75,11 +117,23 @@ public interface SupportConverter {
         return (RoundRectSupport) this;
     }
 
+    default RoundRectSupport toRoundRectSupportUnforced() {
+        if (isSupportRoundRect())
+            return toRoundRectSupport();
+        return null;
+    }
+
     default boolean isSupportText() {
         return (this instanceof TextSupport);
     }
 
     default TextSupport toTextSupport() {
         return (TextSupport) this;
+    }
+
+    default TextSupport toTextSupportUnforced() {
+        if (isSupportText())
+            return toTextSupport();
+        return null;
     }
 }

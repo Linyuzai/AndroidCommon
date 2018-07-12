@@ -1,65 +1,48 @@
 package eason.linyuzai.androidcommon.easonicon.controller;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
-import android.view.Gravity;
-import android.widget.LinearLayout;
 import android.widget.SeekBar;
-import android.widget.TextView;
 
+import eason.linyuzai.androidcommon.easonicon.entity.TargetEntity;
 import eason.linyuzai.easonicon.EasonIcon;
-import eason.linyuzai.easonicon.open.Painter;
-import eason.linyuzai.elib.component.EasonActivity;
 
-public class CenterPercentController extends LinearLayout implements AbsController {
-
-    private Painter painter;
+@SuppressLint("ViewConstructor")
+public class CenterPercentController extends AbsController {
 
     public CenterPercentController(Context context, EasonIcon icon) {
-        super(context);
-        painter = icon.getPainterSet();
-        setOrientation(LinearLayout.HORIZONTAL);
-        setGravity(Gravity.CENTER_VERTICAL);
-        EasonActivity eason = (EasonActivity) context;
-        int padding = eason.dip(8);
-        setPadding(padding, padding, padding, padding);
-        TextView textView = new TextView(context);
-        textView.setText("Center Percent:");
-        textView.setTextColor(Color.parseColor("#888888"));
-        textView.setTextSize(15f);
-        //textView.setBackgroundColor(Color.YELLOW);
-        addView(textView, new LayoutParams(eason.dip(AbsController.TEXT_WIDTH), LayoutParams.WRAP_CONTENT));
-        TextView value = new TextView(context);
-        value.setText("1");
-        value.setTextColor(Color.parseColor("#888888"));
-        value.setTextSize(15f);
-        //value.setBackgroundColor(Color.RED);
-        addView(value, new LayoutParams(eason.dip(AbsController.VALUE_WIDTH), LayoutParams.WRAP_CONTENT));
-        SeekBar seekBar = new SeekBar(context);
-        seekBar.setMax(100);
-        seekBar.setProgress(100);
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                float val = progress / 100f;
-                value.setText(String.valueOf(val));
-                painter.setCenterPercent(val);
-                if (icon.getType() != EasonIcon.Type.NONE) {
-                    icon.setType(icon.getType(), true);
-                }
-                icon.update();
-            }
+        super(context, icon);
+        addSeekBar();
+    }
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
+    @Override
+    public String getAttrName() {
+        return "Center Percent:";
+    }
 
-            }
+    @Override
+    public int getMaxProgress() {
+        return 200;
+    }
 
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
+    @Override
+    public int getInitProgress() {
+        return 100;
+    }
 
-            }
-        });
-        addView(seekBar, new LayoutParams(0, LayoutParams.WRAP_CONTENT, 1f));
+    @Override
+    public void updateProgress(SeekBar seekBar, TargetEntity entity) {
+
+    }
+
+    @Override
+    public void onUpdate(int progress) {
+        float val = progress / 100f;
+        setValue(String.valueOf(val));
+        painter().setCenterPercent(val);
+        /*if (icon().getType() != EasonIcon.Type.NONE) {
+            icon().setType(icon().getType(), true);
+        }*/
+        icon().update();
     }
 }

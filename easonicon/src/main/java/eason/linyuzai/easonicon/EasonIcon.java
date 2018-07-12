@@ -831,6 +831,14 @@ public class EasonIcon extends View {
         return type.getPainterClass().getAnnotation(cls) != null;
     }
 
+    public static void recursivePainter(Painter painter, PainterSet.OnRecursivePainterCallback callback) {
+        if (painter instanceof PainterSet) {
+            ((PainterSet) painter).recursivePainter(callback);
+        } else {
+            callback.onPainterRecursive(painter);
+        }
+    }
+
     public static void printStructure(Painter painter) {
         printStructure(painter, false);
     }

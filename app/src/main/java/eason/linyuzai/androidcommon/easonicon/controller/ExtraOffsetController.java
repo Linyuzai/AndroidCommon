@@ -1,59 +1,51 @@
 package eason.linyuzai.androidcommon.easonicon.controller;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
-import android.view.Gravity;
-import android.widget.LinearLayout;
 import android.widget.SeekBar;
-import android.widget.TextView;
 
+import eason.linyuzai.androidcommon.easonicon.entity.TargetEntity;
 import eason.linyuzai.easonicon.EasonIcon;
-import eason.linyuzai.elib.component.EasonActivity;
+import eason.linyuzai.easonicon.painter.SupportEasonPainterSet;
 
-public class ExtraOffsetController extends LinearLayout implements AbsController {
+@SuppressLint("ViewConstructor")
+public class ExtraOffsetController extends AbsController {
 
     public ExtraOffsetController(Context context, EasonIcon icon) {
-        super(context);
-        setOrientation(LinearLayout.HORIZONTAL);
-        setGravity(Gravity.CENTER_VERTICAL);
-        EasonActivity eason = (EasonActivity) context;
-        int padding = eason.dip(8);
-        setPadding(padding, padding, padding, padding);
-        TextView textView = new TextView(context);
-        textView.setText("Extra Offset:");
-        textView.setTextColor(Color.parseColor("#888888"));
-        textView.setTextSize(15f);
-        //textView.setBackgroundColor(Color.YELLOW);
-        addView(textView, new LayoutParams(eason.dip(AbsController.TEXT_WIDTH), LayoutParams.WRAP_CONTENT));
-        TextView value = new TextView(context);
-        value.setText("-4");
-        value.setTextColor(Color.parseColor("#888888"));
-        value.setTextSize(15f);
-        //value.setBackgroundColor(Color.RED);
-        addView(value, new LayoutParams(eason.dip(AbsController.VALUE_WIDTH), LayoutParams.WRAP_CONTENT));
-        SeekBar seekBar = new SeekBar(context);
-        seekBar.setMax(100);
-        seekBar.setProgress(48);
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                int val = (progress - 50) * 2;
-                value.setText(String.valueOf(val));
-                icon.setExtraOffset(eason.dip(val));
-                icon.setType(icon.getType(), true);
-                icon.update();
-            }
+        super(context, icon);
+        addSeekBar();
+    }
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
+    @Override
+    public String getAttrName() {
+        return "Extra Offset:";
+    }
 
-            }
+    @Override
+    public int getMaxProgress() {
+        return 200;
+    }
 
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
+    @Override
+    public int getInitProgress() {
+        return 96;
+    }
 
-            }
+    @Override
+    public void updateProgress(SeekBar seekBar, TargetEntity entity) {
+
+    }
+
+    @Override
+    public void onUpdate(int progress) {
+        int val = progress - 100;
+        setValue(String.valueOf(val));
+        EasonIcon.recursivePainter(painter(), painter -> {
+            if (painter instanceof SupportEasonPainterSet && painter.isSupportExtraOffset())
+                painter.toExtraOffsetSupport().setExtraOffset(eason().dip(val));
         });
-        addView(seekBar, new LayoutParams(0, LayoutParams.WRAP_CONTENT, 1f));
+        //icon().setExtraOffset(eason().dip(val));
+        //icon().setType(icon().getType(), true);
+        icon().update();
     }
 }

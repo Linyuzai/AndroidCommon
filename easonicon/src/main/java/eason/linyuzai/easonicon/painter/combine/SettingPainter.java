@@ -11,26 +11,24 @@ import eason.linyuzai.easonicon.open.Painter;
 import eason.linyuzai.easonicon.open.PainterInterceptor;
 import eason.linyuzai.easonicon.open.support.AuxiliaryColorSupport;
 import eason.linyuzai.easonicon.open.support.AuxiliaryScaleSupport;
+import eason.linyuzai.easonicon.open.support.PenSizeScaleSupport;
 import eason.linyuzai.easonicon.painter.SupportEasonPainterSet;
 import eason.linyuzai.easonicon.painter.basic.circle.CirclePainter;
 import eason.linyuzai.easonicon.painter.basic.polygon.ExtraPolygonPainter;
 import eason.linyuzai.easonicon.painter.combine.interceptor.AuxiliaryColorInterceptor;
+import eason.linyuzai.easonicon.painter.combine.interceptor.PenSizeScaleInterceptor;
 
 @AuxiliaryScaleField
 @AuxiliaryColorField
 @PenSizeScaleField
-public class SettingPainter extends SupportEasonPainterSet implements AuxiliaryScaleSupport, AuxiliaryColorSupport {
-
-    private ExtraPolygonPainter polygon;
-    private float penSizeScale;
+public class SettingPainter extends SupportEasonPainterSet implements AuxiliaryScaleSupport, AuxiliaryColorSupport, PenSizeScaleSupport {
 
     public SettingPainter(int auxiliaryColor) {
         this(0.5f, auxiliaryColor, 1f);
     }
 
     public SettingPainter(float auxiliaryScale, int auxiliaryColor, float penSizeScale) {
-        setPenSizeScale(penSizeScale);
-        polygon = new ExtraPolygonPainter(8);
+        ExtraPolygonPainter polygon = new ExtraPolygonPainter(8);
         polygon.setCenterPercent(0.5f);
         addPainter(polygon);
         Painter painter = new CirclePainter();
@@ -38,8 +36,9 @@ public class SettingPainter extends SupportEasonPainterSet implements AuxiliaryS
         setAuxiliaryScalePainter(painter);
         //setAuxiliaryScale(auxiliaryScale);
         addPainter(painter);
-        addInterceptor(new SettingInterceptor());
+        addInterceptor(new SettingInterceptor(polygon));
         addInterceptor(new AuxiliaryColorInterceptor(auxiliaryColor));
+        addInterceptor(new PenSizeScaleInterceptor(painter, penSizeScale, 0.1f));
     }
 
     @Override
@@ -52,26 +51,23 @@ public class SettingPainter extends SupportEasonPainterSet implements AuxiliaryS
         super.setAuxiliaryScale(auxiliaryScale * 0.7f);
     }
 
-    public float getPenSizeScale() {
-        return penSizeScale;
-    }
-
-    public void setPenSizeScale(float penSizeScale) {
-        this.penSizeScale = penSizeScale;
-    }
-
     @Override
     public float getDefaultPercent() {
         return 0.5f;
     }
 
-    private class SettingInterceptor implements PainterInterceptor {
+    public static class SettingInterceptor implements PainterInterceptor {
+
+        private ExtraPolygonPainter polygon;
 
         private RectF rectF = new RectF();
         private float polygonPenSize;
-        private float circlePenSize;
         private Paint.Style style;
         private Paint.Cap cap;
+
+        public SettingInterceptor(ExtraPolygonPainter polygon) {
+            this.polygon = polygon;
+        }
 
         @Override
         public void beforeDraw(Painter painter, Canvas canvas, Paint paint, RectF rectF, int index) {
@@ -91,9 +87,6 @@ public class SettingPainter extends SupportEasonPainterSet implements AuxiliaryS
                 polygonPenSize = paint.getStrokeWidth();
                 polygon.setExtraOffset(-size * 0.56f);
                 paint.setStrokeWidth(size * 0.11f);
-            } else if (painter instanceof CirclePainter) {
-                circlePenSize = paint.getStrokeWidth();
-                paint.setStrokeWidth(size * 0.1f * getPenSizeScale());
             }
         }
 
@@ -104,8 +97,6 @@ public class SettingPainter extends SupportEasonPainterSet implements AuxiliaryS
             paint.setStrokeCap(cap);
             if (painter instanceof ExtraPolygonPainter) {
                 paint.setStrokeWidth(polygonPenSize);
-            } else if (painter instanceof CirclePainter) {
-                paint.setStrokeWidth(circlePenSize);
             }
         }
     }

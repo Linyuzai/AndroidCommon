@@ -10,16 +10,16 @@ import eason.linyuzai.easonicon.annotation.PenSizeScaleField;
 import eason.linyuzai.easonicon.open.Painter;
 import eason.linyuzai.easonicon.open.PainterInterceptor;
 import eason.linyuzai.easonicon.open.support.EdgeCountSupport;
+import eason.linyuzai.easonicon.open.support.PenSizeScaleSupport;
 import eason.linyuzai.easonicon.painter.SupportEasonPainterSet;
 import eason.linyuzai.easonicon.painter.basic.polygon.QuadPolygonPainter;
+import eason.linyuzai.easonicon.painter.combine.interceptor.PenSizeScaleInterceptor;
 
 @EdgeCountField
 @PenSizeScaleField
-public class QuadFlower extends SupportEasonPainterSet implements EdgeCountSupport {
+public class QuadFlower extends SupportEasonPainterSet implements EdgeCountSupport, PenSizeScaleSupport {
 
     private QuadPolygonPainter polygon;
-
-    private float penSizeScale = 1f;
 
     public QuadFlower(@Size(min = 5, max = 10) int edgeCount) {
         this(edgeCount, 1f);
@@ -27,10 +27,10 @@ public class QuadFlower extends SupportEasonPainterSet implements EdgeCountSuppo
 
     public QuadFlower(@Size(min = 5, max = 10) int edgeCount, float penSizeScale) {
         polygon = new QuadPolygonPainter();
-        setEdgeCount(edgeCount);
-        setPenSizeScale(penSizeScale);
         addPainter(polygon);
+        setEdgeCount(edgeCount);
         addInterceptor(new QuadFlowerInterceptor());
+        addInterceptor(new PenSizeScaleInterceptor(polygon, penSizeScale, 0.03f));
     }
 
     @Override
@@ -60,33 +60,19 @@ public class QuadFlower extends SupportEasonPainterSet implements EdgeCountSuppo
         return 0f;
     }
 
-    public float getPenSizeScale() {
-        return penSizeScale;
-    }
-
-    public void setPenSizeScale(float penSizeScale) {
-        this.penSizeScale = penSizeScale;
-    }
-
     private class QuadFlowerInterceptor implements PainterInterceptor {
-
-        private float penSize;
 
         @Override
         public void beforeDraw(Painter painter, Canvas canvas, Paint paint, RectF rectF, int index) {
             if (painter instanceof QuadPolygonPainter) {
                 float size = Math.min(rectF.width(), rectF.height());
                 polygon.setExtraOffset(-1f * getExtraOffsetRate(polygon.getEdgeCount()) * size);
-                penSize = paint.getStrokeWidth();
-                paint.setStrokeWidth(Math.min(rectF.width(), rectF.height()) * 0.03f * getPenSizeScale());
             }
         }
 
         @Override
         public void afterDraw(Painter painter, Canvas canvas, Paint paint, RectF rectF, int index) {
-            if (painter instanceof QuadPolygonPainter) {
-                paint.setStrokeWidth(penSize);
-            }
+
         }
     }
 }

@@ -5,11 +5,12 @@ import android.graphics.Bitmap;
 import eason.linyuzai.easonicon.open.Painter;
 import eason.linyuzai.easonicon.open.PainterInterceptor;
 import eason.linyuzai.easonicon.open.support.ArcSupport;
+import eason.linyuzai.easonicon.open.support.AuxiliaryColorSupport;
 import eason.linyuzai.easonicon.open.support.BitmapSupport;
 import eason.linyuzai.easonicon.open.support.EdgeCountSupport;
 import eason.linyuzai.easonicon.open.support.ExtraOffsetSupport;
+import eason.linyuzai.easonicon.open.support.PenSizeScaleSupport;
 import eason.linyuzai.easonicon.open.support.RoundRectSupport;
-import eason.linyuzai.easonicon.painter.combine.interceptor.AuxiliaryColorInterceptor;
 
 public class SupportEasonPainterSet extends EasonPainterSet {
 
@@ -18,10 +19,11 @@ public class SupportEasonPainterSet extends EasonPainterSet {
 
     private ArcSupport arcSupport;
     private Painter auxiliaryScalePainter;
-    private AuxiliaryColorInterceptor auxiliaryColorInterceptor;
+    private AuxiliaryColorSupport auxiliaryColorSupport;
     private BitmapSupport bitmapSupport;
     private EdgeCountSupport edgeCountSupport;
     private ExtraOffsetSupport extraOffsetSupport;
+    private PenSizeScaleSupport penSizeScaleSupport;
     private RoundRectSupport roundRectSupport;
 
     @Override
@@ -52,15 +54,19 @@ public class SupportEasonPainterSet extends EasonPainterSet {
 
     @Override
     public void addInterceptor(PainterInterceptor interceptor, boolean recursiveSet) {
-        if (interceptor instanceof AuxiliaryColorInterceptor)
-            setAuxiliaryColorInterceptor((AuxiliaryColorInterceptor) interceptor);
+        if (interceptor.isSupportAuxiliaryColor())
+            setAuxiliaryColorSupport(interceptor.toAuxiliaryColorSupport());
+        if (interceptor.isSupportPenSizeScale())
+            setPenSizeScaleSupport(interceptor.toPenSizeScaleSupport());
         super.addInterceptor(interceptor, recursiveSet);
     }
 
     @Override
     public void addInterceptor(int index, PainterInterceptor interceptor, boolean recursiveSet) {
-        if (interceptor instanceof AuxiliaryColorInterceptor)
-            setAuxiliaryColorInterceptor((AuxiliaryColorInterceptor) interceptor);
+        if (interceptor.isSupportAuxiliaryColor())
+            setAuxiliaryColorSupport(interceptor.toAuxiliaryColorSupport());
+        if (interceptor.isSupportPenSizeScale())
+            setPenSizeScaleSupport(interceptor.toPenSizeScaleSupport());
         super.addInterceptor(index, interceptor, recursiveSet);
     }
 
@@ -133,23 +139,23 @@ public class SupportEasonPainterSet extends EasonPainterSet {
     //-------auxiliaryScale---------//
     //-------auxiliaryColor---------//
 
-    public void setAuxiliaryColorInterceptor(AuxiliaryColorInterceptor auxiliaryColorInterceptor) {
-        this.auxiliaryColorInterceptor = auxiliaryColorInterceptor;
+    public AuxiliaryColorSupport getAuxiliaryColorSupport() {
+        return auxiliaryColorSupport;
     }
 
-    public AuxiliaryColorInterceptor getAuxiliaryColorInterceptor() {
-        return auxiliaryColorInterceptor;
+    public void setAuxiliaryColorSupport(AuxiliaryColorSupport auxiliaryColorSupport) {
+        this.auxiliaryColorSupport = auxiliaryColorSupport;
     }
 
     public int getAuxiliaryColor() {
         if (isSupportAuxiliaryColor())
-            return auxiliaryColorInterceptor.getAuxiliaryColor();
+            return auxiliaryColorSupport.getAuxiliaryColor();
         return NOT_SUPPORT_INT;
     }
 
     public void setAuxiliaryColor(int color) {
         if (isSupportAuxiliaryColor())
-            auxiliaryColorInterceptor.setAuxiliaryColor(color);
+            auxiliaryColorSupport.setAuxiliaryColor(color);
     }
 
     //-------auxiliaryColor---------//
@@ -219,6 +225,28 @@ public class SupportEasonPainterSet extends EasonPainterSet {
     }
 
     //-------extraOffset---------//
+    //-------penSizeScale---------//
+
+    public PenSizeScaleSupport getPenSizeScaleSupport() {
+        return penSizeScaleSupport;
+    }
+
+    public void setPenSizeScaleSupport(PenSizeScaleSupport penSizeScaleSupport) {
+        this.penSizeScaleSupport = penSizeScaleSupport;
+    }
+
+    public float getPenSizeScale() {
+        if (isSupportPenSizeScale())
+            return penSizeScaleSupport.getPenSizeScale();
+        return NOT_SUPPORT_FLOAT;
+    }
+
+    public void setPenSizeScale(float penSizeScale) {
+        if (isSupportPenSizeScale())
+            penSizeScaleSupport.setPenSizeScale(penSizeScale);
+    }
+
+    //-------penSizeScale---------//
     //-------roundRect---------//
 
     public void setRoundRectSupport(RoundRectSupport roundRectSupport) {

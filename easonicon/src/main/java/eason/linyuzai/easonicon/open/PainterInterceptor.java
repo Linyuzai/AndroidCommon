@@ -4,12 +4,12 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
-import eason.linyuzai.easonicon.open.Painter;
+import eason.linyuzai.easonicon.open.support.SupportConverter;
 
 /**
  * 绘制拦截器
  */
-public interface PainterInterceptor {
+public interface PainterInterceptor extends SupportConverter {
     /**
      * 绘制之前
      *

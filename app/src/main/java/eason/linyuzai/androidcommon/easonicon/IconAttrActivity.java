@@ -1,6 +1,7 @@
 package eason.linyuzai.androidcommon.easonicon;
 
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -73,6 +74,9 @@ public class IconAttrActivity extends EasonActivity {
             Drawable drawable = drawable(R.mipmap.pic);
             Bitmap bitmap = BitmapPainter.getBitmapFromDrawable(drawable);
             icon.setBitmap(bitmap);
+        }
+        if (EasonIcon.getType(type) == EasonIcon.Type.SETTING) {
+            icon.setAuxiliaryColor(Color.WHITE);
         }
         icon.setType(type);
         ViewGroup group = id(R.id.op);

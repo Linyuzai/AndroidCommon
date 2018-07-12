@@ -3,7 +3,7 @@ package eason.linyuzai.easonicon.painter.interceptor.rect;
 import android.graphics.RectF;
 
 import eason.linyuzai.easonicon.open.Painter;
-import eason.linyuzai.easonicon.open.support.RectSupport;
+import eason.linyuzai.easonicon.open.ex.RectSupport;
 import eason.linyuzai.easonicon.painter.EasonPainter;
 import eason.linyuzai.easonicon.painter.EasonPainterSet;
 

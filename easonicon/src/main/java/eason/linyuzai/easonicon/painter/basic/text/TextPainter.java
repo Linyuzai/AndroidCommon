@@ -5,10 +5,11 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 
 import eason.linyuzai.easonicon.annotation.TextField;
+import eason.linyuzai.easonicon.open.support.TextSupport;
 import eason.linyuzai.easonicon.painter.EasonPainter;
 
 @TextField
-public class TextPainter extends EasonPainter {
+public class TextPainter extends EasonPainter implements TextSupport {
     private String text;
     private boolean isDefaultSize = true;
     private float penSize;
@@ -37,10 +38,12 @@ public class TextPainter extends EasonPainter {
         }
     }
 
+    @Override
     public String getText() {
         return text;
     }
 
+    @Override
     public void setText(String text) {
         this.text = text;
     }

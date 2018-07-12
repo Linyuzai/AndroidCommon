@@ -1,4 +1,14 @@
-package eason.linyuzai.easonicon.open.support;
+package eason.linyuzai.easonicon.open.ex;
+
+import eason.linyuzai.easonicon.open.support.ArcSupport;
+import eason.linyuzai.easonicon.open.support.AuxiliaryColorSupport;
+import eason.linyuzai.easonicon.open.support.AuxiliaryScaleSupport;
+import eason.linyuzai.easonicon.open.support.BitmapSupport;
+import eason.linyuzai.easonicon.open.support.EdgeCountSupport;
+import eason.linyuzai.easonicon.open.support.ExtraOffsetSupport;
+import eason.linyuzai.easonicon.open.support.PenSizeScaleSupport;
+import eason.linyuzai.easonicon.open.support.RoundRectSupport;
+import eason.linyuzai.easonicon.open.support.TextSupport;
 
 public interface SupportConverter {
     default boolean isSupportArc() {
@@ -63,5 +73,13 @@ public interface SupportConverter {
 
     default RoundRectSupport toRoundRectSupport() {
         return (RoundRectSupport) this;
+    }
+
+    default boolean isSupportText() {
+        return (this instanceof TextSupport);
+    }
+
+    default TextSupport toTextSupport() {
+        return (TextSupport) this;
     }
 }

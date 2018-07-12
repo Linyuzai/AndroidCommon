@@ -424,6 +424,10 @@ public class EasonIcon extends View {
 
     public void setPenSizeScale(float penSizeScale) {
         this.penSizeScale = penSizeScale;
+        painterSet.recursivePainter(painter -> {
+            if (painter.isSupportPenSizeScale())
+                painter.toPenSizeScaleSupport().setPenSizeScale(penSizeScale);
+        });
     }
 
     public String getText() {
@@ -432,6 +436,10 @@ public class EasonIcon extends View {
 
     public void setText(String text) {
         this.text = text;
+        painterSet.recursivePainter(painter -> {
+            if (painter.isSupportText())
+                painter.toTextSupport().setText(text);
+        });
     }
 
     /**

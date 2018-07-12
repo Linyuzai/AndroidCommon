@@ -11,6 +11,7 @@ import eason.linyuzai.easonicon.open.support.EdgeCountSupport;
 import eason.linyuzai.easonicon.open.support.ExtraOffsetSupport;
 import eason.linyuzai.easonicon.open.support.PenSizeScaleSupport;
 import eason.linyuzai.easonicon.open.support.RoundRectSupport;
+import eason.linyuzai.easonicon.open.support.TextSupport;
 
 public class SupportEasonPainterSet extends EasonPainterSet {
 
@@ -25,6 +26,7 @@ public class SupportEasonPainterSet extends EasonPainterSet {
     private ExtraOffsetSupport extraOffsetSupport;
     private PenSizeScaleSupport penSizeScaleSupport;
     private RoundRectSupport roundRectSupport;
+    private TextSupport textSupport;
 
     @Override
     public void addPainter(Painter painter) {
@@ -34,8 +36,12 @@ public class SupportEasonPainterSet extends EasonPainterSet {
             setBitmapSupport(painter.toBitmapSupport());
         if (painter.isSupportEdgeCount())
             setEdgeCountSupport(painter.toEdgeCountSupport());
+        if (painter.isSupportExtraOffset())
+            setExtraOffsetSupport(painter.toExtraOffsetSupport());
         if (painter.isSupportRoundRect())
             setRoundRectSupport(painter.toRoundRectSupport());
+        if (painter.isSupportText())
+            setTextSupport(painter.toTextSupport());
         super.addPainter(painter);
     }
 
@@ -47,8 +53,12 @@ public class SupportEasonPainterSet extends EasonPainterSet {
             setBitmapSupport(painter.toBitmapSupport());
         if (painter.isSupportEdgeCount())
             setEdgeCountSupport(painter.toEdgeCountSupport());
+        if (painter.isSupportExtraOffset())
+            setExtraOffsetSupport(painter.toExtraOffsetSupport());
         if (painter.isSupportRoundRect())
             setRoundRectSupport(painter.toRoundRectSupport());
+        if (painter.isSupportText())
+            setTextSupport(painter.toTextSupport());
         super.addPainter(index, painter);
     }
 
@@ -302,4 +312,25 @@ public class SupportEasonPainterSet extends EasonPainterSet {
     }
 
     //-------roundRect---------//
+    //-------text---------//
+
+    public TextSupport getTextSupport() {
+        return textSupport;
+    }
+
+    public void setTextSupport(TextSupport textSupport) {
+        this.textSupport = textSupport;
+    }
+
+    public String getText() {
+        if (isSupportText())
+            return textSupport.getText();
+        return null;
+    }
+
+    public void setText(String text) {
+        if (isSupportText())
+            textSupport.setText(text);
+    }
+    //-------text---------//
 }

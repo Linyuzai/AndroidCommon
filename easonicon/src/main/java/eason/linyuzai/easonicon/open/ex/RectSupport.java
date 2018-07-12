@@ -1,4 +1,4 @@
-package eason.linyuzai.easonicon.open.support;
+package eason.linyuzai.easonicon.open.ex;
 
 public interface RectSupport {
     /**
@@ -54,13 +54,6 @@ public interface RectSupport {
     }
 
     /**
-     * 设置x百分比
-     *
-     * @param percentX x百分比
-     */
-    void setPercentX(float percentX);
-
-    /**
      * 获得x百分比
      *
      * @return x百分比
@@ -68,11 +61,11 @@ public interface RectSupport {
     float getPercentX();
 
     /**
-     * 设置y百分比
+     * 设置x百分比
      *
-     * @param percentY y百分比
+     * @param percentX x百分比
      */
-    void setPercentY(float percentY);
+    void setPercentX(float percentX);
 
     /**
      * 获得y百分比
@@ -82,11 +75,11 @@ public interface RectSupport {
     float getPercentY();
 
     /**
-     * 设置x偏移量
+     * 设置y百分比
      *
-     * @param offsetX x偏移量
+     * @param percentY y百分比
      */
-    void setOffsetX(float offsetX);
+    void setPercentY(float percentY);
 
     /**
      * 获得x偏移量
@@ -96,11 +89,11 @@ public interface RectSupport {
     float getOffsetX();
 
     /**
-     * 设置y偏移量
+     * 设置x偏移量
      *
-     * @param offsetY y偏移量
+     * @param offsetX x偏移量
      */
-    void setOffsetY(float offsetY);
+    void setOffsetX(float offsetX);
 
     /**
      * 获得y偏移量
@@ -110,11 +103,11 @@ public interface RectSupport {
     float getOffsetY();
 
     /**
-     * 设置x偏移量百分比
+     * 设置y偏移量
      *
-     * @param offsetPercentX x偏移量百分比
+     * @param offsetY y偏移量
      */
-    void setOffsetPercentX(float offsetPercentX);
+    void setOffsetY(float offsetY);
 
     /**
      * 获得x偏移量百分比
@@ -124,11 +117,11 @@ public interface RectSupport {
     float getOffsetPercentX();
 
     /**
-     * 设置y偏移量百分比
+     * 设置x偏移量百分比
      *
-     * @param offsetPercentY y偏移量百分比
+     * @param offsetPercentX x偏移量百分比
      */
-    void setOffsetPercentY(float offsetPercentY);
+    void setOffsetPercentX(float offsetPercentX);
 
     /**
      * 获得y偏移量百分比
@@ -136,4 +129,11 @@ public interface RectSupport {
      * @return y偏移量百分比
      */
     float getOffsetPercentY();
+
+    /**
+     * 设置y偏移量百分比
+     *
+     * @param offsetPercentY y偏移量百分比
+     */
+    void setOffsetPercentY(float offsetPercentY);
 }

@@ -3,6 +3,7 @@ package eason.linyuzai.androidcommon.easonicon.controller;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -133,7 +134,16 @@ public abstract class AbsController extends LinearLayout {
         this.entity = entity;
         painter = entity.getPainter();
         updateProgress(seekBar, entity);
+        if (ifVisible(painter)) {
+            setVisibility(View.VISIBLE);
+        } else {
+            setVisibility(View.GONE);
+        }
     }
 
     public abstract void updateProgress(SeekBar seekBar, TargetEntity entity);
+
+    public boolean ifVisible(Painter painter) {
+        return false;
+    }
 }

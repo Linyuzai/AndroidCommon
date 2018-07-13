@@ -6,6 +6,7 @@ import android.widget.SeekBar;
 
 import eason.linyuzai.androidcommon.easonicon.entity.TargetEntity;
 import eason.linyuzai.easonicon.EasonIcon;
+import eason.linyuzai.easonicon.open.Painter;
 
 @SuppressLint("ViewConstructor")
 public class PercentXController extends AbsController {
@@ -33,6 +34,11 @@ public class PercentXController extends AbsController {
     @Override
     public void updateProgress(SeekBar seekBar, TargetEntity entity) {
         seekBar.setProgress(entity.getPercentX());
+    }
+
+    @Override
+    public boolean ifVisible(Painter painter) {
+        return true;
     }
 
     @Override

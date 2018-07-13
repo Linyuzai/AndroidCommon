@@ -17,6 +17,7 @@ import eason.linyuzai.easonicon.painter.EasonPainter;
 @BitmapField
 public class BitmapPainter extends EasonPainter implements BitmapSupport {
 
+    private boolean isDirty = false;
     private Bitmap bitmap;
     private WeakReference<Bitmap> handled = new WeakReference<>(null);
 
@@ -41,10 +42,19 @@ public class BitmapPainter extends EasonPainter implements BitmapSupport {
         return handled.get();
     }
 
+    public boolean isDirty() {
+        return isDirty;
+    }
+
+    public void setDirty(boolean dirty) {
+        isDirty = dirty;
+    }
+
     @Override
     public void draw(Canvas canvas, RectF draw, RectF original, Paint paint) {
         Bitmap bmp = handled.get();
-        if ((bmp == null || bmp.isRecycled()) && bitmap != null && !bitmap.isRecycled()) {
+        if ((isDirty || bmp == null || bmp.isRecycled()) && bitmap != null && !bitmap.isRecycled()) {
+            isDirty = false;
             handled = new WeakReference<>(handleBitmap(bitmap, draw));
             bmp = handled.get();
         }

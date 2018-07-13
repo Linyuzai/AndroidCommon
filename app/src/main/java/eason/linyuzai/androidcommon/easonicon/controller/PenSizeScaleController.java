@@ -6,6 +6,8 @@ import android.widget.SeekBar;
 
 import eason.linyuzai.androidcommon.easonicon.entity.TargetEntity;
 import eason.linyuzai.easonicon.EasonIcon;
+import eason.linyuzai.easonicon.annotation.PenSizeScaleField;
+import eason.linyuzai.easonicon.open.Painter;
 import eason.linyuzai.easonicon.painter.SupportEasonPainterSet;
 
 @SuppressLint("ViewConstructor")
@@ -34,6 +36,11 @@ public class PenSizeScaleController extends AbsController {
     @Override
     public void updateProgress(SeekBar seekBar, TargetEntity entity) {
 
+    }
+
+    @Override
+    public boolean ifVisible(Painter painter) {
+        return painter.getClass().getAnnotation(PenSizeScaleField.class) != null;
     }
 
     @Override

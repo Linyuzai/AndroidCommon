@@ -6,6 +6,8 @@ import android.widget.SeekBar;
 
 import eason.linyuzai.androidcommon.easonicon.entity.TargetEntity;
 import eason.linyuzai.easonicon.EasonIcon;
+import eason.linyuzai.easonicon.annotation.RoundRectField;
+import eason.linyuzai.easonicon.open.Painter;
 import eason.linyuzai.easonicon.painter.SupportEasonPainterSet;
 
 @SuppressLint("ViewConstructor")
@@ -37,6 +39,11 @@ public class LeftTopController extends AbsController {
     @Override
     public void updateProgress(SeekBar seekBar, TargetEntity entity) {
         seekBar.setProgress(entity.getLeftTop());
+    }
+
+    @Override
+    public boolean ifVisible(Painter painter) {
+        return painter.getClass().getAnnotation(RoundRectField.class) != null;
     }
 
     @Override

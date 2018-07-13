@@ -8,7 +8,7 @@ import eason.linyuzai.easonicon.painter.EasonPainter;
 import eason.linyuzai.easonicon.painter.EasonPainterSet;
 
 /**
- * 支持PainterSet缩放平移拦截器
+ * 支持PainterSet缩放平移
  */
 public class PainterSetRectSupportInterceptor extends RectInterceptor implements RectSupport {
 

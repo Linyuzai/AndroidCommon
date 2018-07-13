@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.shizhefei.view.hvscrollview.HVScrollView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +47,9 @@ public class IconCreateActivity extends EasonActivity {
 
     private TargetEntity currentEntity;
     private int selectIndex = 0;
+
+    private AlertDialog codeDialog;
+    private TextView codeText;
 
     private List<AbsController> controllers = new ArrayList<>();
 
@@ -78,6 +83,32 @@ public class IconCreateActivity extends EasonActivity {
         easonIcon.setColor(color(R.color.colorPrimary), true);
         TargetEntity.setIcon(easonIcon);
         initController();
+        id(R.id.generate).setOnClickListener(v -> {
+            StringBuilder builder = new StringBuilder();
+            builder.append("public class CustomPainter extends EasonPainterSet {\n");
+            builder.append("    public CustomPainter() {\n");
+            for (int i = 1; i < targetAdapter.targetEntities.size(); i++) {
+                TargetEntity entity = targetAdapter.targetEntities.get(i);
+                String painterName = entity.getPainter().getClass().getSimpleName();
+                builder.append("        ").append(painterName).append(" painter").append(i).append(" = new ").append(painterName).append("();\n");
+                if (entity.getPercentX() != 100) {
+                    builder.append("        painter").append(i).append(".setPercentX(").append(entity.getPercentX() / 100f).append("f);\n");
+                }
+                if (entity.getPercentY() != 100) {
+                    builder.append("        painter").append(i).append(".setPercentY(").append(entity.getPercentY() / 100f).append("f);\n");
+                }
+                if (entity.getOffsetPercentX() != 100) {
+                    builder.append("        painter").append(i).append(".OffsetPercentX(").append((entity.getOffsetPercentX() - 100) / 100f).append("f);\n");
+                }
+                if (entity.getOffsetPercentY() != 100) {
+                    builder.append("        painter").append(i).append(".OffsetPercentY(").append((entity.getOffsetPercentY() - 100) / 100f).append("f);\n");
+                }
+                builder.append("        ").append("addPainter(painter").append(i).append(");\n");
+            }
+            builder.append("    }\n");
+            builder.append("}\n");
+            showCodeDialog(builder.toString());
+        });
     }
 
     private List<LibraryHelper.LibraryParam> getLibraryParam() {
@@ -134,6 +165,29 @@ public class IconCreateActivity extends EasonActivity {
         });
         builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
         dialog = builder.create();
+    }
+
+    private void showCodeDialog(String code) {
+        if (codeDialog == null) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this, AlertDialog.THEME_HOLO_LIGHT);
+            builder.setTitle("Code");
+            HVScrollView scrollView = new HVScrollView(this);
+            scrollView.setOverScrollMode(View.OVER_SCROLL_NEVER);
+            //builder.setMessage(code);
+            codeText = new TextView(this);
+            codeText.setTextIsSelectable(true);
+            codeText.setTextSize(13f);
+            int padding = dip(8);
+            codeText.setPadding(padding, padding, padding, padding);
+            scrollView.addView(codeText);
+            builder.setView(scrollView);
+            builder.setPositiveButton("确定", (dialog, which) -> dialog.dismiss());
+            codeDialog = builder.create();
+        }
+        //code = "```\n" + code + "```\n";
+        //RichText.fromMarkdown(code).into(codeText);
+        codeText.setText(code);
+        codeDialog.show();
     }
 
     private static class TargetViewHolder extends RecyclerView.ViewHolder {

@@ -12,13 +12,13 @@ public class TargetEntity {
 
     private int percentX = 100;
     private int percentY = 100;
-    private int offsetPercentX = 0;
-    private int offsetPercentY = 0;
+    private int offsetPercentX = 100;
+    private int offsetPercentY = 100;
 
-    private int leftTop;
-    private int leftBottom;
-    private int rightTop;
-    private int rightBottom;
+    private int leftTop = 4;
+    private int leftBottom = 4;
+    private int rightTop = 4;
+    private int rightBottom = 4;
 
     public static void setIcon(EasonIcon icon) {
         TargetEntity.icon = icon;

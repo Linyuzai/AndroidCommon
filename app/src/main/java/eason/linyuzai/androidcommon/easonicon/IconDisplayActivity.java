@@ -58,7 +58,7 @@ public class IconDisplayActivity extends EasonActivity {
             EasonIcon icon = new EasonIcon(parent.getContext());
             icon.setBackgroundColor(Color.WHITE);
             //icon.setColor(Color.BLACK);
-            icon.setPenSize(dip(3));
+            icon.setPenSize(dip(1));
             icon.setColor(param.getContentColor(), true);
             //icon.setAuxiliaryColor(param.getContentColor());
             icon.setEdgeCount(3);
@@ -77,7 +77,6 @@ public class IconDisplayActivity extends EasonActivity {
                 bitmap = BitmapPainter.getBitmapFromDrawable(drawable);
             }
             icon.setBitmap(bitmap);
-            //icon.getPainterSet().setCenterPercent(0.9f);
             icon.getPaint().setTextSize(dip(15));
             //RecyclerView.LayoutParams params = new RecyclerView.LayoutParams(dip(50), dip(50));
             int size = (screenWidth() - dip(160)) / 4;
@@ -94,6 +93,7 @@ public class IconDisplayActivity extends EasonActivity {
         @Override
         public void onBindViewHolder(@NonNull EasonIconViewHolder holder, int position) {
             if (EasonIcon.getDefaultPercent(position + 1) == 1f) {
+                holder.icon.getPainterSet().setCenterPercent(0.5f);
                 holder.icon.setPadding(padding, padding, padding, padding);
             } else {
                 holder.icon.setPadding(0, 0, 0, 0);

@@ -8,7 +8,6 @@ import eason.linyuzai.androidcommon.easonicon.entity.TargetEntity;
 import eason.linyuzai.easonicon.EasonIcon;
 import eason.linyuzai.easonicon.annotation.ExtraOffsetField;
 import eason.linyuzai.easonicon.open.Painter;
-import eason.linyuzai.easonicon.painter.SupportEasonPainterSet;
 
 @SuppressLint("ViewConstructor")
 public class ExtraOffsetController extends AbsController {
@@ -48,7 +47,7 @@ public class ExtraOffsetController extends AbsController {
         int val = progress - 100;
         setValue(String.valueOf(val));
         EasonIcon.recursivePainter(painter(), painter -> {
-            if (painter instanceof SupportEasonPainterSet && painter.isSupportExtraOffset())
+            if (painter.isSupportExtraOffset())
                 painter.toExtraOffsetSupport().setExtraOffset(eason().dip(val));
         });
         //icon().setExtraOffset(eason().dip(val));

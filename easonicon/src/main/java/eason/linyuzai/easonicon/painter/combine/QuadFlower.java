@@ -21,6 +21,10 @@ public class QuadFlower extends SupportEasonPainterSet implements EdgeCountSuppo
 
     private QuadPolygonPainter polygon;
 
+    public QuadFlower() {
+        this(5);
+    }
+
     public QuadFlower(@Size(min = 5, max = 10) int edgeCount) {
         this(edgeCount, 1f);
     }

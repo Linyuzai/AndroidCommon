@@ -1,5 +1,7 @@
 package eason.linyuzai.easonicon.painter.combine;
 
+import android.graphics.Color;
+
 import eason.linyuzai.easonicon.annotation.AuxiliaryColorField;
 import eason.linyuzai.easonicon.annotation.AuxiliaryScaleField;
 import eason.linyuzai.easonicon.annotation.RoundRectField;
@@ -15,6 +17,10 @@ import eason.linyuzai.easonicon.painter.combine.interceptor.AuxiliaryColorInterc
 @AuxiliaryColorField
 @RoundRectField
 public class CorrectRectPainter extends SupportEasonPainterSet implements AuxiliaryScaleSupport, AuxiliaryColorSupport, RoundRectSupport {
+
+    public CorrectRectPainter() {
+        this(Color.WHITE);
+    }
 
     public CorrectRectPainter(int auxiliaryColor) {
         this(0.5f, auxiliaryColor);

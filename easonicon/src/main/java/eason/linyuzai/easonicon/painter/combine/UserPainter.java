@@ -10,6 +10,10 @@ import eason.linyuzai.easonicon.painter.basic.rect.RectPainter;
 @RoundRectField
 public class UserPainter extends SupportEasonPainterSet implements RoundRectSupport {
 
+    public UserPainter() {
+        this(0f, 0f, 0f, 0f);
+    }
+
     public UserPainter(float leftTop, float leftBottom, float rightTop, float rightBottom) {
         Painter circle = new CirclePainter();
         circle.setPercent(0.5f);

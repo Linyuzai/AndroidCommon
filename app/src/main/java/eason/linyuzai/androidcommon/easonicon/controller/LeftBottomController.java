@@ -8,7 +8,6 @@ import eason.linyuzai.androidcommon.easonicon.entity.TargetEntity;
 import eason.linyuzai.easonicon.EasonIcon;
 import eason.linyuzai.easonicon.annotation.RoundRectField;
 import eason.linyuzai.easonicon.open.Painter;
-import eason.linyuzai.easonicon.painter.SupportEasonPainterSet;
 
 @SuppressLint("ViewConstructor")
 public class LeftBottomController extends AbsController {
@@ -50,7 +49,7 @@ public class LeftBottomController extends AbsController {
         if (entity() != null)
             entity().setLeftBottom(progress);
         EasonIcon.recursivePainter(painter(), painter -> {
-            if (painter instanceof SupportEasonPainterSet && painter.isSupportRoundRect())
+            if (painter.isSupportRoundRect())
                 painter.toRoundRectSupport().setLeftBottom(eason().dip(val));
         });
         //icon().setLeftBottomRound(eason().dip(val));

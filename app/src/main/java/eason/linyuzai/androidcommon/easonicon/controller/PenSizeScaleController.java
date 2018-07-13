@@ -8,7 +8,6 @@ import eason.linyuzai.androidcommon.easonicon.entity.TargetEntity;
 import eason.linyuzai.easonicon.EasonIcon;
 import eason.linyuzai.easonicon.annotation.PenSizeScaleField;
 import eason.linyuzai.easonicon.open.Painter;
-import eason.linyuzai.easonicon.painter.SupportEasonPainterSet;
 
 @SuppressLint("ViewConstructor")
 public class PenSizeScaleController extends AbsController {
@@ -48,7 +47,7 @@ public class PenSizeScaleController extends AbsController {
         float val = progress / 100f;
         setValue(String.valueOf(val));
         EasonIcon.recursivePainter(painter(), painter -> {
-            if (painter instanceof SupportEasonPainterSet && painter.isSupportPenSizeScale())
+            if (painter.isSupportPenSizeScale())
                 painter.toPenSizeScaleSupport().setPenSizeScale(val);
         });
         //icon().setPenSizeScale(val);

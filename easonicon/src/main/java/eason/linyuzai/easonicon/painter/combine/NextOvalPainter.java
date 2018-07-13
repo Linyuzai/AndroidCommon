@@ -1,5 +1,7 @@
 package eason.linyuzai.easonicon.painter.combine;
 
+import android.graphics.Color;
+
 import eason.linyuzai.easonicon.annotation.AuxiliaryColorField;
 import eason.linyuzai.easonicon.annotation.AuxiliaryScaleField;
 import eason.linyuzai.easonicon.open.Painter;
@@ -12,6 +14,10 @@ import eason.linyuzai.easonicon.painter.combine.interceptor.AuxiliaryColorInterc
 @AuxiliaryScaleField
 @AuxiliaryColorField
 public class NextOvalPainter extends SupportEasonPainterSet implements AuxiliaryScaleSupport, AuxiliaryColorSupport {
+
+    public NextOvalPainter() {
+        this(Color.WHITE);
+    }
 
     public NextOvalPainter(int auxiliaryColor) {
         this(0.5f, auxiliaryColor);

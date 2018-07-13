@@ -6,51 +6,46 @@ import android.widget.SeekBar;
 
 import eason.linyuzai.androidcommon.easonicon.entity.TargetEntity;
 import eason.linyuzai.easonicon.EasonIcon;
-import eason.linyuzai.easonicon.annotation.ArcField;
 import eason.linyuzai.easonicon.open.Painter;
 
 @SuppressLint("ViewConstructor")
-public class SweepAngleController extends AbsController {
+public class OffsetController extends AbsController {
 
-    public SweepAngleController(Context context, EasonIcon icon) {
+    public OffsetController(Context context, EasonIcon icon) {
         super(context, icon);
         addSeekBar();
     }
 
     @Override
     public String getAttrName() {
-        return "Sweep Angle:";
+        return "Offset:";
     }
 
     @Override
     public int getMaxProgress() {
-        return 360;
+        return 200;
     }
 
     @Override
     public int getInitProgress() {
-        return 120;
+        return 100;
     }
 
     @Override
     public void updateProgress(SeekBar seekBar, TargetEntity entity) {
+
     }
 
     @Override
     public boolean ifVisible(Painter painter) {
-        return painter.getClass().getAnnotation(ArcField.class) != null;
+        return true;
     }
 
     @Override
     public void onUpdate(int progress) {
-        float val = progress;
+        int val = progress - 100;
         setValue(String.valueOf(val));
-        EasonIcon.recursivePainter(painter(), painter -> {
-            if (painter.isSupportArc())
-                painter.toArcSupport().setSweepAngle(val);
-        });
-        //icon().setSweepAngle(val);
-        //icon().setType(icon().getType(), true);
+        painter().setOffset(eason().dip(val));
         icon().update();
     }
 }

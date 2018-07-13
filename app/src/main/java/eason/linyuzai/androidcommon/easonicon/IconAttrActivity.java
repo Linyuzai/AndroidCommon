@@ -19,6 +19,7 @@ import eason.linyuzai.androidcommon.easonicon.controller.EdgeCountController;
 import eason.linyuzai.androidcommon.easonicon.controller.ExtraOffsetController;
 import eason.linyuzai.androidcommon.easonicon.controller.LeftBottomController;
 import eason.linyuzai.androidcommon.easonicon.controller.LeftTopController;
+import eason.linyuzai.androidcommon.easonicon.controller.OffsetController;
 import eason.linyuzai.androidcommon.easonicon.controller.OffsetPercentController;
 import eason.linyuzai.androidcommon.easonicon.controller.OffsetPercentXController;
 import eason.linyuzai.androidcommon.easonicon.controller.OffsetPercentYController;
@@ -89,6 +90,7 @@ public class IconAttrActivity extends EasonActivity {
         group.addView(new OffsetPercentController(this, icon));
         group.addView(new OffsetPercentXController(this, icon));
         group.addView(new OffsetPercentYController(this, icon));
+        group.addView(new OffsetController(this, icon));
         group.addView(new OffsetXController(this, icon));
         group.addView(new OffsetYController(this, icon));
         group.addView(new PenSizeController(this, icon));

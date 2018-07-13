@@ -8,7 +8,6 @@ import eason.linyuzai.androidcommon.easonicon.entity.TargetEntity;
 import eason.linyuzai.easonicon.EasonIcon;
 import eason.linyuzai.easonicon.annotation.AuxiliaryScaleField;
 import eason.linyuzai.easonicon.open.Painter;
-import eason.linyuzai.easonicon.painter.SupportEasonPainterSet;
 
 @SuppressLint("ViewConstructor")
 public class AuxiliaryScaleController extends AbsController {
@@ -49,7 +48,7 @@ public class AuxiliaryScaleController extends AbsController {
         setValue(String.valueOf(val));
 
         EasonIcon.recursivePainter(painter(), painter -> {
-            if (painter instanceof SupportEasonPainterSet && painter.isSupportAuxiliaryScale()) {
+            if (painter.isSupportAuxiliaryScale()) {
                 painter.toAuxiliaryScaleSupport().setAuxiliaryScale(val);
             }
         });

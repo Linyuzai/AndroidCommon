@@ -85,6 +85,7 @@ import eason.linyuzai.easonicon.painter.combine.QuadFlower;
 import eason.linyuzai.easonicon.painter.combine.RightArrowOvalPainter;
 import eason.linyuzai.easonicon.painter.combine.RightArrowPainter;
 import eason.linyuzai.easonicon.painter.combine.RightArrowRectPainter;
+import eason.linyuzai.easonicon.painter.combine.SearchPainter;
 import eason.linyuzai.easonicon.painter.combine.SettingPainter;
 import eason.linyuzai.easonicon.painter.combine.SettingV21Painter;
 import eason.linyuzai.easonicon.painter.combine.SignPainter;
@@ -656,6 +657,10 @@ public class EasonIcon extends View {
                 break;
             case SIGN:
                 painterSet.addPainter(new SignPainter(auxiliaryColor));
+                break;
+            case SEARCH:
+                painterSet.addPainter(new SearchPainter());
+                break;
         }
         return true;
     }
@@ -927,7 +932,8 @@ public class EasonIcon extends View {
         USER(58, "user", UserPainter.class),
         MALE(59, "male", MalePainter.class),
         FEMALE(60, "female", FemalePainter.class),
-        SIGN(61, "sign", SignPainter.class);
+        SIGN(61, "sign", SignPainter.class),
+        SEARCH(62, "search", SearchPainter.class);
 
         private int value;
         private String attrName;

@@ -1,6 +1,7 @@
 package eason.linyuzai.easonicon.painter.combine;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
@@ -22,6 +23,10 @@ import eason.linyuzai.easonicon.painter.combine.interceptor.PenSizeScaleIntercep
 @AuxiliaryColorField
 @PenSizeScaleField
 public class SettingPainter extends SupportEasonPainterSet implements AuxiliaryScaleSupport, AuxiliaryColorSupport, PenSizeScaleSupport {
+
+    public SettingPainter() {
+        this(Color.WHITE);
+    }
 
     public SettingPainter(int auxiliaryColor) {
         this(0.5f, auxiliaryColor, 1f);

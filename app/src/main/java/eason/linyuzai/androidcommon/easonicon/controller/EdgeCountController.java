@@ -8,7 +8,6 @@ import eason.linyuzai.androidcommon.easonicon.entity.TargetEntity;
 import eason.linyuzai.easonicon.EasonIcon;
 import eason.linyuzai.easonicon.annotation.EdgeCountField;
 import eason.linyuzai.easonicon.open.Painter;
-import eason.linyuzai.easonicon.painter.SupportEasonPainterSet;
 
 @SuppressLint("ViewConstructor")
 public class EdgeCountController extends AbsController {
@@ -46,13 +45,10 @@ public class EdgeCountController extends AbsController {
     @Override
     public void onUpdate(int progress) {
         int val = progress;
-        if (val < 3)
-            val = 3;
         setValue(String.valueOf(val));
-        int finalVal = val;
         EasonIcon.recursivePainter(painter(), painter -> {
-            if (painter instanceof SupportEasonPainterSet && painter.isSupportEdgeCount())
-                painter.toEdgeCountSupport().setEdgeCount(finalVal);
+            if (painter.isSupportEdgeCount())
+                painter.toEdgeCountSupport().setEdgeCount(val);
         });
         //icon().setEdgeCount(val);
         //icon().setType(icon().getType(), true);

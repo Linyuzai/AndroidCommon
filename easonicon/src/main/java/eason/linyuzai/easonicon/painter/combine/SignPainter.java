@@ -1,5 +1,6 @@
 package eason.linyuzai.easonicon.painter.combine;
 
+import android.graphics.Color;
 import android.graphics.PointF;
 import android.graphics.RectF;
 
@@ -10,6 +11,10 @@ import eason.linyuzai.easonicon.painter.basic.polygon.PolygonPainter;
 import eason.linyuzai.easonicon.painter.combine.interceptor.AuxiliaryColorInterceptor;
 
 public class SignPainter extends SupportEasonPainterSet implements AuxiliaryColorSupport {
+
+    public SignPainter() {
+        this(Color.WHITE);
+    }
 
     public SignPainter(int auxiliaryColor) {
         PolygonPainter polygon = new PolygonPainter(6) {

@@ -8,7 +8,6 @@ import eason.linyuzai.androidcommon.easonicon.entity.TargetEntity;
 import eason.linyuzai.easonicon.EasonIcon;
 import eason.linyuzai.easonicon.annotation.ArcField;
 import eason.linyuzai.easonicon.open.Painter;
-import eason.linyuzai.easonicon.painter.SupportEasonPainterSet;
 
 @SuppressLint("ViewConstructor")
 public class StartAngleController extends AbsController {
@@ -47,7 +46,7 @@ public class StartAngleController extends AbsController {
         int val = progress - 360;
         setValue(String.valueOf(val));
         EasonIcon.recursivePainter(painter(), painter -> {
-            if (painter instanceof SupportEasonPainterSet && painter.isSupportArc())
+            if (painter.isSupportArc())
                 painter.toArcSupport().setStartAngle(val);
         });
         //icon().setStartAngle(val);

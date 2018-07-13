@@ -21,6 +21,10 @@ public class ExtraFlower extends SupportEasonPainterSet implements EdgeCountSupp
 
     private ExtraPolygonPainter polygon;
 
+    public ExtraFlower() {
+        this(4);
+    }
+
     public ExtraFlower(@Size(min = 4) int edgeCount) {
         this(edgeCount, 1f);
     }

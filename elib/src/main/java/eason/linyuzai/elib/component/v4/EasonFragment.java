@@ -9,7 +9,7 @@ import eason.linyuzai.elib.os.EasonHandler;
 
 public class EasonFragment extends Fragment {
 
-    private Handler handler = new EasonHandler(this);
+    private Handler handler = new EasonHandler(eason(), this);
 
     public void handleMessage(Message msg) {
 

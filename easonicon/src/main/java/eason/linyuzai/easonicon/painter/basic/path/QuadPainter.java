@@ -5,7 +5,7 @@ import android.graphics.Path;
 import android.graphics.PointF;
 import android.graphics.RectF;
 
-public abstract class QuadPainter extends PathPainter {
+public class QuadPainter extends PathPainter {
 
     private PointF startPoint;
     private PointF endPoint;
@@ -42,6 +42,10 @@ public abstract class QuadPainter extends PathPainter {
         this.startPoint = startPoint;
     }
 
+    public void setStartPoint(float x, float y) {
+        startPoint.set(x, y);
+    }
+
     public PointF getEndPoint() {
         return endPoint;
     }
@@ -50,11 +54,19 @@ public abstract class QuadPainter extends PathPainter {
         this.endPoint = endPoint;
     }
 
+    public void setEndPoint(float x, float y) {
+        endPoint.set(x, y);
+    }
+
     public PointF getControlPoint() {
         return controlPoint;
     }
 
     public void setControlPoint(PointF controlPoint) {
         this.controlPoint = controlPoint;
+    }
+
+    public void setControlPoint(float x, float y) {
+        controlPoint.set(x, y);
     }
 }

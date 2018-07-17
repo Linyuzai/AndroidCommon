@@ -5,7 +5,7 @@ import android.graphics.Path;
 import android.graphics.PointF;
 import android.graphics.RectF;
 
-public abstract class CubicPainter extends PathPainter {
+public class CubicPainter extends PathPainter {
 
     private PointF startPoint;
     private PointF endPoint;
@@ -44,12 +44,20 @@ public abstract class CubicPainter extends PathPainter {
         this.startPoint = startPoint;
     }
 
+    public void setStartPoint(float x, float y) {
+        startPoint.set(x, y);
+    }
+
     public PointF getEndPoint() {
         return endPoint;
     }
 
     public void setEndPoint(PointF endPoint) {
         this.endPoint = endPoint;
+    }
+
+    public void setEndPoint(float x, float y) {
+        endPoint.set(x, y);
     }
 
     public PointF[] getControlPoint() {
@@ -59,5 +67,10 @@ public abstract class CubicPainter extends PathPainter {
     public void setControlPoint(PointF controlPoint1, PointF controlPoint2) {
         this.controlPoint[0] = controlPoint1;
         this.controlPoint[1] = controlPoint2;
+    }
+
+    public void setControlPoint(float x1, float y1, float x2, float y2) {
+        controlPoint[0].set(x1, y1);
+        controlPoint[1].set(x2, y2);
     }
 }

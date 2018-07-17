@@ -36,7 +36,7 @@ public class ArcPainter extends EasonPainter implements ArcSupport {
 
     @Override
     public void draw(Canvas canvas, RectF draw, RectF original, Paint paint) {
-        canvas.drawArc(getTransformRectF(draw, paint), startAngle, sweepAngle, useCenter, paint);
+        canvas.drawArc(getRectF(draw), startAngle, sweepAngle, useCenter, paint);
     }
 
     @Override

@@ -73,6 +73,7 @@ import eason.linyuzai.easonicon.painter.combine.FemalePainter;
 import eason.linyuzai.easonicon.painter.combine.LeftArrowOvalPainter;
 import eason.linyuzai.easonicon.painter.combine.LeftArrowPainter;
 import eason.linyuzai.easonicon.painter.combine.LeftArrowRectPainter;
+import eason.linyuzai.easonicon.painter.combine.LovePainter;
 import eason.linyuzai.easonicon.painter.combine.MalePainter;
 import eason.linyuzai.easonicon.painter.combine.MenuPainter;
 import eason.linyuzai.easonicon.painter.combine.MinusOvalPainter;
@@ -89,6 +90,7 @@ import eason.linyuzai.easonicon.painter.combine.SearchPainter;
 import eason.linyuzai.easonicon.painter.combine.SettingPainter;
 import eason.linyuzai.easonicon.painter.combine.SettingV21Painter;
 import eason.linyuzai.easonicon.painter.combine.SignPainter;
+import eason.linyuzai.easonicon.painter.combine.StarPainter;
 import eason.linyuzai.easonicon.painter.combine.UpArrowOvalPainter;
 import eason.linyuzai.easonicon.painter.combine.UpArrowPainter;
 import eason.linyuzai.easonicon.painter.combine.UpArrowRectPainter;
@@ -208,7 +210,7 @@ public class EasonIcon extends View {
 
             float textSize = a.getDimension(R.styleable.EasonIcon_icon_text_size, 0f);
 
-            float pathEffectCorner = a.getDimension(R.styleable.EasonIcon_icon_path_effect_corner, 0);
+            float pathEffectCorner = a.getFloat(R.styleable.EasonIcon_icon_path_effect_corner, 0f);
 
             float percentCenter = a.getFloat(R.styleable.EasonIcon_icon_percent_center, -1f);
             float percentCenterX = a.getFloat(R.styleable.EasonIcon_icon_percent_center_x, -1f);
@@ -661,6 +663,12 @@ public class EasonIcon extends View {
             case SEARCH:
                 painterSet.addPainter(new SearchPainter());
                 break;
+            case STAR:
+                painterSet.addPainter(new StarPainter());
+                break;
+            case LOVE:
+                painterSet.addPainter(new LovePainter());
+                break;
         }
         return true;
     }
@@ -933,7 +941,9 @@ public class EasonIcon extends View {
         MALE(59, "male", MalePainter.class),
         FEMALE(60, "female", FemalePainter.class),
         SIGN(61, "sign", SignPainter.class),
-        SEARCH(62, "search", SearchPainter.class);
+        SEARCH(62, "search", SearchPainter.class),
+        STAR(63, "star", StarPainter.class),
+        LOVE(64, "love", LovePainter.class);
 
         private int value;
         private String attrName;

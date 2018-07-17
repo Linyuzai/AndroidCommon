@@ -95,6 +95,8 @@
             <enum name="female" value="60" />
             <enum name="sign" value="61" />
             <enum name="search" value="62" />
+            <enum name="star" value="63" />
+            <enum name="love" value="64" />
         </attr>
         <!-- 需要两种颜色 -->
         <attr name="icon_auxiliary_color" format="reference|color" />
@@ -117,7 +119,7 @@
         <attr name="icon_polygon_extra_offset" format="reference|dimension" />
         <attr name="icon_polygon_pen_size_scale" format="reference|float" />
         <!-- path -->
-        <attr name="icon_path_effect_corner" format="reference|dimension" />
+        <attr name="icon_path_effect_corner" format="reference|float" />
         <!-- text -->
         <attr name="icon_text" format="reference|string" />
         <attr name="icon_text_size" format="reference|dimension" />

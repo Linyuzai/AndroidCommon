@@ -1,5 +1,6 @@
 package eason.linyuzai.easonicon.open.ex;
 
+import eason.linyuzai.easonicon.open.PainterSet;
 import eason.linyuzai.easonicon.open.support.ArcSupport;
 import eason.linyuzai.easonicon.open.support.AuxiliaryColorSupport;
 import eason.linyuzai.easonicon.open.support.AuxiliaryScaleSupport;
@@ -11,6 +12,21 @@ import eason.linyuzai.easonicon.open.support.RoundRectSupport;
 import eason.linyuzai.easonicon.open.support.TextSupport;
 
 public interface SupportConverter {
+
+    default boolean isPainterSet() {
+        return (this instanceof PainterSet);
+    }
+
+    default PainterSet toPainterSet() {
+        return (PainterSet) this;
+    }
+
+    default PainterSet toPainterSetUnforced() {
+        if (isPainterSet())
+            return toPainterSet();
+        return null;
+    }
+
     default boolean isSupportArc() {
         return (this instanceof ArcSupport);
     }

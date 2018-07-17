@@ -33,10 +33,11 @@ public class PainterSetRectSupportInterceptor extends RectInterceptor implements
      * @param rectF rectF
      */
     protected void saveRect(RectF rectF) {
-        restoreRectF.top = rectF.top;
+        /*restoreRectF.top = rectF.top;
         restoreRectF.left = rectF.left;
         restoreRectF.right = rectF.right;
-        restoreRectF.bottom = rectF.bottom;
+        restoreRectF.bottom = rectF.bottom;*/
+        restoreRectF.set(rectF);
     }
 
     /**
@@ -54,10 +55,11 @@ public class PainterSetRectSupportInterceptor extends RectInterceptor implements
     }
 
     protected void restoreRect(RectF rectF) {
-        rectF.top = restoreRectF.top;
+        /*rectF.top = restoreRectF.top;
         rectF.left = restoreRectF.left;
         rectF.right = restoreRectF.right;
-        rectF.bottom = restoreRectF.bottom;
+        rectF.bottom = restoreRectF.bottom;*/
+        rectF.set(restoreRectF);
     }
 
     /**

@@ -31,24 +31,6 @@ public class EasonPainterSet extends EasonPainter implements PainterSet {
 
     private PainterSetRectSupportInterceptor rectSupportInterceptor = new PainterSetRectSupportInterceptor();
 
-    private static class PainterFieldsOperator {
-        private float auxiliaryScale;
-        private Painter auxiliaryScalePainter;
-
-        public void bindAuxiliaryScalePainter(Painter painter) {
-            auxiliaryScalePainter = painter;
-        }
-
-        public float getAuxiliaryScale() {
-            return auxiliaryScale;
-        }
-
-        public void setAuxiliaryScale(float auxiliaryScale) {
-            this.auxiliaryScale = auxiliaryScale;
-            auxiliaryScalePainter.setCenterPercent(auxiliaryScale);
-        }
-    }
-
     @Override
     public List<Painter> getPainters() {
         return painters;
@@ -138,8 +120,8 @@ public class EasonPainterSet extends EasonPainter implements PainterSet {
         interceptors.add(interceptor);
         if (recursiveSet) {
             for (Painter painter : painters) {
-                if (painter instanceof PainterSet) {
-                    ((PainterSet) painter).addInterceptor(interceptor, true);
+                if (painter.isPainterSet()) {
+                    painter.toPainterSet().addInterceptor(interceptor, true);
                 }
             }
         }
@@ -155,8 +137,8 @@ public class EasonPainterSet extends EasonPainter implements PainterSet {
         interceptors.add(index, interceptor);
         if (recursiveSet) {
             for (Painter painter : painters) {
-                if (painter instanceof PainterSet) {
-                    ((PainterSet) painter).addInterceptor(index, interceptor, true);
+                if (painter.isPainterSet()) {
+                    painter.toPainterSet().addInterceptor(index, interceptor, true);
                 }
             }
         }
@@ -172,8 +154,8 @@ public class EasonPainterSet extends EasonPainter implements PainterSet {
         interceptors.remove(interceptor);
         if (recursiveSet) {
             for (Painter painter : painters) {
-                if (painter instanceof PainterSet) {
-                    ((PainterSet) painter).removeInterceptor(interceptor, true);
+                if (painter.isPainterSet()) {
+                    painter.toPainterSet().removeInterceptor(interceptor, true);
                 }
             }
         }
@@ -189,8 +171,8 @@ public class EasonPainterSet extends EasonPainter implements PainterSet {
         interceptors.remove(index);
         if (recursiveSet) {
             for (Painter painter : painters) {
-                if (painter instanceof PainterSet) {
-                    ((PainterSet) painter).removeInterceptor(index, true);
+                if (painter.isPainterSet()) {
+                    painter.toPainterSet().removeInterceptor(index, true);
                 }
             }
         }
@@ -206,8 +188,8 @@ public class EasonPainterSet extends EasonPainter implements PainterSet {
         interceptors.clear();
         if (recursiveSet) {
             for (Painter painter : painters) {
-                if (painter instanceof PainterSet) {
-                    ((PainterSet) painter).clearInterceptor(true);
+                if (painter.isPainterSet()) {
+                    painter.toPainterSet().clearInterceptor(true);
                 }
             }
         }
@@ -278,8 +260,8 @@ public class EasonPainterSet extends EasonPainter implements PainterSet {
     public void recursivePainter(OnRecursivePainterCallback callback) {
         for (Painter painter : painters) {
             callback.onPainterRecursive(painter);
-            if (painter instanceof PainterSet) {
-                ((PainterSet) painter).recursivePainter(callback);
+            if (painter.isPainterSet()) {
+                painter.toPainterSet().recursivePainter(callback);
             }
         }
     }

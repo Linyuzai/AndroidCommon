@@ -22,18 +22,23 @@ public class LovePainter extends EasonPainterSet {
         addInterceptor(new LoveInterceptor());
     }
 
+    @Override
+    public float getDefaultPercent() {
+        return 0.44f;
+    }
+
     private class LoveInterceptor implements PainterInterceptor {
 
         @Override
         public void beforeDraw(Painter painter, Canvas canvas, Paint paint, RectF rectF, int index) {
             if (painter == cubicLeft) {
-                cubicLeft.setStartPoint(rectF.width() * 0.5f, rectF.height() * 0.25f);
-                cubicLeft.setEndPoint(rectF.width() * 0.5f, rectF.height());
-                cubicLeft.setControlPoint(0f, 0f, rectF.width() * 0.25f, rectF.height() * 0.75f);
+                cubicLeft.setStartPoint(rectF.width() * 0.5f, rectF.height() * 0.3f);
+                cubicLeft.setEndPoint(rectF.width() * 0.5f, rectF.height() * 0.78f);
+                cubicLeft.setControlPoint(rectF.width() * 0.25f, rectF.height() * 0.1f, 0f, rectF.height() * 0.5f);
             } else if (painter == cubicRight) {
-                cubicRight.setStartPoint(rectF.width() * 0.5f, rectF.height() * 0.25f);
-                cubicRight.setEndPoint(rectF.width() * 0.5f, rectF.height());
-                cubicLeft.setControlPoint(rectF.width(), 0f, rectF.width() * 0.75f, rectF.height() * 0.75f);
+                cubicRight.setStartPoint(rectF.width() * 0.5f, rectF.height() * 0.3f);
+                cubicRight.setEndPoint(rectF.width() * 0.5f, rectF.height() * 0.78f);
+                cubicRight.setControlPoint(rectF.width() * 0.75f, rectF.height() * 0.1f, rectF.width(), rectF.height() * 0.5f);
             }
         }
 

@@ -92,11 +92,14 @@ public class IconDisplayActivity extends EasonActivity {
 
         @Override
         public void onBindViewHolder(@NonNull EasonIconViewHolder holder, int position) {
-            if (EasonIcon.getDefaultPercent(position + 1) == 1f) {
+            float def = EasonIcon.getDefaultPercent(position + 1);
+            if (def == 1f) {
                 holder.icon.getPainterSet().setCenterPercent(0.5f);
-                holder.icon.setPadding(padding, padding, padding, padding);
+                holder.icon.setAuxiliaryColor(param.getContentColor());
+                //holder.icon.setPadding(padding, padding, padding, padding);
             } else {
-                holder.icon.setPadding(0, 0, 0, 0);
+                //holder.icon.setPadding(0, 0, 0, 0);
+                holder.icon.getPainterSet().setCenterPercent(0.5f / def);
                 holder.icon.setAuxiliaryColor(Color.WHITE);
             }
             holder.icon.setType(position + 1);

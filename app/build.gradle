@@ -20,6 +20,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
@@ -31,10 +34,11 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     //implementation 'com.fivehundredpx:blurringview:1.0.0'
-    implementation project(':easonicon')
+    //implementation project(':easonicon')
     implementation project(':blurring')
     implementation project(':elib')
     implementation 'com.android.support:recyclerview-v7:27.1.1'
     implementation 'com.zzhoujay.richtext:richtext:3.0.7'
     implementation 'com.shizhefei:HVScrollView:1.0.1'
+    implementation 'eason.linyuzai:eason-icon:1.0.0'
 }

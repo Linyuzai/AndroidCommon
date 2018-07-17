@@ -873,6 +873,8 @@ public class EasonIcon extends View {
             case SETTING:
             case SETTING_V21:
                 return 0.5f;
+            case LOVE:
+                return 0.44f;
             default:
                 return 1f;
         }

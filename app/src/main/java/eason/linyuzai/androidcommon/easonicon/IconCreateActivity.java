@@ -98,10 +98,10 @@ public class IconCreateActivity extends EasonActivity {
                     builder.append("        painter").append(i).append(".setPercentY(").append(entity.getPercentY() / 100f).append("f);\n");
                 }
                 if (entity.getOffsetPercentX() != 100) {
-                    builder.append("        painter").append(i).append(".OffsetPercentX(").append((entity.getOffsetPercentX() - 100) / 100f).append("f);\n");
+                    builder.append("        painter").append(i).append(".setOffsetPercentX(").append((entity.getOffsetPercentX() - 100) / 100f).append("f);\n");
                 }
                 if (entity.getOffsetPercentY() != 100) {
-                    builder.append("        painter").append(i).append(".OffsetPercentY(").append((entity.getOffsetPercentY() - 100) / 100f).append("f);\n");
+                    builder.append("        painter").append(i).append(".setOffsetPercentY(").append((entity.getOffsetPercentY() - 100) / 100f).append("f);\n");
                 }
                 builder.append("        ").append("addPainter(painter").append(i).append(");\n");
             }

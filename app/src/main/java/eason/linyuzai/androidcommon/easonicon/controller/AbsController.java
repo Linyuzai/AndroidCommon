@@ -1,8 +1,10 @@
 package eason.linyuzai.androidcommon.easonicon.controller;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
@@ -61,7 +63,7 @@ public abstract class AbsController extends LinearLayout {
         minus.setType(EasonIcon.Type.MINUS_OVAL);
         minus.setPenSize(eason.dip(1));
         addView(minus, new LayoutParams(iconSize, iconSize));
-        seekBar = new SeekBar(eason);
+        seekBar = new UnClickableSeekBar(eason);
         seekBar.setMax(getMaxProgress());
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -145,5 +147,32 @@ public abstract class AbsController extends LinearLayout {
 
     public boolean ifVisible(Painter painter) {
         return false;
+    }
+
+    @SuppressLint({"ViewConstructor", "AppCompatCustomView"})
+    public static class UnClickableSeekBar extends SeekBar {
+
+        private boolean isMove;
+
+        public UnClickableSeekBar(Context context) {
+            super(context);
+        }
+
+        @Override
+        public boolean onTouchEvent(MotionEvent event) {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    isMove = false;
+                    break;
+                case MotionEvent.ACTION_MOVE:
+                    isMove = true;
+                    break;
+                case MotionEvent.ACTION_UP:
+                    if (!isMove)
+                        return true;
+                    break;
+            }
+            return super.onTouchEvent(event);
+        }
     }
 }

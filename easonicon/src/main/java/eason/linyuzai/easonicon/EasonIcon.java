@@ -53,6 +53,7 @@ import eason.linyuzai.easonicon.painter.combine.AddRectPainter;
 import eason.linyuzai.easonicon.painter.combine.BackOvalPainter;
 import eason.linyuzai.easonicon.painter.combine.BackPainter;
 import eason.linyuzai.easonicon.painter.combine.BackRectPainter;
+import eason.linyuzai.easonicon.painter.combine.ClockPainter;
 import eason.linyuzai.easonicon.painter.combine.CollapseOvalPainter;
 import eason.linyuzai.easonicon.painter.combine.CollapsePainter;
 import eason.linyuzai.easonicon.painter.combine.CollapseRectPainter;
@@ -62,6 +63,8 @@ import eason.linyuzai.easonicon.painter.combine.CorrectRectPainter;
 import eason.linyuzai.easonicon.painter.combine.DownArrowOvalPainter;
 import eason.linyuzai.easonicon.painter.combine.DownArrowPainter;
 import eason.linyuzai.easonicon.painter.combine.DownArrowRectPainter;
+import eason.linyuzai.easonicon.painter.combine.DownloadPainter;
+import eason.linyuzai.easonicon.painter.combine.EnvelopePainter;
 import eason.linyuzai.easonicon.painter.combine.ErrorOvalPainter;
 import eason.linyuzai.easonicon.painter.combine.ErrorPainter;
 import eason.linyuzai.easonicon.painter.combine.ErrorRectPainter;
@@ -94,6 +97,7 @@ import eason.linyuzai.easonicon.painter.combine.StarPainter;
 import eason.linyuzai.easonicon.painter.combine.UpArrowOvalPainter;
 import eason.linyuzai.easonicon.painter.combine.UpArrowPainter;
 import eason.linyuzai.easonicon.painter.combine.UpArrowRectPainter;
+import eason.linyuzai.easonicon.painter.combine.UploadPainter;
 import eason.linyuzai.easonicon.painter.combine.UserPainter;
 
 /**
@@ -113,7 +117,7 @@ public class EasonIcon extends View {
     private RectF originalRectF = new RectF();//原始区域
 
     private Type type = Type.NONE;
-    private EasonPainterSet painterSet = new EasonPainterSet();//需要绘制的集合
+    private PainterSet painterSet = new EasonPainterSet();//需要绘制的集合
 
     private Paint paint = new Paint();
 
@@ -466,6 +470,212 @@ public class EasonIcon extends View {
         return setType(type, false);
     }
 
+    public static float getDefaultPercent(Type type) {
+        switch (type) {
+            case SETTING:
+            case SETTING_V21:
+            case LOVE:
+                return 0.5f;
+            default:
+                return 1f;
+        }
+    }
+
+    public void setPainter(Painter painter) {
+        painterSet.clearPainter();
+        painterSet.addPainter(painter);
+    }
+
+    public void addPainter(Painter painter) {
+        painterSet.addPainter(painter);
+    }
+
+    public void addPainter(int index, Painter painter) {
+        painterSet.addPainter(index, painter);
+    }
+
+    public void removePainter(Painter painter) {
+        painterSet.removePainter(painter);
+    }
+
+    public void removePainter(int index) {
+        painterSet.removePainter(index);
+    }
+
+    public void clearPainter() {
+        painterSet.clearPainter();
+    }
+
+    /**
+     * 获得画笔宽度
+     *
+     * @return 画笔宽度
+     */
+    public int getPenSize() {
+        return (int) paint.getStrokeWidth();
+    }
+
+    /**
+     * 设置画笔宽度
+     *
+     * @param size 画笔宽度
+     */
+    public void setPenSize(@Px int size) {
+        paint.setStrokeWidth(size);
+    }
+
+    /**
+     * 获得画笔颜色
+     *
+     * @return 画笔颜色
+     */
+    public int getColor() {
+        return paint.getColor();
+    }
+
+    /**
+     * 设置画笔颜色
+     *
+     * @param color 画笔颜色
+     */
+    public void setColor(@ColorInt int color) {
+        paint.setColor(color);
+    }
+
+    public void setColor(@ColorInt int color, boolean ifSetAuxiliaryColor) {
+        paint.setColor(color);
+        if (ifSetAuxiliaryColor)
+            setAuxiliaryColor(color);
+    }
+
+    public Paint.Cap getPenCap() {
+        return paint.getStrokeCap();
+    }
+
+    public void setPenCap(Paint.Cap cap) {
+        paint.setStrokeCap(cap);
+    }
+
+    public Paint.Join getPenJoin() {
+        return paint.getStrokeJoin();
+    }
+
+    public void setPenJoin(Paint.Join join) {
+        paint.setStrokeJoin(join);
+    }
+
+    public PathEffect setPathEffect() {
+        return paint.getPathEffect();
+    }
+
+    public void setPathEffect(PathEffect effect) {
+        paint.setPathEffect(effect);
+    }
+
+    public Paint.Style getPenStyle() {
+        return paint.getStyle();
+    }
+
+    public void setPenStyle(Paint.Style style) {
+        paint.setStyle(style);
+    }
+
+    public float getTextSize() {
+        return paint.getTextSize();
+    }
+
+    public void setTextSize(float textSize) {
+        paint.setTextSize(textSize);
+    }
+
+    public Paint getPaint() {
+        return paint;
+    }
+
+    public PainterSet getPainterSet() {
+        return painterSet;
+    }
+
+    public Painter getPainter(int index) {
+        return painterSet.getPainter(index);
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        width = w;
+        height = h;
+        originalRectF.right = w;
+        originalRectF.bottom = h;
+        updateRectF(getPaddingLeft(), getPaddingTop(), getPaddingRight(), getPaddingBottom());
+    }
+
+    @Override
+    public void setPadding(@Px int left, @Px int top, @Px int right, @Px int bottom) {
+        updateRectF(left, top, right, bottom);
+        super.setPadding(left, top, right, bottom);
+    }
+
+    private void updateRectF(@Px int left, @Px int top, @Px int right, @Px int bottom) {
+        drawRectF = new RectF(left, top, width - right, height - bottom);
+        //drawRectF = new RectF(0, 0, width, height);
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        painterSet.draw(canvas, drawRectF, originalRectF, paint);
+    }
+
+    /**
+     * 重绘
+     */
+    public void update() {
+        invalidate();
+    }
+
+    public void printStructure() {
+        printStructure(false);
+    }
+
+    public void printStructure(boolean includeInterceptor) {
+        painterSet.printStructure(0, includeInterceptor);
+    }
+
+    public boolean hasAnnotation(Class<? extends Annotation> cls) {
+        return hasAnnotation(type, cls);
+    }
+
+    public static boolean hasAnnotation(int type, Class<? extends Annotation> cls) {
+        return getType(type).getPainterClass().getAnnotation(cls) != null;
+    }
+
+    public static boolean hasAnnotation(Type type, Class<? extends Annotation> cls) {
+        return type.getPainterClass().getAnnotation(cls) != null;
+    }
+
+    public static void recursivePainter(Painter painter, PainterSet.OnRecursivePainterCallback callback) {
+        if (painter instanceof PainterSet) {
+            ((PainterSet) painter).recursivePainter(callback);
+        } else {
+            callback.onPainterRecursive(painter);
+        }
+    }
+
+    public static void printStructure(Painter painter) {
+        printStructure(painter, false);
+    }
+
+    public static void printStructure(Painter painter, boolean includeInterceptor) {
+        painter.printStructure(0, includeInterceptor);
+    }
+
+    public static Type getType(int type) {
+        return Type.values()[type];
+    }
+
+    public static float getDefaultPercent(int type) {
+        return getDefaultPercent(getType(type));
+    }
+
     /**
      * 设置Icon类型
      *
@@ -669,215 +879,20 @@ public class EasonIcon extends View {
             case LOVE:
                 painterSet.addPainter(new LovePainter());
                 break;
+            case ENVELOPE:
+                painterSet.addPainter(new EnvelopePainter(leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
+                break;
+            case CLOCK:
+                painterSet.addPainter(new ClockPainter());
+                break;
+            case DOWNLOAD:
+                painterSet.addPainter(new DownloadPainter());
+                break;
+            case UPLOAD:
+                painterSet.addPainter(new UploadPainter());
+                break;
         }
         return true;
-    }
-
-    public void setPainter(Painter painter) {
-        painterSet.clearPainter();
-        painterSet.addPainter(painter);
-    }
-
-    public void addPainter(Painter painter) {
-        painterSet.addPainter(painter);
-    }
-
-    public void addPainter(int index, Painter painter) {
-        painterSet.addPainter(index, painter);
-    }
-
-    public void removePainter(Painter painter) {
-        painterSet.removePainter(painter);
-    }
-
-    public void removePainter(int index) {
-        painterSet.removePainter(index);
-    }
-
-    public void clearPainter() {
-        painterSet.clearPainter();
-    }
-
-    /**
-     * 获得画笔宽度
-     *
-     * @return 画笔宽度
-     */
-    public int getPenSize() {
-        return (int) paint.getStrokeWidth();
-    }
-
-    /**
-     * 设置画笔宽度
-     *
-     * @param size 画笔宽度
-     */
-    public void setPenSize(@Px int size) {
-        paint.setStrokeWidth(size);
-    }
-
-    /**
-     * 获得画笔颜色
-     *
-     * @return 画笔颜色
-     */
-    public int getColor() {
-        return paint.getColor();
-    }
-
-    /**
-     * 设置画笔颜色
-     *
-     * @param color 画笔颜色
-     */
-    public void setColor(@ColorInt int color) {
-        paint.setColor(color);
-    }
-
-    public void setColor(@ColorInt int color, boolean ifSetAuxiliaryColor) {
-        paint.setColor(color);
-        if (ifSetAuxiliaryColor)
-            setAuxiliaryColor(color);
-    }
-
-    public Paint.Cap getPenCap() {
-        return paint.getStrokeCap();
-    }
-
-    public void setPenCap(Paint.Cap cap) {
-        paint.setStrokeCap(cap);
-    }
-
-    public Paint.Join getPenJoin() {
-        return paint.getStrokeJoin();
-    }
-
-    public void setPenJoin(Paint.Join join) {
-        paint.setStrokeJoin(join);
-    }
-
-    public PathEffect setPathEffect() {
-        return paint.getPathEffect();
-    }
-
-    public void setPathEffect(PathEffect effect) {
-        paint.setPathEffect(effect);
-    }
-
-    public Paint.Style getPenStyle() {
-        return paint.getStyle();
-    }
-
-    public void setPenStyle(Paint.Style style) {
-        paint.setStyle(style);
-    }
-
-    public float getTextSize() {
-        return paint.getTextSize();
-    }
-
-    public void setTextSize(float textSize) {
-        paint.setTextSize(textSize);
-    }
-
-    public Paint getPaint() {
-        return paint;
-    }
-
-    public PainterSet getPainterSet() {
-        return painterSet;
-    }
-
-    public Painter getPainter(int index) {
-        return painterSet.getPainter(index);
-    }
-
-    @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        width = w;
-        height = h;
-        originalRectF.right = w;
-        originalRectF.bottom = h;
-        updateRectF(getPaddingLeft(), getPaddingTop(), getPaddingRight(), getPaddingBottom());
-    }
-
-    @Override
-    public void setPadding(@Px int left, @Px int top, @Px int right, @Px int bottom) {
-        updateRectF(left, top, right, bottom);
-        super.setPadding(left, top, right, bottom);
-    }
-
-    private void updateRectF(@Px int left, @Px int top, @Px int right, @Px int bottom) {
-        drawRectF = new RectF(left, top, width - right, height - bottom);
-        //drawRectF = new RectF(0, 0, width, height);
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        painterSet.draw(canvas, drawRectF, originalRectF, paint);
-    }
-
-    /**
-     * 重绘
-     */
-    public void update() {
-        invalidate();
-    }
-
-    public void printStructure() {
-        printStructure(false);
-    }
-
-    public void printStructure(boolean includeInterceptor) {
-        painterSet.printStructure(0, includeInterceptor);
-    }
-
-    public boolean hasAnnotation(Class<? extends Annotation> cls) {
-        return hasAnnotation(type, cls);
-    }
-
-    public static boolean hasAnnotation(int type, Class<? extends Annotation> cls) {
-        return getType(type).getPainterClass().getAnnotation(cls) != null;
-    }
-
-    public static boolean hasAnnotation(Type type, Class<? extends Annotation> cls) {
-        return type.getPainterClass().getAnnotation(cls) != null;
-    }
-
-    public static void recursivePainter(Painter painter, PainterSet.OnRecursivePainterCallback callback) {
-        if (painter instanceof PainterSet) {
-            ((PainterSet) painter).recursivePainter(callback);
-        } else {
-            callback.onPainterRecursive(painter);
-        }
-    }
-
-    public static void printStructure(Painter painter) {
-        printStructure(painter, false);
-    }
-
-    public static void printStructure(Painter painter, boolean includeInterceptor) {
-        painter.printStructure(0, includeInterceptor);
-    }
-
-    public static Type getType(int type) {
-        return Type.values()[type];
-    }
-
-    public static float getDefaultPercent(int type) {
-        return getDefaultPercent(getType(type));
-    }
-
-    public static float getDefaultPercent(Type type) {
-        switch (type) {
-            case SETTING:
-            case SETTING_V21:
-                return 0.5f;
-            case LOVE:
-                return 0.44f;
-            default:
-                return 1f;
-        }
     }
 
     public enum Type {
@@ -945,7 +960,11 @@ public class EasonIcon extends View {
         SIGN(61, "sign", SignPainter.class),
         SEARCH(62, "search", SearchPainter.class),
         STAR(63, "star", StarPainter.class),
-        LOVE(64, "love", LovePainter.class);
+        LOVE(64, "love", LovePainter.class),
+        ENVELOPE(65, "envelope", EnvelopePainter.class),
+        CLOCK(66, "clock", ClockPainter.class),
+        DOWNLOAD(67, "download", DownloadPainter.class),
+        UPLOAD(68, "upload", UploadPainter.class);
 
         private int value;
         private String attrName;

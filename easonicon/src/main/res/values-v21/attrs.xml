@@ -97,6 +97,10 @@
             <enum name="search" value="62" />
             <enum name="star" value="63" />
             <enum name="love" value="64" />
+            <enum name="envelope" value="65" />
+            <enum name="clock" value="66" />
+            <enum name="download" value="67" />
+            <enum name="upload" value="68" />
         </attr>
         <!-- 需要两种颜色 -->
         <attr name="icon_auxiliary_color" format="reference|color" />

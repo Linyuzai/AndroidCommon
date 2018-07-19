@@ -24,7 +24,7 @@ public class LovePainter extends EasonPainterSet {
 
     @Override
     public float getDefaultPercent() {
-        return 0.44f;
+        return 0.5f;
     }
 
     private class LoveInterceptor implements PainterInterceptor {

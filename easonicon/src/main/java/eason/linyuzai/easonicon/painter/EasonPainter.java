@@ -198,6 +198,13 @@ public abstract class EasonPainter implements Painter {
         Log.i("printStructure", builder.toString());
     }
 
+    /**
+     * 获得中心点坐标
+     *
+     * @param pointF point
+     * @param rectF  区域
+     * @return 该区域的中心点
+     */
     public final PointF getCenter(PointF pointF, RectF rectF) {
         //return getCoordinate(center, rectF);
         pointF.x = rectF.centerX();
@@ -240,12 +247,22 @@ public abstract class EasonPainter implements Painter {
         return newRectF;
     }
 
+    /**
+     * 设配画笔宽度的绘制区域
+     *
+     * @param rectF 原绘制区域
+     * @param paint 画笔
+     * @return 处理参数后的绘制区域
+     */
     public final RectF getTransformRectF(RectF rectF, Paint paint) {
         float ex = paint.getStrokeWidth() * 0.5f;
         RectF mRectF = getRectF(rectF);
         return new RectF(mRectF.left + ex, mRectF.top + ex, mRectF.right - ex, mRectF.bottom - ex);
     }
 
+    /**
+     * 绘制区域参数
+     */
     public static class RectParam {
         private float percentX = 1f;//x百分比
         private float percentY = 1f;//y百分比

@@ -15,7 +15,9 @@ public class LeftArrowPainter extends EasonPainterSet {
 
     public LeftArrowPainter() {
         Painter back = new BackPainter();
-        back.setOffsetPercentX(-0.2f);
+        back.setPercent(0.8f);
+        back.setOffsetPercentX(-0.16f);
+        back.setOffsetPercentY(0.1f);
         addPainter(back);
         Painter horizontal = new HorizontalLinePainter();
         horizontal.setOffsetPercentY(0.5f);

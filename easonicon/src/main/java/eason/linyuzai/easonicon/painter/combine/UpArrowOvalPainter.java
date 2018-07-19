@@ -25,7 +25,7 @@ public class UpArrowOvalPainter extends SupportEasonPainterSet implements Auxili
 
     public UpArrowOvalPainter(float auxiliaryScale, int auxiliaryColor) {
         addPainter(new OvalPainter());
-        Painter painter = new RightArrowPainter();
+        Painter painter = new UpArrowPainter();
         painter.setCenterPercent(auxiliaryScale);
         setAuxiliaryScalePainter(painter);
         addPainter(painter);

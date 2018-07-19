@@ -38,7 +38,7 @@ public class UpArrowRectPainter extends SupportEasonPainterSet implements Auxili
     public UpArrowRectPainter(float auxiliaryScale, int auxiliaryColor, float leftTopRound,
                               float leftBottomRound, float rightTopRound, float rightBottomRound) {
         addPainter(new RectPainter(leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
-        Painter painter = new RightArrowPainter();
+        Painter painter = new UpArrowPainter();
         painter.setCenterPercent(auxiliaryScale);
         setAuxiliaryScalePainter(painter);
         addPainter(painter);

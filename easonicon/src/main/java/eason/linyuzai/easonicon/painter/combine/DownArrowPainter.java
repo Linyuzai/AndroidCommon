@@ -15,7 +15,9 @@ public class DownArrowPainter extends EasonPainterSet {
 
     public DownArrowPainter() {
         Painter expand = new ExpandPainter();
-        expand.setOffsetPercentY(0.2f);
+        expand.setPercent(0.8f);
+        expand.setOffsetPercentX(0.1f);
+        expand.setOffsetPercentY(0.36f);
         addPainter(expand);
         Painter vertical = new VerticalLinePainter();
         vertical.setOffsetPercentX(0.5f);

@@ -72,6 +72,7 @@ public interface Painter extends RectSupport, SupportConverter {
     /**
      * 设置TAG
      *
+     * @param <T> tag类型
      * @param tag tag
      */
     <T> void setTag(T tag);

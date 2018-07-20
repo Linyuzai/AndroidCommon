@@ -3,7 +3,6 @@ package eason.linyuzai.easonicon.extension;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
@@ -13,7 +12,7 @@ import eason.linyuzai.easonicon.R;
 import eason.linyuzai.easonicon.painter.basic.rect.RectPainter;
 
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-public class RectImageView extends EasonImageView {
+public class RectImageView extends DstInImageView {
 
     private RectPainter rectPainter;
 
@@ -43,9 +42,7 @@ public class RectImageView extends EasonImageView {
             setRadius(radius);
             a.recycle();
         }
-        paint.setStyle(Paint.Style.FILL);
         setPainter(rectPainter);
-        setMode(PorterDuff.Mode.DST_IN);
     }
 
     public void setRadius(float radius) {

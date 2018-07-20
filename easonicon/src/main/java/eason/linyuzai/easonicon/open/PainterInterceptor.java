@@ -14,9 +14,10 @@ public interface PainterInterceptor extends SupportConverter {
      * 绘制之前
      *
      * @param painter Painter
-     * @param canvas  Canvas
-     * @param paint   Paint
-     * @param rectF   RectF
+     * @param canvas  画布
+     * @param paint   画笔
+     * @param rectF   绘制区域
+     * @param index   下标
      */
     void beforeDraw(Painter painter, Canvas canvas, Paint paint, RectF rectF, int index);
 
@@ -24,9 +25,10 @@ public interface PainterInterceptor extends SupportConverter {
      * 绘制之后
      *
      * @param painter Painter
-     * @param canvas  Canvas
-     * @param paint   Paint
-     * @param rectF   RectF
+     * @param canvas  画布
+     * @param paint   画笔
+     * @param rectF   绘制区域
+     * @param index   下标
      */
     void afterDraw(Painter painter, Canvas canvas, Paint paint, RectF rectF, int index);
 }

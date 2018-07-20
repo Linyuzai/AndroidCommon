@@ -20,8 +20,6 @@ public class PorterDuffModeInterceptor implements PainterInterceptor {
 
     private Paint paint = new Paint();
 
-    private int layerId;
-
     public PorterDuffModeInterceptor() {
 
     }
@@ -60,9 +58,10 @@ public class PorterDuffModeInterceptor implements PainterInterceptor {
     }
 
     /**
-     * 绘制者绘制之前是否新建图层
+     * Painter绘制之前是否新建图层
      *
-     * @param painter 绘制者
+     * @param painter Painter
+     * @param index   下标
      * @return 是否新建图层
      */
     protected boolean ifSaveCanvas(Painter painter, int index) {
@@ -70,9 +69,10 @@ public class PorterDuffModeInterceptor implements PainterInterceptor {
     }
 
     /**
-     * 绘制者绘制之后是否合成图层
+     * Painter绘制之后是否合成图层
      *
-     * @param painter 绘制者
+     * @param painter Painter
+     * @param index   下标
      * @return 是否合成图层
      */
     protected boolean ifRestoreCanvas(Painter painter, int index) {
@@ -80,9 +80,10 @@ public class PorterDuffModeInterceptor implements PainterInterceptor {
     }
 
     /**
-     * 绘制者绘制之前是否设置mode
+     * Painter绘制之前是否设置mode
      *
-     * @param painter 绘制者
+     * @param painter Painter
+     * @param index   下标
      * @return 是否设置mode
      */
     protected boolean ifSetMode(Painter painter, int index) {
@@ -90,9 +91,10 @@ public class PorterDuffModeInterceptor implements PainterInterceptor {
     }
 
     /**
-     * 绘制者绘制之后是否清除mode
+     * Painter绘制之后是否清除mode
      *
-     * @param painter 绘制者
+     * @param painter Painter
+     * @param index   下标
      * @return 是否清除mode
      */
     protected boolean ifRestoreMode(Painter painter, int index) {

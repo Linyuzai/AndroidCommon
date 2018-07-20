@@ -552,83 +552,6 @@ public class EasonIcon extends View {
     }
 
     /**
-     * 设置Icon类型
-     *
-     * @param type Icon类型
-     * @return 是否成功
-     */
-    public boolean setType(int type) {
-        return setType(Type.values()[type], false);
-    }
-
-    /**
-     * 设置Icon类型
-     *
-     * @param type  Icon类型
-     * @param force type相同时强制重绘
-     * @return 是否成功
-     */
-    public boolean setType(int type, boolean force) {
-        return setType(Type.values()[type], force);
-    }
-
-    /**
-     * 获得画笔宽度
-     *
-     * @return 画笔宽度
-     */
-    public int getPenSize() {
-        return (int) paint.getStrokeWidth();
-    }
-
-    /**
-     * 设置画笔宽度
-     *
-     * @param size 画笔宽度
-     */
-    public void setPenSize(@Px int size) {
-        paint.setStrokeWidth(size);
-    }
-
-    /**
-     * 获得画笔颜色
-     *
-     * @return 画笔颜色
-     */
-    public int getColor() {
-        return paint.getColor();
-    }
-
-    /**
-     * 设置画笔颜色
-     *
-     * @param color 画笔颜色
-     */
-    public void setColor(@ColorInt int color) {
-        paint.setColor(color);
-    }
-
-    /**
-     * 设置Icon类型
-     *
-     * @param type Icon类型
-     * @return 是否成功
-     */
-    public boolean setType(Type type) {
-        return setType(type, false);
-    }
-
-    /**
-     * 设置Painter，会清空之前的所有Painter
-     *
-     * @param painter 需要设置的Painter
-     */
-    public void setPainter(Painter painter) {
-        painterSet.clearPainter();
-        painterSet.addPainter(painter);
-    }
-
-    /**
      * 添加Painter
      *
      * @param painter 需要添加的Painter
@@ -670,6 +593,52 @@ public class EasonIcon extends View {
      */
     public void clearPainter() {
         painterSet.clearPainter();
+    }
+
+    /**
+     * 获得画笔宽度
+     *
+     * @return 画笔宽度
+     */
+    public int getPenSize() {
+        return (int) paint.getStrokeWidth();
+    }
+
+    /**
+     * 设置画笔宽度
+     *
+     * @param size 画笔宽度
+     */
+    public void setPenSize(@Px int size) {
+        paint.setStrokeWidth(size);
+    }
+
+    /**
+     * 获得画笔颜色
+     *
+     * @return 画笔颜色
+     */
+    public int getColor() {
+        return paint.getColor();
+    }
+
+    /**
+     * 设置画笔颜色
+     *
+     * @param color 画笔颜色
+     */
+    public void setColor(@ColorInt int color) {
+        paint.setColor(color);
+    }
+
+    /**
+     * 设置Painter，会清空之前的所有Painter
+     *
+     * @param painter 需要设置的Painter
+     */
+    public void setPainter(Painter painter) {
+        painterSet.clearPainter();
+        painterSet.addPainter(painter);
     }
 
     /**
@@ -871,8 +840,40 @@ public class EasonIcon extends View {
     /**
      * 设置Icon类型
      *
+     * @param type Icon类型
+     * @return 是否成功
+     */
+    public boolean setType(int type) {
+        return setType(Type.values()[type], false);
+    }
+
+    /**
+     * 设置Icon类型
+     *
+     * @param type  Icon类型
+     * @param force type相同时强制重绘
+     * @return 是否成功
+     */
+    public boolean setType(int type, boolean force) {
+        return setType(Type.values()[type], force);
+    }
+
+    /**
+     * 设置Icon类型
+     *
+     * @param type Icon类型
+     * @return 是否成功
+     */
+    public boolean setType(Type type) {
+        return setType(type, false);
+    }
+
+    /**
+     * 设置Icon类型
+     *
      * @param type  Icon类型
      * @param force 是否强制重绘
+     * @return 是否成功
      */
     public boolean setType(Type type, boolean force) {
         if (!force && this.type == type)

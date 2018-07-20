@@ -59,12 +59,12 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layerType="software"
+        android:visibility="gone"
         app:icon_color="@android:color/white"
         app:icon_pen_cap="round"
         app:icon_pen_size="1dp"
         app:icon_pen_style="stroke"
         app:icon_polygon_edge_count="8"
-        android:visibility="gone"
         app:icon_polygon_extra_offset="-78dp"
         app:icon_type="polygon_extra" />
 
@@ -74,23 +74,33 @@
         android:layout_gravity="right"
         android:layerType="software"
         app:icon_color="@android:color/white"
+        app:icon_path_effect_corner="200"
         app:icon_pen_size="3dp"
         app:icon_pen_style="stroke"
-        app:icon_path_effect_corner="200"
         app:icon_polygon_edge_count="5"
         app:icon_polygon_extra_offset="-40dp"
         app:icon_type="polygon_extra" />
 
     <eason.linyuzai.easonicon.extension.OvalImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher" />
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="centerInside"
+        android:src="@mipmap/pic"
+        android:visibility="gone" />
 
     <eason.linyuzai.easonicon.extension.RectImageView
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:src="@mipmap/ic_launcher"
-        android:visibility="gone" />
+        android:scaleType="centerCrop"
+        android:src="@mipmap/pic"
+        android:visibility="gone"
+        app:round_radius="30dp" />
+
+    <eason.linyuzai.easonicon.extension.DiamondImageView
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/pic" />
 
     <eason.linyuzai.androidcommon.test.EView
         android:layout_width="100dp"

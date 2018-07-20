@@ -19,6 +19,7 @@
         <activity android:name=".easonicon.IconDisplayActivity" />
         <activity android:name=".easonicon.IconCreateActivity" />
         <activity android:name=".easonicon.IconAttrActivity" />
+        <activity android:name=".test.MainActivity" />
     </application>
 
 </manifest>

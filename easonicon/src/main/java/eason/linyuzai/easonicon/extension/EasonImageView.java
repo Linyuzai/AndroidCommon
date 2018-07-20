@@ -6,15 +6,11 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
-import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
@@ -30,20 +26,12 @@ import eason.linyuzai.easonicon.painter.interceptor.mode.PorterDuffModeIntercept
 public class EasonImageView extends ImageView {
 
     private Paint paint = new Paint();
-    private RectF rectF;
+    private RectF draw = new RectF();
+    private RectF original = new RectF();
 
     private Painter painter;
 
     private PorterDuffModeInterceptor modeInterceptor = new PorterDuffModeInterceptor() {
-        @Override
-        protected boolean ifSaveCanvas(Painter painter, int index) {
-            return false;
-        }
-
-        @Override
-        protected boolean ifSetMode(Painter painter, int index) {
-            return true;
-        }
 
         @Override
         protected boolean ifRestoreMode(Painter painter, int index) {
@@ -52,7 +40,7 @@ public class EasonImageView extends ImageView {
 
         @Override
         protected boolean ifRestoreCanvas(Painter painter, int index) {
-            return false;
+            return true;
         }
     };
 
@@ -99,29 +87,20 @@ public class EasonImageView extends ImageView {
         modeInterceptor.setMode(mode);
     }
 
-    @SuppressLint("DrawAllocation")
     @Override
-    protected void onDraw(Canvas c) {
-        //modeInterceptor.beforeDraw(painter, canvas, paint, rectF, 0);
-        //super.onDraw(canvas);
-        //Log.d("EasonImageView", getDrawable().getClass().toString());
-        //modeInterceptor.afterDraw(painter, canvas, paint, rectF, 0);
-        Drawable drawable = getDrawable();
-        int w = drawable.getIntrinsicWidth();
-        int h = drawable.getIntrinsicHeight();
-        Log.d("EasonImageView", w + "," + h);
-        Bitmap bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
-        //canvas.drawBitmap(bitmap, 0, 0, paint);
-        Canvas canvas = new Canvas(bitmap);
+    protected void onDraw(Canvas canvas) {
+        modeInterceptor.beforeDraw(painter, canvas, paint, draw, 0);
+        super.onDraw(canvas);
+        modeInterceptor.beforeDraw(painter, canvas, paint, draw, 1);
+        if (painter != null) {
+            final Bitmap bitmap = painter.transformBitmap(draw, original, paint);
+            painter.drawBitmap(canvas, bitmap, draw, original, modeInterceptor.getPaint());
+        }
+        modeInterceptor.afterDraw(painter, canvas, paint, draw, 1);
+    }
 
-        /*for (PainterInterceptor interceptor : interceptors)
-            interceptor.beforeDraw(painter, canvas, paint, rectF, 0);*/
-        modeInterceptor.beforeDraw(painter, canvas, paint, rectF, 1);
-        if (painter != null)
-            painter.draw(canvas, rectF, rectF, paint);
-        /*for (PainterInterceptor interceptor : interceptors)
-            interceptor.afterDraw(painter, canvas, paint, rectF, 0);*/
-        modeInterceptor.afterDraw(painter, canvas, paint, rectF, 1);
+    public List<PainterInterceptor> getInterceptors() {
+        return interceptors;
     }
 
     public void addInterceptor(PainterInterceptor interceptor) {
@@ -169,6 +148,7 @@ public class EasonImageView extends ImageView {
         int bottom = h - getPaddingBottom();
         int left = getPaddingLeft();
         int right = w - getPaddingRight();
-        rectF = new RectF(left, top, right, bottom);
+        original.set(0f, 0f, w, h);
+        draw.set(left, top, right, bottom);
     }
 }

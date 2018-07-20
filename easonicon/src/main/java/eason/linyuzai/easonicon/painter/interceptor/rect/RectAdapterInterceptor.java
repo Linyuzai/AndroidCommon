@@ -22,6 +22,7 @@ public abstract class RectAdapterInterceptor extends PainterSetRectSupportInterc
      *
      * @param painter Painter
      * @param rectF   RectF
+     * @param index   下标
      * @return 是否拦截 changeRect
      * @see RectAdapterInterceptor#changeRect(RectF)
      */

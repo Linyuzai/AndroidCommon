@@ -141,13 +141,6 @@ public interface PainterSet extends Painter {
     void recursivePainter(OnRecursivePainterCallback callback);
 
     /**
-     * 获得默认百分比
-     *
-     * @return 默认百分比
-     */
-    float getDefaultPercent();
-
-    /**
      * 递归Painter回调接口
      */
     @FunctionalInterface

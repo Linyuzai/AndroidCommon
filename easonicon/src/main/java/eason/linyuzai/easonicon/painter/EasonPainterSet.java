@@ -267,11 +267,6 @@ public class EasonPainterSet extends EasonPainter implements PainterSet {
     }
 
     @Override
-    public float getDefaultPercent() {
-        return 1f;
-    }
-
-    @Override
     public void printStructure(int deep, boolean includeInterceptor) {
         super.printStructure(deep, includeInterceptor);
         StringBuilder space = new StringBuilder();

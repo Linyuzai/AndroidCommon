@@ -47,9 +47,4 @@ public class SettingV21Painter extends SupportEasonPainterSet implements Auxilia
     public void setAuxiliaryScale(float auxiliaryScale) {
         super.setAuxiliaryScale(auxiliaryScale * 0.7f);
     }
-
-    @Override
-    public float getDefaultPercent() {
-        return 0.5f;
-    }
 }

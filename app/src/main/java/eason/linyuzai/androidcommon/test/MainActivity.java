@@ -2,13 +2,12 @@ package eason.linyuzai.androidcommon.test;
 
 import android.animation.ObjectAnimator;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.animation.LinearInterpolator;
 import android.widget.LinearLayout;
-
 
 import eason.linyuzai.androidcommon.R;
 import eason.linyuzai.blurring.BlurringView;
@@ -78,12 +77,9 @@ public class MainActivity extends AppCompatActivity {
         ll = findViewById(R.id.ll);
         blurringView.setBlurredView(ll);
         blurringView.invalidate();
-        ((EScrollView) findViewById(R.id.sv)).listener = new EScrollView.OnScrollChangedListener() {
-            @Override
-            public void onScroll(int l, int t) {
-                Log.d("onScroll", "l:" + l + ",t:" + t);
-                blurringView.invalidate(l, t);
-            }
+        ((EScrollView) findViewById(R.id.sv)).listener = (l, t) -> {
+            Log.d("onScroll", "l:" + l + ",t:" + t);
+            blurringView.invalidate(l, t);
         };
     }
 }

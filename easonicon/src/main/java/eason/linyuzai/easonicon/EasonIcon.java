@@ -174,201 +174,21 @@ public class EasonIcon extends View {
     /**
      * 获得默认百分比
      *
+     * @param type type下标
+     * @return 百分比
+     */
+    public static float getDefaultPercent(int type) {
+        return getDefaultPercent(getType(type));
+    }
+
+    /**
+     * 获得默认百分比
+     *
      * @param type Icon类型
      * @return 默认百分比
      */
     public static float getDefaultPercent(Type type) {
-        switch (type) {
-            case SETTING:
-            case SETTING_V21:
-            case LOVE:
-                return 0.5f;
-            default:
-                return 1f;
-        }
-    }
-
-    public int getAuxiliaryColor() {
-        return auxiliaryColor;
-    }
-
-    public void setAuxiliaryColor(int auxiliaryColor) {
-        this.auxiliaryColor = auxiliaryColor;
-        painterSet.recursivePainter(painter -> {
-            if (painter.isSupportAuxiliaryColor()) {
-                painter.toAuxiliaryColorSupport().setAuxiliaryColor(auxiliaryColor);
-            }
-        });
-    }
-
-    public float getAuxiliaryScale() {
-        return auxiliaryScale;
-    }
-
-    public void setAuxiliaryScale(float auxiliaryScale) {
-        this.auxiliaryScale = auxiliaryScale;
-        painterSet.recursivePainter(painter -> {
-            if (painter.isSupportAuxiliaryScale()) {
-                painter.toAuxiliaryScaleSupport().setAuxiliaryScale(auxiliaryScale);
-            }
-        });
-    }
-
-    public float getLeftTopRound() {
-        return leftTopRound;
-    }
-
-    public void setLeftTopRound(float leftTopRound) {
-        this.leftTopRound = leftTopRound;
-        painterSet.recursivePainter(painter -> {
-            if (painter.isSupportRoundRect()) {
-                painter.toRoundRectSupport().setLeftTop(leftTopRound);
-            }
-        });
-    }
-
-    public float getLeftBottomRound() {
-        return leftBottomRound;
-    }
-
-    public void setLeftBottomRound(float leftBottomRound) {
-        this.leftBottomRound = leftBottomRound;
-        painterSet.recursivePainter(painter -> {
-            if (painter.isSupportRoundRect()) {
-                painter.toRoundRectSupport().setLeftBottom(leftBottomRound);
-            }
-        });
-    }
-
-    public float getRightTopRound() {
-        return rightTopRound;
-    }
-
-    public void setRightTopRound(float rightTopRound) {
-        this.rightTopRound = rightTopRound;
-        painterSet.recursivePainter(painter -> {
-            if (painter.isSupportRoundRect()) {
-                painter.toRoundRectSupport().setRightTop(rightTopRound);
-            }
-        });
-    }
-
-    public float getRightBottomRound() {
-        return rightBottomRound;
-    }
-
-    public void setRightBottomRound(float rightBottomRound) {
-        this.rightBottomRound = rightBottomRound;
-        painterSet.recursivePainter(painter -> {
-            if (painter.isSupportRoundRect()) {
-                painter.toRoundRectSupport().setRightBottom(rightBottomRound);
-            }
-        });
-    }
-
-    public float getStartAngle() {
-        return startAngle;
-    }
-
-    public void setStartAngle(float startAngle) {
-        this.startAngle = startAngle;
-        painterSet.recursivePainter(painter -> {
-            if (painter.isSupportArc())
-                painter.toArcSupport().setStartAngle(startAngle);
-        });
-    }
-
-    public float getSweepAngle() {
-        return sweepAngle;
-    }
-
-    public void setSweepAngle(float sweepAngle) {
-        this.sweepAngle = sweepAngle;
-        painterSet.recursivePainter(painter -> {
-            if (painter.isSupportArc())
-                painter.toArcSupport().setSweepAngle(sweepAngle);
-        });
-    }
-
-    public boolean isUseCenter() {
-        return useCenter;
-    }
-
-    public void setUseCenter(boolean useCenter) {
-        this.useCenter = useCenter;
-        painterSet.recursivePainter(painter -> {
-            if (painter.isSupportArc())
-                painter.toArcSupport().setUseCenter(useCenter);
-        });
-    }
-
-    public Bitmap getBitmap() {
-        return bitmap;
-    }
-
-    public void setBitmap(Bitmap bitmap) {
-        this.bitmap = bitmap;
-        painterSet.recursivePainter(painter -> {
-            if (painter.isSupportBitmap())
-                painter.toBitmapSupport().setBitmap(bitmap);
-        });
-    }
-
-    public int getEdgeCount() {
-        return edgeCount;
-    }
-
-    public void setEdgeCount(int edgeCount) {
-        this.edgeCount = edgeCount;
-        painterSet.recursivePainter(painter -> {
-            if (painter.isSupportEdgeCount())
-                painter.toEdgeCountSupport().setEdgeCount(edgeCount);
-        });
-    }
-
-    public float getExtraOffset() {
-        return extraOffset;
-    }
-
-    public void setExtraOffset(float extraOffset) {
-        this.extraOffset = extraOffset;
-        painterSet.recursivePainter(painter -> {
-            if (painter.isSupportExtraOffset())
-                painter.toExtraOffsetSupport().setExtraOffset(extraOffset);
-        });
-    }
-
-    public float getPenSizeScale() {
-        return penSizeScale;
-    }
-
-    public void setPenSizeScale(float penSizeScale) {
-        this.penSizeScale = penSizeScale;
-        painterSet.recursivePainter(painter -> {
-            if (painter.isSupportPenSizeScale())
-                painter.toPenSizeScaleSupport().setPenSizeScale(penSizeScale);
-        });
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-        painterSet.recursivePainter(painter -> {
-            if (painter.isSupportText())
-                painter.toTextSupport().setText(text);
-        });
-    }
-
-    /**
-     * 获得Icon类型
-     *
-     * @return Icon类型
-     */
-    public Type getType() {
-        return type;
+        return type.getDefaultPercent();
     }
 
     /**
@@ -379,7 +199,7 @@ public class EasonIcon extends View {
      * @return 是否有该Annotation
      */
     public static boolean hasAnnotation(int type, Class<? extends Annotation> cls) {
-        return getType(type).getPainterClass().getAnnotation(cls) != null;
+        return hasAnnotation(getType(type), cls);
     }
 
     /**
@@ -424,26 +244,6 @@ public class EasonIcon extends View {
      */
     public static void printStructure(Painter painter, boolean includeInterceptor) {
         painter.printStructure(0, includeInterceptor);
-    }
-
-    /**
-     * 根据type下标获得Type
-     *
-     * @param type type下标
-     * @return Type
-     */
-    public static Type getType(int type) {
-        return Type.values()[type];
-    }
-
-    /**
-     * 获得默认百分比
-     *
-     * @param type type下标
-     * @return 百分比
-     */
-    public static float getDefaultPercent(int type) {
-        return getDefaultPercent(getType(type));
     }
 
     /**
@@ -552,50 +352,6 @@ public class EasonIcon extends View {
     }
 
     /**
-     * 添加Painter
-     *
-     * @param painter 需要添加的Painter
-     */
-    public void addPainter(Painter painter) {
-        painterSet.addPainter(painter);
-    }
-
-    /**
-     * 添加Painter
-     *
-     * @param index   添加的位置
-     * @param painter 需要添加的Painter
-     */
-    public void addPainter(int index, Painter painter) {
-        painterSet.addPainter(index, painter);
-    }
-
-    /**
-     * 移除Painter
-     *
-     * @param painter 需要移除的Painter
-     */
-    public void removePainter(Painter painter) {
-        painterSet.removePainter(painter);
-    }
-
-    /**
-     * 移除Painter
-     *
-     * @param index 移除的位置
-     */
-    public void removePainter(int index) {
-        painterSet.removePainter(index);
-    }
-
-    /**
-     * 清空Painter
-     */
-    public void clearPainter() {
-        painterSet.clearPainter();
-    }
-
-    /**
      * 获得画笔宽度
      *
      * @return 画笔宽度
@@ -631,14 +387,15 @@ public class EasonIcon extends View {
         paint.setColor(color);
     }
 
+
     /**
-     * 设置Painter，会清空之前的所有Painter
+     * 根据type下标获得Type
      *
-     * @param painter 需要设置的Painter
+     * @param type type下标
+     * @return Type
      */
-    public void setPainter(Painter painter) {
-        painterSet.clearPainter();
-        painterSet.addPainter(painter);
+    public static Type getType(int type) {
+        return Type.values()[type];
     }
 
     /**
@@ -707,134 +464,13 @@ public class EasonIcon extends View {
         paint.setPathEffect(effect);
     }
 
-    @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        width = w;
-        height = h;
-        originalRectF.right = w;
-        originalRectF.bottom = h;
-        updateRectF(getPaddingLeft(), getPaddingTop(), getPaddingRight(), getPaddingBottom());
-    }
-
-    @Override
-    public void setPadding(@Px int left, @Px int top, @Px int right, @Px int bottom) {
-        updateRectF(left, top, right, bottom);
-        super.setPadding(left, top, right, bottom);
-    }
-
     /**
-     * 获得画笔Style
+     * 获得Icon类型
      *
-     * @return 画笔Style
+     * @return Icon类型
      */
-    public Paint.Style getPenStyle() {
-        return paint.getStyle();
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        painterSet.draw(canvas, drawRectF, originalRectF, paint);
-    }
-
-    /**
-     * 设置画笔Style
-     *
-     * @param style 画笔Style
-     */
-    public void setPenStyle(Paint.Style style) {
-        paint.setStyle(style);
-    }
-
-    /**
-     * 获得画笔字体大小
-     *
-     * @return 画笔字体大小
-     */
-    public float getTextSize() {
-        return paint.getTextSize();
-    }
-
-    /**
-     * 设置画笔字体大小
-     *
-     * @param textSize 画笔字体大小
-     */
-    public void setTextSize(float textSize) {
-        paint.setTextSize(textSize);
-    }
-
-    /**
-     * 获得画笔
-     *
-     * @return 画笔
-     */
-    public Paint getPaint() {
-        return paint;
-    }
-
-    /**
-     * 获得PainterSet
-     *
-     * @return PainterSet
-     */
-    public PainterSet getPainterSet() {
-        return painterSet;
-    }
-
-    /**
-     * 获得Painter
-     *
-     * @param index painter的位置
-     * @return Painter
-     */
-    public Painter getPainter(int index) {
-        return painterSet.getPainter(index);
-    }
-
-    /**
-     * 更新绘制区域
-     *
-     * @param left   左区域
-     * @param top    上区域
-     * @param right  右区域
-     * @param bottom 下区域
-     */
-    private void updateRectF(@Px int left, @Px int top, @Px int right, @Px int bottom) {
-        drawRectF = new RectF(left, top, width - right, height - bottom);
-        //drawRectF = new RectF(0, 0, width, height);
-    }
-
-    /**
-     * 重绘，保留以后可能需要额外操作
-     */
-    public void update() {
-        invalidate();
-    }
-
-    /**
-     * 打印Painter结构
-     */
-    public void printStructure() {
-        printStructure(false);
-    }
-
-    /**
-     * 打印Painter结构
-     *
-     * @param includeInterceptor 是否打印Interceptor
-     */
-    public void printStructure(boolean includeInterceptor) {
-        painterSet.printStructure(0, includeInterceptor);
-    }
-
-    /**
-     * 是否有某个Annotation
-     *
-     * @param cls Annotation cls
-     * @return 是否有该Annotation
-     */
-    public boolean hasAnnotation(Class<? extends Annotation> cls) {
-        return hasAnnotation(type, cls);
+    public Type getType() {
+        return type;
     }
 
     /**
@@ -1089,6 +725,364 @@ public class EasonIcon extends View {
         return true;
     }
 
+    public int getAuxiliaryColor() {
+        return auxiliaryColor;
+    }
+
+    public void setAuxiliaryColor(int auxiliaryColor) {
+        this.auxiliaryColor = auxiliaryColor;
+        painterSet.recursivePainter(painter -> {
+            if (painter.isSupportAuxiliaryColor()) {
+                painter.toAuxiliaryColorSupport().setAuxiliaryColor(auxiliaryColor);
+            }
+        });
+    }
+
+    public float getAuxiliaryScale() {
+        return auxiliaryScale;
+    }
+
+    public void setAuxiliaryScale(float auxiliaryScale) {
+        this.auxiliaryScale = auxiliaryScale;
+        painterSet.recursivePainter(painter -> {
+            if (painter.isSupportAuxiliaryScale()) {
+                painter.toAuxiliaryScaleSupport().setAuxiliaryScale(auxiliaryScale);
+            }
+        });
+    }
+
+    public float getLeftTopRound() {
+        return leftTopRound;
+    }
+
+    public void setLeftTopRound(float leftTopRound) {
+        this.leftTopRound = leftTopRound;
+        painterSet.recursivePainter(painter -> {
+            if (painter.isSupportRoundRect()) {
+                painter.toRoundRectSupport().setLeftTop(leftTopRound);
+            }
+        });
+    }
+
+    public float getLeftBottomRound() {
+        return leftBottomRound;
+    }
+
+    public void setLeftBottomRound(float leftBottomRound) {
+        this.leftBottomRound = leftBottomRound;
+        painterSet.recursivePainter(painter -> {
+            if (painter.isSupportRoundRect()) {
+                painter.toRoundRectSupport().setLeftBottom(leftBottomRound);
+            }
+        });
+    }
+
+    public float getRightTopRound() {
+        return rightTopRound;
+    }
+
+    public void setRightTopRound(float rightTopRound) {
+        this.rightTopRound = rightTopRound;
+        painterSet.recursivePainter(painter -> {
+            if (painter.isSupportRoundRect()) {
+                painter.toRoundRectSupport().setRightTop(rightTopRound);
+            }
+        });
+    }
+
+    public float getRightBottomRound() {
+        return rightBottomRound;
+    }
+
+    public void setRightBottomRound(float rightBottomRound) {
+        this.rightBottomRound = rightBottomRound;
+        painterSet.recursivePainter(painter -> {
+            if (painter.isSupportRoundRect()) {
+                painter.toRoundRectSupport().setRightBottom(rightBottomRound);
+            }
+        });
+    }
+
+    public float getStartAngle() {
+        return startAngle;
+    }
+
+    public void setStartAngle(float startAngle) {
+        this.startAngle = startAngle;
+        painterSet.recursivePainter(painter -> {
+            if (painter.isSupportArc())
+                painter.toArcSupport().setStartAngle(startAngle);
+        });
+    }
+
+    public float getSweepAngle() {
+        return sweepAngle;
+    }
+
+    public void setSweepAngle(float sweepAngle) {
+        this.sweepAngle = sweepAngle;
+        painterSet.recursivePainter(painter -> {
+            if (painter.isSupportArc())
+                painter.toArcSupport().setSweepAngle(sweepAngle);
+        });
+    }
+
+    public boolean isUseCenter() {
+        return useCenter;
+    }
+
+    public void setUseCenter(boolean useCenter) {
+        this.useCenter = useCenter;
+        painterSet.recursivePainter(painter -> {
+            if (painter.isSupportArc())
+                painter.toArcSupport().setUseCenter(useCenter);
+        });
+    }
+
+    public Bitmap getBitmap() {
+        return bitmap;
+    }
+
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
+        painterSet.recursivePainter(painter -> {
+            if (painter.isSupportBitmap())
+                painter.toBitmapSupport().setBitmap(bitmap);
+        });
+    }
+
+    public int getEdgeCount() {
+        return edgeCount;
+    }
+
+    public void setEdgeCount(int edgeCount) {
+        this.edgeCount = edgeCount;
+        painterSet.recursivePainter(painter -> {
+            if (painter.isSupportEdgeCount())
+                painter.toEdgeCountSupport().setEdgeCount(edgeCount);
+        });
+    }
+
+    /**
+     * 添加Painter
+     *
+     * @param painter 需要添加的Painter
+     */
+    public void addPainter(Painter painter) {
+        painterSet.addPainter(painter);
+    }
+
+    /**
+     * 添加Painter
+     *
+     * @param index   添加的位置
+     * @param painter 需要添加的Painter
+     */
+    public void addPainter(int index, Painter painter) {
+        painterSet.addPainter(index, painter);
+    }
+
+    /**
+     * 移除Painter
+     *
+     * @param painter 需要移除的Painter
+     */
+    public void removePainter(Painter painter) {
+        painterSet.removePainter(painter);
+    }
+
+    /**
+     * 移除Painter
+     *
+     * @param index 移除的位置
+     */
+    public void removePainter(int index) {
+        painterSet.removePainter(index);
+    }
+
+    /**
+     * 清空Painter
+     */
+    public void clearPainter() {
+        painterSet.clearPainter();
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        width = w;
+        height = h;
+        originalRectF.right = w;
+        originalRectF.bottom = h;
+        updateRectF(getPaddingLeft(), getPaddingTop(), getPaddingRight(), getPaddingBottom());
+    }
+
+    @Override
+    public void setPadding(@Px int left, @Px int top, @Px int right, @Px int bottom) {
+        updateRectF(left, top, right, bottom);
+        super.setPadding(left, top, right, bottom);
+    }
+
+    /**
+     * 获得画笔Style
+     *
+     * @return 画笔Style
+     */
+    public Paint.Style getPenStyle() {
+        return paint.getStyle();
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        painterSet.draw(canvas, drawRectF, originalRectF, paint);
+    }
+
+    /**
+     * 设置画笔Style
+     *
+     * @param style 画笔Style
+     */
+    public void setPenStyle(Paint.Style style) {
+        paint.setStyle(style);
+    }
+
+    /**
+     * 获得画笔字体大小
+     *
+     * @return 画笔字体大小
+     */
+    public float getTextSize() {
+        return paint.getTextSize();
+    }
+
+    /**
+     * 设置画笔字体大小
+     *
+     * @param textSize 画笔字体大小
+     */
+    public void setTextSize(float textSize) {
+        paint.setTextSize(textSize);
+    }
+
+    /**
+     * 获得画笔
+     *
+     * @return 画笔
+     */
+    public Paint getPaint() {
+        return paint;
+    }
+
+    /**
+     * 获得PainterSet
+     *
+     * @return PainterSet
+     */
+    public PainterSet getPainterSet() {
+        return painterSet;
+    }
+
+    /**
+     * 获得Painter
+     *
+     * @param index painter的位置
+     * @return Painter
+     */
+    public Painter getPainter(int index) {
+        return painterSet.getPainter(index);
+    }
+
+    /**
+     * 更新绘制区域
+     *
+     * @param left   左区域
+     * @param top    上区域
+     * @param right  右区域
+     * @param bottom 下区域
+     */
+    private void updateRectF(@Px int left, @Px int top, @Px int right, @Px int bottom) {
+        drawRectF = new RectF(left, top, width - right, height - bottom);
+        //drawRectF = new RectF(0, 0, width, height);
+    }
+
+    /**
+     * 重绘，保留以后可能需要额外操作
+     */
+    public void update() {
+        invalidate();
+    }
+
+    public float getExtraOffset() {
+        return extraOffset;
+    }
+
+    public void setExtraOffset(float extraOffset) {
+        this.extraOffset = extraOffset;
+        painterSet.recursivePainter(painter -> {
+            if (painter.isSupportExtraOffset())
+                painter.toExtraOffsetSupport().setExtraOffset(extraOffset);
+        });
+    }
+
+    /**
+     * 是否有某个Annotation
+     *
+     * @param cls Annotation cls
+     * @return 是否有该Annotation
+     */
+    public boolean hasAnnotation(Class<? extends Annotation> cls) {
+        return hasAnnotation(type, cls);
+    }
+
+    public float getPenSizeScale() {
+        return penSizeScale;
+    }
+
+    public void setPenSizeScale(float penSizeScale) {
+        this.penSizeScale = penSizeScale;
+        painterSet.recursivePainter(painter -> {
+            if (painter.isSupportPenSizeScale())
+                painter.toPenSizeScaleSupport().setPenSizeScale(penSizeScale);
+        });
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+        painterSet.recursivePainter(painter -> {
+            if (painter.isSupportText())
+                painter.toTextSupport().setText(text);
+        });
+    }
+
+    /**
+     * 设置Painter，会清空之前的所有Painter
+     *
+     * @param painter 需要设置的Painter
+     */
+    public void setPainter(Painter painter) {
+        painterSet.clearPainter();
+        painterSet.addPainter(painter);
+    }
+
+    /**
+     * 打印Painter结构
+     */
+    public void printStructure() {
+        printStructure(false);
+    }
+
+    /**
+     * 打印Painter结构
+     *
+     * @param includeInterceptor 是否打印Interceptor
+     */
+    public void printStructure(boolean includeInterceptor) {
+        painterSet.printStructure(0, includeInterceptor);
+    }
+
     /**
      * Type枚举
      */
@@ -1296,11 +1290,11 @@ public class EasonIcon extends View {
         /**
          * 设置
          */
-        SETTING(53, "setting", SettingPainter.class),
+        SETTING(53, "setting", SettingPainter.class, 0.5f),
         /**
          * 设置（api 21）
          */
-        SETTING_V21(54, "setting_v21", SettingV21Painter.class),
+        SETTING_V21(54, "setting_v21", SettingV21Painter.class, 0.5f),
         /**
          * 花型
          */
@@ -1337,7 +1331,7 @@ public class EasonIcon extends View {
         /**
          * 爱心
          */
-        LOVE(64, "love", LovePainter.class),
+        LOVE(64, "love", LovePainter.class, 0.5f),
         /**
          * 信封
          */
@@ -1358,11 +1352,17 @@ public class EasonIcon extends View {
         private int value;
         private String attrName;
         private Class<? extends Painter> painterClass;
+        private float defaultPercent;
 
         Type(int value, String attrName, Class<? extends Painter> painterClass) {
+            this(value, attrName, painterClass, 1f);
+        }
+
+        Type(int value, String attrName, Class<? extends Painter> painterClass, float defaultPercent) {
             this.value = value;
             this.attrName = attrName;
             this.painterClass = painterClass;
+            this.defaultPercent = defaultPercent;
         }
 
         public int getValue() {
@@ -1375,6 +1375,10 @@ public class EasonIcon extends View {
 
         public Class<? extends Painter> getPainterClass() {
             return painterClass;
+        }
+
+        public float getDefaultPercent() {
+            return defaultPercent;
         }
     }
 }

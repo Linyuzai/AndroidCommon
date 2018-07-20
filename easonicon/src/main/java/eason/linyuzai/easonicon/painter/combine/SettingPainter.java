@@ -56,11 +56,6 @@ public class SettingPainter extends SupportEasonPainterSet implements AuxiliaryS
         super.setAuxiliaryScale(auxiliaryScale * 0.7f);
     }
 
-    @Override
-    public float getDefaultPercent() {
-        return 0.5f;
-    }
-
     public static class SettingInterceptor implements PainterInterceptor {
 
         private ExtraPolygonPainter polygon;

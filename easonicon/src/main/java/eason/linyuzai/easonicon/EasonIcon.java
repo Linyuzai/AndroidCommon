@@ -289,7 +289,7 @@ public class EasonIcon extends View {
 
             float textSize = a.getDimension(R.styleable.EasonIcon_icon_text_size, 0f);
 
-            float pathEffectCorner = a.getFloat(R.styleable.EasonIcon_icon_path_effect_corner, 0f);
+            float pathEffectCorner = a.getDimension(R.styleable.EasonIcon_icon_path_effect_corner, 0f);
 
             float percentCenter = a.getFloat(R.styleable.EasonIcon_icon_percent_center, -1f);
             float percentCenterX = a.getFloat(R.styleable.EasonIcon_icon_percent_center_x, -1f);
@@ -312,7 +312,8 @@ public class EasonIcon extends View {
             setPenCap(Paint.Cap.values()[cap]);
             setPenJoin(Paint.Join.values()[join]);
             setPenStyle(Paint.Style.values()[style]);
-            setPathEffect(new CornerPathEffect(pathEffectCorner));
+            if (pathEffectCorner > 0f)
+                setPathEffect(new CornerPathEffect(pathEffectCorner));
             setTextSize(textSize);
 
             if (percentCenter >= 0f)

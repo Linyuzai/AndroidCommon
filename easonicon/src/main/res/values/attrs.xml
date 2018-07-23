@@ -123,7 +123,7 @@
         <attr name="icon_polygon_extra_offset" format="reference|dimension" />
         <attr name="icon_polygon_pen_size_scale" format="reference|float" />
         <!-- path -->
-        <attr name="icon_path_effect_corner" format="reference|float" />
+        <attr name="icon_path_effect_corner" format="reference|dimension" />
         <!-- text -->
         <attr name="icon_text" format="reference|string" />
         <attr name="icon_text_size" format="reference|dimension" />

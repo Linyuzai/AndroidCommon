@@ -117,7 +117,7 @@ public class LibraryActivity extends EasonActivity {
             holder.icon.addPainter(param.getPainter());
             holder.icon.setColor(param.getContentColor());
             //RxEason.view(holder.itemView).onTouch().subscribe();
-            RxEason.view(holder.itemView).onClick().subscribe(view ->
+            RxEason.listener().view(holder.itemView).onClick().subscribe(view ->
                     new Intent(LibraryActivity.this, IconDisplayActivity.class));
             /*holder.itemView.setOnClickListener(v ->
                     startActivity(new Intent(LibraryActivity.this, IconDisplayActivity.class)));*/

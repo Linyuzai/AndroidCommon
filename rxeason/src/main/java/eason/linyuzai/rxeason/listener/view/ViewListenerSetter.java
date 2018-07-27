@@ -8,9 +8,9 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
-import eason.linyuzai.rxeason.RxEason;
 import eason.linyuzai.rxeason.listener.ListenerInfo;
 import eason.linyuzai.rxeason.listener.ListenerSetter;
+import eason.linyuzai.rxeason.listener.RxListener;
 import io.reactivex.Flowable;
 
 @SuppressWarnings("unchecked")
@@ -36,7 +36,7 @@ public class ViewListenerSetter extends ListenerSetter {
                     return info.getReturnValue();
                 });
             }
-        }, RxEason.globalBackpressureStrategy);
+        }, RxListener.getListenerBackpressureStrategy());
 
     }
 
@@ -64,7 +64,7 @@ public class ViewListenerSetter extends ListenerSetter {
                 vi.getView().addOnAttachStateChangeListener(listener);
                 vi.onAttachStateChangeListeners.add(listener);
             }
-        }, RxEason.globalBackpressureStrategy);
+        }, RxListener.getListenerBackpressureStrategy());
     }
 
     public void removeAttachStateChange() {
@@ -86,7 +86,7 @@ public class ViewListenerSetter extends ListenerSetter {
                     return info.getReturnValue();
                 });
             }
-        }, RxEason.globalBackpressureStrategy);
+        }, RxListener.getListenerBackpressureStrategy());
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -101,7 +101,7 @@ public class ViewListenerSetter extends ListenerSetter {
             for (ViewInfo vi : getViewInfos()) {
                 vi.getView().setOnClickListener(emitter::onNext);
             }
-        }, RxEason.globalBackpressureStrategy);
+        }, RxListener.getListenerBackpressureStrategy());
     }
 
     public void removeClick() {
@@ -120,7 +120,7 @@ public class ViewListenerSetter extends ListenerSetter {
                     return info.getReturnValue();
                 });
             }
-        }, RxEason.globalBackpressureStrategy);
+        }, RxListener.getListenerBackpressureStrategy());
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -137,7 +137,7 @@ public class ViewListenerSetter extends ListenerSetter {
                         emitter.onNext(new OnCreateContextMenuInfo(menu, v, menuInfo))
                 );
             }
-        }, RxEason.globalBackpressureStrategy);
+        }, RxListener.getListenerBackpressureStrategy());
     }
 
     public void removeCreateContextMenu() {
@@ -155,7 +155,7 @@ public class ViewListenerSetter extends ListenerSetter {
                     return info.getReturnValue();
                 });
             }
-        }, RxEason.globalBackpressureStrategy);
+        }, RxListener.getListenerBackpressureStrategy());
     }
 
     public void removeDrag() {
@@ -169,7 +169,7 @@ public class ViewListenerSetter extends ListenerSetter {
             for (ViewInfo vi : getViewInfos()) {
                 vi.getView().setOnFocusChangeListener((v, hasFocus) -> emitter.onNext(new OnFocusChangeInfo(v, hasFocus)));
             }
-        }, RxEason.globalBackpressureStrategy);
+        }, RxListener.getListenerBackpressureStrategy());
     }
 
     public void removeFocusChange() {
@@ -187,7 +187,7 @@ public class ViewListenerSetter extends ListenerSetter {
                     return info.getReturnValue();
                 });
             }
-        }, RxEason.globalBackpressureStrategy);
+        }, RxListener.getListenerBackpressureStrategy());
     }
 
     public void removeGenericMotion() {
@@ -205,7 +205,7 @@ public class ViewListenerSetter extends ListenerSetter {
                     return info.getReturnValue();
                 });
             }
-        }, RxEason.globalBackpressureStrategy);
+        }, RxListener.getListenerBackpressureStrategy());
     }
 
     public void removeHover() {
@@ -223,7 +223,7 @@ public class ViewListenerSetter extends ListenerSetter {
                     return info.getReturnValue();
                 });
             }
-        }, RxEason.globalBackpressureStrategy);
+        }, RxListener.getListenerBackpressureStrategy());
     }
 
     public void removeKey() {
@@ -240,7 +240,7 @@ public class ViewListenerSetter extends ListenerSetter {
                 vi.getView().addOnLayoutChangeListener(listener);
                 vi.onLayoutChangeListeners.add(listener);
             }
-        }, RxEason.globalBackpressureStrategy);
+        }, RxListener.getListenerBackpressureStrategy());
     }
 
     public void removeLayoutChange() {
@@ -261,7 +261,7 @@ public class ViewListenerSetter extends ListenerSetter {
                     return info.getReturnValue();
                 });
             }
-        }, RxEason.globalBackpressureStrategy);
+        }, RxListener.getListenerBackpressureStrategy());
     }
 
     public void removeLongClick() {
@@ -277,7 +277,7 @@ public class ViewListenerSetter extends ListenerSetter {
                 vi.getView().setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) ->
                         emitter.onNext(new OnScrollChangeInfo(v, scrollX, scrollY, oldScrollX, oldScrollY)));
             }
-        }, RxEason.globalBackpressureStrategy);
+        }, RxListener.getListenerBackpressureStrategy());
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -292,7 +292,7 @@ public class ViewListenerSetter extends ListenerSetter {
             for (ViewInfo vi : getViewInfos()) {
                 vi.getView().setOnSystemUiVisibilityChangeListener(emitter::onNext);
             }
-        }, RxEason.globalBackpressureStrategy);
+        }, RxListener.getListenerBackpressureStrategy());
     }
 
     public void removeSystemUiVisibilityChange() {
@@ -311,7 +311,7 @@ public class ViewListenerSetter extends ListenerSetter {
                     return info.getReturnValue();
                 });
             }
-        }, RxEason.globalBackpressureStrategy);
+        }, RxListener.getListenerBackpressureStrategy());
     }
 
     public void removeTouch() {

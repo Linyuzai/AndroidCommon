@@ -17,7 +17,7 @@ import io.reactivex.Flowable;
 public class ViewListenerSetter extends ListenerSetter {
 
     @Override
-    public ListenerInfo newViewInfo(View view) {
+    public ViewInfo newViewInfo(View view) {
         return new ViewInfo(view);
     }
 

@@ -19,6 +19,11 @@ public class TextViewListenerSetter extends ViewListenerSetter {
         return (TextViewInfo[]) super.getViewInfos();
     }
 
+    @Override
+    public TextViewInfo newViewInfo(View view) {
+        return new TextViewInfo(view);
+    }
+
     public Flowable<OnEditorActionInfo> onEditorAction() {
         return Flowable.create(emitter -> {
             for (TextViewInfo vi : getViewInfos()) {
@@ -75,7 +80,7 @@ public class TextViewListenerSetter extends ViewListenerSetter {
 
         private List<TextWatcher> textWatchers = new ArrayList<>();
 
-        public TextViewInfo(View view) {
+        TextViewInfo(View view) {
             super(view);
         }
 

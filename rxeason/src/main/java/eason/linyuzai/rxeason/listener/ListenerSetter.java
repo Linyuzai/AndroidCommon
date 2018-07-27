@@ -3,7 +3,7 @@ package eason.linyuzai.rxeason.listener;
 import android.view.View;
 
 @SuppressWarnings("unchecked")
-public class ListenerSetter {
+public abstract class ListenerSetter {
 
     private ListenerInfo[] viewInfos;
 
@@ -13,9 +13,7 @@ public class ListenerSetter {
             viewInfos[i] = newViewInfo(views[i]);
     }
 
-    public ListenerInfo newViewInfo(View view) {
-        return null;
-    }
+    public abstract <Info extends ListenerInfo> Info newViewInfo(View view);
 
     public <Info extends ListenerInfo> Info[] getViewInfos() {
         return (Info[]) viewInfos;

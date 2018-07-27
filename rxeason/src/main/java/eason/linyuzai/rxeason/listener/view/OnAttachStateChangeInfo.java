@@ -4,24 +4,24 @@ import android.view.View;
 
 public class OnAttachStateChangeInfo {
     private View view;
-    private boolean isViewAttachedToWindow;
-    private boolean isViewDetachedFromWindow;
+    private boolean isOnViewAttachedToWindow;
+    private boolean isOnViewDetachedFromWindow;
 
-    OnAttachStateChangeInfo(View view, boolean isViewAttachedToWindow, boolean isViewDetachedFromWindow) {
+    OnAttachStateChangeInfo(View view, boolean isOnViewAttachedToWindow, boolean isOnViewDetachedFromWindow) {
         this.view = view;
-        this.isViewAttachedToWindow = isViewAttachedToWindow;
-        this.isViewDetachedFromWindow = isViewDetachedFromWindow;
+        this.isOnViewAttachedToWindow = isOnViewAttachedToWindow;
+        this.isOnViewDetachedFromWindow = isOnViewDetachedFromWindow;
     }
 
     public View getView() {
         return view;
     }
 
-    public boolean isViewAttachedToWindow() {
-        return isViewAttachedToWindow;
+    public boolean isOnViewAttachedToWindow() {
+        return isOnViewAttachedToWindow;
     }
 
-    public boolean isViewDetachedFromWindow() {
-        return isViewDetachedFromWindow;
+    public boolean isOnViewDetachedFromWindow() {
+        return isOnViewDetachedFromWindow;
     }
 }

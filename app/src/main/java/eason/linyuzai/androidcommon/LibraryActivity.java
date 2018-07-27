@@ -1,6 +1,7 @@
 package eason.linyuzai.androidcommon;
 
 import android.animation.ArgbEvaluator;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -26,6 +27,7 @@ import eason.linyuzai.easonicon.painter.basic.rect.TopRoundRectPainter;
 import eason.linyuzai.easonicon.painter.basic.text.TextPainter;
 import eason.linyuzai.easonicon.painter.interceptor.paint.PenStyleInterceptor;
 import eason.linyuzai.elib.component.EasonActivity;
+import eason.linyuzai.rxeason.RxEason;
 
 public class LibraryActivity extends EasonActivity {
 
@@ -107,14 +109,18 @@ public class LibraryActivity extends EasonActivity {
             return new LibraryViewHolder(icon);
         }
 
+        @SuppressLint("CheckResult")
         @Override
         public void onBindViewHolder(@NonNull LibraryViewHolder holder, int position) {
             LibraryHelper.LibraryParam param = getLibraryParam().get(position);
             holder.setText(param.getText());
             holder.icon.addPainter(param.getPainter());
             holder.icon.setColor(param.getContentColor());
-            holder.itemView.setOnClickListener(v ->
-                    startActivity(new Intent(LibraryActivity.this, IconDisplayActivity.class)));
+            //RxEason.view(holder.itemView).onTouch().subscribe();
+            RxEason.view(holder.itemView).onClick().subscribe(view ->
+                    new Intent(LibraryActivity.this, IconDisplayActivity.class));
+            /*holder.itemView.setOnClickListener(v ->
+                    startActivity(new Intent(LibraryActivity.this, IconDisplayActivity.class)));*/
         }
 
         @Override

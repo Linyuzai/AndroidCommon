@@ -102,7 +102,7 @@
         android:layout_gravity="right"
         android:layerType="software"
         app:icon_color="@android:color/white"
-        app:icon_path_effect_corner="200"
+        app:icon_path_effect_corner="200dp"
         app:icon_pen_size="3dp"
         app:icon_pen_style="stroke"
         app:icon_polygon_edge_count="5"

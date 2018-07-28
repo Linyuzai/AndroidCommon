@@ -20,15 +20,7 @@ public class OnCapturedPointerInfo extends ReturnedInfo<Boolean> {
         return view;
     }
 
-    public void setView(View view) {
-        this.view = view;
-    }
-
     public MotionEvent getMotionEvent() {
         return motionEvent;
-    }
-
-    public void setMotionEvent(MotionEvent motionEvent) {
-        this.motionEvent = motionEvent;
     }
 }

@@ -16,8 +16,4 @@ public class OnContextClickInfo extends ReturnedInfo<Boolean> {
     public View getView() {
         return view;
     }
-
-    public void setView(View view) {
-        this.view = view;
-    }
 }

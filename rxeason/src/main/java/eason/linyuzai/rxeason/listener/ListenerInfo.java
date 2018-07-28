@@ -2,15 +2,25 @@ package eason.linyuzai.rxeason.listener;
 
 import android.view.View;
 
-public class ListenerInfo {
-    private View view;
+public class ListenerInfo<V extends View> {
+    private V view;
+    private boolean isFiltered;
 
-    public ListenerInfo(View view) {
+    public ListenerInfo(V view) {
         this.view = view;
+        this.isFiltered = true;
+
     }
 
-    @SuppressWarnings("unchecked")
-    public <V extends View> V getView() {
-        return (V) view;
+    public V getView() {
+        return view;
+    }
+
+    public boolean isFiltered() {
+        return isFiltered;
+    }
+
+    public void setFiltered(boolean filtered) {
+        isFiltered = filtered;
     }
 }

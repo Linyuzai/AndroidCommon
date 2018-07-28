@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import eason.linyuzai.androidcommon.R;
 import eason.linyuzai.blurring.BlurringView;
 import eason.linyuzai.easonicon.EasonIcon;
+import eason.linyuzai.rxeason.RxEason;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         EasonIcon icon = findViewById(R.id.ei);
+        RxEason.listener().viewGroup();
         //icon.setPadding(30, 30, 30, 30);
         //BackPainter painter = new BackPainter();
         //painter.setCenterPercent(0.5f);

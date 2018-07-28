@@ -21,20 +21,14 @@ public class RxListener {
     }
 
     public TextViewListenerSetter textView(TextView... textViews) {
-        TextViewListenerSetter setter = new TextViewListenerSetter();
-        setter.bind(textViews);
-        return setter;
+        return new TextViewListenerSetter<>().bind(textViews);
     }
 
     public ViewListenerSetter view(View... views) {
-        ViewListenerSetter setter = new ViewListenerSetter();
-        setter.bind(views);
-        return setter;
+        return new ViewListenerSetter<>().bind(views);
     }
 
     public ViewGroupListenerSetter viewGroup(ViewGroup... viewGroups) {
-        ViewGroupListenerSetter setter = new ViewGroupListenerSetter();
-        setter.bind(viewGroups);
-        return setter;
+        return new ViewGroupListenerSetter<>().bind(viewGroups);
     }
 }

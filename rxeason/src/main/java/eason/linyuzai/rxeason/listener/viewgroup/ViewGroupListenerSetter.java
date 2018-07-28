@@ -3,24 +3,22 @@ package eason.linyuzai.rxeason.listener.viewgroup;
 import android.view.View;
 import android.view.ViewGroup;
 
-import eason.linyuzai.rxeason.RxEason;
+import eason.linyuzai.rxeason.listener.RxListener;
 import eason.linyuzai.rxeason.listener.view.ViewListenerSetter;
 import io.reactivex.Flowable;
 
-public class ViewGroupListenerSetter extends ViewListenerSetter {
-    @Override
-    public ViewGroupInfo[] getViewInfos() {
-        return (ViewGroupInfo[]) super.getViewInfos();
-    }
+public class ViewGroupListenerSetter<Setter extends ViewGroupListenerSetter, V extends ViewGroup, Info extends ViewGroupInfo<V>>
+        extends ViewListenerSetter<Setter, V, Info> {
 
+    @SuppressWarnings("unchecked")
     @Override
-    public ViewInfo newViewInfo(View view) {
-        return new ViewGroupInfo(view);
+    public Info newViewInfo(V view) {
+        return (Info) new ViewGroupInfo<>(view);
     }
 
     public Flowable<OnHierarchyChangeInfo> onHierarchyChange() {
         return Flowable.create(emitter -> {
-            for (ViewGroupInfo vi : getViewInfos()) {
+            for (Info vi : getViewInfos()) {
                 vi.getView().setOnHierarchyChangeListener(new ViewGroup.OnHierarchyChangeListener() {
                     @Override
                     public void onChildViewAdded(View parent, View child) {
@@ -33,24 +31,12 @@ public class ViewGroupListenerSetter extends ViewListenerSetter {
                     }
                 });
             }
-        }, RxEason.globalBackpressureStrategy);
+        }, RxListener.getListenerBackpressureStrategy());
     }
 
     public void removeHierarchyChange() {
-        for (ViewGroupInfo vi : getViewInfos()) {
+        for (Info vi : getViewInfos()) {
             vi.getView().setOnHierarchyChangeListener(null);
-        }
-    }
-
-    public static class ViewGroupInfo extends ViewInfo {
-
-        ViewGroupInfo(View view) {
-            super(view);
-        }
-
-        @Override
-        public ViewGroup getView() {
-            return (ViewGroup) super.getView();
         }
     }
 }

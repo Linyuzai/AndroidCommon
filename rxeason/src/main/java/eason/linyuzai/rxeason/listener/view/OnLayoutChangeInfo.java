@@ -25,39 +25,39 @@ public class OnLayoutChangeInfo {
         this.oldBottom = oldBottom;
     }
 
-    public void setView(View view) {
-        this.view = view;
+    public View getView() {
+        return view;
     }
 
-    public void setLeft(int left) {
-        this.left = left;
+    public int getLeft() {
+        return left;
     }
 
-    public void setTop(int top) {
-        this.top = top;
+    public int getTop() {
+        return top;
     }
 
-    public void setRight(int right) {
-        this.right = right;
+    public int getRight() {
+        return right;
     }
 
-    public void setBottom(int bottom) {
-        this.bottom = bottom;
+    public int getBottom() {
+        return bottom;
     }
 
-    public void setOldLeft(int oldLeft) {
-        this.oldLeft = oldLeft;
+    public int getOldLeft() {
+        return oldLeft;
     }
 
-    public void setOldTop(int oldTop) {
-        this.oldTop = oldTop;
+    public int getOldTop() {
+        return oldTop;
     }
 
-    public void setOldRight(int oldRight) {
-        this.oldRight = oldRight;
+    public int getOldRight() {
+        return oldRight;
     }
 
-    public void setOldBottom(int oldBottom) {
-        this.oldBottom = oldBottom;
+    public int getOldBottom() {
+        return oldBottom;
     }
 }

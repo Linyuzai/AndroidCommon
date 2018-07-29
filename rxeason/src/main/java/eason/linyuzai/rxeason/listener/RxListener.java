@@ -20,15 +20,15 @@ public class RxListener {
         RxListener.listenerBackpressureStrategy = listenerBackpressureStrategy;
     }
 
-    public TextViewListenerSetter textView(TextView... textViews) {
+    public TextViewListenerSetter<?, ?, ?> textView(TextView... textViews) {
         return new TextViewListenerSetter<>().bind(textViews);
     }
 
-    public ViewListenerSetter view(View... views) {
+    public ViewListenerSetter<?, ?, ?> view(View... views) {
         return new ViewListenerSetter<>().bind(views);
     }
 
-    public ViewGroupListenerSetter viewGroup(ViewGroup... viewGroups) {
+    public ViewGroupListenerSetter<?, ?, ?> viewGroup(ViewGroup... viewGroups) {
         return new ViewGroupListenerSetter<>().bind(viewGroups);
     }
 }

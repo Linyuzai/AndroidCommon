@@ -20,8 +20,7 @@ public abstract class ListenerSetter<Setter extends ListenerSetter, V extends Vi
         return viewInfos;
     }
 
-    @Deprecated
-    public Setter filter(int... indexArray) {
+    public Setter effect(int... indexArray) {
         for (int i = 0; i < viewInfos.length; i++) {
             boolean isMatched = false;
             for (int index : indexArray) {
@@ -30,13 +29,12 @@ public abstract class ListenerSetter<Setter extends ListenerSetter, V extends Vi
                     break;
                 }
             }
-            viewInfos[i].setFiltered(isMatched);
+            viewInfos[i].setEffect(isMatched);
         }
         return (Setter) this;
     }
 
-    @Deprecated
-    public Setter filter(V... viewArray) {
+    public Setter effect(V... viewArray) {
         for (Info vi : viewInfos) {
             boolean isMatched = false;
             for (V v : viewArray) {
@@ -45,7 +43,7 @@ public abstract class ListenerSetter<Setter extends ListenerSetter, V extends Vi
                     break;
                 }
             }
-            vi.setFiltered(isMatched);
+            vi.setEffect(isMatched);
         }
         return (Setter) this;
     }

@@ -1,12 +1,18 @@
 package eason.linyuzai.rxeason;
 
+import eason.linyuzai.rxeason.event.RxEvent;
 import eason.linyuzai.rxeason.listener.RxListener;
 import io.reactivex.BackpressureStrategy;
 
 public class RxEason {
 
     private static BackpressureStrategy globalBackpressureStrategy = BackpressureStrategy.BUFFER;
+    private static RxEvent event = new RxEvent();
     private static RxListener listener = new RxListener();
+
+    public static RxEvent event() {
+        return event;
+    }
 
     public static RxListener listener() {
         return listener;

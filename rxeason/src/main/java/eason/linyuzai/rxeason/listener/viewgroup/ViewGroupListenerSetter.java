@@ -19,24 +19,28 @@ public class ViewGroupListenerSetter<Setter extends ViewGroupListenerSetter, V e
     public Flowable<OnHierarchyChangeInfo> onHierarchyChange() {
         return Flowable.create(emitter -> {
             for (Info vi : getViewInfos()) {
-                vi.getView().setOnHierarchyChangeListener(new ViewGroup.OnHierarchyChangeListener() {
-                    @Override
-                    public void onChildViewAdded(View parent, View child) {
-                        emitter.onNext(new OnHierarchyChangeInfo(parent, child, true, false));
-                    }
+                if (vi.isEffect()) {
+                    vi.getView().setOnHierarchyChangeListener(new ViewGroup.OnHierarchyChangeListener() {
+                        @Override
+                        public void onChildViewAdded(View parent, View child) {
+                            emitter.onNext(new OnHierarchyChangeInfo(parent, child, true, false));
+                        }
 
-                    @Override
-                    public void onChildViewRemoved(View parent, View child) {
-                        emitter.onNext(new OnHierarchyChangeInfo(parent, child, false, true));
-                    }
-                });
+                        @Override
+                        public void onChildViewRemoved(View parent, View child) {
+                            emitter.onNext(new OnHierarchyChangeInfo(parent, child, false, true));
+                        }
+                    });
+                }
             }
         }, RxListener.getListenerBackpressureStrategy());
     }
 
     public void removeHierarchyChange() {
         for (Info vi : getViewInfos()) {
-            vi.getView().setOnHierarchyChangeListener(null);
+            if (vi.isEffect()) {
+                vi.getView().setOnHierarchyChangeListener(null);
+            }
         }
     }
 }

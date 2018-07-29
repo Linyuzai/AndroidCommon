@@ -25,7 +25,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         EasonIcon icon = findViewById(R.id.ei);
-        RxEason.listener().viewGroup();
+        RxEason.listener().textView().effect(0).onTextChanged();
+        RxEason.event().publish("", RxEason.listener().view().onClick());
         //icon.setPadding(30, 30, 30, 30);
         //BackPainter painter = new BackPainter();
         //painter.setCenterPercent(0.5f);

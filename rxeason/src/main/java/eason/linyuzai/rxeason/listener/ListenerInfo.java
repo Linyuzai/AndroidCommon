@@ -4,23 +4,22 @@ import android.view.View;
 
 public class ListenerInfo<V extends View> {
     private V view;
-    private boolean isFiltered;
+    private boolean isEffect;
 
     public ListenerInfo(V view) {
         this.view = view;
-        this.isFiltered = true;
-
+        this.isEffect = true;
     }
 
     public V getView() {
         return view;
     }
 
-    public boolean isFiltered() {
-        return isFiltered;
+    public boolean isEffect() {
+        return isEffect;
     }
 
-    public void setFiltered(boolean filtered) {
-        isFiltered = filtered;
+    public void setEffect(boolean effect) {
+        isEffect = effect;
     }
 }

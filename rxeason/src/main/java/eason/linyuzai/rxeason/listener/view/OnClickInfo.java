@@ -2,13 +2,12 @@ package eason.linyuzai.rxeason.listener.view;
 
 import android.view.View;
 
-import eason.linyuzai.rxeason.ReturnedInfo;
+import eason.linyuzai.rxeason.ExtraInfo;
 
-public class OnLongClickInfo<E> extends ReturnedInfo<Boolean, E> {
+public class OnClickInfo<E> extends ExtraInfo<E> {
     private View view;
 
-    OnLongClickInfo(View view) {
-        super(false);
+    public OnClickInfo(View view) {
         this.view = view;
     }
 

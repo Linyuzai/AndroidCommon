@@ -5,7 +5,7 @@ import android.view.View;
 
 import eason.linyuzai.rxeason.ReturnedInfo;
 
-public class OnHoverInfo extends ReturnedInfo<Boolean> {
+public class OnHoverInfo<E> extends ReturnedInfo<Boolean, E> {
 
     private View view;
     private MotionEvent motionEvent;

@@ -2,7 +2,9 @@ package eason.linyuzai.rxeason.listener.view;
 
 import android.view.View;
 
-public class OnLayoutChangeInfo {
+import eason.linyuzai.rxeason.ExtraInfo;
+
+public class OnLayoutChangeInfo<E> extends ExtraInfo<E> {
     private View view;
     private int left;
     private int top;

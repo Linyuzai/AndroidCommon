@@ -5,7 +5,7 @@ import android.view.View;
 
 import eason.linyuzai.rxeason.ReturnedInfo;
 
-public class OnKeyInfo extends ReturnedInfo<Boolean> {
+public class OnKeyInfo<E> extends ReturnedInfo<Boolean, E> {
     private View view;
     private int keyCode;
     private KeyEvent keyEvent;

@@ -5,7 +5,7 @@ import android.view.WindowInsets;
 
 import eason.linyuzai.rxeason.ReturnedInfo;
 
-public class OnApplyWindowInsetsInfo extends ReturnedInfo<WindowInsets> {
+public class OnApplyWindowInsetsInfo<E> extends ReturnedInfo<WindowInsets, E> {
     private View view;
     private WindowInsets windowInsets;
 

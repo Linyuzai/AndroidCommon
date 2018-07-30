@@ -2,7 +2,9 @@ package eason.linyuzai.rxeason.listener.viewgroup;
 
 import android.view.View;
 
-public class OnHierarchyChangeInfo {
+import eason.linyuzai.rxeason.ExtraInfo;
+
+public class OnHierarchyChangeInfo<E> extends ExtraInfo<E> {
     private View parent;
     private View child;
     private boolean isOnChildViewAdded;

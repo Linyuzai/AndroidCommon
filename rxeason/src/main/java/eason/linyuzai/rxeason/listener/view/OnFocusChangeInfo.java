@@ -2,7 +2,9 @@ package eason.linyuzai.rxeason.listener.view;
 
 import android.view.View;
 
-public class OnFocusChangeInfo {
+import eason.linyuzai.rxeason.ExtraInfo;
+
+public class OnFocusChangeInfo<E> extends ExtraInfo<E> {
 
     private View view;
     private boolean hasFocus;

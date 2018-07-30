@@ -2,7 +2,9 @@ package eason.linyuzai.rxeason.listener.textview;
 
 import android.text.Editable;
 
-public class OnTextChangedInfo {
+import eason.linyuzai.rxeason.ExtraInfo;
+
+public class OnTextChangedInfo<E> extends ExtraInfo<E> {
     private BeforeTextChangedMethodParam beforeTextChangedMethodParam;
     private OnTextChangedMethodParam onTextChangedMethodParam;
     private AfterTextChangedMethodParam afterTextChangedMethodParam;

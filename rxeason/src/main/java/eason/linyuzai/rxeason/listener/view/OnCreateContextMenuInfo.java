@@ -3,7 +3,9 @@ package eason.linyuzai.rxeason.listener.view;
 import android.view.ContextMenu;
 import android.view.View;
 
-public class OnCreateContextMenuInfo {
+import eason.linyuzai.rxeason.ExtraInfo;
+
+public class OnCreateContextMenuInfo<E> extends ExtraInfo<E> {
     private ContextMenu contextMenu;
     private View view;
     private ContextMenu.ContextMenuInfo contextMenuInfo;

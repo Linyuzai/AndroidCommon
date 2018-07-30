@@ -44,12 +44,7 @@ public class RxListener {
         for (ListenerSetter setter : setters) {
             setter.destroy();
         }
-    }
-
-    public void destroy() {
-        for (Context context : setterMap.keySet()) {
-            destroy(context);
-        }
+        setterMap.remove(context);
     }
 
     public static void setListenerBackpressureStrategy(BackpressureStrategy listenerBackpressureStrategy) {

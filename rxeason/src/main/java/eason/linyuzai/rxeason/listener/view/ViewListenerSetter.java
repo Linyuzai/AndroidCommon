@@ -5,6 +5,7 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.view.View;
 
+import eason.linyuzai.rxeason.ExtraGetter;
 import eason.linyuzai.rxeason.listener.ListenerSetter;
 import eason.linyuzai.rxeason.listener.RxListener;
 import io.reactivex.Flowable;
@@ -48,9 +49,17 @@ public class ViewListenerSetter<Setter extends ViewListenerSetter, V extends Vie
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
-    public Flowable<OnApplyWindowInsetsInfo> onApplyWindowInsets() {
+    public <E> Flowable<OnApplyWindowInsetsInfo<E>> onApplyWindowInsets() {
+        return onApplyWindowInsets(null);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
+    public <E> Flowable<OnApplyWindowInsetsInfo<E>> onApplyWindowInsets(ExtraGetter<E> getter) {
         return Flowable.create(emitter -> getViewInfo().getView().setOnApplyWindowInsetsListener((v, insets) -> {
-            OnApplyWindowInsetsInfo info = new OnApplyWindowInsetsInfo(v, insets);
+            OnApplyWindowInsetsInfo<E> info = new OnApplyWindowInsetsInfo<>(v, insets);
+            if (getter != null) {
+                info.setExtra(getter.getExtra());
+            }
             emitter.onNext(info);
             return info.getReturnValue();
         }), RxListener.getListenerBackpressureStrategy());
@@ -61,17 +70,31 @@ public class ViewListenerSetter<Setter extends ViewListenerSetter, V extends Vie
         getViewInfo().getView().setOnApplyWindowInsetsListener(null);
     }
 
-    public Flowable<OnAttachStateChangeInfo> onAttachStateChange() {
+    public <E> Flowable<OnAttachStateChangeInfo<E>> onAttachStateChange() {
+        return onAttachStateChange(null);
+    }
+
+    public <E> Flowable<OnAttachStateChangeInfo<E>> onAttachStateChange(ExtraGetter<E> getter) {
         return Flowable.create(emitter -> {
             View.OnAttachStateChangeListener listener = new View.OnAttachStateChangeListener() {
                 @Override
                 public void onViewAttachedToWindow(View v) {
-                    emitter.onNext(new OnAttachStateChangeInfo(v, true, false));
+                    OnAttachStateChangeInfo<E> info = new OnAttachStateChangeInfo<>(v, true,
+                            false);
+                    if (getter != null) {
+                        info.setExtra(getter.getExtra());
+                    }
+                    emitter.onNext(info);
                 }
 
                 @Override
                 public void onViewDetachedFromWindow(View v) {
-                    emitter.onNext(new OnAttachStateChangeInfo(v, false, true));
+                    OnAttachStateChangeInfo<E> info = new OnAttachStateChangeInfo<>(v, false,
+                            true);
+                    if (getter != null) {
+                        info.setExtra(getter.getExtra());
+                    }
+                    emitter.onNext(info);
                 }
             };
             getViewInfo().getView().addOnAttachStateChangeListener(listener);
@@ -87,9 +110,17 @@ public class ViewListenerSetter<Setter extends ViewListenerSetter, V extends Vie
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public Flowable<OnCapturedPointerInfo> onCapturedPointer() {
+    public <E> Flowable<OnCapturedPointerInfo<E>> onCapturedPointer() {
+        return onCapturedPointer(null);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public <E> Flowable<OnCapturedPointerInfo<E>> onCapturedPointer(ExtraGetter<E> getter) {
         return Flowable.create(emitter -> getViewInfo().getView().setOnCapturedPointerListener((v, event) -> {
-            OnCapturedPointerInfo info = new OnCapturedPointerInfo(v, event);
+            OnCapturedPointerInfo<E> info = new OnCapturedPointerInfo<>(v, event);
+            if (getter != null) {
+                info.setExtra(getter.getExtra());
+            }
             emitter.onNext(info);
             return info.getReturnValue();
         }), RxListener.getListenerBackpressureStrategy());
@@ -100,9 +131,18 @@ public class ViewListenerSetter<Setter extends ViewListenerSetter, V extends Vie
         getViewInfo().getView().setOnCapturedPointerListener(null);
     }
 
-    public Flowable<View> onClick() {
-        return Flowable.create(emitter ->
-                getViewInfo().getView().setOnClickListener(emitter::onNext), RxListener.getListenerBackpressureStrategy());
+    public <E> Flowable<OnClickInfo<E>> onClick() {
+        return onClick(null);
+    }
+
+    public <E> Flowable<OnClickInfo<E>> onClick(ExtraGetter<E> getter) {
+        return Flowable.create(emitter -> getViewInfo().getView().setOnClickListener(v -> {
+            OnClickInfo<E> info = new OnClickInfo<>(v);
+            if (getter != null) {
+                info.setExtra(getter.getExtra());
+            }
+            emitter.onNext(info);
+        }), RxListener.getListenerBackpressureStrategy());
     }
 
     public void removeClick() {
@@ -110,9 +150,17 @@ public class ViewListenerSetter<Setter extends ViewListenerSetter, V extends Vie
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public Flowable<OnContextClickInfo> onContextClick() {
+    public <E> Flowable<OnContextClickInfo<E>> onContextClick() {
+        return onContextClick(null);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public <E> Flowable<OnContextClickInfo<E>> onContextClick(ExtraGetter<E> getter) {
         return Flowable.create(emitter -> getViewInfo().getView().setOnContextClickListener(v -> {
-            OnContextClickInfo info = new OnContextClickInfo(v);
+            OnContextClickInfo<E> info = new OnContextClickInfo<>(v);
+            if (getter != null) {
+                info.setExtra(getter.getExtra());
+            }
             emitter.onNext(info);
             return info.getReturnValue();
         }), RxListener.getListenerBackpressureStrategy());
@@ -123,19 +171,34 @@ public class ViewListenerSetter<Setter extends ViewListenerSetter, V extends Vie
         getViewInfo().getView().setOnContextClickListener(null);
     }
 
-    public Flowable<OnCreateContextMenuInfo> onCreateContextMenu() {
-        return Flowable.create(emitter -> getViewInfo().getView().setOnCreateContextMenuListener((menu, v, menuInfo) ->
-                emitter.onNext(new OnCreateContextMenuInfo(menu, v, menuInfo))
-        ), RxListener.getListenerBackpressureStrategy());
+    public <E> Flowable<OnCreateContextMenuInfo<E>> onCreateContextMenu() {
+        return onCreateContextMenu(null);
+    }
+
+    public <E> Flowable<OnCreateContextMenuInfo<E>> onCreateContextMenu(ExtraGetter<E> getter) {
+        return Flowable.create(emitter -> getViewInfo().getView().setOnCreateContextMenuListener((menu, v, menuInfo) -> {
+            OnCreateContextMenuInfo<E> info = new OnCreateContextMenuInfo<>(menu, v, menuInfo);
+            if (getter != null) {
+                info.setExtra(getter.getExtra());
+            }
+            emitter.onNext(info);
+        }), RxListener.getListenerBackpressureStrategy());
     }
 
     public void removeCreateContextMenu() {
         getViewInfo().getView().setOnCreateContextMenuListener(null);
     }
 
-    public Flowable<OnDragInfo> onDrag() {
+    public <E> Flowable<OnDragInfo<E>> onDrag() {
+        return onDrag(null);
+    }
+
+    public <E> Flowable<OnDragInfo<E>> onDrag(ExtraGetter<E> getter) {
         return Flowable.create(emitter -> getViewInfo().getView().setOnDragListener((v, event) -> {
-            OnDragInfo info = new OnDragInfo(v, event);
+            OnDragInfo<E> info = new OnDragInfo<>(v, event);
+            if (getter != null) {
+                info.setExtra(getter.getExtra());
+            }
             emitter.onNext(info);
             return info.getReturnValue();
         }), RxListener.getListenerBackpressureStrategy());
@@ -145,19 +208,34 @@ public class ViewListenerSetter<Setter extends ViewListenerSetter, V extends Vie
         getViewInfo().getView().setOnDragListener(null);
     }
 
-    public Flowable<OnFocusChangeInfo> onFocusChange() {
-        return Flowable.create(emitter ->
-                getViewInfo().getView().setOnFocusChangeListener((v, hasFocus) ->
-                        emitter.onNext(new OnFocusChangeInfo(v, hasFocus))), RxListener.getListenerBackpressureStrategy());
+    public <E> Flowable<OnFocusChangeInfo<E>> onFocusChange() {
+        return onFocusChange(null);
+    }
+
+    public <E> Flowable<OnFocusChangeInfo<E>> onFocusChange(ExtraGetter<E> getter) {
+        return Flowable.create(emitter -> getViewInfo().getView().setOnFocusChangeListener((v, hasFocus) -> {
+            OnFocusChangeInfo<E> info = new OnFocusChangeInfo<>(v, hasFocus);
+            if (getter != null) {
+                info.setExtra(getter.getExtra());
+            }
+            emitter.onNext(info);
+        }), RxListener.getListenerBackpressureStrategy());
     }
 
     public void removeFocusChange() {
         getViewInfo().getView().setOnFocusChangeListener(null);
     }
 
-    public Flowable<OnGenericMotionInfo> onGenericMotion() {
+    public <E> Flowable<OnGenericMotionInfo<E>> onGenericMotion() {
+        return onGenericMotion(null);
+    }
+
+    public <E> Flowable<OnGenericMotionInfo<E>> onGenericMotion(ExtraGetter<E> getter) {
         return Flowable.create(emitter -> getViewInfo().getView().setOnGenericMotionListener((v, event) -> {
-            OnGenericMotionInfo info = new OnGenericMotionInfo(v, event);
+            OnGenericMotionInfo<E> info = new OnGenericMotionInfo<>(v, event);
+            if (getter != null) {
+                info.setExtra(getter.getExtra());
+            }
             emitter.onNext(info);
             return info.getReturnValue();
         }), RxListener.getListenerBackpressureStrategy());
@@ -167,9 +245,16 @@ public class ViewListenerSetter<Setter extends ViewListenerSetter, V extends Vie
         getViewInfo().getView().setOnGenericMotionListener(null);
     }
 
-    public Flowable<OnHoverInfo> onHover() {
+    public <E> Flowable<OnHoverInfo<E>> onHover() {
+        return onHover(null);
+    }
+
+    public <E> Flowable<OnHoverInfo<E>> onHover(ExtraGetter<E> getter) {
         return Flowable.create(emitter -> getViewInfo().getView().setOnHoverListener((v, event) -> {
-            OnHoverInfo info = new OnHoverInfo(v, event);
+            OnHoverInfo<E> info = new OnHoverInfo<>(v, event);
+            if (getter != null) {
+                info.setExtra(getter.getExtra());
+            }
             emitter.onNext(info);
             return info.getReturnValue();
         }), RxListener.getListenerBackpressureStrategy());
@@ -179,24 +264,39 @@ public class ViewListenerSetter<Setter extends ViewListenerSetter, V extends Vie
         getViewInfo().getView().setOnHoverListener(null);
     }
 
-    public Flowable<OnKeyInfo> onKey() {
-        return Flowable.create(emitter -> {
-            getViewInfo().getView().setOnKeyListener((v, keyCode, event) -> {
-                OnKeyInfo info = new OnKeyInfo(v, keyCode, event);
-                emitter.onNext(info);
-                return info.getReturnValue();
-            });
-        }, RxListener.getListenerBackpressureStrategy());
+    public <E> Flowable<OnKeyInfo<E>> onKey() {
+        return onKey(null);
+    }
+
+    public <E> Flowable<OnKeyInfo<E>> onKey(ExtraGetter<E> getter) {
+        return Flowable.create(emitter -> getViewInfo().getView().setOnKeyListener((v, keyCode, event) -> {
+            OnKeyInfo<E> info = new OnKeyInfo<>(v, keyCode, event);
+            if (getter != null) {
+                info.setExtra(getter.getExtra());
+            }
+            emitter.onNext(info);
+            return info.getReturnValue();
+        }), RxListener.getListenerBackpressureStrategy());
     }
 
     public void removeKey() {
         getViewInfo().getView().setOnKeyListener(null);
     }
 
-    public Flowable<OnLayoutChangeInfo> onLayoutChange() {
+    public <E> Flowable<OnLayoutChangeInfo<E>> onLayoutChange() {
+        return onLayoutChange(null);
+    }
+
+    public <E> Flowable<OnLayoutChangeInfo<E>> onLayoutChange(ExtraGetter<E> getter) {
         return Flowable.create(emitter -> {
-            View.OnLayoutChangeListener listener = (v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) ->
-                    emitter.onNext(new OnLayoutChangeInfo(v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom));
+            View.OnLayoutChangeListener listener = (v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
+                OnLayoutChangeInfo<E> info = new OnLayoutChangeInfo<>(v, left, top, right, bottom,
+                        oldLeft, oldTop, oldRight, oldBottom);
+                if (getter != null) {
+                    info.setExtra(getter.getExtra());
+                }
+                emitter.onNext(info);
+            };
             getViewInfo().getView().addOnLayoutChangeListener(listener);
             getViewInfo().getOnLayoutChangeListeners().add(listener);
         }, RxListener.getListenerBackpressureStrategy());
@@ -209,9 +309,16 @@ public class ViewListenerSetter<Setter extends ViewListenerSetter, V extends Vie
         getViewInfo().getOnLayoutChangeListeners().clear();
     }
 
-    public Flowable<OnLongClickInfo> onLongClick() {
+    public <E> Flowable<OnLongClickInfo<E>> onLongClick() {
+        return onLongClick(null);
+    }
+
+    public <E> Flowable<OnLongClickInfo<E>> onLongClick(ExtraGetter<E> getter) {
         return Flowable.create(emitter -> getViewInfo().getView().setOnLongClickListener(v -> {
-            OnLongClickInfo info = new OnLongClickInfo(v);
+            OnLongClickInfo<E> info = new OnLongClickInfo<>(v);
+            if (getter != null) {
+                info.setExtra(getter.getExtra());
+            }
             emitter.onNext(info);
             return info.getReturnValue();
         }), RxListener.getListenerBackpressureStrategy());
@@ -222,9 +329,20 @@ public class ViewListenerSetter<Setter extends ViewListenerSetter, V extends Vie
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public Flowable<OnScrollChangeInfo> onScrollChange() {
-        return Flowable.create(emitter -> getViewInfo().getView().setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) ->
-                emitter.onNext(new OnScrollChangeInfo(v, scrollX, scrollY, oldScrollX, oldScrollY))), RxListener.getListenerBackpressureStrategy());
+    public <E> Flowable<OnScrollChangeInfo<E>> onScrollChange() {
+        return onScrollChange(null);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public <E> Flowable<OnScrollChangeInfo<E>> onScrollChange(ExtraGetter<E> getter) {
+        return Flowable.create(emitter -> getViewInfo().getView().setOnScrollChangeListener((v, scrollX, scrollY,
+                                                                                             oldScrollX, oldScrollY) -> {
+            OnScrollChangeInfo<E> info = new OnScrollChangeInfo<>(v, scrollX, scrollY, oldScrollX, oldScrollY);
+            if (getter != null) {
+                info.setExtra(getter.getExtra());
+            }
+            emitter.onNext(info);
+        }), RxListener.getListenerBackpressureStrategy());
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -232,9 +350,18 @@ public class ViewListenerSetter<Setter extends ViewListenerSetter, V extends Vie
         getViewInfo().getView().setOnScrollChangeListener(null);
     }
 
-    public Flowable<Integer> onSystemUiVisibilityChange() {
-        return Flowable.create(emitter ->
-                getViewInfo().getView().setOnSystemUiVisibilityChangeListener(emitter::onNext), RxListener.getListenerBackpressureStrategy());
+    public <E> Flowable<OnSystemUiVisibilityChangeInfo<E>> onSystemUiVisibilityChange() {
+        return onSystemUiVisibilityChange(null);
+    }
+
+    public <E> Flowable<OnSystemUiVisibilityChangeInfo<E>> onSystemUiVisibilityChange(ExtraGetter<E> getter) {
+        return Flowable.create(emitter -> getViewInfo().getView().setOnSystemUiVisibilityChangeListener(visibility -> {
+            OnSystemUiVisibilityChangeInfo<E> info = new OnSystemUiVisibilityChangeInfo<>(visibility);
+            if (getter != null) {
+                info.setExtra(getter.getExtra());
+            }
+            emitter.onNext(info);
+        }), RxListener.getListenerBackpressureStrategy());
     }
 
     public void removeSystemUiVisibilityChange() {
@@ -242,9 +369,17 @@ public class ViewListenerSetter<Setter extends ViewListenerSetter, V extends Vie
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    public Flowable<OnTouchInfo> onTouch() {
+    public <E> Flowable<OnTouchInfo<E>> onTouch() {
+        return onTouch(null);
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    public <E> Flowable<OnTouchInfo<E>> onTouch(ExtraGetter<E> getter) {
         return Flowable.create(emitter -> getViewInfo().getView().setOnTouchListener((v, event) -> {
-            OnTouchInfo info = new OnTouchInfo(v, event);
+            OnTouchInfo<E> info = new OnTouchInfo<>(v, event);
+            if (getter != null) {
+                info.setExtra(getter.getExtra());
+            }
             emitter.onNext(info);
             return info.getReturnValue();
         }), RxListener.getListenerBackpressureStrategy());

@@ -4,7 +4,7 @@ import android.view.View;
 
 import eason.linyuzai.rxeason.ReturnedInfo;
 
-public class OnContextClickInfo extends ReturnedInfo<Boolean> {
+public class OnContextClickInfo<E> extends ReturnedInfo<Boolean, E> {
 
     private View view;
 

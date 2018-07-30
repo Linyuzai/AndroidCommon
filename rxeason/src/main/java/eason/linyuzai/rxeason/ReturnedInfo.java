@@ -1,6 +1,6 @@
 package eason.linyuzai.rxeason;
 
-public class ReturnedInfo<T> {
+public class ReturnedInfo<T, E> extends ExtraInfo<E> {
 
     private T returnValue;
 

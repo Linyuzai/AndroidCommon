@@ -5,7 +5,7 @@ import android.widget.TextView;
 
 import eason.linyuzai.rxeason.ReturnedInfo;
 
-public class OnEditorActionInfo extends ReturnedInfo<Boolean> {
+public class OnEditorActionInfo<E> extends ReturnedInfo<Boolean, E> {
     private TextView textView;
     private int actionId;
     private KeyEvent keyEvent;

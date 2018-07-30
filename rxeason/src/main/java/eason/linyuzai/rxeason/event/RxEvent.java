@@ -23,6 +23,10 @@ public class RxEvent {
         eventSources.put(eventName, eventSource.share());
     }
 
+    public void abolish(String eventName) {
+        eventSources.remove(eventName);
+    }
+
     public Flowable listen(String eventName) {
         return eventSources.get(eventName);
     }

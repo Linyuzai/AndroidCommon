@@ -4,6 +4,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.TextView;
 
+import eason.linyuzai.rxeason.ExtraGetter;
 import eason.linyuzai.rxeason.listener.RxListener;
 import eason.linyuzai.rxeason.listener.view.ViewListenerSetter;
 import io.reactivex.Flowable;
@@ -24,9 +25,16 @@ public class TextViewListenerSetter<Setter extends TextViewListenerSetter, V ext
         super.destroy();
     }
 
-    public Flowable<OnEditorActionInfo> onEditorAction() {
+    public <E> Flowable<OnEditorActionInfo<E>> onEditorAction() {
+        return onEditorAction(null);
+    }
+
+    public <E> Flowable<OnEditorActionInfo<E>> onEditorAction(ExtraGetter<E> getter) {
         return Flowable.create(emitter -> getViewInfo().getView().setOnEditorActionListener((v, actionId, event) -> {
-            OnEditorActionInfo info = new OnEditorActionInfo(v, actionId, event);
+            OnEditorActionInfo<E> info = new OnEditorActionInfo<>(v, actionId, event);
+            if (getter != null) {
+                info.setExtra(getter.getExtra());
+            }
             emitter.onNext(info);
             return info.getReturnValue();
         }), RxListener.getListenerBackpressureStrategy());
@@ -37,24 +45,40 @@ public class TextViewListenerSetter<Setter extends TextViewListenerSetter, V ext
         getViewInfo().getView().setOnEditorActionListener(null);
     }
 
-    public Flowable<OnTextChangedInfo> onTextChanged() {
+    public <E> Flowable<OnTextChangedInfo<E>> onTextChanged() {
+        return onTextChanged(null);
+    }
+
+    public <E> Flowable<OnTextChangedInfo<E>> onTextChanged(ExtraGetter<E> getter) {
         return Flowable.create(emitter -> {
             TextWatcher watcher = new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                    emitter.onNext(new OnTextChangedInfo(new OnTextChangedInfo.BeforeTextChangedMethodParam(
-                            s, start, count, after)));
+                    OnTextChangedInfo<E> info = new OnTextChangedInfo<>(new OnTextChangedInfo.BeforeTextChangedMethodParam(
+                            s, start, count, after));
+                    if (getter != null) {
+                        info.setExtra(getter.getExtra());
+                    }
+                    emitter.onNext(info);
                 }
 
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    emitter.onNext(new OnTextChangedInfo(new OnTextChangedInfo.OnTextChangedMethodParam(
-                            s, start, count, before)));
+                    OnTextChangedInfo<E> info = new OnTextChangedInfo<>(new OnTextChangedInfo.OnTextChangedMethodParam(
+                            s, start, count, before));
+                    if (getter != null) {
+                        info.setExtra(getter.getExtra());
+                    }
+                    emitter.onNext(info);
                 }
 
                 @Override
                 public void afterTextChanged(Editable s) {
-                    emitter.onNext(new OnTextChangedInfo(new OnTextChangedInfo.AfterTextChangedMethodParam(s)));
+                    OnTextChangedInfo<E> info = new OnTextChangedInfo<>(new OnTextChangedInfo.AfterTextChangedMethodParam(s));
+                    if (getter != null) {
+                        info.setExtra(getter.getExtra());
+                    }
+                    emitter.onNext(info);
                 }
             };
             getViewInfo().getView().addTextChangedListener(watcher);

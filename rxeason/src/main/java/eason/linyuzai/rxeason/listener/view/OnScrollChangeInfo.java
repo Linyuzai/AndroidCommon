@@ -2,7 +2,9 @@ package eason.linyuzai.rxeason.listener.view;
 
 import android.view.View;
 
-public class OnScrollChangeInfo {
+import eason.linyuzai.rxeason.ExtraInfo;
+
+public class OnScrollChangeInfo<E> extends ExtraInfo<E> {
     private View view;
     private int scrollX;
     private int scrollY;

@@ -2,7 +2,9 @@ package eason.linyuzai.rxeason.listener.view;
 
 import android.view.View;
 
-public class OnAttachStateChangeInfo {
+import eason.linyuzai.rxeason.ExtraInfo;
+
+public class OnAttachStateChangeInfo<E> extends ExtraInfo<E> {
     private View view;
     private boolean isOnViewAttachedToWindow;
     private boolean isOnViewDetachedFromWindow;

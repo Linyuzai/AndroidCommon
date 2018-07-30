@@ -2,49 +2,32 @@ package eason.linyuzai.rxeason.listener;
 
 import android.view.View;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import io.reactivex.FlowableEmitter;
+
 @SuppressWarnings("unchecked")
 public abstract class ListenerSetter<Setter extends ListenerSetter, V extends View, Info extends ListenerInfo<V>> {
 
-    private Info[] viewInfos;
+    private Set<FlowableEmitter> emitters = new HashSet<>();
+    private Info viewInfo;
 
-    public Setter bind(V[] views) {
-        viewInfos = (Info[]) new ListenerInfo[views.length];
-        for (int i = 0; i < views.length; i++)
-            viewInfos[i] = newViewInfo(views[i]);
+    public Setter bind(V views) {
+        viewInfo = newViewInfo(views);
         return (Setter) this;
     }
 
     public abstract Info newViewInfo(V view);
 
-    protected Info[] getViewInfos() {
-        return viewInfos;
+    protected Info getViewInfo() {
+        return viewInfo;
     }
 
-    public Setter effect(int... indexArray) {
-        for (int i = 0; i < viewInfos.length; i++) {
-            boolean isMatched = false;
-            for (int index : indexArray) {
-                if (i == index) {
-                    isMatched = true;
-                    break;
-                }
-            }
-            viewInfos[i].setEffect(isMatched);
+    public void destroy() {
+        for (FlowableEmitter emitter : emitters) {
+            emitter.onComplete();
         }
-        return (Setter) this;
-    }
-
-    public Setter effect(V... viewArray) {
-        for (Info vi : viewInfos) {
-            boolean isMatched = false;
-            for (V v : viewArray) {
-                if (vi.getView().equals(v)) {
-                    isMatched = true;
-                    break;
-                }
-            }
-            vi.setEffect(isMatched);
-        }
-        return (Setter) this;
+        emitters.clear();
     }
 }

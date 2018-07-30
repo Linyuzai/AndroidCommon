@@ -25,8 +25,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         EasonIcon icon = findViewById(R.id.ei);
-        RxEason.listener().textView().effect(0).onTextChanged();
-        RxEason.event().publish("", RxEason.listener().view().onClick());
+        //RxEason.listener().textView(null).onTextChanged();
+        RxEason.event().publish("", RxEason.listener().view(icon).onClick());
         //icon.setPadding(30, 30, 30, 30);
         //BackPainter painter = new BackPainter();
         //painter.setCenterPercent(0.5f);
@@ -84,5 +84,11 @@ public class MainActivity extends AppCompatActivity {
             Log.d("onScroll", "l:" + l + ",t:" + t);
             blurringView.invalidate(l, t);
         };
+    }
+
+    @Override
+    protected void onDestroy() {
+        RxEason.listener().destroy(this);
+        super.onDestroy();
     }
 }

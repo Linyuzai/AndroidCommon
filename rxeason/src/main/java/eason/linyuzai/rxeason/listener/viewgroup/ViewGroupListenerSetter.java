@@ -16,31 +16,27 @@ public class ViewGroupListenerSetter<Setter extends ViewGroupListenerSetter, V e
         return (Info) new ViewGroupInfo<>(view);
     }
 
-    public Flowable<OnHierarchyChangeInfo> onHierarchyChange() {
-        return Flowable.create(emitter -> {
-            for (Info vi : getViewInfos()) {
-                if (vi.isEffect()) {
-                    vi.getView().setOnHierarchyChangeListener(new ViewGroup.OnHierarchyChangeListener() {
-                        @Override
-                        public void onChildViewAdded(View parent, View child) {
-                            emitter.onNext(new OnHierarchyChangeInfo(parent, child, true, false));
-                        }
+    @Override
+    public void destroy() {
+        removeHierarchyChange();
+        super.destroy();
+    }
 
-                        @Override
-                        public void onChildViewRemoved(View parent, View child) {
-                            emitter.onNext(new OnHierarchyChangeInfo(parent, child, false, true));
-                        }
-                    });
-                }
+    public Flowable<OnHierarchyChangeInfo> onHierarchyChange() {
+        return Flowable.create(emitter -> getViewInfo().getView().setOnHierarchyChangeListener(new ViewGroup.OnHierarchyChangeListener() {
+            @Override
+            public void onChildViewAdded(View parent, View child) {
+                emitter.onNext(new OnHierarchyChangeInfo(parent, child, true, false));
             }
-        }, RxListener.getListenerBackpressureStrategy());
+
+            @Override
+            public void onChildViewRemoved(View parent, View child) {
+                emitter.onNext(new OnHierarchyChangeInfo(parent, child, false, true));
+            }
+        }), RxListener.getListenerBackpressureStrategy());
     }
 
     public void removeHierarchyChange() {
-        for (Info vi : getViewInfos()) {
-            if (vi.isEffect()) {
-                vi.getView().setOnHierarchyChangeListener(null);
-            }
-        }
+        getViewInfo().getView().setOnHierarchyChangeListener(null);
     }
 }

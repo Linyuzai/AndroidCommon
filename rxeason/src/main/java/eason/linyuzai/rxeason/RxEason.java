@@ -1,5 +1,7 @@
 package eason.linyuzai.rxeason;
 
+import android.content.Context;
+
 import eason.linyuzai.rxeason.event.RxEvent;
 import eason.linyuzai.rxeason.listener.RxListener;
 import io.reactivex.BackpressureStrategy;
@@ -15,6 +17,10 @@ public class RxEason {
     }
 
     public static RxListener listener() {
+        return listener;
+    }
+
+    public static RxListener listener(Context context) {
         return listener;
     }
 

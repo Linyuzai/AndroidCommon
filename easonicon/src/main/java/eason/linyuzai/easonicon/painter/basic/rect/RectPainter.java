@@ -9,7 +9,7 @@ import eason.linyuzai.easonicon.open.support.RoundRectSupport;
 import eason.linyuzai.easonicon.painter.basic.path.PathPainter;
 
 @RoundRectField
-public class RectPainter extends PathPainter implements RoundRectSupport{
+public class RectPainter extends PathPainter implements RoundRectSupport {
 
     private float[] radii = new float[8];
 
@@ -25,7 +25,7 @@ public class RectPainter extends PathPainter implements RoundRectSupport{
 
     @Override
     public void configurePath(Path path, RectF draw, RectF original, Paint paint) {
-        path.addRoundRect(getRectF(draw), radii, Path.Direction.CW);
+        path.addRoundRect(getRectF(draw, paint), radii, Path.Direction.CW);
     }
 
     public void setRoundAll(float r) {

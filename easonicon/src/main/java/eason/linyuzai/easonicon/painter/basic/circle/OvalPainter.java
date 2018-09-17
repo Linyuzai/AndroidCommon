@@ -17,6 +17,6 @@ public class OvalPainter extends EasonPainter {
 
     @Override
     public void draw(Canvas canvas, RectF draw, RectF original, Paint paint) {
-        canvas.drawOval(getTransformRectF(draw, paint), paint);
+        canvas.drawOval(getRectF(draw, paint), paint);
     }
 }

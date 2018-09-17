@@ -24,6 +24,10 @@ public abstract class EasonPainter implements Painter {
 
     private RectParam rectParam = new RectParam();
 
+    private RectF tempRectF = new RectF();
+    private PointF topLeft = new PointF();
+    private PointF rightBottom = new PointF();
+
     @Override
     public Bitmap transformBitmap(RectF draw, RectF original, Paint paint) {
         Bitmap bitmap = Bitmap.createBitmap((int) original.width(), (int) original.height(), Bitmap.Config.ARGB_8888);
@@ -233,31 +237,36 @@ public abstract class EasonPainter implements Painter {
      * @return 缩放平移后的rectF
      */
     public final RectF getRectF(RectF rectF) {
-        RectF newRectF = new RectF();
         //newRectF.top = rectF.top + rectF.height() * (1f - getPercentY()) * 0.5f + getOffsetPercentY() * rectF.height() + getOffsetY();
         //newRectF.bottom = rectF.bottom - rectF.height() * (1f - getPercentY()) * 0.5f + getOffsetPercentY() * rectF.height() + getOffsetY();
         //newRectF.left = rectF.left + rectF.width() * (1f - getPercentX()) * 0.5f + getOffsetPercentX() * rectF.width() + getOffsetX();
         //newRectF.right = rectF.right - rectF.width() * (1f - getPercentX()) * 0.5f + getOffsetPercentX() * rectF.width() + getOffsetX();
-        PointF topLeft = getCoordinate(new PointF(0f, 0f), rectF);
-        PointF bottomRight = getCoordinate(new PointF(rectF.width(), rectF.height()), rectF);
-        newRectF.top = topLeft.y;
-        newRectF.bottom = bottomRight.y;
-        newRectF.left = topLeft.x;
-        newRectF.right = bottomRight.x;
-        return newRectF;
+        topLeft.set(0f, 0f);
+        rightBottom.set(rectF.width(), rectF.height());
+        getCoordinate(topLeft, rectF);
+        getCoordinate(rightBottom, rectF);
+        tempRectF.top = topLeft.y;
+        tempRectF.bottom = rightBottom.y;
+        tempRectF.left = topLeft.x;
+        tempRectF.right = rightBottom.x;
+        return tempRectF;
     }
 
     /**
-     * 设配画笔宽度的绘制区域
+     * 适配画笔宽度的绘制区域
      *
      * @param rectF 原绘制区域
      * @param paint 画笔
      * @return 处理参数后的绘制区域
      */
-    public final RectF getTransformRectF(RectF rectF, Paint paint) {
+    public final RectF getRectF(RectF rectF, Paint paint) {
         float ex = paint.getStrokeWidth() * 0.5f;
         RectF mRectF = getRectF(rectF);
-        return new RectF(mRectF.left + ex, mRectF.top + ex, mRectF.right - ex, mRectF.bottom - ex);
+        mRectF.left += ex;
+        mRectF.top += ex;
+        mRectF.right -= ex;
+        mRectF.bottom -= ex;
+        return mRectF;
     }
 
     /**

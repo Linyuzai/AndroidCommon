@@ -3,13 +3,13 @@ package eason.linyuzai.easonicon;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
 import android.graphics.PathEffect;
 import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
@@ -257,52 +257,55 @@ public class EasonIcon extends View {
         paint.setDither(true);
         if (attrs != null) {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.EasonIcon);
-            int color = a.getColor(R.styleable.EasonIcon_icon_color, Color.WHITE);
-            int penSize = a.getDimensionPixelSize(R.styleable.EasonIcon_icon_pen_size, 5);
-            int type = a.getInt(R.styleable.EasonIcon_icon_type, Type.NONE.value);
-            int cap = a.getInt(R.styleable.EasonIcon_icon_pen_cap, 1);
-            int join = a.getInt(R.styleable.EasonIcon_icon_pen_join, 0);
-            int style = a.getInt(R.styleable.EasonIcon_icon_pen_style, 1);
-            float roundAll = a.getDimension(R.styleable.EasonIcon_icon_round_all, 0f);
+            int color = a.getColor(R.styleable.EasonIcon_eic_color, Color.WHITE);
+            int penSize = a.getDimensionPixelSize(R.styleable.EasonIcon_eic_pen_size, 5);
+            int type = a.getInt(R.styleable.EasonIcon_eic_type, Type.NONE.value);
+            int cap = a.getInt(R.styleable.EasonIcon_eic_pen_cap, 1);
+            int join = a.getInt(R.styleable.EasonIcon_eic_pen_join, 0);
+            int style = a.getInt(R.styleable.EasonIcon_eic_pen_style, 1);
+            float roundAll = a.getDimension(R.styleable.EasonIcon_eic_round_all, 0f);
 
-            auxiliaryColor = a.getColor(R.styleable.EasonIcon_icon_auxiliary_color, color);
-            auxiliaryScale = a.getFloat(R.styleable.EasonIcon_icon_auxiliary_scale, 0.5f);
+            auxiliaryColor = a.getColor(R.styleable.EasonIcon_eic_auxiliary_color, color);
+            auxiliaryScale = a.getFloat(R.styleable.EasonIcon_eic_auxiliary_scale, 0.5f);
 
-            leftTopRound = a.getDimension(R.styleable.EasonIcon_icon_round_left_top, roundAll);
-            leftBottomRound = a.getDimension(R.styleable.EasonIcon_icon_round_left_bottom, roundAll);
-            rightTopRound = a.getDimension(R.styleable.EasonIcon_icon_round_right_top, roundAll);
-            rightBottomRound = a.getDimension(R.styleable.EasonIcon_icon_round_right_bottom, roundAll);
+            leftTopRound = a.getDimension(R.styleable.EasonIcon_eic_round_left_top, roundAll);
+            leftBottomRound = a.getDimension(R.styleable.EasonIcon_eic_round_left_bottom, roundAll);
+            rightTopRound = a.getDimension(R.styleable.EasonIcon_eic_round_right_top, roundAll);
+            rightBottomRound = a.getDimension(R.styleable.EasonIcon_eic_round_right_bottom, roundAll);
 
-            startAngle = a.getFloat(R.styleable.EasonIcon_icon_arc_angle_start, 0f);
-            sweepAngle = a.getFloat(R.styleable.EasonIcon_icon_arc_angle_sweep, 0f);
-            useCenter = a.getBoolean(R.styleable.EasonIcon_icon_arc_center, false);
+            startAngle = a.getFloat(R.styleable.EasonIcon_eic_arc_angle_start, 0f);
+            sweepAngle = a.getFloat(R.styleable.EasonIcon_eic_arc_angle_sweep, 0f);
+            useCenter = a.getBoolean(R.styleable.EasonIcon_eic_arc_center, false);
 
-            int imageRes = a.getInt(R.styleable.EasonIcon_icon_image_res, NO_ID);
-            if (imageRes != NO_ID)
-                bitmap = BitmapFactory.decodeResource(getResources(), imageRes);
+            int imageRes = a.getInt(R.styleable.EasonIcon_eic_image_res, NO_ID);
+            if (imageRes != NO_ID) {
+                Drawable drawable = getResources().getDrawable(imageRes);
+                bitmap = BitmapPainter.getBitmapFromDrawable(drawable);
+                //bitmap = BitmapFactory.decodeResource(getResources(), imageRes);
+            }
 
-            edgeCount = a.getInt(R.styleable.EasonIcon_icon_polygon_edge_count, 3);
-            extraOffset = a.getDimension(R.styleable.EasonIcon_icon_polygon_extra_offset, 0f);
-            penSizeScale = a.getFloat(R.styleable.EasonIcon_icon_polygon_pen_size_scale, 1f);
+            edgeCount = a.getInt(R.styleable.EasonIcon_eic_polygon_edge_count, 3);
+            extraOffset = a.getDimension(R.styleable.EasonIcon_eic_polygon_extra_offset, 0f);
+            penSizeScale = a.getFloat(R.styleable.EasonIcon_eic_polygon_pen_size_scale, 1f);
 
-            text = a.getString(R.styleable.EasonIcon_icon_text);
+            text = a.getString(R.styleable.EasonIcon_eic_text);
 
-            float textSize = a.getDimension(R.styleable.EasonIcon_icon_text_size, 0f);
+            float textSize = a.getDimension(R.styleable.EasonIcon_eic_text_size, 0f);
 
-            float pathEffectCorner = a.getDimension(R.styleable.EasonIcon_icon_path_effect_corner, 0f);
+            float pathEffectCorner = a.getDimension(R.styleable.EasonIcon_eic_path_effect_corner, 0f);
 
-            float percentCenter = a.getFloat(R.styleable.EasonIcon_icon_percent_center, -1f);
-            float percentCenterX = a.getFloat(R.styleable.EasonIcon_icon_percent_center_x, -1f);
-            float percentCenterY = a.getFloat(R.styleable.EasonIcon_icon_percent_center_y, -1f);
-            float percent = a.getFloat(R.styleable.EasonIcon_icon_percent, -1f);
-            float percentX = a.getFloat(R.styleable.EasonIcon_icon_percent_x, -1f);
-            float percentY = a.getFloat(R.styleable.EasonIcon_icon_percent_y, -1f);
-            float percentOffset = a.getFloat(R.styleable.EasonIcon_icon_percent_offset, -1f);
-            float percentOffsetX = a.getFloat(R.styleable.EasonIcon_icon_percent_offset_x, -1f);
-            float percentOffsetY = a.getFloat(R.styleable.EasonIcon_icon_percent_offset_y, -1f);
-            float offset = a.getDimension(R.styleable.EasonIcon_icon_offset, -1f);
-            float offsetX = a.getDimension(R.styleable.EasonIcon_icon_offset_x, -1f);
-            float offsetY = a.getDimension(R.styleable.EasonIcon_icon_offset_y, -1f);
+            float percentCenter = a.getFloat(R.styleable.EasonIcon_eic_percent_center, -1f);
+            float percentCenterX = a.getFloat(R.styleable.EasonIcon_eic_percent_center_x, -1f);
+            float percentCenterY = a.getFloat(R.styleable.EasonIcon_eic_percent_center_y, -1f);
+            float percent = a.getFloat(R.styleable.EasonIcon_eic_percent, -1f);
+            float percentX = a.getFloat(R.styleable.EasonIcon_eic_percent_x, -1f);
+            float percentY = a.getFloat(R.styleable.EasonIcon_eic_percent_y, -1f);
+            float percentOffset = a.getFloat(R.styleable.EasonIcon_eic_percent_offset, -1f);
+            float percentOffsetX = a.getFloat(R.styleable.EasonIcon_eic_percent_offset_x, -1f);
+            float percentOffsetY = a.getFloat(R.styleable.EasonIcon_eic_percent_offset_y, -1f);
+            float offset = a.getDimension(R.styleable.EasonIcon_eic_offset, -1f);
+            float offsetX = a.getDimension(R.styleable.EasonIcon_eic_offset_x, -1f);
+            float offsetY = a.getDimension(R.styleable.EasonIcon_eic_offset_y, -1f);
 
             a.recycle();
 

@@ -42,6 +42,4 @@ public class EnvelopePainter extends SupportEasonPainterSet implements RoundRect
     private void setExpandOffset(float n, float o) {
         expand.setOffsetY(Math.max(n, o));
     }
-
-
 }

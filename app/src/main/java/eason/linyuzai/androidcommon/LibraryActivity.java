@@ -28,7 +28,20 @@ import eason.linyuzai.easonicon.painter.basic.text.TextPainter;
 import eason.linyuzai.easonicon.painter.interceptor.paint.PenStyleInterceptor;
 import eason.linyuzai.elib.component.EasonActivity;
 import eason.linyuzai.rxeason.RxEason;
+import eason.linyuzai.theme.annotation.ActivityTheme;
+import eason.linyuzai.theme.annotation.BackgroundTheme;
+import eason.linyuzai.theme.annotation.ImageTheme;
+import eason.linyuzai.theme.annotation.TextTheme;
+import eason.linyuzai.theme.annotation.ViewTheme;
 
+@ActivityTheme(
+        view = @ViewTheme(
+                background = @BackgroundTheme(color = true),
+                image = @ImageTheme(resource = true),
+                text = @TextTheme(color = true)
+        ),
+        statusBar = true
+)
 public class LibraryActivity extends EasonActivity {
 
     private TextView title;
@@ -91,42 +104,10 @@ public class LibraryActivity extends EasonActivity {
         return LibraryHelper.getLibraryParam(this);
     }
 
-    private class LibraryAdapter extends RecyclerView.Adapter<LibraryViewHolder> {
-
-        @NonNull
-        @Override
-        public LibraryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            EasonIcon icon = new EasonIcon(parent.getContext());
-            //icon.setColor(Color.BLACK);
-            icon.setPenSize(dip(3));
-            icon.addPainter(new LibraryPainter());
-            icon.getPaint().setTextSize(dip(55));
-            int padding = dip(10);
-            icon.setPadding(padding, padding, padding, padding);
-            RecyclerView.LayoutParams params = new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT,
-                    RecyclerView.LayoutParams.MATCH_PARENT);
-            icon.setLayoutParams(params);
-            return new LibraryViewHolder(icon);
-        }
-
-        @SuppressLint("CheckResult")
-        @Override
-        public void onBindViewHolder(@NonNull LibraryViewHolder holder, int position) {
-            LibraryHelper.LibraryParam param = getLibraryParam().get(position);
-            holder.setText(param.getText());
-            holder.icon.addPainter(param.getPainter());
-            holder.icon.setColor(param.getContentColor());
-            //RxEason.view(holder.itemView).onTouch().subscribe();
-            RxEason.listener().view(holder.itemView).onClick().subscribe(view ->
-                    new Intent(LibraryActivity.this, IconDisplayActivity.class));
-            /*holder.itemView.setOnClickListener(v ->
-                    startActivity(new Intent(LibraryActivity.this, IconDisplayActivity.class)));*/
-        }
-
-        @Override
-        public int getItemCount() {
-            return 1;
-        }
+    @Override
+    protected void onDestroy() {
+        RxEason.listener().destroy(this);
+        super.onDestroy();
     }
 
     private static class LibraryViewHolder extends RecyclerView.ViewHolder {
@@ -178,6 +159,52 @@ public class LibraryActivity extends EasonActivity {
                 }
             });
 
+        }
+    }
+
+    private class LibraryAdapter extends RecyclerView.Adapter<LibraryViewHolder> {
+
+        @NonNull
+        @Override
+        public LibraryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            EasonIcon icon = new EasonIcon(parent.getContext());
+            //icon.setColor(Color.BLACK);
+            icon.setPenSize(dip(3));
+            icon.addPainter(new LibraryPainter());
+            icon.getPaint().setTextSize(dip(55));
+            int padding = dip(10);
+            icon.setPadding(padding, padding, padding, padding);
+            RecyclerView.LayoutParams params = new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT,
+                    RecyclerView.LayoutParams.MATCH_PARENT);
+            icon.setLayoutParams(params);
+            return new LibraryViewHolder(icon);
+        }
+
+        @SuppressLint("CheckResult")
+        @Override
+        public void onBindViewHolder(@NonNull LibraryViewHolder holder, int position) {
+            LibraryHelper.LibraryParam param = getLibraryParam().get(position);
+            holder.setText(param.getText());
+            holder.icon.addPainter(param.getPainter());
+            holder.icon.setColor(param.getContentColor());
+            /*RxEason.listener().view(holder.icon).onClick().subscribe(info -> {
+                //Log.d("RxEason", info.getExtra());
+            });*/
+            /*holder.icon.setOnClickListener(v->{
+                Log.d("RxEason", "123");
+            });*/
+            RxEason.listener().view(holder.itemView).onClick().subscribe(info -> {
+                //Log.d("RxEason", info.toString());
+                //Log.d("RxEason", Thread.currentThread().getName());
+                startActivity(new Intent(LibraryActivity.this, IconDisplayActivity.class));
+            });
+            /*holder.itemView.setOnClickListener(v ->
+                    startActivity(new Intent(LibraryActivity.this, IconDisplayActivity.class)));*/
+        }
+
+        @Override
+        public int getItemCount() {
+            return 1;
         }
     }
 }

@@ -45,6 +45,7 @@ import eason.linyuzai.easonicon.annotation.PenSizeScaleField;
 import eason.linyuzai.easonicon.annotation.RoundRectField;
 import eason.linyuzai.easonicon.painter.basic.bitmap.BitmapPainter;
 import eason.linyuzai.elib.component.EasonActivity;
+import eason.linyuzai.rxeason.RxEason;
 
 public class IconAttrActivity extends EasonActivity {
 
@@ -126,5 +127,11 @@ public class IconAttrActivity extends EasonActivity {
 
     private List<LibraryHelper.LibraryParam> getLibraryParam() {
         return LibraryHelper.getLibraryParam(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        RxEason.listener().destroy(this);
+        super.onDestroy();
     }
 }

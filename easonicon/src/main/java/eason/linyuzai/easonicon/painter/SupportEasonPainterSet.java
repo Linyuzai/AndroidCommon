@@ -2,6 +2,9 @@ package eason.linyuzai.easonicon.painter;
 
 import android.graphics.Bitmap;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import eason.linyuzai.easonicon.open.Painter;
 import eason.linyuzai.easonicon.open.PainterInterceptor;
 import eason.linyuzai.easonicon.open.support.ArcSupport;
@@ -18,107 +21,134 @@ public class SupportEasonPainterSet extends EasonPainterSet {
     public static final float NOT_SUPPORT_FLOAT = Float.NaN;
     public static final int NOT_SUPPORT_INT = -1;
 
-    private ArcSupport arcSupport;
     private Painter auxiliaryScalePainter;
     private AuxiliaryColorSupport auxiliaryColorSupport;
-    private BitmapSupport bitmapSupport;
-    private EdgeCountSupport edgeCountSupport;
-    private ExtraOffsetSupport extraOffsetSupport;
     private PenSizeScaleSupport penSizeScaleSupport;
-    private RoundRectSupport roundRectSupport;
-    private TextSupport textSupport;
+    private List<ArcSupport> arcSupports = new ArrayList<>();
+    private List<BitmapSupport> bitmapSupports = new ArrayList<>();
+    private List<EdgeCountSupport> edgeCountSupports = new ArrayList<>();
+    private List<ExtraOffsetSupport> extraOffsetSupports = new ArrayList<>();
+    private List<RoundRectSupport> roundRectSupports = new ArrayList<>();
+    private List<TextSupport> textSupports = new ArrayList<>();
 
     @Override
     public void addPainter(Painter painter) {
-        if (painter.isSupportArc())
-            setArcSupport(painter.toArcSupport());
-        if (painter.isSupportBitmap())
-            setBitmapSupport(painter.toBitmapSupport());
-        if (painter.isSupportEdgeCount())
-            setEdgeCountSupport(painter.toEdgeCountSupport());
-        if (painter.isSupportExtraOffset())
-            setExtraOffsetSupport(painter.toExtraOffsetSupport());
-        if (painter.isSupportRoundRect())
-            setRoundRectSupport(painter.toRoundRectSupport());
-        if (painter.isSupportText())
-            setTextSupport(painter.toTextSupport());
+        addPainter(painter, true);
+    }
+
+    public void addPainter(Painter painter, boolean isSupport) {
+        if (isSupport) {
+            if (painter.isSupportArc())
+                addArcSupport(painter.toArcSupport());
+            if (painter.isSupportBitmap())
+                addBitmapSupport(painter.toBitmapSupport());
+            if (painter.isSupportEdgeCount())
+                addEdgeCountSupport(painter.toEdgeCountSupport());
+            if (painter.isSupportExtraOffset())
+                addExtraOffsetSupport(painter.toExtraOffsetSupport());
+            if (painter.isSupportRoundRect())
+                addRoundRectSupport(painter.toRoundRectSupport());
+            if (painter.isSupportText())
+                addTextSupport(painter.toTextSupport());
+        }
         super.addPainter(painter);
     }
 
     @Override
     public void addPainter(int index, Painter painter) {
-        if (painter.isSupportArc())
-            setArcSupport(painter.toArcSupport());
-        if (painter.isSupportBitmap())
-            setBitmapSupport(painter.toBitmapSupport());
-        if (painter.isSupportEdgeCount())
-            setEdgeCountSupport(painter.toEdgeCountSupport());
-        if (painter.isSupportExtraOffset())
-            setExtraOffsetSupport(painter.toExtraOffsetSupport());
-        if (painter.isSupportRoundRect())
-            setRoundRectSupport(painter.toRoundRectSupport());
-        if (painter.isSupportText())
-            setTextSupport(painter.toTextSupport());
+        addPainter(index, painter, true);
+    }
+
+    public void addPainter(int index, Painter painter, boolean isSupport) {
+        if (isSupport) {
+            if (painter.isSupportArc())
+                addArcSupport(painter.toArcSupport());
+            if (painter.isSupportBitmap())
+                addBitmapSupport(painter.toBitmapSupport());
+            if (painter.isSupportEdgeCount())
+                addEdgeCountSupport(painter.toEdgeCountSupport());
+            if (painter.isSupportExtraOffset())
+                addExtraOffsetSupport(painter.toExtraOffsetSupport());
+            if (painter.isSupportRoundRect())
+                addRoundRectSupport(painter.toRoundRectSupport());
+            if (painter.isSupportText())
+                addTextSupport(painter.toTextSupport());
+        }
         super.addPainter(index, painter);
     }
 
     @Override
     public void addInterceptor(PainterInterceptor interceptor, boolean recursiveSet) {
-        if (interceptor.isSupportAuxiliaryColor())
+        if (interceptor.isSupportAuxiliaryColor()) {
             setAuxiliaryColorSupport(interceptor.toAuxiliaryColorSupport());
-        if (interceptor.isSupportPenSizeScale())
+        }
+        if (interceptor.isSupportPenSizeScale()) {
             setPenSizeScaleSupport(interceptor.toPenSizeScaleSupport());
+        }
         super.addInterceptor(interceptor, recursiveSet);
     }
 
     @Override
     public void addInterceptor(int index, PainterInterceptor interceptor, boolean recursiveSet) {
-        if (interceptor.isSupportAuxiliaryColor())
+        if (interceptor.isSupportAuxiliaryColor()) {
             setAuxiliaryColorSupport(interceptor.toAuxiliaryColorSupport());
-        if (interceptor.isSupportPenSizeScale())
+        }
+        if (interceptor.isSupportPenSizeScale()) {
             setPenSizeScaleSupport(interceptor.toPenSizeScaleSupport());
+        }
         super.addInterceptor(index, interceptor, recursiveSet);
     }
 
     //-------arc---------//
 
-    public ArcSupport getArcSupport() {
-        return arcSupport;
+    public List<ArcSupport> getArcSupports() {
+        return arcSupports;
     }
 
-    public void setArcSupport(ArcSupport arcSupport) {
-        this.arcSupport = arcSupport;
+    public void addArcSupport(ArcSupport arcSupport) {
+        this.arcSupports.add(arcSupport);
     }
 
     public float getStartAngle() {
-        if (isSupportArc())
-            return arcSupport.getStartAngle();
+        if (isSupportArc() && arcSupports.size() > 0) {
+            return arcSupports.get(0).getStartAngle();
+        }
         return NOT_SUPPORT_FLOAT;
     }
 
     public void setStartAngle(float startAngle) {
-        if (isSupportArc())
-            arcSupport.setStartAngle(startAngle);
+        if (isSupportArc()) {
+            for (ArcSupport arcSupport : arcSupports) {
+                arcSupport.setStartAngle(startAngle);
+            }
+        }
     }
 
     public float getSweepAngle() {
-        if (isSupportArc())
-            return arcSupport.getSweepAngle();
+        if (isSupportArc() && arcSupports.size() > 0) {
+            return arcSupports.get(0).getSweepAngle();
+        }
         return NOT_SUPPORT_FLOAT;
     }
 
     public void setSweepAngle(float sweepAngle) {
-        if (isSupportArc())
-            arcSupport.setSweepAngle(sweepAngle);
+        if (isSupportArc()) {
+            for (ArcSupport arcSupport : arcSupports) {
+                arcSupport.setSweepAngle(sweepAngle);
+            }
+        }
     }
 
     public boolean isUseCenter() {
-        return isSupportArc() && arcSupport.isUseCenter();
+        return isSupportArc() && arcSupports.size() > 0 && arcSupports.get(0).isUseCenter();
     }
 
     public void setUseCenter(boolean useCenter) {
-        if (isSupportArc())
-            arcSupport.setUseCenter(useCenter);
+        if (isSupportArc()) {
+            for (ArcSupport arcSupport : arcSupports) {
+                arcSupport.setUseCenter(useCenter);
+            }
+        }
     }
 
     //-------arc---------//
@@ -136,14 +166,16 @@ public class SupportEasonPainterSet extends EasonPainterSet {
         if (isSupportAuxiliaryScale() &&
                 auxiliaryScalePainter.getPercentX() == auxiliaryScalePainter.getPercentY() &&
                 auxiliaryScalePainter.getOffsetPercentX() == auxiliaryScalePainter.getOffsetPercentY() &&
-                auxiliaryScalePainter.getOffsetX() == 0f && auxiliaryScalePainter.getOffsetY() == 0f)
+                auxiliaryScalePainter.getOffsetX() == 0f && auxiliaryScalePainter.getOffsetY() == 0f) {
             return auxiliaryScalePainter.getPercentX();
+        }
         return NOT_SUPPORT_FLOAT;
     }
 
     public void setAuxiliaryScale(float scale) {
-        if (isSupportAuxiliaryScale())
+        if (isSupportAuxiliaryScale()) {
             auxiliaryScalePainter.setCenterPercent(scale);
+        }
     }
 
     //-------auxiliaryScale---------//
@@ -158,80 +190,94 @@ public class SupportEasonPainterSet extends EasonPainterSet {
     }
 
     public int getAuxiliaryColor() {
-        if (isSupportAuxiliaryColor())
+        if (isSupportAuxiliaryColor()) {
             return auxiliaryColorSupport.getAuxiliaryColor();
+        }
         return NOT_SUPPORT_INT;
     }
 
     public void setAuxiliaryColor(int color) {
-        if (isSupportAuxiliaryColor())
+        if (isSupportAuxiliaryColor()) {
             auxiliaryColorSupport.setAuxiliaryColor(color);
+        }
     }
 
     //-------auxiliaryColor---------//
     //-------bitmap---------//
 
-    public BitmapSupport getBitmapSupport() {
-        return bitmapSupport;
+    public List<BitmapSupport> getBitmapSupports() {
+        return bitmapSupports;
     }
 
-    public void setBitmapSupport(BitmapSupport bitmapSupport) {
-        this.bitmapSupport = bitmapSupport;
+    public void addBitmapSupport(BitmapSupport bitmapSupport) {
+        this.bitmapSupports.add(bitmapSupport);
     }
 
     public Bitmap getBitmap() {
-        if (isSupportBitmap())
-            return bitmapSupport.getBitmap();
+        if (isSupportBitmap() && bitmapSupports.size() > 0) {
+            return bitmapSupports.get(0).getBitmap();
+        }
         return null;
     }
 
     public void setBitmap(Bitmap bitmap) {
-        if (isSupportBitmap())
-            bitmapSupport.setBitmap(bitmap);
+        if (isSupportBitmap()) {
+            for (BitmapSupport bitmapSupport : bitmapSupports) {
+                bitmapSupport.setBitmap(bitmap);
+            }
+        }
     }
 
     //-------bitmap---------//
     //-------edgeCount---------//
 
-    public EdgeCountSupport getEdgeCountSupport() {
-        return edgeCountSupport;
+    public List<EdgeCountSupport> getEdgeCountSupports() {
+        return edgeCountSupports;
     }
 
-    public void setEdgeCountSupport(EdgeCountSupport edgeCountSupport) {
-        this.edgeCountSupport = edgeCountSupport;
+    public void addEdgeCountSupport(EdgeCountSupport edgeCountSupport) {
+        this.edgeCountSupports.add(edgeCountSupport);
     }
 
     public int getEdgeCount() {
-        if (isSupportEdgeCount())
-            return edgeCountSupport.getEdgeCount();
+        if (isSupportEdgeCount() && edgeCountSupports.size() > 0) {
+            return edgeCountSupports.get(0).getEdgeCount();
+        }
         return NOT_SUPPORT_INT;
     }
 
     public void setEdgeCount(int edgeCount) {
-        if (isSupportEdgeCount())
-            edgeCountSupport.setEdgeCount(edgeCount);
+        if (isSupportEdgeCount()) {
+            for (EdgeCountSupport edgeCountSupport : edgeCountSupports) {
+                edgeCountSupport.setEdgeCount(edgeCount);
+            }
+        }
     }
 
     //-------edgeCount---------//
     //-------extraOffset---------//
 
-    public ExtraOffsetSupport getExtraOffsetSupport() {
-        return extraOffsetSupport;
+    public List<ExtraOffsetSupport> getExtraOffsetSupports() {
+        return extraOffsetSupports;
     }
 
-    public void setExtraOffsetSupport(ExtraOffsetSupport extraOffsetSupport) {
-        this.extraOffsetSupport = extraOffsetSupport;
+    public void addExtraOffsetSupport(ExtraOffsetSupport extraOffsetSupport) {
+        this.extraOffsetSupports.add(extraOffsetSupport);
     }
 
     public float getExtraOffset() {
-        if (isSupportExtraOffset())
-            return extraOffsetSupport.getExtraOffset();
+        if (isSupportExtraOffset() && extraOffsetSupports.size() > 0) {
+            return extraOffsetSupports.get(0).getExtraOffset();
+        }
         return NOT_SUPPORT_FLOAT;
     }
 
     public void setExtraOffset(float extraOffset) {
-        if (isSupportExtraOffset())
-            extraOffsetSupport.setExtraOffset(extraOffset);
+        if (isSupportExtraOffset()) {
+            for (ExtraOffsetSupport extraOffsetSupport : extraOffsetSupports) {
+                extraOffsetSupport.setExtraOffset(extraOffset);
+            }
+        }
     }
 
     //-------extraOffset---------//
@@ -246,91 +292,114 @@ public class SupportEasonPainterSet extends EasonPainterSet {
     }
 
     public float getPenSizeScale() {
-        if (isSupportPenSizeScale())
+        if (isSupportPenSizeScale()) {
             return penSizeScaleSupport.getPenSizeScale();
+        }
         return NOT_SUPPORT_FLOAT;
     }
 
     public void setPenSizeScale(float penSizeScale) {
-        if (isSupportPenSizeScale())
+        if (isSupportPenSizeScale()) {
             penSizeScaleSupport.setPenSizeScale(penSizeScale);
+        }
     }
 
     //-------penSizeScale---------//
     //-------roundRect---------//
 
-    public void setRoundRectSupport(RoundRectSupport roundRectSupport) {
-        this.roundRectSupport = roundRectSupport;
+    public List<RoundRectSupport> getRoundRectSupports() {
+        return roundRectSupports;
     }
 
-    public RoundRectSupport getRoundRectSupport() {
-        return roundRectSupport;
+
+    public void addRoundRectSupport(RoundRectSupport roundRectSupport) {
+        this.roundRectSupports.add(roundRectSupport);
     }
 
     public float getLeftTop() {
-        if (isSupportRoundRect())
-            return roundRectSupport.getLeftTop();
+        if (isSupportRoundRect() && roundRectSupports.size() > 0) {
+            return roundRectSupports.get(0).getLeftTop();
+        }
         return NOT_SUPPORT_FLOAT;
     }
 
     public void setLeftTop(float r) {
-        if (isSupportRoundRect())
-            roundRectSupport.setLeftTop(r);
+        if (isSupportRoundRect()) {
+            for (RoundRectSupport roundRectSupport : roundRectSupports) {
+                roundRectSupport.setLeftTop(r);
+            }
+        }
     }
 
     public float getRightTop() {
-        if (isSupportRoundRect())
-            return roundRectSupport.getRightTop();
+        if (isSupportRoundRect() && roundRectSupports.size() > 0) {
+            return roundRectSupports.get(0).getRightTop();
+        }
         return NOT_SUPPORT_FLOAT;
     }
 
     public void setRightTop(float r) {
-        if (isSupportRoundRect())
-            roundRectSupport.setRightTop(r);
+        if (isSupportRoundRect()) {
+            for (RoundRectSupport roundRectSupport : roundRectSupports) {
+                roundRectSupport.setRightTop(r);
+            }
+        }
     }
 
     public float getLeftBottom() {
-        if (isSupportRoundRect())
-            return roundRectSupport.getLeftBottom();
+        if (isSupportRoundRect() && roundRectSupports.size() > 0) {
+            return roundRectSupports.get(0).getLeftBottom();
+        }
         return NOT_SUPPORT_FLOAT;
     }
 
     public void setLeftBottom(float r) {
-        if (isSupportRoundRect())
-            roundRectSupport.setLeftBottom(r);
+        if (isSupportRoundRect()) {
+            for (RoundRectSupport roundRectSupport : roundRectSupports) {
+                roundRectSupport.setLeftBottom(r);
+            }
+        }
     }
 
     public float getRightBottom() {
-        if (isSupportRoundRect())
-            return roundRectSupport.getRightBottom();
+        if (isSupportRoundRect() && roundRectSupports.size() > 0) {
+            return roundRectSupports.get(0).getRightBottom();
+        }
         return NOT_SUPPORT_FLOAT;
     }
 
     public void setRightBottom(float r) {
-        if (isSupportRoundRect())
-            roundRectSupport.setRightBottom(r);
+        if (isSupportRoundRect()) {
+            for (RoundRectSupport roundRectSupport : roundRectSupports) {
+                roundRectSupport.setRightBottom(r);
+            }
+        }
     }
 
     //-------roundRect---------//
     //-------text---------//
 
-    public TextSupport getTextSupport() {
-        return textSupport;
+    public List<TextSupport> getTextSupports() {
+        return textSupports;
     }
 
-    public void setTextSupport(TextSupport textSupport) {
-        this.textSupport = textSupport;
+    public void addTextSupport(TextSupport textSupport) {
+        this.textSupports.add(textSupport);
     }
 
     public String getText() {
-        if (isSupportText())
-            return textSupport.getText();
+        if (isSupportText() && textSupports.size() > 0) {
+            return textSupports.get(0).getText();
+        }
         return null;
     }
 
     public void setText(String text) {
-        if (isSupportText())
-            textSupport.setText(text);
+        if (isSupportText()) {
+            for (TextSupport textSupport : textSupports) {
+                textSupport.setText(text);
+            }
+        }
     }
     //-------text---------//
 }

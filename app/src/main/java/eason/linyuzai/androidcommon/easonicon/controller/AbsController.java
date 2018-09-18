@@ -1,11 +1,16 @@
 package eason.linyuzai.androidcommon.easonicon.controller;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
+import android.text.TextUtils;
+import android.text.method.DigitsKeyListener;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -29,6 +34,9 @@ public abstract class AbsController extends LinearLayout {
     private Painter painter;
     private TargetEntity entity;
 
+    private EditText et;
+    private AlertDialog dialog;
+
     public AbsController(Context context, EasonIcon icon) {
         super(context);
 
@@ -49,11 +57,41 @@ public abstract class AbsController extends LinearLayout {
         textView.setTextColor(textColor);
         textView.setTextSize(15f);
         addView(textView, new LayoutParams(eason.dip(AbsController.TEXT_WIDTH), LayoutParams.WRAP_CONTENT));
-
+        initValueDialog();
         value = new TextView(context);
         value.setTextColor(textColor);
         value.setTextSize(15f);
+        value.setOnClickListener(v -> {
+            if (dialog != null)
+                dialog.show();
+        });
         addView(value, new LayoutParams(eason.dip(AbsController.VALUE_WIDTH), LayoutParams.WRAP_CONTENT));
+    }
+
+    private void initValueDialog() {
+        if (dialog != null)
+            return;
+        et = new EditText(getContext());
+        et.setKeyListener(new DigitsKeyListener() {
+            @NonNull
+            @Override
+            protected char[] getAcceptedChars() {
+                return new char[]{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'};
+            }
+        });
+        dialog = new AlertDialog.Builder(getContext(), AlertDialog.THEME_HOLO_LIGHT)
+                .setTitle("Value")
+                .setView(et)
+                .setCancelable(false)
+                .setPositiveButton("Ok", (dialog, which) -> {
+                    String input = et.getText().toString().trim();
+                    if (!TextUtils.isEmpty(input)) {
+                        seekBar.setProgress(getProgressFromValue(input));
+                        //onUpdate();
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .create();
     }
 
     public void addSeekBar() {
@@ -101,6 +139,8 @@ public abstract class AbsController extends LinearLayout {
             }
         });
     }
+
+    public abstract int getProgressFromValue(String value);
 
     public abstract int getMaxProgress();
 

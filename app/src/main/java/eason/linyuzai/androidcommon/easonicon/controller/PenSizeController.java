@@ -42,6 +42,11 @@ public class PenSizeController extends AbsController {
     }
 
     @Override
+    public int getProgressFromValue(String value) {
+        return (int) (Float.valueOf(value) * 10);
+    }
+
+    @Override
     public void onUpdate(int progress) {
         float val = progress / 10f;
         setValue(String.valueOf(val));

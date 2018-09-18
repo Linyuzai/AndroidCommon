@@ -23,10 +23,10 @@
             android:id="@+id/back"
             android:layout_width="55dp"
             android:layout_height="55dp"
-            app:icon_color="@android:color/white"
-            app:icon_pen_size="2dp"
-            app:icon_percent_center="0.3"
-            app:icon_type="back" />
+            app:eic_color="@android:color/white"
+            app:eic_pen_size="2dp"
+            app:eic_percent_center="0.3"
+            app:eic_type="back" />
     </FrameLayout>
 
     <FrameLayout

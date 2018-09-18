@@ -43,6 +43,11 @@ public class LeftBottomController extends AbsController {
     }
 
     @Override
+    public int getProgressFromValue(String value) {
+        return Integer.valueOf(value);
+    }
+
+    @Override
     public void onUpdate(int progress) {
         int val = progress;
         setValue(String.valueOf(val));

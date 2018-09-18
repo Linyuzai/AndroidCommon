@@ -1,5 +1,6 @@
 package eason.linyuzai.androidcommon.easonicon;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -22,7 +23,9 @@ import eason.linyuzai.easonicon.EasonIcon;
 import eason.linyuzai.easonicon.painter.basic.NonePainter;
 import eason.linyuzai.easonicon.painter.basic.bitmap.BitmapPainter;
 import eason.linyuzai.elib.component.EasonActivity;
+import eason.linyuzai.rxeason.RxEason;
 
+@SuppressLint("CheckResult")
 public class IconDisplayActivity extends EasonActivity {
 
     private LibraryHelper.LibraryParam param;
@@ -35,8 +38,11 @@ public class IconDisplayActivity extends EasonActivity {
         param = getLibraryParam().get(0);
         setStatusBarColor(param.getTitleColor());
         setContentView(R.layout.activity_icon_display);
-        id(R.id.back).setOnClickListener(v -> finish());
-        id(R.id.create).setOnClickListener(v -> startActivity(new Intent(this, IconCreateActivity.class)));
+        RxEason.listener().view(id(R.id.back)).onClick().subscribe(info -> finish());
+        //id(R.id.back).setOnClickListener(v -> finish());
+        RxEason.listener().view(id(R.id.create)).onClick().subscribe(info ->
+                startActivity(new Intent(this, IconCreateActivity.class)));
+        //id(R.id.create).setOnClickListener(v -> startActivity(new Intent(this, IconCreateActivity.class)));
         id(R.id.title).setBackgroundColor(param.getTitleColor());
         RecyclerView recyclerView = id(R.id.rv);
         recyclerView.setBackgroundColor(param.getBackgroundColor());
@@ -46,6 +52,12 @@ public class IconDisplayActivity extends EasonActivity {
 
     private List<LibraryHelper.LibraryParam> getLibraryParam() {
         return LibraryHelper.getLibraryParam(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        RxEason.listener().destroy(this);
+        super.onDestroy();
     }
 
     private class EasonIconAdapter extends RecyclerView.Adapter<EasonIconViewHolder> {
@@ -103,7 +115,7 @@ public class IconDisplayActivity extends EasonActivity {
                 holder.icon.setAuxiliaryColor(Color.WHITE);
             }
             holder.icon.setType(position + 1);
-            holder.icon.setOnClickListener(v -> {
+            RxEason.listener().view(holder.icon).onClick().subscribe(info -> {
                 if (EasonIcon.getType(position + 1).getPainterClass() == NonePainter.class) {
                     toast("No icon to display");
                 } else {
@@ -112,11 +124,20 @@ public class IconDisplayActivity extends EasonActivity {
                     startActivity(intent);
                 }
             });
+            /*holder.icon.setOnClickListener(v -> {
+                if (EasonIcon.getType(position + 1).getPainterClass() == NonePainter.class) {
+                    toast("No icon to display");
+                } else {
+                    Intent intent = new Intent(IconDisplayActivity.this, IconAttrActivity.class);
+                    intent.putExtra("type", position + 1);
+                    startActivity(intent);
+                }
+            });*/
         }
 
         @Override
         public int getItemCount() {
-            return 68;
+            return 70;
         }
     }
 

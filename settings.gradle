@@ -1,1 +1,1 @@
-include ':app', ':elib',':easonicon', ':blurring', ':easonbar', ':rxeason'
+include ':app', ':elib',':easonicon', ':blurring', ':easonbar', ':rxeason', ':theme', ':eason-recyclerview'

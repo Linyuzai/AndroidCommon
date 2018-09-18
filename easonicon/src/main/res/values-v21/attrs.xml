@@ -101,6 +101,8 @@
             <enum name="clock" value="66" />
             <enum name="download" value="67" />
             <enum name="upload" value="68" />
+            <enum name="category" value="69" />
+            <enum name="code_generate" value="70" />
         </attr>
         <!-- 需要两种颜色 -->
         <attr name="eic_auxiliary_color" format="reference|color" />

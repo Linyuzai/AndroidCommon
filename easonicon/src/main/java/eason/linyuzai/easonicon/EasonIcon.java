@@ -53,7 +53,9 @@ import eason.linyuzai.easonicon.painter.combine.AddRectPainter;
 import eason.linyuzai.easonicon.painter.combine.BackOvalPainter;
 import eason.linyuzai.easonicon.painter.combine.BackPainter;
 import eason.linyuzai.easonicon.painter.combine.BackRectPainter;
+import eason.linyuzai.easonicon.painter.combine.CategoryPainter;
 import eason.linyuzai.easonicon.painter.combine.ClockPainter;
+import eason.linyuzai.easonicon.painter.combine.CodeGeneratePainter;
 import eason.linyuzai.easonicon.painter.combine.CollapseOvalPainter;
 import eason.linyuzai.easonicon.painter.combine.CollapsePainter;
 import eason.linyuzai.easonicon.painter.combine.CollapseRectPainter;
@@ -725,6 +727,12 @@ public class EasonIcon extends View {
             case UPLOAD:
                 painterSet.addPainter(new UploadPainter());
                 break;
+            case CATEGORY:
+                painterSet.addPainter(new CategoryPainter(leftTopRound, leftBottomRound, rightTopRound, rightBottomRound));
+                break;
+            case CODE_GENERATE:
+                painterSet.addPainter(new CodeGeneratePainter());
+                break;
         }
         return true;
     }
@@ -1351,7 +1359,15 @@ public class EasonIcon extends View {
         /**
          * 上传
          */
-        UPLOAD(68, "upload", UploadPainter.class);
+        UPLOAD(68, "upload", UploadPainter.class),
+        /**
+         * 分类
+         */
+        CATEGORY(69, "category", CategoryPainter.class),
+        /**
+         * 代码生成
+         */
+        CODE_GENERATE(70, "code_generate", CodeGeneratePainter.class);
 
         private int value;
         private String attrName;

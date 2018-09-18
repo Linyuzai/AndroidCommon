@@ -1,5 +1,6 @@
 package eason.linyuzai.androidcommon.easonicon;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -33,7 +34,9 @@ import eason.linyuzai.androidcommon.easonicon.controller.RightTopController;
 import eason.linyuzai.androidcommon.easonicon.entity.TargetEntity;
 import eason.linyuzai.easonicon.EasonIcon;
 import eason.linyuzai.elib.component.EasonActivity;
+import eason.linyuzai.rxeason.RxEason;
 
+@SuppressLint("CheckResult")
 public class IconCreateActivity extends EasonActivity {
 
     LibraryHelper.LibraryParam param;
@@ -59,22 +62,31 @@ public class IconCreateActivity extends EasonActivity {
         param = getLibraryParam().get(0);
         setStatusBarColor(param.getTitleColor());
         setContentView(R.layout.activity_icon_create);
-        id(R.id.back).setOnClickListener(v -> finish());
+        RxEason.listener().view(id(R.id.back)).onClick().subscribe(info -> finish());
+        //id(R.id.back).setOnClickListener(v -> finish());
         id(R.id.title).setBackgroundColor(param.getTitleColor());
         creator = id(R.id.creator);
         drawerLayout = id(R.id.drawer);
         drawerLayout.setScrimColor(Color.TRANSPARENT);
         View drawerSwitch = id(R.id.drawer_switch);
-        drawerSwitch.setOnClickListener(v -> {
+        RxEason.listener().view(drawerSwitch).onClick().subscribe(info -> {
             if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
                 drawerLayout.closeDrawer(Gravity.LEFT);
             } else {
                 drawerLayout.openDrawer(Gravity.LEFT);
             }
         });
+        /*drawerSwitch.setOnClickListener(v -> {
+            if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
+                drawerLayout.closeDrawer(Gravity.LEFT);
+            } else {
+                drawerLayout.openDrawer(Gravity.LEFT);
+            }
+        });*/
         targetName = id(R.id.target_name);
         initDialog();
-        id(R.id.add_painter).setOnClickListener(v -> dialog.show());
+        RxEason.listener().view(id(R.id.add_painter)).onClick().subscribe(info -> dialog.show());
+        //id(R.id.add_painter).setOnClickListener(v -> dialog.show());
         RecyclerView recyclerView = id(R.id.target_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         targetAdapter = new TargetAdapter();
@@ -188,6 +200,12 @@ public class IconCreateActivity extends EasonActivity {
         //RichText.fromMarkdown(code).into(codeText);
         codeText.setText(code);
         codeDialog.show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        RxEason.listener().destroy(this);
+        super.onDestroy();
     }
 
     private static class TargetViewHolder extends RecyclerView.ViewHolder {

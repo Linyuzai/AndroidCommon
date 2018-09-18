@@ -42,6 +42,11 @@ public class OffsetYController extends AbsController {
     }
 
     @Override
+    public int getProgressFromValue(String value) {
+        return Integer.valueOf(value) + 100;
+    }
+
+    @Override
     public void onUpdate(int progress) {
         int val = progress - 100;
         setValue(String.valueOf(val));

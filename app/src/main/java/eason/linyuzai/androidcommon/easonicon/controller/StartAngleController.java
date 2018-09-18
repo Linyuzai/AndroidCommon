@@ -42,6 +42,11 @@ public class StartAngleController extends AbsController {
     }
 
     @Override
+    public int getProgressFromValue(String value) {
+        return Integer.valueOf(value) + 360;
+    }
+
+    @Override
     public void onUpdate(int progress) {
         int val = progress - 360;
         setValue(String.valueOf(val));

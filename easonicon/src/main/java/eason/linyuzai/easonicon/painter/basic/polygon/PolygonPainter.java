@@ -33,7 +33,10 @@ public class PolygonPainter extends PathPainter implements EdgeCountSupport {
     @Override
     public void setEdgeCount(@Size(min = 3) int edgeCount) {
         this.edgeCount = edgeCount;
-        points = new PointF[edgeCount];
+        if (this.edgeCount < 3) {
+            this.edgeCount = 3;
+        }
+        points = new PointF[this.edgeCount];
         for (int i = 0; i < points.length; i++) {
             points[i] = new PointF();
         }

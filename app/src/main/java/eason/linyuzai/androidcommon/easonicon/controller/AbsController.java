@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import eason.linyuzai.androidcommon.R;
 import eason.linyuzai.androidcommon.easonicon.entity.TargetEntity;
@@ -86,7 +87,12 @@ public abstract class AbsController extends LinearLayout {
                 .setPositiveButton("Ok", (dialog, which) -> {
                     String input = et.getText().toString().trim();
                     if (!TextUtils.isEmpty(input)) {
-                        seekBar.setProgress(getProgressFromValue(input));
+                        int p = getProgressFromValue(input);
+                        if (p >= 0 && p <= getMaxProgress()) {
+                            seekBar.setProgress(p);
+                        } else {
+                            Toast.makeText(getContext(), "数值过大或过小", Toast.LENGTH_SHORT).show();
+                        }
                         //onUpdate();
                     }
                 })

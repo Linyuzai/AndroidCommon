@@ -52,8 +52,8 @@ public class ExtraPolygonPainter extends PolygonPainter implements EdgeCountSupp
     @Override
     public void setEdgeCount(int edgeCount) {
         super.setEdgeCount(edgeCount);
-        extras = new PointF[edgeCount];
-        total = new PointF[2 * edgeCount];
+        extras = new PointF[getEdgeCount()];
+        total = new PointF[2 * getEdgeCount()];
         for (int i = 0; i < extras.length; i++) {
             extras[i] = new PointF();
         }

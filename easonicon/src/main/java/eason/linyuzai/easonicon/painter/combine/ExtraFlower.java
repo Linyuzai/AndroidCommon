@@ -22,26 +22,19 @@ public class ExtraFlower extends SupportEasonPainterSet implements EdgeCountSupp
     private ExtraPolygonPainter polygon;
 
     public ExtraFlower() {
-        this(4);
+        this(3);
     }
 
-    public ExtraFlower(@Size(min = 4) int edgeCount) {
+    public ExtraFlower(@Size(min = 3) int edgeCount) {
         this(edgeCount, 1f);
     }
 
-    public ExtraFlower(@Size(min = 4) int edgeCount, float penSizeScale) {
+    public ExtraFlower(@Size(min = 3) int edgeCount, float penSizeScale) {
         polygon = new ExtraPolygonPainter();
         addPainter(polygon);
         setEdgeCount(edgeCount);
         addInterceptor(new PenSizeScaleInterceptor(polygon, penSizeScale, 0.01f));
         addInterceptor(new ExtraFlowerInterceptor());
-    }
-
-    @Override
-    public void setEdgeCount(int edgeCount) {
-        if (edgeCount < 4)
-            edgeCount = 4;
-        super.setEdgeCount(edgeCount);
     }
 
     private class ExtraFlowerInterceptor implements PainterInterceptor {

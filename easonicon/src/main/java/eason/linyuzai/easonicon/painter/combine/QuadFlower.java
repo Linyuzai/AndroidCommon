@@ -37,15 +37,6 @@ public class QuadFlower extends SupportEasonPainterSet implements EdgeCountSuppo
         addInterceptor(new PenSizeScaleInterceptor(polygon, penSizeScale, 0.03f));
     }
 
-    @Override
-    public void setEdgeCount(int edgeCount) {
-        if (edgeCount < 5)
-            edgeCount = 5;
-        if (edgeCount > 10)
-            edgeCount = 10;
-        super.setEdgeCount(edgeCount);
-    }
-
     public float getExtraOffsetRate(int edgeCount) {
         switch (edgeCount) {
             case 5:

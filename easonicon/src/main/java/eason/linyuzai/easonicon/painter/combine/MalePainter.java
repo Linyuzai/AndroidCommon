@@ -6,6 +6,7 @@ import eason.linyuzai.easonicon.painter.basic.circle.OvalPainter;
 import eason.linyuzai.easonicon.painter.basic.line.HorizontalLinePainter;
 import eason.linyuzai.easonicon.painter.basic.line.SlopeNegativeLinePainter;
 import eason.linyuzai.easonicon.painter.basic.line.VerticalLinePainter;
+import eason.linyuzai.easonicon.painter.combine.filler.PenStyleHueFiller;
 
 public class MalePainter extends EasonPainterSet {
 
@@ -26,5 +27,7 @@ public class MalePainter extends EasonPainterSet {
         vl.setPercentY(0.25f);
         vl.setOffsetPercentX(1f);
         addPainter(vl);
+
+        addInterceptor(new PenStyleHueFiller());
     }
 }

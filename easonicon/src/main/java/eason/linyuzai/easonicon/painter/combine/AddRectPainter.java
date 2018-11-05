@@ -11,6 +11,8 @@ import eason.linyuzai.easonicon.open.support.AuxiliaryScaleSupport;
 import eason.linyuzai.easonicon.open.support.RoundRectSupport;
 import eason.linyuzai.easonicon.painter.SupportEasonPainterSet;
 import eason.linyuzai.easonicon.painter.basic.rect.RectPainter;
+import eason.linyuzai.easonicon.painter.combine.filler.PenColorHueFiller;
+import eason.linyuzai.easonicon.painter.combine.filler.PenStyleHueFiller;
 import eason.linyuzai.easonicon.painter.combine.interceptor.AuxiliaryColorInterceptor;
 
 @AuxiliaryScaleField
@@ -41,7 +43,9 @@ public class AddRectPainter extends SupportEasonPainterSet implements AuxiliaryS
         painter.setCenterPercent(auxiliaryScale);
         setAuxiliaryScalePainter(painter);
         addPainter(painter);
-        //addInterceptor(new AuxiliaryStyleInterceptor());
         addInterceptor(new AuxiliaryColorInterceptor(auxiliaryColor));
+
+        addInterceptor(new PenStyleHueFiller());
+        addInterceptor(new PenColorHueFiller());
     }
 }

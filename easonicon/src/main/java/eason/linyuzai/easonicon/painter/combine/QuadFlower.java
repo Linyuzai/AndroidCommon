@@ -13,6 +13,7 @@ import eason.linyuzai.easonicon.open.support.EdgeCountSupport;
 import eason.linyuzai.easonicon.open.support.PenSizeScaleSupport;
 import eason.linyuzai.easonicon.painter.SupportEasonPainterSet;
 import eason.linyuzai.easonicon.painter.basic.polygon.QuadPolygonPainter;
+import eason.linyuzai.easonicon.painter.combine.filler.PenStyleHueFiller;
 import eason.linyuzai.easonicon.painter.combine.interceptor.PenSizeScaleInterceptor;
 
 @EdgeCountField
@@ -35,6 +36,8 @@ public class QuadFlower extends SupportEasonPainterSet implements EdgeCountSuppo
         setEdgeCount(edgeCount);
         addInterceptor(new QuadFlowerInterceptor());
         addInterceptor(new PenSizeScaleInterceptor(polygon, penSizeScale, 0.03f));
+
+        addInterceptor(new PenStyleHueFiller());
     }
 
     public float getExtraOffsetRate(int edgeCount) {

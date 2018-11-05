@@ -3,6 +3,10 @@ package eason.linyuzai.easonicon.open;
 import java.util.List;
 
 public interface PainterSet extends Painter {
+    void fillHue(boolean fill);
+
+    boolean isFillHue();
+
     /**
      * 获得Painter List
      *
@@ -75,23 +79,6 @@ public interface PainterSet extends Painter {
     void addInterceptor(PainterInterceptor interceptor, boolean recursiveSet);
 
     /**
-     * 添加Interceptor
-     *
-     * @param index       添加的位置
-     * @param interceptor 需要添加的Interceptor
-     */
-    void addInterceptor(int index, PainterInterceptor interceptor);
-
-    /**
-     * 添加Interceptor
-     *
-     * @param index        添加的位置
-     * @param interceptor  需要添加的Interceptor
-     * @param recursiveSet 递归设置
-     */
-    void addInterceptor(int index, PainterInterceptor interceptor, boolean recursiveSet);
-
-    /**
      * 移除Interceptor
      *
      * @param interceptor 需要移除的Interceptor
@@ -105,21 +92,6 @@ public interface PainterSet extends Painter {
      * @param recursiveSet 递归移除
      */
     void removeInterceptor(PainterInterceptor interceptor, boolean recursiveSet);
-
-    /**
-     * 移除Interceptor
-     *
-     * @param index 需要移除的位置
-     */
-    void removeInterceptor(int index);
-
-    /**
-     * 移除Interceptor
-     *
-     * @param index        需要移除的位置
-     * @param recursiveSet 递归移除
-     */
-    void removeInterceptor(int index, boolean recursiveSet);
 
     /**
      * 清除Interceptor

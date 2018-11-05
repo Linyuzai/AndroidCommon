@@ -18,5 +18,13 @@ public abstract class PathPainter extends EasonPainter {
         canvas.drawPath(path, paint);
     }
 
+    public void addPath(Path path) {
+        this.path.addPath(path);
+    }
+
+    public Path getPath() {
+        return path;
+    }
+
     public abstract void configurePath(Path path, RectF draw, RectF original, Paint paint);
 }

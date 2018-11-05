@@ -25,6 +25,8 @@ import eason.linyuzai.easonicon.painter.interceptor.rect.PainterSetRectSupportIn
 
 public class EasonPainterSet extends EasonPainter implements PainterSet {
 
+    private boolean isFillHue;
+
     private List<Painter> painters = new ArrayList<>();
 
     private List<PainterInterceptor> interceptors = new ArrayList<>();
@@ -128,23 +130,6 @@ public class EasonPainterSet extends EasonPainter implements PainterSet {
     }
 
     @Override
-    public void addInterceptor(int index, PainterInterceptor interceptor) {
-        addInterceptor(index, interceptor, false);
-    }
-
-    @Override
-    public void addInterceptor(int index, PainterInterceptor interceptor, boolean recursiveSet) {
-        interceptors.add(index, interceptor);
-        if (recursiveSet) {
-            for (Painter painter : painters) {
-                if (painter.isPainterSet()) {
-                    painter.toPainterSet().addInterceptor(index, interceptor, true);
-                }
-            }
-        }
-    }
-
-    @Override
     public void removeInterceptor(PainterInterceptor interceptor) {
         removeInterceptor(interceptor, false);
     }
@@ -156,23 +141,6 @@ public class EasonPainterSet extends EasonPainter implements PainterSet {
             for (Painter painter : painters) {
                 if (painter.isPainterSet()) {
                     painter.toPainterSet().removeInterceptor(interceptor, true);
-                }
-            }
-        }
-    }
-
-    @Override
-    public void removeInterceptor(int index) {
-        removeInterceptor(index, false);
-    }
-
-    @Override
-    public void removeInterceptor(int index, boolean recursiveSet) {
-        interceptors.remove(index);
-        if (recursiveSet) {
-            for (Painter painter : painters) {
-                if (painter.isPainterSet()) {
-                    painter.toPainterSet().removeInterceptor(index, true);
                 }
             }
         }
@@ -196,15 +164,32 @@ public class EasonPainterSet extends EasonPainter implements PainterSet {
     }
 
     @Override
+    public boolean isFillHue() {
+        return isFillHue;
+    }
+
+    @Override
+    public void fillHue(boolean fill) {
+        isFillHue = fill;
+        for (Painter painter : painters) {
+            if (painter.isPainterSet()) {
+                painter.toPainterSet().fillHue(fill);
+            }
+        }
+    }
+
+    @Override
     public void draw(Canvas canvas, RectF draw, RectF original, Paint paint) {
         boolean xmodeFlag = false;
         Paint modePaint = null;
         for (int index = 0; index < painters.size(); index++) {
             Painter painter = painters.get(index);
-            if (painter == null || !painter.canDraw())
+            if (null == painter || !painter.canDraw())
                 continue;
             rectSupportInterceptor.beforeDraw(painter, draw, index);
             for (PainterInterceptor interceptor : interceptors) {
+                if (null == interceptor || !isFillHue && interceptor.isHueFiller())
+                    continue;
                 if (interceptor instanceof PorterDuffModeInterceptor) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         xmodeFlag = true;
@@ -220,8 +205,11 @@ public class EasonPainterSet extends EasonPainter implements PainterSet {
             } else {
                 painter.draw(canvas, draw, original, paint);
             }
-            for (PainterInterceptor interceptor : interceptors)
+            for (PainterInterceptor interceptor : interceptors) {
+                if (null == interceptor || !isFillHue && interceptor.isHueFiller())
+                    continue;
                 interceptor.afterDraw(painter, canvas, paint, draw, index);
+            }
             rectSupportInterceptor.afterDraw(painter, draw, index);
         }
     }

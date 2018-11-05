@@ -8,6 +8,8 @@ import eason.linyuzai.easonicon.open.support.AuxiliaryColorSupport;
 import eason.linyuzai.easonicon.painter.SupportEasonPainterSet;
 import eason.linyuzai.easonicon.painter.basic.circle.CirclePainter;
 import eason.linyuzai.easonicon.painter.basic.polygon.PolygonPainter;
+import eason.linyuzai.easonicon.painter.combine.filler.PenColorHueFiller;
+import eason.linyuzai.easonicon.painter.combine.filler.PenStyleHueFiller;
 import eason.linyuzai.easonicon.painter.combine.interceptor.AuxiliaryColorInterceptor;
 
 public class SignPainter extends SupportEasonPainterSet implements AuxiliaryColorSupport {
@@ -37,5 +39,8 @@ public class SignPainter extends SupportEasonPainterSet implements AuxiliaryColo
         circle.setOffsetPercent(0.15f);
         addPainter(circle);
         addInterceptor(new AuxiliaryColorInterceptor(auxiliaryColor));
+
+        addInterceptor(new PenStyleHueFiller());
+        addInterceptor(new PenColorHueFiller());
     }
 }

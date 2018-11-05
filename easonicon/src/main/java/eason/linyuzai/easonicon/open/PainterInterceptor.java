@@ -4,12 +4,13 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
+import eason.linyuzai.easonicon.open.ex.Debugger;
 import eason.linyuzai.easonicon.open.ex.SupportConverter;
 
 /**
  * 绘制拦截器
  */
-public interface PainterInterceptor extends SupportConverter {
+public interface PainterInterceptor extends SupportConverter, Debugger {
     /**
      * 绘制之前
      *
@@ -31,4 +32,8 @@ public interface PainterInterceptor extends SupportConverter {
      * @param index   下标
      */
     void afterDraw(Painter painter, Canvas canvas, Paint paint, RectF rectF, int index);
+
+    default boolean isHueFiller() {
+        return false;
+    }
 }

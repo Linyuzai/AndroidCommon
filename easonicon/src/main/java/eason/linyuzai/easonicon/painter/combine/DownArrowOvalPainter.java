@@ -9,6 +9,8 @@ import eason.linyuzai.easonicon.open.support.AuxiliaryColorSupport;
 import eason.linyuzai.easonicon.open.support.AuxiliaryScaleSupport;
 import eason.linyuzai.easonicon.painter.SupportEasonPainterSet;
 import eason.linyuzai.easonicon.painter.basic.circle.OvalPainter;
+import eason.linyuzai.easonicon.painter.combine.filler.PenColorHueFiller;
+import eason.linyuzai.easonicon.painter.combine.filler.PenStyleHueFiller;
 import eason.linyuzai.easonicon.painter.combine.interceptor.AuxiliaryColorInterceptor;
 
 @AuxiliaryScaleField
@@ -29,7 +31,9 @@ public class DownArrowOvalPainter extends SupportEasonPainterSet implements Auxi
         painter.setCenterPercent(auxiliaryScale);
         setAuxiliaryScalePainter(painter);
         addPainter(painter);
-        //addInterceptor(new AuxiliaryStyleInterceptor());
         addInterceptor(new AuxiliaryColorInterceptor(auxiliaryColor));
+
+        addInterceptor(new PenStyleHueFiller());
+        addInterceptor(new PenColorHueFiller());
     }
 }

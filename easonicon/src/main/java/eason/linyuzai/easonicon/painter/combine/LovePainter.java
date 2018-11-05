@@ -8,6 +8,7 @@ import eason.linyuzai.easonicon.open.Painter;
 import eason.linyuzai.easonicon.open.PainterInterceptor;
 import eason.linyuzai.easonicon.painter.EasonPainterSet;
 import eason.linyuzai.easonicon.painter.basic.path.CubicPainter;
+import eason.linyuzai.easonicon.painter.combine.filler.PenStyleHueFiller;
 
 public class LovePainter extends EasonPainterSet {
 
@@ -16,10 +17,14 @@ public class LovePainter extends EasonPainterSet {
 
     public LovePainter() {
         cubicLeft = new CubicPainter();
-        addPainter(cubicLeft);
+        cubicLeft.setOffsetX(0.5f);
         cubicRight = new CubicPainter();
+        cubicRight.setOffsetX(-0.5f);
+        addPainter(cubicLeft);
         addPainter(cubicRight);
         addInterceptor(new LoveInterceptor());
+
+        addInterceptor(new PenStyleHueFiller());
     }
 
     private class LoveInterceptor implements PainterInterceptor {

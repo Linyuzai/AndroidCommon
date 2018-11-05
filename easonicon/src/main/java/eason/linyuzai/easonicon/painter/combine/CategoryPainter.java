@@ -5,6 +5,7 @@ import eason.linyuzai.easonicon.open.Painter;
 import eason.linyuzai.easonicon.open.support.RoundRectSupport;
 import eason.linyuzai.easonicon.painter.SupportEasonPainterSet;
 import eason.linyuzai.easonicon.painter.basic.rect.RectPainter;
+import eason.linyuzai.easonicon.painter.combine.filler.PenStyleHueFiller;
 
 @RoundRectField
 public class CategoryPainter extends SupportEasonPainterSet implements RoundRectSupport {
@@ -28,5 +29,7 @@ public class CategoryPainter extends SupportEasonPainterSet implements RoundRect
         rb.setPercent(0.45f);
         rb.setOffsetPercent(0.55f);
         addPainter(rb);
+
+        addInterceptor(new PenStyleHueFiller());
     }
 }

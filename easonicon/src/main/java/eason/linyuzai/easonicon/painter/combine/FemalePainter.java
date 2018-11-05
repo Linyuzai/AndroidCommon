@@ -3,6 +3,7 @@ package eason.linyuzai.easonicon.painter.combine;
 import eason.linyuzai.easonicon.open.Painter;
 import eason.linyuzai.easonicon.painter.EasonPainterSet;
 import eason.linyuzai.easonicon.painter.basic.circle.OvalPainter;
+import eason.linyuzai.easonicon.painter.combine.filler.PenStyleHueFiller;
 
 public class FemalePainter extends EasonPainterSet {
     public FemalePainter() {
@@ -16,5 +17,7 @@ public class FemalePainter extends EasonPainterSet {
         add.setOffsetPercentX(0.3f);
         add.setOffsetPercentY(0.8f);
         addPainter(add);
+
+        addInterceptor(new PenStyleHueFiller());
     }
 }

@@ -78,6 +78,31 @@ public class SupportEasonPainterSet extends EasonPainterSet {
     }
 
     @Override
+    public void removePainter(int index) {
+        Painter painter = getPainter(index);
+        if (null == painter)
+            return;
+        removePainter(painter);
+    }
+
+    @Override
+    public void removePainter(Painter painter) {
+        if (painter.isSupportArc())
+            removeArcSupport(painter.toArcSupport());
+        if (painter.isSupportBitmap())
+            removeBitmapSupport(painter.toBitmapSupport());
+        if (painter.isSupportEdgeCount())
+            removeEdgeCountSupport(painter.toEdgeCountSupport());
+        if (painter.isSupportExtraOffset())
+            removeExtraOffsetSupport(painter.toExtraOffsetSupport());
+        if (painter.isSupportRoundRect())
+            removeRoundRectSupport(painter.toRoundRectSupport());
+        if (painter.isSupportText())
+            removeTextSupport(painter.toTextSupport());
+        super.removePainter(painter);
+    }
+
+    @Override
     public void addInterceptor(PainterInterceptor interceptor, boolean recursiveSet) {
         if (interceptor.isSupportAuxiliaryColor()) {
             setAuxiliaryColorSupport(interceptor.toAuxiliaryColorSupport());
@@ -89,14 +114,14 @@ public class SupportEasonPainterSet extends EasonPainterSet {
     }
 
     @Override
-    public void addInterceptor(int index, PainterInterceptor interceptor, boolean recursiveSet) {
+    public void removeInterceptor(PainterInterceptor interceptor, boolean recursiveSet) {
         if (interceptor.isSupportAuxiliaryColor()) {
-            setAuxiliaryColorSupport(interceptor.toAuxiliaryColorSupport());
+            setAuxiliaryColorSupport(null);
         }
         if (interceptor.isSupportPenSizeScale()) {
-            setPenSizeScaleSupport(interceptor.toPenSizeScaleSupport());
+            setPenSizeScaleSupport(null);
         }
-        super.addInterceptor(index, interceptor, recursiveSet);
+        super.removeInterceptor(interceptor, recursiveSet);
     }
 
     //-------arc---------//
@@ -107,6 +132,10 @@ public class SupportEasonPainterSet extends EasonPainterSet {
 
     public void addArcSupport(ArcSupport arcSupport) {
         this.arcSupports.add(arcSupport);
+    }
+
+    public void removeArcSupport(ArcSupport arcSupport) {
+        this.arcSupports.remove(arcSupport);
     }
 
     public float getStartAngle() {
@@ -163,7 +192,7 @@ public class SupportEasonPainterSet extends EasonPainterSet {
     }
 
     public float getAuxiliaryScale() {
-        if (isSupportAuxiliaryScale() &&
+        if (isSupportAuxiliaryScale() && null != auxiliaryScalePainter &&
                 auxiliaryScalePainter.getPercentX() == auxiliaryScalePainter.getPercentY() &&
                 auxiliaryScalePainter.getOffsetPercentX() == auxiliaryScalePainter.getOffsetPercentY() &&
                 auxiliaryScalePainter.getOffsetX() == 0f && auxiliaryScalePainter.getOffsetY() == 0f) {
@@ -190,14 +219,14 @@ public class SupportEasonPainterSet extends EasonPainterSet {
     }
 
     public int getAuxiliaryColor() {
-        if (isSupportAuxiliaryColor()) {
+        if (isSupportAuxiliaryColor() && null != auxiliaryColorSupport) {
             return auxiliaryColorSupport.getAuxiliaryColor();
         }
         return NOT_SUPPORT_INT;
     }
 
     public void setAuxiliaryColor(int color) {
-        if (isSupportAuxiliaryColor()) {
+        if (isSupportAuxiliaryColor() && null != auxiliaryColorSupport) {
             auxiliaryColorSupport.setAuxiliaryColor(color);
         }
     }
@@ -211,6 +240,10 @@ public class SupportEasonPainterSet extends EasonPainterSet {
 
     public void addBitmapSupport(BitmapSupport bitmapSupport) {
         this.bitmapSupports.add(bitmapSupport);
+    }
+
+    public void removeBitmapSupport(BitmapSupport bitmapSupport) {
+        this.bitmapSupports.remove(bitmapSupport);
     }
 
     public Bitmap getBitmap() {
@@ -239,6 +272,10 @@ public class SupportEasonPainterSet extends EasonPainterSet {
         this.edgeCountSupports.add(edgeCountSupport);
     }
 
+    public void removeEdgeCountSupport(EdgeCountSupport edgeCountSupport) {
+        this.edgeCountSupports.remove(edgeCountSupport);
+    }
+
     public int getEdgeCount() {
         if (isSupportEdgeCount() && edgeCountSupports.size() > 0) {
             return edgeCountSupports.get(0).getEdgeCount();
@@ -263,6 +300,10 @@ public class SupportEasonPainterSet extends EasonPainterSet {
 
     public void addExtraOffsetSupport(ExtraOffsetSupport extraOffsetSupport) {
         this.extraOffsetSupports.add(extraOffsetSupport);
+    }
+
+    public void removeExtraOffsetSupport(ExtraOffsetSupport extraOffsetSupport) {
+        this.extraOffsetSupports.remove(extraOffsetSupport);
     }
 
     public float getExtraOffset() {
@@ -292,14 +333,14 @@ public class SupportEasonPainterSet extends EasonPainterSet {
     }
 
     public float getPenSizeScale() {
-        if (isSupportPenSizeScale()) {
+        if (isSupportPenSizeScale() && null != penSizeScaleSupport) {
             return penSizeScaleSupport.getPenSizeScale();
         }
         return NOT_SUPPORT_FLOAT;
     }
 
     public void setPenSizeScale(float penSizeScale) {
-        if (isSupportPenSizeScale()) {
+        if (isSupportPenSizeScale() && null != penSizeScaleSupport) {
             penSizeScaleSupport.setPenSizeScale(penSizeScale);
         }
     }
@@ -314,6 +355,10 @@ public class SupportEasonPainterSet extends EasonPainterSet {
 
     public void addRoundRectSupport(RoundRectSupport roundRectSupport) {
         this.roundRectSupports.add(roundRectSupport);
+    }
+
+    public void removeRoundRectSupport(RoundRectSupport roundRectSupport) {
+        this.roundRectSupports.remove(roundRectSupport);
     }
 
     public float getLeftTop() {
@@ -385,6 +430,10 @@ public class SupportEasonPainterSet extends EasonPainterSet {
 
     public void addTextSupport(TextSupport textSupport) {
         this.textSupports.add(textSupport);
+    }
+
+    public void removeTextSupport(TextSupport textSupport) {
+        this.textSupports.remove(textSupport);
     }
 
     public String getText() {

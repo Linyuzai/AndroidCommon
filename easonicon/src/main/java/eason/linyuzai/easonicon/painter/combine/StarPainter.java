@@ -8,6 +8,7 @@ import eason.linyuzai.easonicon.open.Painter;
 import eason.linyuzai.easonicon.open.PainterInterceptor;
 import eason.linyuzai.easonicon.painter.EasonPainterSet;
 import eason.linyuzai.easonicon.painter.basic.polygon.ExtraPolygonPainter;
+import eason.linyuzai.easonicon.painter.combine.filler.PenStyleHueFiller;
 
 public class StarPainter extends EasonPainterSet {
 
@@ -17,6 +18,8 @@ public class StarPainter extends EasonPainterSet {
         extraPolygon = new ExtraPolygonPainter(5);
         addPainter(extraPolygon);
         addInterceptor(new StarInterceptor());
+
+        addInterceptor(new PenStyleHueFiller());
     }
 
     private class StarInterceptor implements PainterInterceptor {

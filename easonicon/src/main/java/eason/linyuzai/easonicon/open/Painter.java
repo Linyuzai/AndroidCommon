@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
+import eason.linyuzai.easonicon.open.ex.Debugger;
 import eason.linyuzai.easonicon.open.ex.RectSupport;
 import eason.linyuzai.easonicon.open.ex.SupportConverter;
 
@@ -14,7 +15,7 @@ import eason.linyuzai.easonicon.open.ex.SupportConverter;
  * @author linyuzai
  */
 
-public interface Painter extends RectSupport, SupportConverter {
+public interface Painter extends RectSupport, SupportConverter, Debugger {
 
     /**
      * 是否绘制

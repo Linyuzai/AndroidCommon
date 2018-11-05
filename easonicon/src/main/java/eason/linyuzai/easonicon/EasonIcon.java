@@ -875,6 +875,15 @@ public class EasonIcon extends View {
         });
     }
 
+    public void fillHue(boolean fill) {
+        painterSet.fillHue(fill);
+        update();
+    }
+
+    public boolean isFillHue() {
+        return painterSet.isFillHue();
+    }
+
     /**
      * 添加Painter
      *

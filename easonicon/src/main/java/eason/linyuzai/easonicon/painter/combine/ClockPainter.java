@@ -5,6 +5,8 @@ import eason.linyuzai.easonicon.painter.EasonPainterSet;
 import eason.linyuzai.easonicon.painter.basic.circle.OvalPainter;
 import eason.linyuzai.easonicon.painter.basic.line.HorizontalLinePainter;
 import eason.linyuzai.easonicon.painter.basic.line.VerticalLinePainter;
+import eason.linyuzai.easonicon.painter.combine.filler.PenColorHueFiller;
+import eason.linyuzai.easonicon.painter.combine.filler.PenStyleHueFiller;
 
 public class ClockPainter extends EasonPainterSet {
 
@@ -21,5 +23,8 @@ public class ClockPainter extends EasonPainterSet {
         hl.setOffsetPercentX(0.5f);
         hl.setOffsetPercentY(0.5f);
         addPainter(hl);
+
+        addInterceptor(new PenStyleHueFiller());
+        addInterceptor(new PenColorHueFiller());
     }
 }

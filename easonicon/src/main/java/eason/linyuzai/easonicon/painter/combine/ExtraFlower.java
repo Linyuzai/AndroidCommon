@@ -13,6 +13,7 @@ import eason.linyuzai.easonicon.open.support.EdgeCountSupport;
 import eason.linyuzai.easonicon.open.support.PenSizeScaleSupport;
 import eason.linyuzai.easonicon.painter.SupportEasonPainterSet;
 import eason.linyuzai.easonicon.painter.basic.polygon.ExtraPolygonPainter;
+import eason.linyuzai.easonicon.painter.combine.filler.PenStyleHueFiller;
 import eason.linyuzai.easonicon.painter.combine.interceptor.PenSizeScaleInterceptor;
 
 @EdgeCountField
@@ -35,6 +36,8 @@ public class ExtraFlower extends SupportEasonPainterSet implements EdgeCountSupp
         setEdgeCount(edgeCount);
         addInterceptor(new PenSizeScaleInterceptor(polygon, penSizeScale, 0.01f));
         addInterceptor(new ExtraFlowerInterceptor());
+
+        addInterceptor(new PenStyleHueFiller());
     }
 
     private class ExtraFlowerInterceptor implements PainterInterceptor {

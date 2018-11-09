@@ -131,6 +131,9 @@
         <attr name="eic_text_size" format="reference|dimension" />
     </declare-styleable>
     <declare-styleable name="RectImageView">
-        <attr name="round_radius" format="reference|dimension" />
+        <attr name="eic_round_radius" format="reference|dimension" />
+    </declare-styleable>
+    <declare-styleable name="EasonButton">
+        <attr name="eic_click_to_change_icon_style" format="reference|boolean" />
     </declare-styleable>
 </resources>

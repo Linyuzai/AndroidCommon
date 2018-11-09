@@ -28,17 +28,13 @@ public class RectImageView extends DstInImageView {
         super(context, attrs, defStyleAttr);
     }
 
-    public RectImageView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-    }
-
     @Override
     protected void init(Context context, AttributeSet attrs, Paint paint) {
         super.init(context, attrs, paint);
         rectPainter = new RectPainter();
         if (attrs != null) {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.RectImageView);
-            float radius = a.getDimension(R.styleable.RectImageView_round_radius, 0f);
+            float radius = a.getDimension(R.styleable.RectImageView_eic_round_radius, 0f);
             setRadius(radius);
             a.recycle();
         }

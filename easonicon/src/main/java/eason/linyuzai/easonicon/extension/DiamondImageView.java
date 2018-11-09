@@ -23,10 +23,6 @@ public class DiamondImageView extends DstInImageView {
         super(context, attrs, defStyleAttr);
     }
 
-    public DiamondImageView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-    }
-
     @Override
     protected void init(Context context, AttributeSet attrs, Paint paint) {
         super.init(context, attrs, paint);

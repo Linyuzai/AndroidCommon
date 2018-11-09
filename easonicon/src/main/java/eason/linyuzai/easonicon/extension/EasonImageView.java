@@ -1,6 +1,5 @@
 package eason.linyuzai.easonicon.extension;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -10,8 +9,8 @@ import android.graphics.RectF;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
-import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +21,7 @@ import eason.linyuzai.easonicon.open.PainterSet;
 import eason.linyuzai.easonicon.painter.interceptor.mode.PorterDuffModeInterceptor;
 
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-@SuppressLint("AppCompatCustomView")
-public class EasonImageView extends ImageView {
+public class EasonImageView extends AppCompatImageView {
 
     private Paint paint = new Paint();
     private RectF draw = new RectF();
@@ -58,11 +56,6 @@ public class EasonImageView extends ImageView {
 
     public EasonImageView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(context, attrs, paint);
-    }
-
-    public EasonImageView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
         init(context, attrs, paint);
     }
 
